@@ -23,11 +23,11 @@ public class detectDead : MonoBehaviour
     {
         if(deadList.Count > 0)
         {
-            zone.color = new Vector4(0, 1, 0, 0.5f);
+            zone.color = new Vector4(0, 1, 0, 0.2f);
         }
         else
         {
-            zone.color = new Vector4(0.5f, 0.5f, 0.5f, 0.5f);
+            zone.color = new Vector4(0.5f, 0.5f, 0.5f, 0.2f);
         }
     }
 
