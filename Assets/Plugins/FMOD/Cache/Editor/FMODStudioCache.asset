@@ -1,5 +1,112 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6639937667616358054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD_PODLAB/FMOD_PODLAB_Year_Projectt/FMOD_PODLAB/Build/Desktop/Master.bank
+  Name: Master
+  lastModified: 637414218374029682
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-5190969414953019947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/3D TimeLine
+  m_EditorClassIdentifier: 
+  Path: event:/3D TimeLine
+  guid: 56bb9024095087408894d2b3a3fbc6fe
+  Banks:
+  - {fileID: -6639937667616358054}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4753088208096374989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD_PODLAB/FMOD_PODLAB_Year_Projectt/FMOD_PODLAB/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  lastModified: 637414218374099498
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 852
+  Exists: 1
+--- !u!114 &-2743512074893303403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/2D TimeLine
+  m_EditorClassIdentifier: 
+  Path: event:/2D TimeLine
+  guid: 3fa859def3857b41994059e622dad2a7
+  Banks:
+  - {fileID: -6639937667616358054}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &-1285600416485939621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/3D Action
+  m_EditorClassIdentifier: 
+  Path: event:/3D Action
+  guid: 5a7bd3f11f87fb4eb54932ac15b4d24c
+  Banks:
+  - {fileID: -6639937667616358054}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,10 +119,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
-  EditorBanks: []
-  EditorEvents: []
+  EditorBanks:
+  - {fileID: -4753088208096374989}
+  - {fileID: -6639937667616358054}
+  EditorEvents:
+  - {fileID: -2743512074893303403}
+  - {fileID: -5190969414953019947}
+  - {fileID: -1285600416485939621}
   EditorParameters: []
-  MasterBanks: []
-  StringsBanks: []
-  stringsBankWriteTime: 0
+  MasterBanks:
+  - {fileID: -6639937667616358054}
+  StringsBanks:
+  - {fileID: -4753088208096374989}
+  stringsBankWriteTime: 637414218374099498
   cacheVersion: 5
