@@ -14,6 +14,10 @@ public class shootDead : MonoBehaviour
     private GameObject ennemyCible;
 
     [SerializeField] private GameObject preProjo;
+    [SerializeField] private Transform canon;
+
+    [SerializeField] private float freqTir;
+    private float chrono;
 
     private bool onShoot;
 
@@ -50,7 +54,9 @@ public class shootDead : MonoBehaviour
 
         }*/
 
-        if(detectD.deadList.Count > 0)
+        TirNormal(rayon);
+
+        /*if(detectD.deadList.Count > 0)
         {
          
             if (Input.GetMouseButtonDown(0))
@@ -70,7 +76,7 @@ public class shootDead : MonoBehaviour
                 Destroy(detectD.deadList[0]);
                 detectD.deadList.Remove(detectD.deadList[0]);
             }
-        }
+        }*/
 
         /*if (onShoot)
         {
@@ -87,6 +93,33 @@ public class shootDead : MonoBehaviour
                 onShoot = false;
             }
         }*/
-       
+
+    }
+
+    private void TirNormal(Ray rayon)
+    {
+        if (chrono >= freqTir)
+        {
+            if (Input.GetMouseButton(0))
+            {
+
+                RaycastHit floorHit;
+                chrono = 0;
+
+                var projectile = Instantiate(preProjo, canon.position, Quaternion.identity);
+
+                if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity))
+                {
+                    Vector3 playerToMouse = floorHit.point - canon.position;
+                    projectile.GetComponent<DeadProjo>().Shoot(playerToMouse);
+
+                }
+
+            }
+        }
+        else
+        {
+            chrono += Time.deltaTime;
+        }
     }
 }
