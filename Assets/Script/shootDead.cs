@@ -53,7 +53,7 @@ public class shootDead : MonoBehaviour
         if(detectD.deadList.Count > 0)
         {
          
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetMouseButtonDown(0))
             {
               
                 RaycastHit floorHit;
@@ -72,8 +72,6 @@ public class shootDead : MonoBehaviour
             }
         }
 
-        DrawRay();
-
         /*if (onShoot)
         {
             for (int i = 0; i < detectD.deadList.Count; i++)
@@ -89,20 +87,6 @@ public class shootDead : MonoBehaviour
                 onShoot = false;
             }
         }*/
-
-        void DrawRay()
-        {
-            RaycastHit point;
-
-            if (Physics.Raycast(rayon, out point, Mathf.Infinity))
-            {
-                Vector3 theRay = point.point - transform.position;
-                theRay = theRay.normalized;
-                Debug.DrawRay(transform.position, theRay * 100);
-
-            }
-        }
-
-        
+       
     }
 }
