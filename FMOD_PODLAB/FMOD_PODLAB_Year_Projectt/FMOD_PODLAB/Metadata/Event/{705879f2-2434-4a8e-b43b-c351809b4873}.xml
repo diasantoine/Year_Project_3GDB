@@ -5,7 +5,7 @@
 			<value>TOUCHE</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{256e3730-29a1-476c-83e1-5cff90871cd4}</destination>
@@ -70,9 +70,6 @@
 		<relationship name="modules">
 			<destination>{c0f77e2e-a7cb-4869-aaf9-f1df7ee841f2}</destination>
 		</relationship>
-		<relationship name="markers">
-			<destination>{2d24eb00-af9a-4dea-a095-309dfb592ea3}</destination>
-		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{c6cba44e-7d89-4a5f-b0be-063c4a813f66}">
 		<relationship name="effectChain">
@@ -122,23 +119,10 @@
 			<destination>{c6cba44e-7d89-4a5f-b0be-063c4a813f66}</destination>
 		</relationship>
 	</object>
-	<object class="LoopRegion" id="{2d24eb00-af9a-4dea-a095-309dfb592ea3}">
-		<property name="position">
-			<value>0</value>
-		</property>
-		<property name="length">
-			<value>0.25</value>
-		</property>
-		<relationship name="timeline">
-			<destination>{bb8ef707-8a08-472e-8445-5f59e3ce6c73}</destination>
-		</relationship>
-		<relationship name="markerTrack">
-			<destination>{1923ddfb-e4c8-4196-af3e-b3e3db7babc7}</destination>
-		</relationship>
-	</object>
 	<object class="MixerBusEffectChain" id="{e69cabf3-9f81-4e57-b9b1-43da697df496}">
 		<relationship name="effects">
 			<destination>{4bc7c6b5-efc8-4425-9eb8-c51ccecd0d09}</destination>
+			<destination>{cc20d9f5-7330-4cc8-8563-6d5dfb0cbd4c}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{859cca18-96b5-40f2-ab6f-35ae1d24d0c0}" />
@@ -203,6 +187,11 @@
 	</object>
 	<object class="MixerBusPanner" id="{da0f9c18-234a-4d89-8af3-0270c37c47c4}" />
 	<object class="MixerBusFader" id="{4bc7c6b5-efc8-4425-9eb8-c51ccecd0d09}" />
+	<object class="SpatialiserEffect" id="{cc20d9f5-7330-4cc8-8563-6d5dfb0cbd4c}">
+		<property name="maximumDistance">
+			<value>100</value>
+		</property>
+	</object>
 	<object class="LowpassSimpleEffect" id="{1f52a95b-63ac-430f-9980-ccfd1a16ceb3}">
 		<property name="cutoff">
 			<value>520</value>
