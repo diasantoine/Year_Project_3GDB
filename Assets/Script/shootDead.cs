@@ -5,6 +5,9 @@ using UnityEngine;
 public class shootDead : MonoBehaviour
 {
 
+    [FMODUnity.EventRef]
+    public string TireSon = "";
+
     [SerializeField] private detectDead detectD;
 
     RaycastHit hit;
@@ -65,6 +68,8 @@ public class shootDead : MonoBehaviour
                 RaycastHit floorHit;
                 
                 var projectile = Instantiate(preProjo, detectD.deadList[0].transform.position, Quaternion.identity);
+
+                FMODUnity.RuntimeManager.PlayOneShot(TireSon, transform.position);
 
                 if (Physics.Raycast(rayon , out floorHit, Mathf.Infinity))
                 {
