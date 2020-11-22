@@ -133,7 +133,8 @@ public class ennemyState : MonoBehaviour
             {
                 if (transform.position.y<= -10)
                 {
-                    Instantiate(preDead, player.transform.position + new Vector3(0, 0, écart * 1.25f), 
+                    Instantiate(preDead, new Vector3(player.position.x+4, player.position.y, player.position.z)
+                                         + new Vector3(0, 0, écart * 1.25f), 
                         Quaternion.identity, GameObject.Find("CadavreParent").transform);
                 }
                 else
@@ -164,7 +165,7 @@ public class ennemyState : MonoBehaviour
         if (collision.transform.CompareTag("Projectile"))
         {
             JustHit = true;
-            int Explosion = DMG_Percentage * 3;
+            int Explosion = DMG_Percentage * 2;
             DMG_Percentage = Explosion;
             transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             transform.GetComponent<Rigidbody>()

@@ -34,8 +34,9 @@ public class TirCharge : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (tipar)
+        if (tipar && !other.CompareTag("Player"))
         {
+            Debug.Log(other.gameObject.name);
             hitPoint = other.gameObject.transform.position;
             Collider[] hit = Physics.OverlapSphere(hitPoint, radiusExploBase + transform.localScale.x);
 

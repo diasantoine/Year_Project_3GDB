@@ -24,7 +24,7 @@ public class CharacterMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ConteneurRigibody = transform.GetComponent<Rigidbody>();
+        ConteneurRigibody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class CharacterMovement : MonoBehaviour
         if ((Input.GetButton("Vertical")|| Input.GetButton("Horizontal")) && Grounded)
         { 
             Vector3 Vector3_Deplacement_Player =  new Vector3(-Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal"));
-            //Vector3_Deplacement_Player = transform.TransformDirection(Vector3_Deplacement_Player);
+            Vector3_Deplacement_Player = transform.TransformDirection(Vector3_Deplacement_Player);
             ConteneurRigibody.velocity = Vector3_Deplacement_Player * vitesse;
             //RigibodyAvatar.AddForce(Vector3_Deplacement_Player * Speed_Player);
         }

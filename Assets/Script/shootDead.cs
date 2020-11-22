@@ -70,6 +70,7 @@ public class shootDead : MonoBehaviour
         {
             isCharging = true;
             pierre = Instantiate(preProjoChargé, canonCharge.position, Quaternion.identity, canonCharge.transform);
+            pierre.GetComponent<Rigidbody>().isKinematic = true;
         }
         else if(Input.GetMouseButtonUp(1))
         {
@@ -194,6 +195,7 @@ public class shootDead : MonoBehaviour
         {
             Vector3 playerToMouse = floorHit.point - canon.position;
             pierre.GetComponent<TirCharge>().tipar = true;
+            pierre.GetComponent<Rigidbody>().isKinematic = false;
             pierre.transform.parent = null;
             pierre.GetComponent<TirCharge>().Shoot(playerToMouse);
 

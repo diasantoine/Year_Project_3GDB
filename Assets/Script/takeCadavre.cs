@@ -56,6 +56,10 @@ public class takeCadavre : MonoBehaviour
 
         if (isMunitions)
         {
+            if (!deadD.deadList.Contains(this.gameObject))
+            {
+                deadD.deadList.Add(this.gameObject);
+            }
             gameObject.transform.RotateAround(player.position, Vector3.up, 45f * Time.deltaTime);
             gameObject.transform.LookAt(player);
         }
