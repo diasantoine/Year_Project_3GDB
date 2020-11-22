@@ -36,7 +36,8 @@ public class spawn : MonoBehaviour
                 {
                     if (hit.collider.gameObject.CompareTag("sol"))
                     {
-                        Instantiate(preEnnemy, new Vector3(hit.point.x, preEnnemy.transform.position.y, hit.point.z), Quaternion.identity, GameObject.Find("EnnemiParent").transform);
+                        GameObject ConteneurGameobject = Instantiate(preEnnemy, new Vector3(hit.point.x, preEnnemy.transform.position.y, hit.point.z), Quaternion.identity, GameObject.Find("EnnemiParent").transform);
+                        ConteneurGameobject.GetComponent<ennemyState>().SEB = GameObject.Find("SpawnEnnemyParent").GetComponent<spawnEnnemyBasique>();
                         chrono = 0;
                     }
                 }

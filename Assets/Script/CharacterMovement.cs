@@ -24,6 +24,10 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.parent.position.y<=-6)
+        {
+            transform.parent.position = new Vector3(30, 1.25f, -15.7f);
+        }
        /*if (isWalking)
         {
             anim.SetBool("IsWalking", true);
@@ -51,6 +55,5 @@ public class CharacterMovement : MonoBehaviour
         {
             isWalking = false;
         }
-
     }
 }
