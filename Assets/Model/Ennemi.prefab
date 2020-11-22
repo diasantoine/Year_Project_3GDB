@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 478785497056146525}
   - component: {fileID: 2702182528886910265}
   - component: {fileID: -9094366941164787511}
+  - component: {fileID: -2264881879563534540}
+  - component: {fileID: 8946530925632209592}
   m_Layer: 0
   m_Name: Ennemi
   m_TagString: Ennemy
@@ -114,10 +116,7 @@ MonoBehaviour:
   hpMax: 4
   vitesse: 5
   numberCadav: 0
-  Grounded: 0
   DMG_Percentage: 1
-  JustHit: 0
-  HitPlayer: 0
 --- !u!54 &-9094366941164787511
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -134,6 +133,42 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!195 &-2264881879563534540
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478785497056146526}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.99999994
+  m_BaseOffset: 0.49999997
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &8946530925632209592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478785497056146526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7302e709e1c385b469ba4f8e171a8168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: -2264881879563534540}
+  DMG_Percentage: 1
 --- !u!1 &3422042537433881719
 GameObject:
   m_ObjectHideFlags: 0
