@@ -143,6 +143,7 @@ public class shootDead : MonoBehaviour
                 chrono = 0;
 
                 var projectile = Instantiate(preProjo, canon.position, Quaternion.identity);
+                FMODUnity.RuntimeManager.PlayOneShot(TireSon, transform.position);
 
                 if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity))
                 {
