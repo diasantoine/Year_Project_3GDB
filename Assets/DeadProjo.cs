@@ -5,6 +5,9 @@ using UnityEngine;
 public class DeadProjo : MonoBehaviour
 {
 
+    [FMODUnity.EventRef]
+    public string TireTouche = "";
+
     //public Transform cible;
 
     [SerializeField] private float vitesse;
@@ -66,6 +69,7 @@ public class DeadProjo : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ennemy"))
         {
+            FMODUnity.RuntimeManager.PlayOneShot(TireTouche, transform.position);
             collision.gameObject.GetComponent<ennemyState>().damage(dégat);
         }
 

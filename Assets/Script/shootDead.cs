@@ -5,6 +5,9 @@ using UnityEngine;
 public class shootDead : MonoBehaviour
 {
 
+    [FMODUnity.EventRef]
+    public string TireSon = "";
+
     [SerializeField] private detectDead detectD;
 
     RaycastHit hit;
@@ -12,10 +15,19 @@ public class shootDead : MonoBehaviour
     private Camera cam;
 
     private GameObject ennemyCible;
+    private GameObject pierre;
 
     [SerializeField] private GameObject preProjo;
+    [SerializeField] private GameObject preProjoChargé;
+
+    [SerializeField] private Transform canon;
+    [SerializeField] private Transform canonCharge;
+
+    [SerializeField] private float freqTir;
+    private float chrono;
 
     private bool onShoot;
+    private bool isCharging;
 
     RaycastHit floorHit;
 
@@ -23,6 +35,8 @@ public class shootDead : MonoBehaviour
     void Start()
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        isCharging = false;
+
     }
 
     // Update is called once per frame
@@ -50,15 +64,36 @@ public class shootDead : MonoBehaviour
 
         }*/
 
-        if(detectD.deadList.Count > 0)
+        TirNormal(rayon);
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            isCharging = true;
+            pierre = Instantiate(preProjoChargé, canon.position, Quaternion.identity, canonCharge.transform);
+        }
+        else if(Input.GetMouseButtonUp(1))
+        {
+            isCharging = false;
+            Destroy(pierre);
+
+        }
+
+        if (isCharging)
+        {
+            TirChargé();
+        }
+
+        /*if(detectD.deadList.Count > 0)
         {
          
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetMouseButtonDown(0))
             {
               
                 RaycastHit floorHit;
                 
                 var projectile = Instantiate(preProjo, detectD.deadList[0].transform.position, Quaternion.identity);
+
+                FMODUnity.RuntimeManager.PlayOneShot(TireSon, transform.position);
 
                 if (Physics.Raycast(rayon , out floorHit, Mathf.Infinity))
                 {
@@ -70,9 +105,7 @@ public class shootDead : MonoBehaviour
                 Destroy(detectD.deadList[0]);
                 detectD.deadList.Remove(detectD.deadList[0]);
             }
-        }
-
-        DrawRay();
+        }*/
 
         /*if (onShoot)
         {
@@ -90,19 +123,57 @@ public class shootDead : MonoBehaviour
             }
         }*/
 
-        void DrawRay()
-        {
-            RaycastHit point;
+    }
 
-            if (Physics.Raycast(rayon, out point, Mathf.Infinity))
+    private void TirNormal(Ray rayon)
+    {
+        if (chrono >= freqTir)
+        {
+            if (Input.GetMouseButton(0))
             {
-                Vector3 theRay = point.point - transform.position;
-                theRay = theRay.normalized;
-                Debug.DrawRay(transform.position, theRay * 100);
+
+                RaycastHit floorHit;
+                chrono = 0;
+
+                var projectile = Instantiate(preProjo, canon.position, Quaternion.identity);
+
+                if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity))
+                {
+                    Vector3 playerToMouse = floorHit.point - canon.position;
+                    projectile.GetComponent<DeadProjo>().Shoot(playerToMouse);
+
+                }
+
+            }
+        }
+        else
+        {
+            chrono += Time.deltaTime;
+        }
+    }
+
+    void TirChargé()
+    {
+
+        if(detectD.deadList.Count > 0)
+        {
+            
+            for (int i = 0; i < detectD.deadList.Count; i++)
+            {
+                
+                takeCadavre TC = detectD.deadList[0].GetComponent<takeCadavre>();
+
+                if(TC.isMunitions)
+                {
+                    TC.isMunitions = false;
+                    TC.charge = true;
+                    TC.pierre = pierre.transform;
+
+                    detectD.deadList.Remove(detectD.deadList[0]);
+                }
 
             }
         }
 
-        
     }
 }

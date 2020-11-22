@@ -7,12 +7,18 @@ public class takeCadavre : MonoBehaviour
 
     public bool gotcha;
 
-    private bool isMunitions;
+    [HideInInspector] public bool isMunitions;
+    [HideInInspector] public bool charge;
+
 
     public Transform player;
+    public Transform pierre;
+
 
     [SerializeField] private float threshold;
     [SerializeField] private float vitesse;
+
+    public detectDead deadD;
     
 
     // Start is called before the first frame update
@@ -49,6 +55,38 @@ public class takeCadavre : MonoBehaviour
         {
             gameObject.transform.RotateAround(player.position, Vector3.up, 45f * Time.deltaTime);
             gameObject.transform.LookAt(player);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (charge)
+        {
+
+            if(pierre != null)
+            {
+                Vector3 direction = pierre.position - transform.position;
+
+                direction = direction.normalized;
+
+                transform.position += direction * vitesse * Time.deltaTime;
+            }
+            else
+            {
+                gotcha = true;
+                charge = false;
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (charge)
+        {
+            if (other.gameObject.CompareTag("chargeTrigger"))
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

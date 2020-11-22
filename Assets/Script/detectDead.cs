@@ -12,6 +12,8 @@ public class detectDead : MonoBehaviour
 
     [SerializeField] private Vector3 tailleTake;
 
+    [SerializeField] private Transform parent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +25,11 @@ public class detectDead : MonoBehaviour
     {
         if(deadList.Count > 0)
         {
-            zone.color = new Vector4(0, 1, 0, 0.5f);
+            zone.color = new Vector4(0, 1, 0, 0.2f);
         }
         else
         {
-            zone.color = new Vector4(0.5f, 0.5f, 0.5f, 0.5f);
+            zone.color = new Vector4(0.5f, 0.5f, 0.5f, 0.2f);
         }
     }
 
@@ -35,12 +37,13 @@ public class detectDead : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Dead"))
         {
-            if(other.gameObject != deadList.Contains(other.gameObject))
+            if(other.gameObject != deadList.Contains(other.gameObject) && !other.gameObject.GetComponent<takeCadavre>().charge)
             {
                 deadList.Add(other.gameObject);
                 other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 other.gameObject.GetComponent<takeCadavre>().gotcha = true;
-                other.gameObject.GetComponent<takeCadavre>().player = gameObject.transform.parent;
+                other.gameObject.GetComponent<takeCadavre>().player = parent;
+                other.gameObject.GetComponent<takeCadavre>().deadD = gameObject.GetComponent<detectDead>();
                 other.gameObject.transform.localScale = tailleTake;
             }
         }
