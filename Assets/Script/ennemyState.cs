@@ -31,6 +31,11 @@ public class ennemyState : MonoBehaviour
 
     [SerializeField] private bool JustHit = false;
 
+    [SerializeField] private bool HitPlayer = false;
+
+    private float Couldown = 2;
+    
+
     // Start is called before the first frame update
 
     private void Awake()
@@ -59,11 +64,47 @@ public class ennemyState : MonoBehaviour
         {
             if (moving && !JustHit)
             {
-                Vector3 distance = player.position - transform.position;
-                distance = distance.normalized;
-                ConteneurRigibody.velocity = (vitesse / RandomMultiplicatorSize) * distance;
-                //transform.position += distance * (vitesse/RandomMultiplicatorSize) * Time.deltaTime;
-                transform.LookAt(player.position);
+                if (Vector3.Distance(transform.position, player.transform.position) > 4f)
+                {
+                    Vector3 distance = player.position - transform.position;
+                    distance = distance.normalized;
+                    ConteneurRigibody.velocity = (vitesse / RandomMultiplicatorSize) * distance;
+                    //transform.position += distance * (vitesse/RandomMultiplicatorSize) * Time.deltaTime;
+                    transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                }
+                else
+                {
+                    if (!HitPlayer)
+                    {
+                        if (Physics.Raycast(transform.position, transform.forward,
+                            out RaycastHit hit, 20, LayerMask.GetMask("Default")))
+                        {
+                            if (hit.transform.CompareTag("Player"))
+                            {
+                                Debug.Log("JeTape");
+                                int Explosion = 4000;
+                                //hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                                hit.transform.GetComponent<Rigidbody>()
+                                    .AddForceAtPosition(transform.forward * Explosion, hit.point);
+                                this.HitPlayer = true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (Couldown<=0)
+                        {
+                            HitPlayer = false;
+                            Couldown = 2;
+                        }
+                        else
+                        {
+                            Couldown -= Time.deltaTime;
+                        }
+                    }
+                   
+                }
+               
             }
             else if(JustHit)
             {

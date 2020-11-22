@@ -14,6 +14,7 @@ public class CharacterMovement : MonoBehaviour
     public float vitesse = 6f;
 
     public Transform cam;
+    
 
     // Start is called before the first frame update
     void Start()
