@@ -7,9 +7,8 @@ using Random = UnityEngine.Random;
 public class ennemyState : MonoBehaviour
 {
 
-    private Transform player;
+    [HideInInspector] public Transform player;
 
-    public bool moving;
     [HideInInspector] public spawnEnnemyBasique SEB;
 
     [SerializeField] private GameObject preDead;
@@ -21,19 +20,17 @@ public class ennemyState : MonoBehaviour
 
     [SerializeField] private int numberCadav;
 
-    [SerializeField] private bool Grounded = false;
-
     private float RandomMultiplicatorSize = 0;
 
     private Rigidbody ConteneurRigibody;
     
-    [SerializeField] public int DMG_Percentage = 1;
+    public int DMG_Percentage = 1;
 
-    [SerializeField] private bool JustHit = false;
+    private bool JustHit = false;
+    private bool HitPlayer = false;
+    private bool Grounded = false;
 
-    [SerializeField] private bool HitPlayer = false;
-
-    private float Couldown = 2;
+    private float Cooldown = 2;
     
 
     // Start is called before the first frame update
@@ -50,7 +47,7 @@ public class ennemyState : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.Find("Player").transform;
+        //player = GameObject.Find("Player").transform;
         hpNow = hpMax;
 
         numberCadav = Random.Range(1, 4);
@@ -60,9 +57,9 @@ public class ennemyState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Grounded)
+        /*if (Grounded)
         {
-            if (moving && !JustHit)
+            if (!JustHit)
             {
                 if (Vector3.Distance(transform.position, player.transform.position) > 4f)
                 {
@@ -92,14 +89,14 @@ public class ennemyState : MonoBehaviour
                     }
                     else
                     {
-                        if (Couldown<=0)
+                        if (Cooldown<=0)
                         {
                             HitPlayer = false;
-                            Couldown = 2;
+                            Cooldown = 2;
                         }
                         else
                         {
-                            Couldown -= Time.deltaTime;
+                            Cooldown -= Time.deltaTime;
                         }
                     }
                    
@@ -118,7 +115,7 @@ public class ennemyState : MonoBehaviour
                     }
                 }
             }
-        }
+        }*/
        
         if (transform.position.y <= -10)
         {
@@ -155,7 +152,7 @@ public class ennemyState : MonoBehaviour
     }
 
 
-   private void OnCollisionEnter(Collision collision)
+   /*private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("sol") && !Grounded)
         {
@@ -178,7 +175,7 @@ public class ennemyState : MonoBehaviour
             transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             /*transform.GetComponent<Rigidbody>()
                 .AddForceAtPosition(transform.forward * collision.gameObject.GetComponent<ennemyState>().DMG_Percentage
-                    , collision.GetContact(0).point);*/
+                    , collision.GetContact(0).point);
         }
     }
 
@@ -196,5 +193,5 @@ public class ennemyState : MonoBehaviour
         {
             Grounded = false;
         }
-    }
+    }*/
 }

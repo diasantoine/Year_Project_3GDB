@@ -7,6 +7,8 @@ public class spawnEnnemyBasique : MonoBehaviour
 
     [SerializeField] private GameObject ennemyPre;
     [SerializeField] private Transform parentEnnemy;
+    [SerializeField] private Transform player;
+
 
     [SerializeField] private float freqSpawn;
     private float chrono;
@@ -47,6 +49,9 @@ public class spawnEnnemyBasique : MonoBehaviour
             newEnnemy.transform.parent = parentEnnemy;
             newEnnemy.transform.position = spawnPoz[i].position + new Vector3(0, 1.25f, 0);
             newEnnemy.GetComponent<ennemyState>().SEB = gameObject.GetComponent<spawnEnnemyBasique>();
+            newEnnemy.GetComponent<ennemyAI>().player = player;
+            newEnnemy.GetComponent<ennemyState>().player = player;
+
             numberEnnemy++;
         }
     }
