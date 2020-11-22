@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,31 +15,34 @@ public class CharacterMovement : MonoBehaviour
     public float vitesse = 6f;
 
     public Transform cam;
+
+    private Rigidbody ConteneurRigibody;
+
+    [SerializeField] private bool Grounded;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        ConteneurRigibody = transform.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.parent.position.y<=-6)
+        if (transform.position.y<=-6)
         {
-            transform.parent.position = new Vector3(30, 1.25f, -15.7f);
+            transform.position = new Vector3(30, 1.25f, -15.7f);
         }
-       /*if (isWalking)
-        {
-            anim.SetBool("IsWalking", true);
+        
+        if ((Input.GetButton("Vertical")|| Input.GetButton("Horizontal")) && Grounded)
+        { 
+            Vector3 Vector3_Deplacement_Player =  new Vector3(-Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal"));
+            //Vector3_Deplacement_Player = transform.TransformDirection(Vector3_Deplacement_Player);
+            ConteneurRigibody.velocity = Vector3_Deplacement_Player * vitesse;
+            //RigibodyAvatar.AddForce(Vector3_Deplacement_Player * Speed_Player);
         }
-        else
-        {
-            anim.SetBool("IsWalking", false);
-        }*/
-
-        float horizontal = Input.GetAxisRaw("Horizontal");
+        /*float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
@@ -55,6 +59,31 @@ public class CharacterMovement : MonoBehaviour
         else
         {
             isWalking = false;
+        }*/
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        Debug.Log("PARDON.");
+        if (other.transform.CompareTag("sol") && !Grounded)
+        {
+            Grounded = true;
+        }
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.transform.CompareTag("sol") && !Grounded)
+        {
+            Grounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.transform.CompareTag("sol") && Grounded)
+        {
+            Grounded = false;
         }
     }
 }
