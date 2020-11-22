@@ -40,7 +40,7 @@ public class ennemyState : MonoBehaviour
 
     private void Awake()
     {
-        RandomMultiplicatorSize = Random.Range(0.2f, 2.5f);
+        RandomMultiplicatorSize = Random.Range(0.5f, 2.5f);
         Color ConteneurColor = GetComponent<MeshRenderer>().material.GetColor("_Color");
         ConteneurColor.g /= RandomMultiplicatorSize;
         GetComponent<MeshRenderer>().material.color = ConteneurColor;
@@ -82,7 +82,7 @@ public class ennemyState : MonoBehaviour
                             if (hit.transform.CompareTag("Player"))
                             {
                                 Debug.Log("JeTape");
-                                int Explosion = 4000;
+                                int Explosion = 2000;
                                 //hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                                 hit.transform.GetComponent<Rigidbody>()
                                     .AddForceAtPosition(transform.forward * Explosion, hit.point);

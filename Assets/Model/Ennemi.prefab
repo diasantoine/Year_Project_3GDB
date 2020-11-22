@@ -112,9 +112,12 @@ MonoBehaviour:
   SEB: {fileID: 0}
   preDead: {fileID: 8079487939289275040, guid: 3e512f0022345bb45bf9d184376c267d, type: 3}
   hpMax: 4
-  vitesse: 3
+  vitesse: 5
   numberCadav: 0
   Grounded: 0
+  DMG_Percentage: 1
+  JustHit: 0
+  HitPlayer: 0
 --- !u!54 &-9094366941164787511
 Rigidbody:
   m_ObjectHideFlags: 0
