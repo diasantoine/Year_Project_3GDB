@@ -37,12 +37,13 @@ public class detectDead : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Dead"))
         {
-            if(other.gameObject != deadList.Contains(other.gameObject))
+            if(other.gameObject != deadList.Contains(other.gameObject) && !other.gameObject.GetComponent<takeCadavre>().charge)
             {
                 deadList.Add(other.gameObject);
                 other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 other.gameObject.GetComponent<takeCadavre>().gotcha = true;
                 other.gameObject.GetComponent<takeCadavre>().player = parent;
+                other.gameObject.GetComponent<takeCadavre>().deadD = gameObject.GetComponent<detectDead>();
                 other.gameObject.transform.localScale = tailleTake;
             }
         }

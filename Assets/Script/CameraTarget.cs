@@ -29,6 +29,13 @@ public class CameraTarget : MonoBehaviour
             Vector3 mousePos = hit.point;
             Vector3 targetPos = (player.position + mousePos) / 2f;
 
+            Vector3 playerToMouse = mousePos - player.position;
+            playerToMouse.y = 0;
+            playerToMouse = playerToMouse.normalized;
+
+            player.LookAt(playerToMouse * 50);
+            Debug.DrawRay(player.position, playerToMouse * 50);
+
             targetPos.x = Mathf.Clamp(targetPos.x, -threshold + player.position.x, threshold + player.position.x);
             targetPos.z = Mathf.Clamp(targetPos.z, -threshold + player.position.z, threshold + player.position.z);
             targetPos.y = 0;
