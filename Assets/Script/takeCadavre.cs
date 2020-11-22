@@ -17,6 +17,9 @@ public class takeCadavre : MonoBehaviour
 
     [SerializeField] private float threshold;
     [SerializeField] private float vitesse;
+    [SerializeField] private float radiusGave;
+
+
 
     public detectDead deadD;
     
@@ -56,25 +59,32 @@ public class takeCadavre : MonoBehaviour
             gameObject.transform.RotateAround(player.position, Vector3.up, 45f * Time.deltaTime);
             gameObject.transform.LookAt(player);
         }
-    }
 
-    private void FixedUpdate()
-    {
         if (charge)
         {
 
-            if(pierre != null)
+            if (pierre != null)
             {
-                Vector3 direction = pierre.position - transform.position;
+                if (!pierre.GetComponent<TirCharge>().tipar)
+                {
+                    Vector3 direction = pierre.position - transform.position;
 
-                direction = direction.normalized;
+                    direction = direction.normalized;
 
-                transform.position += direction * vitesse * Time.deltaTime;
+                    transform.position += direction * vitesse * Time.deltaTime;
+                }
+                else
+                {
+                    pierre = null;
+                }
+;
             }
             else
             {
                 gotcha = true;
                 charge = false;
+                gameObject.layer = 8;
+
             }
         }
     }
@@ -86,6 +96,8 @@ public class takeCadavre : MonoBehaviour
             if (other.gameObject.CompareTag("chargeTrigger"))
             {
                 Destroy(gameObject);
+                pierre.GetComponent<TirCharge>().nCharge++;
+                pierre.transform.localScale = pierre.transform.localScale + new Vector3(radiusGave, radiusGave, radiusGave);
             }
         }
     }

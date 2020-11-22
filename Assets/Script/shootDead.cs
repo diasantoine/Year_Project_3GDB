@@ -69,18 +69,25 @@ public class shootDead : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             isCharging = true;
-            pierre = Instantiate(preProjoChargé, canon.position, Quaternion.identity, canonCharge.transform);
+            pierre = Instantiate(preProjoChargé, canonCharge.position, Quaternion.identity, canonCharge.transform);
         }
         else if(Input.GetMouseButtonUp(1))
         {
-            isCharging = false;
-            Destroy(pierre);
-
+            if(pierre.GetComponent<TirCharge>().nCharge > 0)
+            {
+                isCharging = false;
+                TirCharge(rayon);
+            }
+            else
+            {
+                Destroy(pierre);
+            }
+           
         }
 
         if (isCharging)
         {
-            TirChargé();
+            ChargementTir();
         }
 
         /*if(detectD.deadList.Count > 0)
@@ -136,6 +143,7 @@ public class shootDead : MonoBehaviour
                 chrono = 0;
 
                 var projectile = Instantiate(preProjo, canon.position, Quaternion.identity);
+                FMODUnity.RuntimeManager.PlayOneShot(TireSon, transform.position);
 
                 if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity))
                 {
@@ -152,7 +160,7 @@ public class shootDead : MonoBehaviour
         }
     }
 
-    void TirChargé()
+    void ChargementTir()
     {
 
         if(detectD.deadList.Count > 0)
@@ -175,5 +183,20 @@ public class shootDead : MonoBehaviour
             }
         }
 
+    }
+
+    void TirCharge(Ray rayon)
+    {
+        RaycastHit floorHit;
+        chrono = 0;
+
+        if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity))
+        {
+            Vector3 playerToMouse = floorHit.point - canon.position;
+            pierre.GetComponent<TirCharge>().tipar = true;
+            pierre.transform.parent = null;
+            pierre.GetComponent<TirCharge>().Shoot(playerToMouse);
+
+        }
     }
 }
