@@ -10,7 +10,7 @@ public class ennemyAI : MonoBehaviour
 
     [HideInInspector] public Transform player;
 
-    private bool Grounded = false;
+    [SerializeField] private bool Grounded = false;
     [SerializeField] private bool JustHit = false;
     private bool HitPlayer = false;
 
@@ -20,11 +20,15 @@ public class ennemyAI : MonoBehaviour
 
     private float Cooldown = 2;
 
+    private GameObject Player;
+
+    [SerializeField] private int FieldOfView = 90;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Player = GameObject.Find("Player");
         ConteneurRigibody = GetComponent<Rigidbody>();
         agent = (NavMeshAgent)FindObjectOfType(typeof(NavMeshAgent));
     }
@@ -36,22 +40,26 @@ public class ennemyAI : MonoBehaviour
         {
             if (!JustHit)
             {
-
                 if (!HitPlayer)
                 {
-                        if (Physics.Raycast(transform.position, transform.forward,
-                            out RaycastHit hit, 20, LayerMask.GetMask("Default")))
+                    VisionCone();
+                    /*Debug.DrawRay(new Vector3(transform.position.x,1, transform.position.z)
+                        , player.position-transform.position, Color.blue);
+                        if (Physics.Raycast(new Vector3(transform.position.x,1, transform.position.z), 
+                            player.position-transform.position,
+                            out RaycastHit hit, 4, LayerMask.GetMask("Player")))
                         {
-                            if (hit.transform.CompareTag("Player"))
+                            Debug.Log(hit.transform.name);
+                            if (hit.transform.GetChild(1).CompareTag("Player"))
                             {
                                 Debug.Log("JeTape");
-                                int Explosion = 2000;
+                                float Explosion = 200*GetComponent<ennemyState>().RandomMultiplicatorSize;
                                 //hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                                 hit.transform.GetComponent<Rigidbody>()
                                     .AddForceAtPosition(transform.forward * Explosion, hit.point);
                                 this.HitPlayer = true;
                             }
-                        }
+                        }*/
                 }
                 else
                 {
@@ -66,7 +74,7 @@ public class ennemyAI : MonoBehaviour
                     }
 
                 }
-
+                
                 agent.SetDestination(player.position);
 
             }
@@ -115,6 +123,30 @@ public class ennemyAI : MonoBehaviour
             /*transform.GetComponent<Rigidbody>()
                 .AddForceAtPosition(transform.forward * collision.gameObject.GetComponent<ennemyState>().DMG_Percentage
                     , collision.GetContact(0).point);*/
+        }
+    }
+    
+    private void VisionCone()
+    {
+        var rayDirection = this.player.transform.position - transform.position;
+        if (Vector3.Angle(rayDirection, transform.forward) < this.FieldOfView && Vector3.Distance(transform.position, player.transform.position) < 30f)
+        {
+            // Detect if player is within the field of view
+            if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, LayerMask.GetMask("Player")))
+            { 
+                Debug.DrawRay(new Vector3(transform.position.x,1, transform.position.z)
+                    , player.position-transform.position, Color.blue);
+                if(hit.transform.GetChild(1).CompareTag("Player") && Vector3.Distance(transform.position, player.transform.position) < 4f)
+                {
+                    Debug.Log("JeTape");
+                    float Explosion = 200*GetComponent<ennemyState>().RandomMultiplicatorSize;
+                    //hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                    hit.transform.GetComponent<Rigidbody>()
+                        .AddForceAtPosition(transform.forward * Explosion, hit.point);
+                    this.HitPlayer = true;
+                }
+            }
+            
         }
     }
 

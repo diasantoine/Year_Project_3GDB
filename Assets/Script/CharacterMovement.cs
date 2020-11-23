@@ -64,7 +64,6 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("PARDON.");
         if (other.transform.CompareTag("sol") && !Grounded)
         {
             Grounded = true;

@@ -929,7 +929,7 @@ GameObject:
   - component: {fileID: -5130094185192415044}
   m_Layer: 0
   m_Name: Walking1
-  m_TagString: Untagged
+  m_TagString: Ennemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -942,7 +942,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2392818004926996025}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.7191749, y: 0.0006816387, z: -8.654993}
+  m_LocalPosition: {x: 34.457806, y: 0.855, z: -12.711754}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7069749617255806740}
@@ -970,6 +970,7 @@ MonoBehaviour:
   hpMax: 4
   vitesse: 5
   numberCadav: 0
+  RandomMultiplicatorSize: 0
   DMG_Percentage: 1
 --- !u!54 &2392818004926996027
 Rigidbody:
@@ -1023,6 +1024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   player: {fileID: 0}
+  Grounded: 0
   JustHit: 0
   DMG_Percentage: 1
 --- !u!65 &2392818004926995972
@@ -1036,8 +1038,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.296478, z: 0.9814062}
-  m_Center: {x: 0, y: 0.90811217, z: 0.27872324}
+  m_Size: {x: 1, y: 1.5980047, z: 0.9814062}
+  m_Center: {x: 0, y: 0.75734884, z: 0.27872324}
 --- !u!95 &-5130094185192415044
 Animator:
   serializedVersion: 3

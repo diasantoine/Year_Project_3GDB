@@ -20,7 +20,7 @@ public class ennemyState : MonoBehaviour
 
     [SerializeField] private int numberCadav;
 
-    private float RandomMultiplicatorSize = 0;
+    public float RandomMultiplicatorSize = 0;
 
     private Rigidbody ConteneurRigibody;
     
@@ -37,8 +37,7 @@ public class ennemyState : MonoBehaviour
 
     private void Awake()
     {
-        RandomMultiplicatorSize = Random.Range(0.5f, 2.5f);
-        Debug.Log(transform.GetChild(2).name);
+        RandomMultiplicatorSize = Random.Range(0.7f, 2.5f);
         Color ConteneurColor = transform.GetChild(2).GetComponent<SkinnedMeshRenderer>().material.GetColor("_Color");
         ConteneurColor.g /= RandomMultiplicatorSize;
         transform.GetChild(2).GetComponent<SkinnedMeshRenderer>().material.color = ConteneurColor;
@@ -124,6 +123,7 @@ public class ennemyState : MonoBehaviour
         }
         if (hpNow <= 0)
         {
+            Debug.Log("mort");
             float écart = -numberCadav / 2;
 
             Destroy(gameObject);
@@ -150,6 +150,7 @@ public class ennemyState : MonoBehaviour
 
     public void damage(float hit)
     {
+        Debug.Log(hpNow);
         hpNow -= hit;
     }
 

@@ -71,6 +71,7 @@ public class DeadProjo : MonoBehaviour
         {
             FMODUnity.RuntimeManager.PlayOneShot(TireTouche, transform.position);
             collision.gameObject.GetComponent<ennemyState>().damage(dégat);
+            Debug.Log("TOUCHE");
         }
 
         Destroy(gameObject);
