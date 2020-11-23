@@ -60,7 +60,10 @@ public class takeCadavre : MonoBehaviour
             {
                 deadD.deadList.Add(this.gameObject);
             }
-            gameObject.transform.RotateAround(player.position, Vector3.up, 45f * Time.deltaTime);
+
+            Vector3 Position = 2 * Vector3.Normalize(transform.position - player.position) + player.position;
+            transform.position = Position;
+            gameObject.transform.RotateAround(player.position, Vector3.up, 280f * Time.deltaTime);
             gameObject.transform.LookAt(player);
         }
 

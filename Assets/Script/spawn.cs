@@ -16,10 +16,13 @@ public class spawn : MonoBehaviour
 
     [SerializeField] private float chronoMax;
 
+    private GameObject player;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
@@ -39,6 +42,8 @@ public class spawn : MonoBehaviour
                         GameObject ConteneurGameobject = Instantiate(preEnnemy, new Vector3(hit.point.x, preEnnemy.transform.position.y, hit.point.z), Quaternion.identity, GameObject.Find("EnnemiParent").transform);
                         ConteneurGameobject.GetComponent<ennemyState>().SEB = GameObject.Find("SpawnEnnemyParent").GetComponent<spawnEnnemyBasique>();
                         chrono = 0;
+                        ConteneurGameobject.GetComponent<ennemyAI>().player = player.transform; 
+                        ConteneurGameobject.GetComponent<ennemyState>().player = player.transform;
                     }
                 }
             }

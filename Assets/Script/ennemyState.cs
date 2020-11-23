@@ -38,9 +38,10 @@ public class ennemyState : MonoBehaviour
     private void Awake()
     {
         RandomMultiplicatorSize = Random.Range(0.5f, 2.5f);
-        Color ConteneurColor = GetComponent<MeshRenderer>().material.GetColor("_Color");
+        Debug.Log(transform.GetChild(2).name);
+        Color ConteneurColor = transform.GetChild(2).GetComponent<SkinnedMeshRenderer>().material.GetColor("_Color");
         ConteneurColor.g /= RandomMultiplicatorSize;
-        GetComponent<MeshRenderer>().material.color = ConteneurColor;
+        transform.GetChild(2).GetComponent<SkinnedMeshRenderer>().material.color = ConteneurColor;
         transform.localScale *= RandomMultiplicatorSize;
         ConteneurRigibody = GetComponent<Rigidbody>();
     }

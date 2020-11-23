@@ -4,6 +4,7 @@
     <e p="C:\Users\diasa\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
     <e p="C:\Users\diasa\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_Year_Project_3GDB.-1145604051.00" t="ExcludeRecursive" />
     <e p="F:\ICAN\IcanTroisiemeAnne\Year_Project_3GDB\Year_Project_3GDB" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="GabrielAguiarProductions" t="Include">
@@ -142,7 +143,23 @@
           <e p="ciblage.cs" t="Include" />
           <e p="DeadProjo.cs" t="Include" />
           <e p="detectDead.cs" t="Include" />
+          <e p="ennemyAI.cs" t="Include" />
           <e p="ennemyState.cs" t="Include" />
+          <e p="NavMeshComponents" t="Include">
+            <e p="Editor" t="Include">
+              <e p="NavMeshComponentsGUIUtility.cs" t="Include" />
+              <e p="NavMeshLinkEditor.cs" t="Include" />
+              <e p="NavMeshModifierEditor.cs" t="Include" />
+              <e p="NavMeshModifierVolumeEditor.cs" t="Include" />
+              <e p="NavMeshSurfaceEditor.cs" t="Include" />
+            </e>
+            <e p="Scripts" t="Include">
+              <e p="NavMeshLink.cs" t="Include" />
+              <e p="NavMeshModifier.cs" t="Include" />
+              <e p="NavMeshModifierVolume.cs" t="Include" />
+              <e p="NavMeshSurface.cs" t="Include" />
+            </e>
+          </e>
           <e p="shootDead.cs" t="Include" />
           <e p="spawn.cs" t="Include" />
           <e p="spawnEnnemyBasique.cs" t="Include" />

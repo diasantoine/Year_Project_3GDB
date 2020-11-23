@@ -26,6 +26,7 @@ public class ennemyAI : MonoBehaviour
     {
         
         ConteneurRigibody = GetComponent<Rigidbody>();
+        agent = (NavMeshAgent)FindObjectOfType(typeof(NavMeshAgent));
     }
 
     // Update is called once per frame
@@ -96,6 +97,7 @@ public class ennemyAI : MonoBehaviour
         }
         if (collision.transform.CompareTag("Projectile"))
         {
+            Debug.Log("?");
             JustHit = true;
             int Explosion = DMG_Percentage * 3;
             agent.enabled = false;
