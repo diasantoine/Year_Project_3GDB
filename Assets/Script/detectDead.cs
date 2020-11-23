@@ -23,14 +23,14 @@ public class detectDead : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(deadList.Count > 0)
+        /*if(deadList.Count > 0)
         {
             zone.color = new Vector4(0, 1, 0, 0.2f);
         }
         else
         {
             zone.color = new Vector4(0.5f, 0.5f, 0.5f, 0.2f);
-        }
+        }*/
     }
 
     private void OnTriggerStay(Collider other)

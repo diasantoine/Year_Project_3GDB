@@ -37,7 +37,7 @@ public class spawnEnnemyBasique : MonoBehaviour
         else
         {
             chrono += Time.deltaTime;
-            transform.Rotate(0, vitesseRotation * Time.deltaTime, 0);
+            //transform.Rotate(0, vitesseRotation * Time.deltaTime, 0);
         }
     }
 

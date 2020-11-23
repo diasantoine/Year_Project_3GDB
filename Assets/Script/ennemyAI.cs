@@ -30,7 +30,6 @@ public class ennemyAI : MonoBehaviour
     {
         Player = GameObject.Find("Player");
         ConteneurRigibody = GetComponent<Rigidbody>();
-        agent = (NavMeshAgent)FindObjectOfType(typeof(NavMeshAgent));
     }
 
     // Update is called once per frame

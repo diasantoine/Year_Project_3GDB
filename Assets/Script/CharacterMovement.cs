@@ -42,6 +42,7 @@ public class CharacterMovement : MonoBehaviour
             ConteneurRigibody.velocity = Vector3_Deplacement_Player * vitesse;
             //RigibodyAvatar.AddForce(Vector3_Deplacement_Player * Speed_Player);
         }
+
         /*float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
