@@ -75,7 +75,7 @@ public class ennemyAI : MonoBehaviour
 
                 }
                 
-                agent.SetDestination(player.position);
+                //agent.SetDestination(player.position);
 
             }
             else
@@ -115,11 +115,22 @@ public class ennemyAI : MonoBehaviour
         }
 
         if (collision.transform.CompareTag("Ennemy")
-            && collision.gameObject.GetComponent<ennemyAI>().ConteneurRigibody.constraints == RigidbodyConstraints.None)
+            && collision.gameObject.GetComponent<ennemyAI>().ConteneurRigibody.constraints == RigidbodyConstraints.None 
+                && collision.gameObject.GetComponent<ennemyState>().RandomMultiplicatorSize >= GetComponent<ennemyState>().RandomMultiplicatorSize)
         {
-            JustHit = true;
-            agent.enabled = false;
-            transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            if (collision.gameObject.GetComponent<ennemyState>().RandomMultiplicatorSize > 2*GetComponent<ennemyState>().RandomMultiplicatorSize )
+            {
+                JustHit = true;
+                agent.enabled = false;
+                transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                GetComponent<ennemyState>().damage(99999);
+            }
+            else
+            {
+                JustHit = true;
+                agent.enabled = false;
+                transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None; 
+            }
             /*transform.GetComponent<Rigidbody>()
                 .AddForceAtPosition(transform.forward * collision.gameObject.GetComponent<ennemyState>().DMG_Percentage
                     , collision.GetContact(0).point);*/
@@ -132,10 +143,12 @@ public class ennemyAI : MonoBehaviour
         if (Vector3.Angle(rayDirection, transform.forward) < this.FieldOfView && Vector3.Distance(transform.position, player.transform.position) < 30f)
         {
             // Detect if player is within the field of view
-            if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, LayerMask.GetMask("Player")))
+            if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, 30,LayerMask.GetMask("Player")))
             { 
                 Debug.DrawRay(new Vector3(transform.position.x,1, transform.position.z)
                     , player.position-transform.position, Color.blue);
+                Debug.Log(hit.transform.name);
+                agent.SetDestination(player.position);
                 if(hit.transform.GetChild(1).CompareTag("Player") && Vector3.Distance(transform.position, player.transform.position) < 4f)
                 {
                     Debug.Log("JeTape");
