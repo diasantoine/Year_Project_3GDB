@@ -86,7 +86,7 @@ public class shootDead : MonoBehaviour
            
         }
 
-        if (isCharging)
+        if (isCharging && pierre.GetComponent<TirCharge>().nCharge < pierre.GetComponent<TirCharge>().nChargeMax)
         {
             ChargementTir();
         }

@@ -11,7 +11,7 @@ public class ennemyAI : MonoBehaviour
     [HideInInspector] public Transform player;
 
     [SerializeField] private bool Grounded = false;
-    [SerializeField] private bool JustHit = false;
+    public bool JustHit = false;
     private bool HitPlayer = false;
 
     public int DMG_Percentage = 1;
@@ -163,5 +163,15 @@ public class ennemyAI : MonoBehaviour
         {
             Grounded = false;
         }
+    }
+
+    public void ExplosionImpact(Vector3 position, float radius, float explosionForce)
+    {
+        JustHit = true;
+        agent.enabled = false;
+        ConteneurRigibody.constraints = RigidbodyConstraints.None;
+
+        ConteneurRigibody.AddExplosionForce(explosionForce, position, radius, 5f, ForceMode.Impulse);
+
     }
 }

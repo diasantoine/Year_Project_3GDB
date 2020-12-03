@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.UI;
 
 public class ennemyState : MonoBehaviour
 {
@@ -12,18 +13,21 @@ public class ennemyState : MonoBehaviour
     [HideInInspector] public spawnEnnemyBasique SEB;
 
     [SerializeField] private GameObject preDead;
+    [SerializeField] private Slider healthBar;
+
 
     private float hpNow;
 
     [SerializeField] private float hpMax;
     [SerializeField] private float vitesse;
 
-    [SerializeField] private int numberCadav;
+
+    private int numberCadav;
 
     public float RandomMultiplicatorSize = 0;
 
     private Rigidbody ConteneurRigibody;
-    
+
     public int DMG_Percentage = 1;
 
     private bool JustHit = false;
@@ -31,7 +35,7 @@ public class ennemyState : MonoBehaviour
     private bool Grounded = false;
 
     private float Cooldown = 2;
-    
+
 
     // Start is called before the first frame update
 
@@ -49,15 +53,56 @@ public class ennemyState : MonoBehaviour
     {
         //player = GameObject.Find("Player").transform;
         hpNow = hpMax;
-
+        healthBar.maxValue = hpMax;
+        healthBar.value = healthBar.maxValue;
         numberCadav = Random.Range(1, 4);
 
     }
 
     // Update is called once per frame
     void Update()
+    {       
+
+        if (transform.position.y <= -10)
+        {
+            hpNow = 0;
+        }
+        if (hpNow <= 0)
+        {
+            float écart = -numberCadav / 2;
+
+            Destroy(gameObject);
+            for (int i = 1; i <= numberCadav; i++)
+            {
+                if (transform.position.y <= -10)
+                {
+                    Instantiate(preDead, new Vector3(player.position.x + 4, player.position.y, player.position.z)
+                                         + new Vector3(0, 0, écart * 1.25f),
+                        Quaternion.identity, GameObject.Find("CadavreParent").transform);
+                }
+                else
+                {
+                    Instantiate(preDead, transform.position + new Vector3(0, 0, écart * 1.25f),
+                        Quaternion.identity, GameObject.Find("CadavreParent").transform);
+                }
+                écart++;
+            }
+
+            SEB.numberEnnemy--;
+        }
+
+    }
+
+    public void damage(float hit)
     {
-        /*if (Grounded)
+        Debug.Log(hpNow);
+        hpNow -= hit;
+        healthBar.value = hpNow;
+    }
+
+    void MoveSansRigidboy()
+    {
+        if (Grounded)
         {
             if (!JustHit)
             {
@@ -89,7 +134,7 @@ public class ennemyState : MonoBehaviour
                     }
                     else
                     {
-                        if (Cooldown<=0)
+                        if (Cooldown <= 0)
                         {
                             HitPlayer = false;
                             Cooldown = 2;
@@ -99,13 +144,13 @@ public class ennemyState : MonoBehaviour
                             Cooldown -= Time.deltaTime;
                         }
                     }
-                   
+
                 }
-               
+
             }
-            else if(JustHit)
+            else if (JustHit)
             {
-                if (ConteneurRigibody.velocity.magnitude< 0.2f )
+                if (ConteneurRigibody.velocity.magnitude < 0.2f)
                 {
                     JustHit = false;
                     if (ConteneurRigibody.constraints == RigidbodyConstraints.None)
@@ -115,86 +160,8 @@ public class ennemyState : MonoBehaviour
                     }
                 }
             }
-        }*/
-       
-        if (transform.position.y <= -10)
-        {
-            hpNow = 0;
-        }
-        if (hpNow <= 0)
-        {
-            Debug.Log("mort");
-            float écart = -numberCadav / 2;
-
-            Destroy(gameObject);
-            for (int i = 1; i <= numberCadav; i++)
-            {
-                if (transform.position.y<= -10)
-                {
-                    Instantiate(preDead, new Vector3(player.position.x+4, player.position.y, player.position.z)
-                                         + new Vector3(0, 0, écart * 1.25f), 
-                        Quaternion.identity, GameObject.Find("CadavreParent").transform);
-                }
-                else
-                {
-                    Instantiate(preDead, transform.position + new Vector3(0, 0, écart * 1.25f), 
-                        Quaternion.identity, GameObject.Find("CadavreParent").transform);
-                }
-                écart++;
-            }
-
-            SEB.numberEnnemy--;
-        }
-       
-    }
-
-    public void damage(float hit)
-    {
-        Debug.Log(hpNow);
-        hpNow -= hit;
-    }
-
-
-   /*private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.CompareTag("sol") && !Grounded)
-        {
-            Grounded = true;
-        }
-        if (collision.transform.CompareTag("Projectile"))
-        {
-            JustHit = true;
-            int Explosion = DMG_Percentage * 2;
-            DMG_Percentage = Explosion;
-            transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            transform.GetComponent<Rigidbody>()
-                .AddForceAtPosition(transform.forward * Explosion, collision.GetContact(0).point);
-        }
-
-        if (collision.transform.CompareTag("Ennemy") 
-            && collision.gameObject.GetComponent<ennemyState>().ConteneurRigibody.constraints == RigidbodyConstraints.None)
-        {
-            JustHit = true;
-            transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            /*transform.GetComponent<Rigidbody>()
-                .AddForceAtPosition(transform.forward * collision.gameObject.GetComponent<ennemyState>().DMG_Percentage
-                    , collision.GetContact(0).point);
         }
     }
 
-   private void OnCollisionStay(Collision collision)
-   {
-       if (collision.transform.CompareTag("sol") && !Grounded)
-       {
-           Grounded = true;
-       }
-   }
 
-   private void OnCollisionExit(Collision collision)
-    {
-        if (collision.transform.CompareTag("sol") &&Grounded)
-        {
-            Grounded = false;
-        }
-    }*/
 }
