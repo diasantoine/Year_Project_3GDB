@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,7 @@ public class takeCadavre : MonoBehaviour
     [SerializeField] private float threshold;
     [SerializeField] private float vitesse;
     [SerializeField] private float radiusGave;
+    [SerializeField] private int DmgShield = 1;
 
 
 
@@ -109,9 +111,20 @@ public class takeCadavre : MonoBehaviour
             if (other.gameObject.CompareTag("chargeTrigger"))
             {
                 Destroy(gameObject);
+                deadD.deadList.Remove(gameObject);
                 pierre.GetComponent<TirCharge>().nCharge++;
                 pierre.transform.localScale = pierre.transform.localScale + new Vector3(radiusGave, radiusGave, radiusGave);
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.transform.CompareTag("Ennemy") && isMunitions)
+        {
+            other.transform.GetComponent<ennemyState>().damage(DmgShield);
+            deadD.deadList.Remove(gameObject);
+            Destroy(gameObject);
         }
     }
 }
