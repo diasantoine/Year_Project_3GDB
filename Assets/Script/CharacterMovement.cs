@@ -19,6 +19,7 @@ public class CharacterMovement : MonoBehaviour
     private Rigidbody ConteneurRigibody;
 
     [SerializeField] private bool Grounded;
+    public bool OnDash = false;
     
 
     // Start is called before the first frame update
@@ -35,7 +36,7 @@ public class CharacterMovement : MonoBehaviour
             transform.position = new Vector3(30, 1.25f, -15.7f);
         }
         
-        if ((Input.GetButton("Vertical")|| Input.GetButton("Horizontal")) && Grounded)
+        if ((Input.GetButton("Vertical")|| Input.GetButton("Horizontal")) && Grounded && !OnDash)
         { 
             Vector3 Vector3_Deplacement_Player =  new Vector3(-Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal"));
             //Vector3_Deplacement_Player = transform.TransformDirection(Vector3_Deplacement_Player);

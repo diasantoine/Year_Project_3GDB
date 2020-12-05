@@ -123,7 +123,6 @@ public class ennemyState : MonoBehaviour
         }
         if (hpNow <= 0)
         {
-            Debug.Log("mort");
             float écart = -numberCadav / 2;
 
             Destroy(gameObject);
@@ -150,7 +149,6 @@ public class ennemyState : MonoBehaviour
 
     public void damage(float hit)
     {
-        Debug.Log(hpNow);
         hpNow -= hit;
     }
 

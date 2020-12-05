@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -74,7 +75,10 @@ public class ennemyAI : MonoBehaviour
                     }
 
                 }
-                
+                if (agent.isOnNavMesh)
+                {
+                    agent.SetDestination(player.position);
+                }
                 //agent.SetDestination(player.position);
 
             }
@@ -96,6 +100,34 @@ public class ennemyAI : MonoBehaviour
         }
                
     }
+    
+        
+    private void VisionCone()
+    {
+        var rayDirection = this.player.transform.position - transform.position;
+        if (Vector3.Angle(rayDirection, transform.forward) < this.FieldOfView && 
+            Vector3.Distance(transform.position, player.transform.position) < 30f && !player.GetComponent<CharacterMovement>().OnDash)
+        {
+            // Detect if player is within the field of view
+            if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, 30,LayerMask.GetMask("Player")))
+            { 
+                Debug.DrawRay(new Vector3(transform.position.x,1, transform.position.z)
+                    , player.position-transform.position, Color.blue);
+
+                if(hit.transform.GetChild(1).CompareTag("Player") && Vector3.Distance(transform.position, player.transform.position) < 4f)
+                {
+                    Debug.Log("JeTape");
+                    float Explosion = 200*GetComponent<ennemyState>().RandomMultiplicatorSize;
+                    //hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                    hit.transform.GetComponent<Rigidbody>()
+                        .AddForceAtPosition(transform.forward * Explosion, hit.point);
+                    this.HitPlayer = true;
+                }
+            }
+            
+        }
+    }
+    
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -111,7 +143,7 @@ public class ennemyAI : MonoBehaviour
             agent.enabled = false;
             DMG_Percentage = Explosion;
             ConteneurRigibody.constraints = RigidbodyConstraints.None;
-            ConteneurRigibody.AddForceAtPosition(transform.forward * Explosion, collision.GetContact(0).point);
+            ConteneurRigibody.AddForceAtPosition(collision.transform.forward * Explosion, collision.GetContact(0).point);
         }
 
         if (collision.transform.CompareTag("Ennemy")
@@ -136,33 +168,27 @@ public class ennemyAI : MonoBehaviour
                     , collision.GetContact(0).point);*/
         }
     }
-    
-    private void VisionCone()
+
+    private void OnTriggerEnter(Collider collision)
     {
-        var rayDirection = this.player.transform.position - transform.position;
-        if (Vector3.Angle(rayDirection, transform.forward) < this.FieldOfView && Vector3.Distance(transform.position, player.transform.position) < 30f)
+        if (collision.gameObject.layer == 9)
         {
-            // Detect if player is within the field of view
-            if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, 30,LayerMask.GetMask("Player")))
-            { 
-                Debug.DrawRay(new Vector3(transform.position.x,1, transform.position.z)
-                    , player.position-transform.position, Color.blue);
-                Debug.Log(hit.transform.name);
-                agent.SetDestination(player.position);
-                if(hit.transform.GetChild(1).CompareTag("Player") && Vector3.Distance(transform.position, player.transform.position) < 4f)
-                {
-                    Debug.Log("JeTape");
-                    float Explosion = 200*GetComponent<ennemyState>().RandomMultiplicatorSize;
-                    //hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                    hit.transform.GetComponent<Rigidbody>()
-                        .AddForceAtPosition(transform.forward * Explosion, hit.point);
-                    this.HitPlayer = true;
-                }
+            if (collision.transform.GetComponent<CharacterMovement>().OnDash)
+            {
+                Debug.Log(collision.gameObject.name);
+                JustHit = true;
+                agent.enabled = false;
+                int DashExplosion = 5;
+                ConteneurRigibody.constraints = RigidbodyConstraints.None;
+                //ConteneurRigibody.velocity = transform.up * DashExplosion;
+                Vector3 dir = (collision.transform.position - transform.position).normalized;
+                //ConteneurRigibody.AddForceAtPosition(dir * DashExplosion,
+                //   ConteneurRigibody.ClosestPointOnBounds(collision.transform.position));
+                ConteneurRigibody.AddExplosionForce(DashExplosion*200,collision.transform.position,200,10,ForceMode.Force);
+                //ConteneurRigibody.AddForce(transform.up*DashExplosion,ForceMode.Impulse);
             }
-            
         }
     }
-
     private void OnCollisionStay(Collision collision)
     {
         if (collision.transform.CompareTag("sol") && !Grounded)
@@ -178,4 +204,6 @@ public class ennemyAI : MonoBehaviour
             Grounded = false;
         }
     }
+
+
 }
