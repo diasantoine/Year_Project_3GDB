@@ -51,7 +51,7 @@ public class TirCharge : MonoBehaviour
                 }
             }
 
-            Destroy(newExplo, 0.25f);
+            Destroy(newExplo, 0.1f);
             Destroy(gameObject);
 
         }
