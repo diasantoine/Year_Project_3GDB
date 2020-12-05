@@ -17,6 +17,7 @@ public class DashAvatar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetButtonDown("Fire3") /*&& detectD.deadList.Count>=7*/)
         {
             Ray MousePosition = Camera.main.ScreenPointToRay(Input.mousePosition);

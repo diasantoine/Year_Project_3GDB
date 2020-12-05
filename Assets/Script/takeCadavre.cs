@@ -56,6 +56,14 @@ public class takeCadavre : MonoBehaviour
             }
         }
 
+        if (player.parent.GetComponent<CharacterMovement>().OnDash)
+        {
+            GetComponent<BoxCollider>().enabled = !enabled;
+        }
+        else if(GetComponent<BoxCollider>().enabled == !enabled)
+        {
+            GetComponent<BoxCollider>().enabled = enabled;
+        }
         if (isMunitions)
         {
             if (!deadD.deadList.Contains(this.gameObject))
