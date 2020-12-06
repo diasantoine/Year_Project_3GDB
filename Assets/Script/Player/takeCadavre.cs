@@ -79,7 +79,6 @@ public class takeCadavre : MonoBehaviour
 
         if (charge)
         {
-
             if (pierre != null)
             {
                 if (!pierre.GetComponent<TirCharge>().tipar)
@@ -89,6 +88,13 @@ public class takeCadavre : MonoBehaviour
                     direction = direction.normalized;
 
                     transform.position += direction * vitesse * Time.deltaTime;
+
+                    if(pierre.GetComponent<TirCharge>().nCharge >= pierre.GetComponent<TirCharge>().nChargeMax)
+                    {
+                        gotcha = true;
+                        charge = false;
+                        gameObject.layer = 8;
+                    }
                 }
                 else
                 {
