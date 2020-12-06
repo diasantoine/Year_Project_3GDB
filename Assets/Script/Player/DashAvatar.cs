@@ -65,7 +65,7 @@ public class DashAvatar : MonoBehaviour
                 transform.parent.parent.GetComponent<CharacterMovement>().OnDash = false;
                 transform.parent.parent.GetComponent<CapsuleCollider>().enabled = !enabled;
                 transform.gameObject.layer = 9;
-                transform.parent.parent.tag = "Untaggepd";
+                transform.parent.parent.tag = "Untagged";
             }
             Debug.Log(Vector3.Distance(HitPosition,transform.position));
             if (Vector3.Distance(HitPosition,transform.position)<2)
