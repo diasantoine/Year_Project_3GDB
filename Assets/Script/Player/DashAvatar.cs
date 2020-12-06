@@ -7,6 +7,7 @@ public class DashAvatar : MonoBehaviour
     [SerializeField] private detectDead detectD;
     [SerializeField] private Rigidbody ConteneurRigibody;
     [SerializeField] private float DashSpeed = 20;
+    private Vector3 HitPosition;
 
     RaycastHit floorHit;
     // Start is called before the first frame update
@@ -23,18 +24,22 @@ public class DashAvatar : MonoBehaviour
             Ray MousePosition = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(MousePosition, out RaycastHit hit,Mathf.Infinity,LayerMask.GetMask("Sol")))
             {
-                Vector3 HitPoint = hit.point;
-                Vector3 playerToMouse = HitPoint - transform.parent.position;
-                playerToMouse.y = 0;
-                playerToMouse = playerToMouse.normalized;
-                transform.parent.GetComponent<CharacterMovement>().OnDash = true;
-                transform.gameObject.layer = 12;
-                transform.parent.GetComponent<CapsuleCollider>().enabled = enabled;
-                transform.parent.tag = "Player";
-                //Vector3 Dir = (hit.transform.position - transform.parent.position).normalized;
+                if (hit.transform.tag != "Collider")
+                {
+                    Vector3 HitPoint = hit.point;
+                    HitPosition = HitPoint;
+                    Vector3 playerToMouse = HitPoint - transform.parent.position;
+                    playerToMouse.y = 0;
+                    playerToMouse = playerToMouse.normalized;
+                    transform.parent.GetComponent<CharacterMovement>().OnDash = true;
+                    transform.gameObject.layer = 12;
+                    transform.parent.GetComponent<CapsuleCollider>().enabled = enabled;
+                    transform.parent.tag = "Player";
+                    //Vector3 Dir = (hit.transform.position - transform.parent.position).normalized;
                 
-                ConteneurRigibody.velocity = playerToMouse*DashSpeed;
-                //ConteneurRigibody.AddForce(playerToMouse*DashSpeed, ForceMode.Impulse);
+                    ConteneurRigibody.velocity = playerToMouse*DashSpeed;
+                    //ConteneurRigibody.AddForce(playerToMouse*DashSpeed, ForceMode.Impulse);
+                }
             }
             /*if(detectD.deadList.Count > 0)
             {
@@ -54,9 +59,19 @@ public class DashAvatar : MonoBehaviour
 
         if (transform.parent.GetComponent<CharacterMovement>().OnDash)
         {
-            if (transform.parent.GetComponent<Rigidbody>().velocity.magnitude < 2)
+            if (transform.parent.GetComponent<Rigidbody>().velocity.magnitude < 3)
+            {
+                transform.parent.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                transform.parent.GetComponent<CharacterMovement>().OnDash = false;
+                transform.parent.GetComponent<CapsuleCollider>().enabled = !enabled;
+                transform.gameObject.layer = 9;
+                transform.parent.tag = "Untagged";
+            }
+            Debug.Log(Vector3.Distance(HitPosition,transform.position));
+            if (Vector3.Distance(HitPosition,transform.position)<2)
             {
                 transform.parent.GetComponent<CharacterMovement>().OnDash = false;
+                transform.parent.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 transform.parent.GetComponent<CapsuleCollider>().enabled = !enabled;
                 transform.gameObject.layer = 9;
                 transform.parent.tag = "Untagged";

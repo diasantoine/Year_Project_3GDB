@@ -163,15 +163,12 @@
           </e>
         </e>
         <e p="Script" t="Include">
-          <e p="CameraController.cs" t="Include" />
-          <e p="CameraTarget.cs" t="Include" />
-          <e p="CharacterMovement.cs" t="Include" />
-          <e p="ciblage.cs" t="Include" />
-          <e p="DashAvatar.cs" t="Include" />
-          <e p="DeadProjo.cs" t="Include" />
-          <e p="detectDead.cs" t="Include" />
-          <e p="ennemyAI.cs" t="Include" />
-          <e p="ennemyState.cs" t="Include" />
+          <e p="ennemy" t="Include">
+            <e p="barFollowCam.cs" t="Include" />
+            <e p="ciblage.cs" t="Include" />
+            <e p="ennemyAI.cs" t="Include" />
+            <e p="ennemyState.cs" t="Include" />
+          </e>
           <e p="NavMeshComponents" t="Include">
             <e p="Editor" t="Include">
               <e p="NavMeshComponentsGUIUtility.cs" t="Include" />
@@ -187,12 +184,24 @@
               <e p="NavMeshSurface.cs" t="Include" />
             </e>
           </e>
-          <e p="shootDead.cs" t="Include" />
-          <e p="spawn.cs" t="Include" />
-          <e p="spawnEnnemyBasique.cs" t="Include" />
-          <e p="spawnEnnemyTahLesFous.cs" t="Include" />
-          <e p="takeCadavre.cs" t="Include" />
-          <e p="TirCharge.cs" t="Include" />
+          <e p="Player" t="Include">
+            <e p="CharacterMovement.cs" t="Include" />
+            <e p="DashAvatar.cs" t="Include" />
+            <e p="detectDead.cs" t="Include" />
+            <e p="shootDead.cs" t="Include" />
+            <e p="takeCadavre.cs" t="Include" />
+          </e>
+          <e p="System" t="Include">
+            <e p="CameraController.cs" t="Include" />
+            <e p="CameraTarget.cs" t="Include" />
+            <e p="spawn.cs" t="Include" />
+            <e p="spawnEnnemyBasique.cs" t="Include" />
+            <e p="spawnEnnemyTahLesFous.cs" t="Include" />
+          </e>
+          <e p="Weapon" t="Include">
+            <e p="DeadProjo.cs" t="Include" />
+            <e p="TirCharge.cs" t="Include" />
+          </e>
         </e>
         <e p="Shoot" t="Include">
           <e p="scirpt" t="Include">

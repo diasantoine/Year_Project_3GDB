@@ -2187,6 +2187,7 @@ MonoBehaviour:
   parentEnnemy: {fileID: 412033862}
   player: {fileID: 1548571582}
   freqSpawn: 10
+  waitTime: 0
   spawnPoz:
   - {fileID: 927511209}
   - {fileID: 1394150428}
@@ -2196,7 +2197,6 @@ MonoBehaviour:
   - {fileID: 1110554664}
   maxEnnemy: 20
   numberEnnemy: 0
-  vitesseRotation: 0
 --- !u!1 &435649164
 GameObject:
   m_ObjectHideFlags: 0
@@ -2967,7 +2967,7 @@ GameObject:
   - component: {fileID: 745356788}
   m_Layer: 11
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Collider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5085,7 +5085,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectD: {fileID: 313853769}
   ConteneurRigibody: {fileID: 1548571581}
-  DashSpeed: 30
+  DashSpeed: 60
 --- !u!23 &1711813855943534077
 MeshRenderer:
   m_ObjectHideFlags: 0
