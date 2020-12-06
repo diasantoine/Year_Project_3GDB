@@ -28,13 +28,13 @@ public class DashAvatar : MonoBehaviour
                 {
                     Vector3 HitPoint = hit.point;
                     HitPosition = HitPoint;
-                    Vector3 playerToMouse = HitPoint - transform.parent.position;
+                    Vector3 playerToMouse = HitPoint - transform.parent.parent.position;
                     playerToMouse.y = 0;
                     playerToMouse = playerToMouse.normalized;
-                    transform.parent.GetComponent<CharacterMovement>().OnDash = true;
+                    transform.parent.parent.GetComponent<CharacterMovement>().OnDash = true;
                     transform.gameObject.layer = 12;
-                    transform.parent.GetComponent<CapsuleCollider>().enabled = enabled;
-                    transform.parent.tag = "Player";
+                    transform.parent.parent.GetComponent<CapsuleCollider>().enabled = enabled;
+                    transform.parent.parent.tag = "Player";
                     //Vector3 Dir = (hit.transform.position - transform.parent.position).normalized;
                 
                     ConteneurRigibody.velocity = playerToMouse*DashSpeed;
@@ -57,24 +57,24 @@ public class DashAvatar : MonoBehaviour
             }*/
         }
 
-        if (transform.parent.GetComponent<CharacterMovement>().OnDash)
+        if (transform.parent.parent.GetComponent<CharacterMovement>().OnDash)
         {
-            if (transform.parent.GetComponent<Rigidbody>().velocity.magnitude < 3)
+            if (transform.parent.parent.GetComponent<Rigidbody>().velocity.magnitude < 3)
             {
-                transform.parent.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                transform.parent.GetComponent<CharacterMovement>().OnDash = false;
-                transform.parent.GetComponent<CapsuleCollider>().enabled = !enabled;
+                transform.parent.parent.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                transform.parent.parent.GetComponent<CharacterMovement>().OnDash = false;
+                transform.parent.parent.GetComponent<CapsuleCollider>().enabled = !enabled;
                 transform.gameObject.layer = 9;
-                transform.parent.tag = "Untagged";
+                transform.parent.parent.tag = "Untaggepd";
             }
             Debug.Log(Vector3.Distance(HitPosition,transform.position));
             if (Vector3.Distance(HitPosition,transform.position)<2)
             {
-                transform.parent.GetComponent<CharacterMovement>().OnDash = false;
-                transform.parent.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                transform.parent.GetComponent<CapsuleCollider>().enabled = !enabled;
+                transform.parent.parent.GetComponent<CharacterMovement>().OnDash = false;
+                transform.parent.parent.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                transform.parent.parent.GetComponent<CapsuleCollider>().enabled = !enabled;
                 transform.gameObject.layer = 9;
-                transform.parent.tag = "Untagged";
+                transform.parent.parent.tag = "Untagged";
             }
         }
     }
