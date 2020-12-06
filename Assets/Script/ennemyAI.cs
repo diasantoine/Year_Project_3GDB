@@ -100,6 +100,15 @@ public class ennemyAI : MonoBehaviour
                
     }
     
+    public void ExplosionImpact(Vector3 position, float radius, float explosionForce)
+    {
+        JustHit = true;
+        agent.enabled = false;
+        ConteneurRigibody.constraints = RigidbodyConstraints.None;
+
+        ConteneurRigibody.AddExplosionForce(explosionForce, position, radius, 5f, ForceMode.Impulse);
+
+    }
         
     private void VisionCone()
     {

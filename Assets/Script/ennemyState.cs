@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class ennemyState : MonoBehaviour
@@ -12,6 +13,8 @@ public class ennemyState : MonoBehaviour
     [HideInInspector] public spawnEnnemyBasique SEB;
 
     [SerializeField] private GameObject preDead;
+    [SerializeField] private Slider healthBar;
+
 
     private float hpNow;
 
@@ -49,7 +52,8 @@ public class ennemyState : MonoBehaviour
     {
         //player = GameObject.Find("Player").transform;
         hpNow = hpMax;
-
+        healthBar.maxValue = hpMax;
+        healthBar.value = healthBar.maxValue;
         numberCadav = Random.Range(1, 4);
 
     }
@@ -57,66 +61,6 @@ public class ennemyState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (Grounded)
-        {
-            if (!JustHit)
-            {
-                if (Vector3.Distance(transform.position, player.transform.position) > 4f)
-                {
-                    Vector3 distance = player.position - transform.position;
-                    distance = distance.normalized;
-                    ConteneurRigibody.velocity = (vitesse / RandomMultiplicatorSize) * distance;
-                    //transform.position += distance * (vitesse/RandomMultiplicatorSize) * Time.deltaTime;
-                    transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
-                }
-                else
-                {
-                    if (!HitPlayer)
-                    {
-                        if (Physics.Raycast(transform.position, transform.forward,
-                            out RaycastHit hit, 20, LayerMask.GetMask("Default")))
-                        {
-                            if (hit.transform.CompareTag("Player"))
-                            {
-                                Debug.Log("JeTape");
-                                int Explosion = 2000;
-                                //hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                                hit.transform.GetComponent<Rigidbody>()
-                                    .AddForceAtPosition(transform.forward * Explosion, hit.point);
-                                this.HitPlayer = true;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (Cooldown<=0)
-                        {
-                            HitPlayer = false;
-                            Cooldown = 2;
-                        }
-                        else
-                        {
-                            Cooldown -= Time.deltaTime;
-                        }
-                    }
-                   
-                }
-               
-            }
-            else if(JustHit)
-            {
-                if (ConteneurRigibody.velocity.magnitude< 0.2f )
-                {
-                    JustHit = false;
-                    if (ConteneurRigibody.constraints == RigidbodyConstraints.None)
-                    {
-                        ConteneurRigibody.constraints = RigidbodyConstraints.FreezeRotation;
-                        transform.rotation = Quaternion.identity;
-                    }
-                }
-            }
-        }*/
-       
         if (transform.position.y <= -10)
         {
             hpNow = 0;
@@ -149,8 +93,73 @@ public class ennemyState : MonoBehaviour
 
     public void damage(float hit)
     {
+        Debug.Log(hpNow);
         hpNow -= hit;
+        healthBar.value = hpNow;
     }
+    
+    void MoveSansRigidboy()
+        {
+            if (Grounded)
+            {
+                if (!JustHit)
+                {
+                    if (Vector3.Distance(transform.position, player.transform.position) > 4f)
+                    {
+                        Vector3 distance = player.position - transform.position;
+                        distance = distance.normalized;
+                        ConteneurRigibody.velocity = (vitesse / RandomMultiplicatorSize) * distance;
+                        //transform.position += distance * (vitesse/RandomMultiplicatorSize) * Time.deltaTime;
+                        transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+                    }
+                    else
+                    {
+                        if (!HitPlayer)
+                        {
+                            if (Physics.Raycast(transform.position, transform.forward,
+                                out RaycastHit hit, 20, LayerMask.GetMask("Default")))
+                            {
+                                if (hit.transform.CompareTag("Player"))
+                                {
+                                    Debug.Log("JeTape");
+                                    int Explosion = 2000;
+                                    //hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                                    hit.transform.GetComponent<Rigidbody>()
+                                        .AddForceAtPosition(transform.forward * Explosion, hit.point);
+                                    this.HitPlayer = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (Cooldown <= 0)
+                            {
+                                HitPlayer = false;
+                                Cooldown = 2;
+                            }
+                            else
+                            {
+                                Cooldown -= Time.deltaTime;
+                            }
+                        }
+
+                    }
+
+                }
+                else if (JustHit)
+                {
+                    if (ConteneurRigibody.velocity.magnitude < 0.2f)
+                    {
+                        JustHit = false;
+                        if (ConteneurRigibody.constraints == RigidbodyConstraints.None)
+                        {
+                            ConteneurRigibody.constraints = RigidbodyConstraints.FreezeRotation;
+                            transform.rotation = Quaternion.identity;
+                        }
+                    }
+                }
+            }
+        }
 
 
    /*private void OnCollisionEnter(Collision collision)

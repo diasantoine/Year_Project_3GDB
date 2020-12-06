@@ -20,6 +20,32 @@
             </e>
           </e>
         </e>
+        <e p="LevelGenerator" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="AdvancedExit.cs" t="Include" />
+            <e p="Bounds.cs" t="Include" />
+            <e p="DeadEnd.cs" t="Include" />
+            <e p="Editor" t="Include">
+              <e p="LevelEditor.cs" t="Include" />
+            </e>
+            <e p="Exceptions" t="Include">
+              <e p="InvalidRuleDeclarationException.cs" t="Include" />
+            </e>
+            <e p="Exits.cs" t="Include" />
+            <e p="Helpers" t="Include">
+              <e p="ExtensionMethods.cs" t="Include" />
+              <e p="RandomService.cs" t="Include" />
+            </e>
+            <e p="LevelGenerator.cs" t="Include" />
+            <e p="Section.cs" t="Include" />
+            <e p="Structure" t="Include">
+              <e p="TagRule.cs" t="Include" />
+              <e p="WeightedList.cs" t="Include" />
+              <e p="WeightedListItem.cs" t="Include" />
+              <e p="WeightedSectionList.cs" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="Plugins" t="Include">
           <e p="FMOD" t="Include">
             <e p="addons" t="Include">
