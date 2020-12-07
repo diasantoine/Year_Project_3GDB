@@ -25,6 +25,8 @@ public class ennemyAI : MonoBehaviour
 
     [SerializeField] private int FieldOfView = 90;
 
+    private bool Pansement = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -74,7 +76,7 @@ public class ennemyAI : MonoBehaviour
                     }
 
                 }
-                if (agent.isOnNavMesh)
+                if (agent.isOnNavMesh && Vector3.Distance(player.position, transform.position)>5)
                 {
                     agent.SetDestination(player.position);
                 }
@@ -85,13 +87,20 @@ public class ennemyAI : MonoBehaviour
             {
                 if (ConteneurRigibody.velocity.magnitude < 0.2f)
                 {
-                    JustHit = false;
-                    agent.enabled = true;
-                    if (ConteneurRigibody.constraints == RigidbodyConstraints.None)
+                    if (Pansement)
                     {
-                        ConteneurRigibody.constraints = RigidbodyConstraints.FreezeRotation;
-                        transform.rotation = Quaternion.identity;
-
+                        Pansement = false;
+                    }
+                    else
+                    {
+                        Debug.Log("aaa");
+                        JustHit = false;
+                        agent.enabled = true;
+                        if (ConteneurRigibody.constraints == RigidbodyConstraints.None)
+                        {
+                            ConteneurRigibody.constraints = RigidbodyConstraints.FreezeRotation;
+                            transform.rotation = Quaternion.identity;
+                        }
                     }
                 }
             }
@@ -105,34 +114,33 @@ public class ennemyAI : MonoBehaviour
         JustHit = true;
         agent.enabled = false;
         ConteneurRigibody.constraints = RigidbodyConstraints.None;
-
         ConteneurRigibody.AddExplosionForce(explosionForce, position, radius, 5f, ForceMode.Impulse);
-
     }
         
     private void VisionCone()
     {
         var rayDirection = this.player.transform.position - transform.position;
         if (Vector3.Angle(rayDirection, transform.forward) < this.FieldOfView && 
-            Vector3.Distance(transform.position, player.transform.position) < 30f && !player.GetComponent<CharacterMovement>().OnDash)
+            Vector3.Distance(transform.position, player.transform.position) < 30f && !player.GetComponent<CharacterMovement>().OnDash
+            &&!player.GetComponent<CharacterMovement>().JustFinishedDash)
         {
             // Detect if player is within the field of view
-            if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, 30,LayerMask.GetMask("Player")))
+            if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, Mathf.Infinity,LayerMask.GetMask("Player")))
             { 
                 Debug.DrawRay(new Vector3(transform.position.x,1, transform.position.z)
                     , player.position-transform.position, Color.blue);
-
-                if(hit.transform.GetChild(1).CompareTag("Player") && Vector3.Distance(transform.position, player.transform.position) < 4f)
+                if(hit.transform.GetChild(1).GetChild(0).CompareTag("Player") && Vector3.Distance(hit.transform.position, 
+                    new Vector3(transform.position.x, 1, transform.position.z)) < 5f)
                 {
                     Debug.Log("JeTape");
-                    float Explosion = 200*GetComponent<ennemyState>().RandomMultiplicatorSize;
-                    //hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                    float Explosion = 10*GetComponent<ennemyState>().RandomMultiplicatorSize;
+                   // hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                     hit.transform.GetComponent<Rigidbody>()
-                        .AddForceAtPosition(transform.forward * Explosion, hit.point);
+                        .AddForceAtPosition(transform.forward * Explosion, hit.point, ForceMode.Impulse);
                     this.HitPlayer = true;
+                    player.GetComponent<CharacterMovement>().JustHit = true;
                 }
             }
-            
         }
     }
     
@@ -142,14 +150,23 @@ public class ennemyAI : MonoBehaviour
         {
             if (collision.transform.GetComponent<CharacterMovement>().OnDash)
             {
-                
+                Debug.Log("aie");
+                ConteneurRigibody.velocity = agent.velocity;
                 JustHit = true;
                 agent.enabled = false;
-                Vector3 dir = (collision.transform.position - transform.position).normalized;
-                int DashExplosion = 25;
+                Vector3 dir = transform.position;
+                dir = (dir - collision.transform.position).normalized;
+                dir = (dir + collision.GetComponent<Rigidbody>().velocity) / 2;
+                dir.y = 10;
+                float RegulationForce = 2;
+                Debug.Log("before" + ConteneurRigibody.velocity.magnitude);
                 ConteneurRigibody.constraints = RigidbodyConstraints.None;
-                ConteneurRigibody.AddForceAtPosition(dir * DashExplosion,
-                    ConteneurRigibody.ClosestPointOnBounds(collision.transform.position), ForceMode.Impulse);
+                ConteneurRigibody.AddForceAtPosition(dir * collision.GetComponent<Rigidbody>().velocity.magnitude
+                                                         * RegulationForce, 
+                    ConteneurRigibody.ClosestPointOnBounds(collision.transform.position));
+                Debug.Log(ConteneurRigibody.velocity.magnitude);
+                Pansement = true;
+
                 /*Debug.Log(collision.gameObject.name);
                 int DashExplosion = 5;
                 ConteneurRigibody.constraints = RigidbodyConstraints.None;
@@ -165,29 +182,23 @@ public class ennemyAI : MonoBehaviour
         }
     }
 
-   /* private void OnTriggerStay(Collider collision)
-    {
-        if (collision.gameObject.layer == 9 && !JustHit)
-        {
-            if (collision.transform.GetComponent<CharacterMovement>().OnDash)
-            {
-                Debug.Log(collision.gameObject.name);
-               
-                JustHit = true;
-                agent.enabled = false;
-                Vector3 dir = (collision.transform.position - transform.position).normalized;
-                int DashExplosion = 5;
-                ConteneurRigibody.constraints = RigidbodyConstraints.None;
-                ConteneurRigibody.AddForceAtPosition(dir * DashExplosion,
-                   ConteneurRigibody.ClosestPointOnBounds(collision.transform.position), ForceMode.Impulse);
-                
-                
-                //ConteneurRigibody.AddExplosionForce(DashExplosion*200,transform.position,200,10,ForceMode.Force);
-                //ConteneurRigibody.velocity = transform.up * DashExplosion;
-                //ConteneurRigibody.AddForce(transform.up*DashExplosion,ForceMode.Impulse);
-            }
-        }
-    }*/
+   // private void OnTriggerStay(Collider collision)
+   //  {
+   //      if (collision.gameObject.layer == 9 && !JustHit)
+   //      {
+   //          if (collision.transform.GetComponent<CharacterMovement>().OnDash)
+   //          {
+   //              Debug.Log("aie*2");
+   //              JustHit = true;
+   //              agent.enabled = false;
+   //              Vector3 dir = (transform.position - collision.transform.position).normalized;
+   //              int DashExplosion = 25;
+   //              ConteneurRigibody.constraints = RigidbodyConstraints.None;
+   //              ConteneurRigibody.AddForceAtPosition(dir * DashExplosion,
+   //                  ConteneurRigibody.ClosestPointOnBounds(collision.transform.position), ForceMode.Impulse);
+   //          }
+   //      }
+   //  }
 
     private void OnCollisionEnter(Collision collision)
     {

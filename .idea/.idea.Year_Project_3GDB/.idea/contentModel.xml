@@ -7,42 +7,48 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="GabrielAguiarProductions" t="Include">
-          <e p="Unique_Projectiles_Volume_1" t="Include">
-            <e p="Readme.txt" t="Include" />
-            <e p="Shaders" t="Include">
-              <e p="Additive_EdgeSoft.shader" t="Include" />
-              <e p="Additive_Scroll01.shader" t="Include" />
-              <e p="AdditiveMobile_Scroll01.shader" t="Include" />
-              <e p="AlphaBlended_EdgeSoft.shader" t="Include" />
-              <e p="AlphaBlended_Scroll01.shader" t="Include" />
-              <e p="AlphaBlendedMobile_Scroll01.shader" t="Include" />
+        <e p="3D" t="Include">
+          <e p="effect" t="Include">
+            <e p="GabrielAguiarProductions" t="Include">
+              <e p="Unique_Projectiles_Volume_1" t="Include">
+                <e p="Readme.txt" t="Include" />
+                <e p="Shaders" t="Include">
+                  <e p="Additive_EdgeSoft.shader" t="Include" />
+                  <e p="Additive_Scroll01.shader" t="Include" />
+                  <e p="AdditiveMobile_Scroll01.shader" t="Include" />
+                  <e p="AlphaBlended_EdgeSoft.shader" t="Include" />
+                  <e p="AlphaBlended_Scroll01.shader" t="Include" />
+                  <e p="AlphaBlendedMobile_Scroll01.shader" t="Include" />
+                </e>
+              </e>
             </e>
           </e>
         </e>
-        <e p="LevelGenerator" t="Include">
-          <e p="Scripts" t="Include">
-            <e p="AdvancedExit.cs" t="Include" />
-            <e p="Bounds.cs" t="Include" />
-            <e p="DeadEnd.cs" t="Include" />
-            <e p="Editor" t="Include">
-              <e p="LevelEditor.cs" t="Include" />
-            </e>
-            <e p="Exceptions" t="Include">
-              <e p="InvalidRuleDeclarationException.cs" t="Include" />
-            </e>
-            <e p="Exits.cs" t="Include" />
-            <e p="Helpers" t="Include">
-              <e p="ExtensionMethods.cs" t="Include" />
-              <e p="RandomService.cs" t="Include" />
-            </e>
-            <e p="LevelGenerator.cs" t="Include" />
-            <e p="Section.cs" t="Include" />
-            <e p="Structure" t="Include">
-              <e p="TagRule.cs" t="Include" />
-              <e p="WeightedList.cs" t="Include" />
-              <e p="WeightedListItem.cs" t="Include" />
-              <e p="WeightedSectionList.cs" t="Include" />
+        <e p="LD" t="Include">
+          <e p="LevelGenerator" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="AdvancedExit.cs" t="Include" />
+              <e p="Bounds.cs" t="Include" />
+              <e p="DeadEnd.cs" t="Include" />
+              <e p="Editor" t="Include">
+                <e p="LevelEditor.cs" t="Include" />
+              </e>
+              <e p="Exceptions" t="Include">
+                <e p="InvalidRuleDeclarationException.cs" t="Include" />
+              </e>
+              <e p="Exits.cs" t="Include" />
+              <e p="Helpers" t="Include">
+                <e p="ExtensionMethods.cs" t="Include" />
+                <e p="RandomService.cs" t="Include" />
+              </e>
+              <e p="LevelGenerator.cs" t="Include" />
+              <e p="Section.cs" t="Include" />
+              <e p="Structure" t="Include">
+                <e p="TagRule.cs" t="Include" />
+                <e p="WeightedList.cs" t="Include" />
+                <e p="WeightedListItem.cs" t="Include" />
+                <e p="WeightedSectionList.cs" t="Include" />
+              </e>
             </e>
           </e>
         </e>
@@ -195,6 +201,7 @@
             <e p="CameraController.cs" t="Include" />
             <e p="CameraTarget.cs" t="Include" />
             <e p="CursorChanger.cs" t="Include" />
+            <e p="reticulePoint.cs" t="Include" />
             <e p="spawn.cs" t="Include" />
             <e p="spawnEnnemyBasique.cs" t="Include" />
             <e p="spawnEnnemyTahLesFous.cs" t="Include" />

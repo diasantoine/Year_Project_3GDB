@@ -19,7 +19,8 @@ public class DashAvatar : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetButtonDown("Fire3") /*&& detectD.deadList.Count>=7*/)
+        if (Input.GetButtonDown("Fire3") && !transform.parent.parent.GetComponent<CharacterMovement>().JustHit
+            /*&& detectD.deadList.Count>=7*/)
         {
             Ray MousePosition = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(MousePosition, out RaycastHit hit,Mathf.Infinity,LayerMask.GetMask("Sol")))
@@ -61,26 +62,29 @@ public class DashAvatar : MonoBehaviour
 
         if (transform.parent.parent.GetComponent<CharacterMovement>().OnDash)
         {
-            if (transform.parent.parent.GetComponent<Rigidbody>().velocity.magnitude < 3)
+            if (transform.parent.parent.GetComponent<Rigidbody>().velocity.magnitude < 3 )
             {
                 transform.parent.parent.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                ConteneurRigibody.constraints = RigidbodyConstraints.FreezeAll;
+                transform.parent.parent.GetComponent<CharacterMovement>().JustFinishedDash = true;
                 transform.parent.parent.GetComponent<CharacterMovement>().OnDash = false;
                 transform.parent.parent.GetComponent<CapsuleCollider>().enabled = !enabled;
                 transform.gameObject.layer = 9;
                 transform.parent.parent.tag = "Untagged";
                 ConteneurRigibody.useGravity = true;
-                ConteneurRigibody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
+                ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
-            Debug.Log(Vector3.Distance(HitPosition,transform.position));
             if (Vector3.Distance(HitPosition,transform.position)<2)
             {
-                transform.parent.parent.GetComponent<CharacterMovement>().OnDash = false;
                 transform.parent.parent.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                ConteneurRigibody.constraints = RigidbodyConstraints.FreezeAll;
+                transform.parent.parent.GetComponent<CharacterMovement>().JustFinishedDash = true;
+                transform.parent.parent.GetComponent<CharacterMovement>().OnDash = false;
                 transform.parent.parent.GetComponent<CapsuleCollider>().enabled = !enabled;
                 transform.gameObject.layer = 9;
                 transform.parent.parent.tag = "Untagged";
                 ConteneurRigibody.useGravity = true;
-                ConteneurRigibody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
+                ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
         }
     }

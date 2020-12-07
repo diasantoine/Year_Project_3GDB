@@ -111,7 +111,6 @@ public class ennemyState : MonoBehaviour
 
     public void damage(float hit)
     {
-        Debug.Log(hpNow);
         hpNow -= hit;
         healthBar.value = hpNow;
         touched = true;
