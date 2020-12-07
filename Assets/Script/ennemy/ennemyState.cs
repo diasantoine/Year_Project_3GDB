@@ -13,16 +13,15 @@ public class ennemyState : MonoBehaviour
     [HideInInspector] public spawnEnnemyBasique SEB;
 
     [SerializeField] private GameObject preDead;
-
     [SerializeField] private Slider healthBar;
-    [SerializeField] private Slider healthBarSec;
-
     [SerializeField] private Animator AnimatorConteneur;
+
 
     private float hpNow;
 
     [SerializeField] private float hpMax;
-    //[SerializeField] private float vitesse;
+    [SerializeField] private float vitesse;
+
     [SerializeField] private int numberCadav;
 
     public float RandomMultiplicatorSize = 0;
@@ -31,16 +30,12 @@ public class ennemyState : MonoBehaviour
     
     public int DMG_Percentage = 1;
 
-    //private bool JustHit = false;
-    //private bool HitPlayer = false;
-    //private bool Grounded = false;
+    private bool JustHit = false;
+    private bool HitPlayer = false;
+    private bool Grounded = false;
 
-    //private float Cooldown = 2;
-
-    [SerializeField] private float timeBar;
-    private float chrono;
-    private bool touched;
-
+    private float Cooldown = 2;
+    
 
     // Start is called before the first frame update
 
@@ -60,15 +55,10 @@ public class ennemyState : MonoBehaviour
 
     void Start()
     {
-        chrono = 0;
+        //player = GameObject.Find("Player").transform;
         hpNow = hpMax;
-
         healthBar.maxValue = hpMax;
         healthBar.value = healthBar.maxValue;
-
-        healthBarSec.maxValue = healthBar.maxValue;
-        healthBarSec.value = healthBar.maxValue;
-
         numberCadav = Random.Range(1, 4);
 
     }
@@ -76,9 +66,6 @@ public class ennemyState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        HealthbarDecrease();
-
         if (transform.position.y <= -10)
         {
             hpNow = 0;
@@ -114,92 +101,112 @@ public class ennemyState : MonoBehaviour
         Debug.Log(hpNow);
         hpNow -= hit;
         healthBar.value = hpNow;
-        touched = true;
-        chrono = 0;
-    }
-
-    void HealthbarDecrease()
-    {
-        if (touched)
-        {
-            if (chrono >= timeBar)
-            {
-                healthBarSec.value -= 1.5f * Time.deltaTime;
-
-                if (healthBarSec.value <= healthBar.value)
-                {
-                    chrono = 0;
-                    touched = false;
-                }
-            }
-            else
-            {
-                chrono += Time.deltaTime;
-            }
-        }
-
     }
     
-    /*void MoveSansRigidboy()
-    {
-        if (Grounded)
+    void MoveSansRigidboy()
         {
-            if (!JustHit)
+            if (Grounded)
             {
-                if (Vector3.Distance(transform.position, player.transform.position) > 4f)
+                if (!JustHit)
                 {
-                    Vector3 distance = player.position - transform.position;
-                    distance = distance.normalized;
-                    ConteneurRigibody.velocity = (vitesse / RandomMultiplicatorSize) * distance;
-                    //transform.position += distance * (vitesse/RandomMultiplicatorSize) * Time.deltaTime;
-                    transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
-                }
-                else
-                {
-                    if (!HitPlayer)
+                    if (Vector3.Distance(transform.position, player.transform.position) > 4f)
                     {
-                        if (Physics.Raycast(transform.position, transform.forward,
-                            out RaycastHit hit, 20, LayerMask.GetMask("Default")))
-                        {
-                            if (hit.transform.CompareTag("Player"))
-                            {
-                                Debug.Log("JeTape");
-                                int Explosion = 2000;
-                                //hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                                hit.transform.GetComponent<Rigidbody>()
-                                    .AddForceAtPosition(transform.forward * Explosion, hit.point);
-                                this.HitPlayer = true;
-                            }
-                        }
+                        Vector3 distance = player.position - transform.position;
+                        distance = distance.normalized;
+                        ConteneurRigibody.velocity = (vitesse / RandomMultiplicatorSize) * distance;
+                        //transform.position += distance * (vitesse/RandomMultiplicatorSize) * Time.deltaTime;
+                        transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
                     }
                     else
                     {
-                        if (Cooldown <= 0)
+                        if (!HitPlayer)
                         {
-                            HitPlayer = false;
-                            Cooldown = 2;
+                            if (Physics.Raycast(transform.position, transform.forward,
+                                out RaycastHit hit, 20, LayerMask.GetMask("Default")))
+                            {
+                                if (hit.transform.CompareTag("Player"))
+                                {
+                                    Debug.Log("JeTape");
+                                    int Explosion = 2000;
+                                    //hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                                    hit.transform.GetComponent<Rigidbody>()
+                                        .AddForceAtPosition(transform.forward * Explosion, hit.point);
+                                    this.HitPlayer = true;
+                                }
+                            }
                         }
                         else
                         {
-                            Cooldown -= Time.deltaTime;
+                            if (Cooldown <= 0)
+                            {
+                                HitPlayer = false;
+                                Cooldown = 2;
+                            }
+                            else
+                            {
+                                Cooldown -= Time.deltaTime;
+                            }
+                        }
+
+                    }
+
+                }
+                else if (JustHit)
+                {
+                    if (ConteneurRigibody.velocity.magnitude < 0.2f)
+                    {
+                        JustHit = false;
+                        if (ConteneurRigibody.constraints == RigidbodyConstraints.None)
+                        {
+                            ConteneurRigibody.constraints = RigidbodyConstraints.FreezeRotation;
+                            transform.rotation = Quaternion.identity;
                         }
                     }
-
-                }
-
-            }
-            else if (JustHit)
-            {
-                if (ConteneurRigibody.velocity.magnitude < 0.2f)
-                {
-                    JustHit = false;
-                    if (ConteneurRigibody.constraints == RigidbodyConstraints.None)
-                    {
-                        ConteneurRigibody.constraints = RigidbodyConstraints.FreezeRotation;
-                        transform.rotation = Quaternion.identity;
-                    }
                 }
             }
+        }
+
+
+   /*private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("sol") && !Grounded)
+        {
+            Grounded = true;
+        }
+        if (collision.transform.CompareTag("Projectile"))
+        {
+            JustHit = true;
+            int Explosion = DMG_Percentage * 2;
+            DMG_Percentage = Explosion;
+            transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            transform.GetComponent<Rigidbody>()
+                .AddForceAtPosition(transform.forward * Explosion, collision.GetContact(0).point);
+        }
+
+        if (collision.transform.CompareTag("Ennemy") 
+            && collision.gameObject.GetComponent<ennemyState>().ConteneurRigibody.constraints == RigidbodyConstraints.None)
+        {
+            JustHit = true;
+            transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            /*transform.GetComponent<Rigidbody>()
+                .AddForceAtPosition(transform.forward * collision.gameObject.GetComponent<ennemyState>().DMG_Percentage
+                    , collision.GetContact(0).point);
+        }
+    }
+
+   private void OnCollisionStay(Collision collision)
+   {
+       if (collision.transform.CompareTag("sol") && !Grounded)
+       {
+           Grounded = true;
+       }
+   }
+
+   private void OnCollisionExit(Collision collision)
+    {
+        if (collision.transform.CompareTag("sol") &&Grounded)
+        {
+            Grounded = false;
         }
     }*/
 }
