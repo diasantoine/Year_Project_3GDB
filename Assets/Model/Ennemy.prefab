@@ -978,7 +978,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1006,6 +1006,7 @@ MonoBehaviour:
   SEB: {fileID: 0}
   preDead: {fileID: 8079487939289275040, guid: 3e512f0022345bb45bf9d184376c267d, type: 3}
   healthBar: {fileID: 8680942597208958654}
+  AnimatorConteneur: {fileID: 0}
   hpMax: 4
   vitesse: 5
   numberCadav: 0

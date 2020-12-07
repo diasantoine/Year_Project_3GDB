@@ -41,6 +41,7 @@ public class ennemyState : MonoBehaviour
 
     private void Awake()
     {
+        AnimatorConteneur = GetComponent<Animator>();
         RandomMultiplicatorSize = Random.Range(0.8f, 4.5f);
         Color ConteneurColor = transform.GetChild(2).GetComponent<SkinnedMeshRenderer>().material.GetColor("_Color");
         ConteneurColor.g /= RandomMultiplicatorSize;
@@ -49,7 +50,7 @@ public class ennemyState : MonoBehaviour
         ConteneurRigibody = GetComponent<Rigidbody>();
         GetComponent<ennemyAI>().agent.speed /= RandomMultiplicatorSize;
         hpMax *= RandomMultiplicatorSize;
-        AnimatorConteneur.speed /= RandomMultiplicatorSize;
+        AnimatorConteneur.speed /= (RandomMultiplicatorSize * 0.2f);
     }
 
     void Start()
