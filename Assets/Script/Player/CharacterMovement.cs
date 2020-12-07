@@ -34,6 +34,16 @@ public class CharacterMovement : MonoBehaviour
         if (transform.position.y<=-6)
         {
             transform.position = new Vector3(30, 1.25f, -15.7f);
+            if (OnDash)
+            {
+                OnDash = false;
+                ConteneurRigibody.velocity = Vector3.zero;
+                GetComponent<CapsuleCollider>().enabled = !enabled;
+                transform.GetChild(1).GetChild(0).gameObject.layer = 9;
+                transform.tag = "Untagged";
+                ConteneurRigibody.useGravity = true;
+                ConteneurRigibody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
+            }
         }
         
         if ((Input.GetButton("Vertical")|| Input.GetButton("Horizontal")) && Grounded && !OnDash)

@@ -14,6 +14,7 @@ public class ennemyState : MonoBehaviour
 
     [SerializeField] private GameObject preDead;
     [SerializeField] private Slider healthBar;
+    [SerializeField] private Animator AnimatorConteneur;
 
 
     private float hpNow;
@@ -46,6 +47,9 @@ public class ennemyState : MonoBehaviour
         transform.GetChild(2).GetComponent<SkinnedMeshRenderer>().material.color = ConteneurColor;
         transform.localScale *= RandomMultiplicatorSize;
         ConteneurRigibody = GetComponent<Rigidbody>();
+        GetComponent<ennemyAI>().agent.speed /= RandomMultiplicatorSize;
+        hpMax *= RandomMultiplicatorSize;
+        AnimatorConteneur.speed /= RandomMultiplicatorSize;
     }
 
     void Start()

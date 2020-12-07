@@ -35,6 +35,8 @@ public class DashAvatar : MonoBehaviour
                     transform.gameObject.layer = 12;
                     transform.parent.parent.GetComponent<CapsuleCollider>().enabled = enabled;
                     transform.parent.parent.tag = "Player";
+                    ConteneurRigibody.useGravity = false;
+                    ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     //Vector3 Dir = (hit.transform.position - transform.parent.position).normalized;
                 
                     ConteneurRigibody.velocity = playerToMouse*DashSpeed;
@@ -66,6 +68,8 @@ public class DashAvatar : MonoBehaviour
                 transform.parent.parent.GetComponent<CapsuleCollider>().enabled = !enabled;
                 transform.gameObject.layer = 9;
                 transform.parent.parent.tag = "Untagged";
+                ConteneurRigibody.useGravity = true;
+                ConteneurRigibody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
             }
             Debug.Log(Vector3.Distance(HitPosition,transform.position));
             if (Vector3.Distance(HitPosition,transform.position)<2)
@@ -75,6 +79,8 @@ public class DashAvatar : MonoBehaviour
                 transform.parent.parent.GetComponent<CapsuleCollider>().enabled = !enabled;
                 transform.gameObject.layer = 9;
                 transform.parent.parent.tag = "Untagged";
+                ConteneurRigibody.useGravity = true;
+                ConteneurRigibody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
             }
         }
     }
