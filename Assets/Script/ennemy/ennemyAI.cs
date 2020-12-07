@@ -142,7 +142,15 @@ public class ennemyAI : MonoBehaviour
         {
             if (collision.transform.GetComponent<CharacterMovement>().OnDash)
             {
-                Debug.Log(collision.gameObject.name);
+                
+                JustHit = true;
+                agent.enabled = false;
+                Vector3 dir = (collision.transform.position - transform.position).normalized;
+                int DashExplosion = 25;
+                ConteneurRigibody.constraints = RigidbodyConstraints.None;
+                ConteneurRigibody.AddForceAtPosition(dir * DashExplosion,
+                    ConteneurRigibody.ClosestPointOnBounds(collision.transform.position), ForceMode.Impulse);
+                /*Debug.Log(collision.gameObject.name);
                 int DashExplosion = 5;
                 ConteneurRigibody.constraints = RigidbodyConstraints.None;
                 ConteneurRigibody.AddExplosionForce(DashExplosion*200,transform.position,200,10,ForceMode.Force);
@@ -152,12 +160,12 @@ public class ennemyAI : MonoBehaviour
                 Vector3 dir = (collision.transform.position - transform.position).normalized;
                 //ConteneurRigibody.AddForceAtPosition(dir * DashExplosion,
                 //   ConteneurRigibody.ClosestPointOnBounds(collision.transform.position));
-                //ConteneurRigibody.AddForce(transform.up*DashExplosion,ForceMode.Impulse);
+                //ConteneurRigibody.AddForce(transform.up*DashExplosion,ForceMode.Impulse);*/
             }
         }
     }
 
-    private void OnTriggerStay(Collider collision)
+   /* private void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject.layer == 9 && !JustHit)
         {
@@ -167,17 +175,19 @@ public class ennemyAI : MonoBehaviour
                
                 JustHit = true;
                 agent.enabled = false;
-                //ConteneurRigibody.velocity = transform.up * DashExplosion;
                 Vector3 dir = (collision.transform.position - transform.position).normalized;
                 int DashExplosion = 5;
                 ConteneurRigibody.constraints = RigidbodyConstraints.None;
-                //ConteneurRigibody.AddExplosionForce(DashExplosion*200,transform.position,200,10,ForceMode.Force);
                 ConteneurRigibody.AddForceAtPosition(dir * DashExplosion,
-                   ConteneurRigibody.ClosestPointOnBounds(collision.transform.position));
+                   ConteneurRigibody.ClosestPointOnBounds(collision.transform.position), ForceMode.Impulse);
+                
+                
+                //ConteneurRigibody.AddExplosionForce(DashExplosion*200,transform.position,200,10,ForceMode.Force);
+                //ConteneurRigibody.velocity = transform.up * DashExplosion;
                 //ConteneurRigibody.AddForce(transform.up*DashExplosion,ForceMode.Impulse);
             }
         }
-    }
+    }*/
 
     private void OnCollisionEnter(Collision collision)
     {

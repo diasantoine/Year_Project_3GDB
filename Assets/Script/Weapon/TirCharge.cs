@@ -77,8 +77,6 @@ public class TirCharge : MonoBehaviour
             }
         }
 
-        RB.AddExplosionForce(10, hitPoint, radiusExploBase, 5f, ForceMode.Impulse);
-
         Destroy(newExplo, 0.1f);
         Destroy(gameObject);
     }
