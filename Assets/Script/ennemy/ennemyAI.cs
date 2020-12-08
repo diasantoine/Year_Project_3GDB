@@ -79,6 +79,7 @@ public class ennemyAI : MonoBehaviour
                 if (agent.isOnNavMesh && Vector3.Distance(player.position, transform.position)>5)
                 {
                     agent.SetDestination(player.position);
+                    ConteneurRigibody.velocity = agent.velocity;// attention
                 }
                 //agent.SetDestination(player.position);
 
@@ -151,7 +152,7 @@ public class ennemyAI : MonoBehaviour
             if (collision.transform.GetComponent<CharacterMovement>().OnDash)
             {
                 Debug.Log("aie");
-                ConteneurRigibody.velocity = agent.velocity;
+            
                 JustHit = true;
                 agent.enabled = false;
                 Vector3 dir = transform.position;
