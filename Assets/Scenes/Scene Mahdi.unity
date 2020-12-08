@@ -2182,7 +2182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8075e5e8a3bbe18488a2d5a45b654c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ennemyPre: {fileID: 2392818004926996025, guid: 088314ca31716a440b4333e8b2711b6d,
+  ennemyPre: {fileID: 8817521393004406982, guid: b3d54863a4ca9b744826a2e21041c63c,
     type: 3}
   parentEnnemy: {fileID: 412033862}
   player: {fileID: 1548571582}
@@ -3894,7 +3894,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 19477aac4bda3974c9de1bdd5d816202, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: e483b9ca2c5903140af1500c6760db8e, type: 2}
 --- !u!4 &1208942158
 Transform:
   m_ObjectHideFlags: 0
@@ -4441,7 +4441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4672edb19542804084757c824f6f28d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preEnnemy: {fileID: 2392818004926996025, guid: 088314ca31716a440b4333e8b2711b6d,
+  preEnnemy: {fileID: 8817521393004406982, guid: b3d54863a4ca9b744826a2e21041c63c,
     type: 3}
   preCadavre: {fileID: 8079487939289275040, guid: 3e512f0022345bb45bf9d184376c267d,
     type: 3}
@@ -4516,6 +4516,8 @@ MonoBehaviour:
   cam: {fileID: 0}
   Grounded: 0
   OnDash: 0
+  JustFinishedDash: 0
+  JustHit: 0
 --- !u!54 &1548571581
 Rigidbody:
   m_ObjectHideFlags: 0
