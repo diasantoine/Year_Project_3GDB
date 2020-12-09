@@ -6,6 +6,11 @@ public class spawnEnnemyBasique : MonoBehaviour
 {
 
     [SerializeField] private GameObject ennemyPre;
+
+    [SerializeField] private List<GameObject> ennemyPreList;
+    [Range(0, 1)] [SerializeField] private float chanceForMini;
+    [Range(0, 1)] [SerializeField] private float chanceForBig;
+
     [SerializeField] private Transform parentEnnemy;
     [SerializeField] private Transform player;
 
@@ -88,6 +93,19 @@ public class spawnEnnemyBasique : MonoBehaviour
     {
         for (int i = 0; i < spawnPoz.Count && ennemySpawningRemaining > 0; i++)
         {
+            /*if(Random.value <= chanceForMini)
+            {
+                InitialyzeEnnemy(i, ennemyPreList[0]);
+            }
+            else if(Random.value >= chanceForBig)
+            {
+                InitialyzeEnnemy(i, ennemyPreList[2]);
+            }
+            else
+            {
+                InitialyzeEnnemy(i, ennemyPreList[1]);
+            }*/
+
             GameObject newEnnemy = Instantiate(ennemyPre);
             newEnnemy.transform.parent = parentEnnemy;
             newEnnemy.transform.position = spawnPoz[i].position + new Vector3(0, 1.25f, 0);
@@ -98,5 +116,15 @@ public class spawnEnnemyBasique : MonoBehaviour
             ennemySpawningRemaining--;
             numberEnnemy++;
         }
+    }
+
+    private void InitialyzeEnnemy(int i, GameObject ennemyPre)
+    {
+        GameObject newEnnemy = Instantiate(ennemyPre);
+        newEnnemy.transform.parent = parentEnnemy;
+        newEnnemy.transform.position = spawnPoz[i].position + new Vector3(0, 0, 0);
+        newEnnemy.GetComponent<ennemyState>().SEB = gameObject.GetComponent<spawnEnnemyBasique>();
+        newEnnemy.GetComponent<ennemyAI>().player = player;
+        newEnnemy.GetComponent<ennemyState>().player = player;
     }
 }

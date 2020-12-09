@@ -908,7 +908,7 @@ PrefabInstance:
     - target: {fileID: -8557002723003063263, guid: 4840d014393b7754fa6f965d74b61d1d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 42
+      value: 43
       objectReference: {fileID: 0}
     - target: {fileID: -8507530218166242363, guid: 4840d014393b7754fa6f965d74b61d1d,
         type: 3}
@@ -983,7 +983,7 @@ PrefabInstance:
     - target: {fileID: -6134079766568285550, guid: 4840d014393b7754fa6f965d74b61d1d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 43
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: -6130448485417718077, guid: 4840d014393b7754fa6f965d74b61d1d,
         type: 3}
@@ -1018,7 +1018,7 @@ PrefabInstance:
     - target: {fileID: -5751949428428801006, guid: 4840d014393b7754fa6f965d74b61d1d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 60
+      value: 61
       objectReference: {fileID: 0}
     - target: {fileID: -5477749408508380018, guid: 4840d014393b7754fa6f965d74b61d1d,
         type: 3}
@@ -1143,7 +1143,7 @@ PrefabInstance:
     - target: {fileID: 71915518356630547, guid: 4840d014393b7754fa6f965d74b61d1d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 59
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 281855664364225751, guid: 4840d014393b7754fa6f965d74b61d1d,
         type: 3}
@@ -1268,7 +1268,7 @@ PrefabInstance:
     - target: {fileID: 6876804342422278509, guid: 4840d014393b7754fa6f965d74b61d1d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 61
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 6902850991424332798, guid: 4840d014393b7754fa6f965d74b61d1d,
         type: 3}
@@ -2184,10 +2184,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ennemyPre: {fileID: 8817521393004406982, guid: b3d54863a4ca9b744826a2e21041c63c,
     type: 3}
+  ennemyPreList:
+  - {fileID: 5647312575489303912, guid: 618d7eaf60e4acf40a8db15df0e7fb6c, type: 3}
+  - {fileID: 6831408352558857785, guid: dcefde03eeed4894bbc453b011c34ba8, type: 3}
+  - {fileID: 7342311372791477365, guid: 17197e97e71f5644bb6d190a0eb2a07c, type: 3}
+  chanceForMini: 0.2
+  chanceForBig: 0.8
   parentEnnemy: {fileID: 412033862}
   player: {fileID: 1548571582}
-  freqSpawn: 10
-  waitTime: 0
+  freqSpawn: 5
+  waitTime: 10
   spawnPoz:
   - {fileID: 927511209}
   - {fileID: 1394150428}
