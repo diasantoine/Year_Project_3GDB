@@ -93,20 +93,23 @@ public class spawnEnnemyBasique : MonoBehaviour
     {
         for (int i = 0; i < spawnPoz.Count && ennemySpawningRemaining > 0; i++)
         {
-            /*if(Random.value <= chanceForMini)
+
+            var random = Random.value;
+
+            if(random <= chanceForMini)
             {
                 InitialyzeEnnemy(i, ennemyPreList[0]);
             }
-            else if(Random.value >= chanceForBig)
+            else if(random >= chanceForBig)
             {
                 InitialyzeEnnemy(i, ennemyPreList[2]);
             }
             else
             {
                 InitialyzeEnnemy(i, ennemyPreList[1]);
-            }*/
+            }
 
-            GameObject newEnnemy = Instantiate(ennemyPre);
+            /*GameObject newEnnemy = Instantiate(ennemyPre);
             newEnnemy.transform.parent = parentEnnemy;
             newEnnemy.transform.position = spawnPoz[i].position + new Vector3(0, 1.25f, 0);
             newEnnemy.GetComponent<ennemyState>().SEB = gameObject.GetComponent<spawnEnnemyBasique>();
@@ -114,7 +117,7 @@ public class spawnEnnemyBasique : MonoBehaviour
             newEnnemy.GetComponent<ennemyState>().player = player;
 
             ennemySpawningRemaining--;
-            numberEnnemy++;
+            numberEnnemy++;*/
         }
     }
 
