@@ -44,21 +44,21 @@ public class ennemyState : MonoBehaviour
 
     // Start is called before the first frame update
 
-    private void Awake()
+   /* private void Awake()
     {
         RandomMultiplicatorSize = Random.Range(0.8f, 4.5f);
         Color ConteneurColor = transform.GetChild(2).GetComponent<SkinnedMeshRenderer>().material.GetColor("_Color");
         ConteneurColor.g /= RandomMultiplicatorSize;
         transform.GetChild(2).GetComponent<SkinnedMeshRenderer>().material.color = ConteneurColor;
         transform.localScale *= RandomMultiplicatorSize;
-        ConteneurRigibody = GetComponent<Rigidbody>();
         GetComponent<ennemyAI>().agent.speed /= RandomMultiplicatorSize;
         hpMax *= RandomMultiplicatorSize;
         AnimatorConteneur.speed /= (RandomMultiplicatorSize * 0.2f);
-    }
+    }*/
 
     void Start()
     {
+        ConteneurRigibody = GetComponent<Rigidbody>();
         chrono = 0;
         hpNow = hpMax;
 
