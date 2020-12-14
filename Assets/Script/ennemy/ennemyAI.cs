@@ -15,7 +15,7 @@ public class ennemyAI : MonoBehaviour
     [SerializeField] private bool JustHit = false;
     private bool HitPlayer = false;
 
-    public int DMG_Percentage = 1;
+    public int ForceTirNormal = 1;
 
     private Rigidbody ConteneurRigibody;
 
@@ -211,11 +211,10 @@ public class ennemyAI : MonoBehaviour
         {
             Debug.Log("?");
             JustHit = true;
-            int Explosion = DMG_Percentage * 3;
+            int Explosion = ForceTirNormal;
             agent.enabled = false;
-            DMG_Percentage = Explosion;
             ConteneurRigibody.constraints = RigidbodyConstraints.None;
-            ConteneurRigibody.AddForceAtPosition(collision.transform.forward * Explosion, collision.GetContact(0).point);
+            ConteneurRigibody.AddForceAtPosition(collision.transform.forward.normalized * Explosion, collision.GetContact(0).point);
         }
 
         if (collision.transform.CompareTag("Ennemy")

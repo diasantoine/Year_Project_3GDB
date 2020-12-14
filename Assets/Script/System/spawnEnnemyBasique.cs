@@ -114,10 +114,10 @@ public class spawnEnnemyBasique : MonoBehaviour
             newEnnemy.transform.position = spawnPoz[i].position + new Vector3(0, 1.25f, 0);
             newEnnemy.GetComponent<ennemyState>().SEB = gameObject.GetComponent<spawnEnnemyBasique>();
             newEnnemy.GetComponent<ennemyAI>().player = player;
-            newEnnemy.GetComponent<ennemyState>().player = player;
+            newEnnemy.GetComponent<ennemyState>().player = player;*/
 
             ennemySpawningRemaining--;
-            numberEnnemy++;*/
+            numberEnnemy++;
         }
     }
 
