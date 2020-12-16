@@ -24,7 +24,7 @@ public class CameraTarget : MonoBehaviour
     {
         Ray rayon = cam.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(rayon, out hit, Mathf.Infinity))
+        if (Physics.Raycast(rayon, out hit, Mathf.Infinity, LayerMask.GetMask("Sol")))
         {
             Vector3 mousePos = hit.point;
             Vector3 targetPos = (player.position + mousePos) / 2f;

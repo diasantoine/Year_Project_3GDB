@@ -7,15 +7,11 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
 
-    public CharacterController CC;
-
     //[SerializeField] private Animator anim;
 
     private bool isWalking;
 
     public float vitesse = 6f;
-
-    public Transform cam;
 
     private Rigidbody ConteneurRigibody;
 

@@ -54,8 +54,8 @@ public class TirCharge : MonoBehaviour
 
             moveDirection = dir;
             moveDirection.y = 0;
-            moveDirection = moveDirection.normalized;
-            RB.AddForce(moveDirection * vitesse, ForceMode.Impulse);
+            //moveDirection = moveDirection.normalized;
+            RB.AddForce(moveDirection, ForceMode.Impulse);
         }
 
     }

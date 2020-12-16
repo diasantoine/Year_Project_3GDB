@@ -82,14 +82,19 @@ public class shootDead : MonoBehaviour
             else
             {
                 Destroy(pierre);
+                isCharging = false;
             }
            
         }
 
-        if (isCharging && pierre.GetComponent<TirCharge>().nCharge < pierre.GetComponent<TirCharge>().nChargeMax)
+        if(pierre != null)
         {
-            ChargementTir();
+            if (isCharging && pierre.GetComponent<TirCharge>().nCharge < pierre.GetComponent<TirCharge>().nChargeMax)
+            {
+                ChargementTir();
+            }
         }
+
 
         /*if(detectD.deadList.Count > 0)
         {
@@ -146,7 +151,7 @@ public class shootDead : MonoBehaviour
                 var projectile = Instantiate(preProjo, canon.position, Quaternion.identity);
                 FMODUnity.RuntimeManager.PlayOneShot(TireSon, transform.position);
 
-                if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity))
+                if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity, LayerMask.GetMask("Sol")))
                 {
                     Vector3 playerToMouse = floorHit.point - canon.position;
                     projectile.GetComponent<DeadProjo>().Shoot(playerToMouse);
