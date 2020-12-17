@@ -25,6 +25,16 @@ public class skillSystem : MonoBehaviour
         skills[skillID].UsingSkill();
     }
 
+    public void EndUsing(Ray rayon)
+    {
+        skills[skillID].EndUsing(rayon);
+    }
+
+    public void ChargingSkill()
+    {
+        skills[skillID].ChargingSkill();
+    }
+
     public void changeSKill()
     {
         skillID++;

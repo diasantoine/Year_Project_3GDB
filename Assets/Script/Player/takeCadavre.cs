@@ -13,7 +13,7 @@ public class takeCadavre : MonoBehaviour
 
 
     public Transform player;
-    public Transform pierre;
+    public Transform bombe;
 
 
     [SerializeField] private float threshold;
@@ -82,17 +82,17 @@ public class takeCadavre : MonoBehaviour
 
         if (charge)
         {
-            if (pierre != null)
+            if (bombe != null)
             {
-                if (!pierre.GetComponent<TirCharge>().tipar)
+                if (!bombe.GetComponent<TirCharge>().tipar)
                 {
-                    Vector3 direction = pierre.position - transform.position;
+                    Vector3 direction = bombe.position - transform.position;
 
                     direction = direction.normalized;
 
                     transform.position += direction * vitesse * Time.deltaTime;
 
-                    if(pierre.GetComponent<TirCharge>().nCharge >= pierre.GetComponent<TirCharge>().nChargeMax)
+                    if(bombe.GetComponent<TirCharge>().nCharge >= bombe.GetComponent<TirCharge>().nChargeMax)
                     {
                         gotcha = true;
                         charge = false;
@@ -101,7 +101,7 @@ public class takeCadavre : MonoBehaviour
                 }
                 else
                 {
-                    pierre = null;
+                    bombe = null;
                 }
 ;
             }
@@ -123,8 +123,8 @@ public class takeCadavre : MonoBehaviour
             {
                 Destroy(gameObject);
                 deadD.deadList.Remove(gameObject);
-                pierre.GetComponent<TirCharge>().nCharge++;
-                pierre.transform.localScale = pierre.transform.localScale + new Vector3(radiusGave, radiusGave, radiusGave);
+                bombe.GetComponent<TirCharge>().nCharge++;
+                bombe.transform.localScale = bombe.transform.localScale + new Vector3(radiusGave, radiusGave, radiusGave);
             }
         }
     }

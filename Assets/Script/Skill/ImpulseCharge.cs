@@ -9,23 +9,59 @@ public class ImpulseCharge : skill
     [SerializeField] private Transform canonCharge;
 
     
-    private RaycastHit hit;
-    private Camera cam;
     private bool isCharging;
-    private GameObject bombe;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        chrono = freqCharge;
+        canonCharge = GameObject.Find("CanonCharge").transform;
     }
 
     public override void UsingSkill()
     {
         isCharging = true;
-        bombe = Instantiate(preProjo, canonCharge.position, Quaternion.identity, transform.parent);
-        bombe.GetComponent<Rigidbody>().isKinematic = true;
+        conteneur = Instantiate(preProjo, canonCharge.position, Quaternion.identity, transform.parent);
+        conteneur.GetComponent<Rigidbody>().isKinematic = true;
     }
+
+    public override void ChargingSkill()
+    {
+        if(conteneur != null)
+        {
+            if (isCharging && conteneur.GetComponent<TirCharge>().nCharge < conteneur.GetComponent<TirCharge>().nChargeMax)
+            {
+                base.ChargingSkill();
+
+            }
+        }
+    }
+
+    public override void EndUsing(Ray rayon)
+    {
+        if(conteneur.GetComponent<TirCharge>().nCharge > 0)
+        {
+            isCharging = false;
+            RaycastHit floorHit;
+
+            if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity))
+            {
+                Vector3 playerToMouse = floorHit.point - canonCharge.position;
+                conteneur.GetComponent<TirCharge>().tipar = true;
+                conteneur.GetComponent<Rigidbody>().isKinematic = false;
+                conteneur.transform.parent = null;
+                conteneur.GetComponent<TirCharge>().Shoot(playerToMouse);
+
+            }
+        }
+        else
+        {
+            Destroy(conteneur);
+            isCharging = false;
+        }
+    }
+
+
 
 }

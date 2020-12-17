@@ -43,6 +43,8 @@ public class shootDead : MonoBehaviour
     void Update()
     {
         Ray rayon = cam.ScreenPointToRay(Input.mousePosition);
+        TirNormal(rayon);
+
 
         /*if (Input.GetMouseButtonDown(0) && onShoot == false)
         {
@@ -64,9 +66,7 @@ public class shootDead : MonoBehaviour
 
         }*/
 
-        TirNormal(rayon);
-
-        if (Input.GetMouseButtonDown(1))
+        /*if (Input.GetMouseButtonDown(1))
         {
             isCharging = true;
             pierre = Instantiate(preProjoChargé, canonCharge.position, Quaternion.identity, canonCharge.transform);
@@ -93,7 +93,7 @@ public class shootDead : MonoBehaviour
             {
                 ChargementTir();
             }
-        }
+        }*/
 
 
         /*if(detectD.deadList.Count > 0)
@@ -168,7 +168,6 @@ public class shootDead : MonoBehaviour
 
     void ChargementTir()
     {
-
         if(detectD.deadList.Count > 0)
         {
             
@@ -181,7 +180,7 @@ public class shootDead : MonoBehaviour
                 {
                     TC.isMunitions = false;
                     TC.charge = true;
-                    TC.pierre = pierre.transform;
+                    TC.bombe = pierre.transform;
 
                     detectD.deadList.Remove(detectD.deadList[0]);
                 }
