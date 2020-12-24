@@ -9,48 +9,58 @@ public class DashAvatar : MonoBehaviour
     [SerializeField] private float DashSpeed = 20;
     [SerializeField] private float ChargeMax = 7;
     [SerializeField] private GameObject Parent;
-    private float Charge;
+    private float Compteur = 0;
+    private int Charge;
     private LineRenderer lineRenderer;
     private Vector3 HitPosition;
     RaycastHit floorHit;
     
     void Update()
     {
-
         if (Input.GetButton("Fire3") && !transform.parent.parent.GetComponent<CharacterMovement>().JustHit &&
             detectD.deadList.Count>=3)
         {
-            if (Charge < ChargeMax && Charge < detectD.deadList.Count)
+            if (Charge < ChargeMax && Charge < detectD.deadList.Count && Compteur <=0)
             {
+                Compteur = 1;
+                ChargementDash();
+                Debug.Log("?");
                 Charge++;
             }
             else
             {
-                Debug.Log("MaxCharge");
+                Debug.Log("??");
+                Compteur -= Time.deltaTime;
             }
             if (!Parent.GetComponent<LineRenderer>())
             {
               lineRenderer = Parent.AddComponent<LineRenderer>();
             }
+            else
+            {
+                Parent.GetComponent<LineRenderer>().enabled = true;
+            }
             Ray MousePosition = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(MousePosition, out RaycastHit Hit))
             {
                 lineRenderer.SetPosition(0, transform.position);
-                lineRenderer.SetPosition(1,new Vector3(Hit.point.x,transform.position.y,Hit.point.z));
+                Vector3 HitPosition = Hit.point;
+                HitPosition.x = transform.position.x + (Hit.point.x - transform.position.x)*(Charge/ChargeMax); 
+                HitPosition.z = transform.position.z + (Hit.point.z - transform.position.z)*(Charge/ChargeMax);
+                lineRenderer.SetPosition(1,new Vector3(HitPosition.x,transform.position.y,HitPosition.z));
                 lineRenderer.startColor = Color.cyan;
-                Debug.Log(Hit.point);
             }
         }
 
         if (Input.GetButtonUp("Fire3") && !transform.parent.parent.GetComponent<CharacterMovement>().JustHit &&
             detectD.deadList.Count>=3)
             {
-                ChargementDash();
                 Ray MousePosition = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(MousePosition, out RaycastHit hit,Mathf.Infinity,LayerMask.GetMask("Sol")))
                 {
                     if (hit.transform.tag != "Collider")
                     {
+                        RemoveDeadList();
                         //HitPosition = hit.point;
                         HitPosition.x = transform.position.x + (hit.point.x - transform.position.x)*(Charge/ChargeMax); 
                         HitPosition.z = transform.position.z + (hit.point.z - transform.position.z)*(Charge/ChargeMax);
@@ -116,29 +126,30 @@ public class DashAvatar : MonoBehaviour
                 ConteneurRigibody.useGravity = true;
                 ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
+            Parent.GetComponent<LineRenderer>().enabled = false;
         }
     }
     
     void ChargementDash()
     {
-
         if(detectD.deadList.Count > 0)
         {
-            for (int i = 0; i < Charge; i++)
+            takeCadavre ConteneurCadavre = detectD.deadList[Charge].GetComponent<takeCadavre>();
+            if(ConteneurCadavre.isMunitions)
             {
-                
-                takeCadavre ConteneurCadavre = detectD.deadList[0].GetComponent<takeCadavre>();
-
-                if(ConteneurCadavre.isMunitions)
-                {
-                    ConteneurCadavre.isMunitions = false;
-                    ConteneurCadavre.charge = true;
-                    detectD.deadList.Remove(detectD.deadList[0]);
-                    Destroy(ConteneurCadavre.transform.gameObject);
-                }
-
+                ConteneurCadavre.isMunitions = false;
+                ConteneurCadavre.charge = true;
+                //detectD.deadList.Remove(detectD.deadList[0]);
+                Destroy(ConteneurCadavre.transform.gameObject);
             }
         }
+    }
 
+    void RemoveDeadList()
+    {
+        for (int i = 0; i < Charge; i++)
+        {
+            detectD.deadList.Remove(detectD.deadList[0]);
+        }
     }
 }
