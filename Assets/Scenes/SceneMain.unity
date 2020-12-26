@@ -305,7 +305,7 @@ PrefabInstance:
     - target: {fileID: 5188169716214939385, guid: 3e512f0022345bb45bf9d184376c267d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.05
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 5188169716214939385, guid: 3e512f0022345bb45bf9d184376c267d,
         type: 3}
@@ -315,7 +315,7 @@ PrefabInstance:
     - target: {fileID: 5188169716214939385, guid: 3e512f0022345bb45bf9d184376c267d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.37
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 5188169716214939385, guid: 3e512f0022345bb45bf9d184376c267d,
         type: 3}
@@ -2184,6 +2184,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ennemyPre: {fileID: 2392818004926996025, guid: 088314ca31716a440b4333e8b2711b6d,
     type: 3}
+  ennemyPreList: []
+  chanceForMini: 0
+  chanceForBig: 0
   parentEnnemy: {fileID: 412033862}
   player: {fileID: 1548571582}
   freqSpawn: 10
@@ -2541,7 +2544,7 @@ PrefabInstance:
     - target: {fileID: 5188169716214939385, guid: 3e512f0022345bb45bf9d184376c267d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.36
+      value: 19.6
       objectReference: {fileID: 0}
     - target: {fileID: 5188169716214939385, guid: 3e512f0022345bb45bf9d184376c267d,
         type: 3}
@@ -2551,7 +2554,7 @@ PrefabInstance:
     - target: {fileID: 5188169716214939385, guid: 3e512f0022345bb45bf9d184376c267d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.33
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 5188169716214939385, guid: 3e512f0022345bb45bf9d184376c267d,
         type: 3}
@@ -2990,7 +2993,7 @@ PrefabInstance:
     - target: {fileID: 5188169716214939385, guid: 3e512f0022345bb45bf9d184376c267d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.87
+      value: 25.2
       objectReference: {fileID: 0}
     - target: {fileID: 5188169716214939385, guid: 3e512f0022345bb45bf9d184376c267d,
         type: 3}
@@ -3000,7 +3003,7 @@ PrefabInstance:
     - target: {fileID: 5188169716214939385, guid: 3e512f0022345bb45bf9d184376c267d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.13
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 5188169716214939385, guid: 3e512f0022345bb45bf9d184376c267d,
         type: 3}
@@ -5305,6 +5308,8 @@ MonoBehaviour:
   detectD: {fileID: 313853769}
   ConteneurRigibody: {fileID: 1548571581}
   DashSpeed: 60
+  ChargeMax: 7
+  Parent: {fileID: 1548571579}
 --- !u!23 &1711813855943534077
 MeshRenderer:
   m_ObjectHideFlags: 0

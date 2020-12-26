@@ -27,7 +27,7 @@ public class shootDead : MonoBehaviour
     private float chrono;
 
     private bool onShoot;
-    private bool isCharging;
+    bool isCharging;
 
     RaycastHit floorHit;
 
@@ -189,6 +189,8 @@ public class shootDead : MonoBehaviour
         }
 
     }
+    
+  
 
     void TirCharge(Ray rayon)
     {
