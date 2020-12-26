@@ -10,9 +10,11 @@ public class takeCadavre : MonoBehaviour
 
     [HideInInspector] public bool isMunitions;
     [HideInInspector] public bool charge;
+    [HideInInspector] public bool dash;
 
 
     public Transform player;
+    public Transform Dash;
     public Transform bombe;
 
 
@@ -111,7 +113,39 @@ public class takeCadavre : MonoBehaviour
                 charge = false;
                 gameObject.layer = 8;
 
+            } 
+        }else if (dash)
+        {
+            if (Dash != null)
+            {
+                if (Dash.GetComponent<ChargedDash>().isCharging)
+                {
+                    Debug.Log("SA MARCHE?");
+                    Vector3 direction = Dash.position - transform.position;
+
+                    direction = direction.normalized;
+
+                    transform.position += direction * vitesse * Time.deltaTime;
+
+                    if(Dash.GetComponent<ChargedDash>().Charge >= Dash.GetComponent<ChargedDash>().ChargeMax)
+                    {
+                        gotcha = true;
+                        dash = false;
+                        gameObject.layer = 8;
+                    }
+                }
+                else
+                {
+                    Dash = null;
+                }
+                ;
             }
+            else
+            {
+                gotcha = true;
+                dash = false;
+                gameObject.layer = 8;
+            } 
         }
     }
 
@@ -125,6 +159,14 @@ public class takeCadavre : MonoBehaviour
                 deadD.deadList.Remove(gameObject);
                 bombe.GetComponent<TirCharge>().nCharge++;
                 bombe.transform.localScale = bombe.transform.localScale + new Vector3(radiusGave, radiusGave, radiusGave);
+            }
+        }else if (dash)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                deadD.deadList.Remove(gameObject);
+                Destroy(gameObject);
+                Dash.GetComponent<ChargedDash>().Charge++;
             }
         }
     }

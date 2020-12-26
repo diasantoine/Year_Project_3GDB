@@ -29,20 +29,28 @@ public class skill : MonoBehaviour
 
     }
     
-    public virtual void ChargingSkill()
+    public virtual void ChargingSkill(int WhichWeapon)
     {
         if (ressource.deadList.Count > 0)
         {
             if (chrono >= freqCharge)
             {
                 takeCadavre TC = ressource.deadList[0].GetComponent<takeCadavre>();
-
                 if (TC.isMunitions)
                 {
                     TC.isMunitions = false;
-                    TC.charge = true;
-                    TC.bombe = conteneur.transform;
-
+                    if (WhichWeapon == 0)
+                    {
+                        TC.charge = true;
+                        TC.bombe = conteneur.transform;
+                    }else if (WhichWeapon == 1)
+                    {
+                        Debug.Log("HEY");
+                        TC.gameObject.layer = 0;
+                        TC.GetComponent<BoxCollider>().isTrigger = true;
+                        TC.dash = true;
+                        TC.Dash = conteneur.transform;
+                    }
                     ressource.deadList.Remove(ressource.deadList[0]);
                     chrono = 0;
                 }

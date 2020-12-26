@@ -21,6 +21,8 @@ public class CharacterMovement : MonoBehaviour
     public bool JustHit = false;
     private float Compteur = 0;
     private float Compteur1 = 0;
+    [SerializeField] private GameObject Avatar;
+    public Vector3 HitPosition = new Vector3();
     
 
     // Start is called before the first frame update
@@ -32,6 +34,7 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        DashFinishCheck();
         if (JustFinishedDash)
         {
             if (Compteur<=0.4f)
@@ -77,7 +80,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 OnDash = false;
                 GetComponent<CapsuleCollider>().enabled = !enabled;
-                transform.GetChild(1).GetChild(0).gameObject.layer = 9;
+                Avatar.layer = 9;
                 transform.tag = "Untagged";
                 ConteneurRigibody.useGravity = true;
                 ConteneurRigibody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
@@ -121,6 +124,39 @@ public class CharacterMovement : MonoBehaviour
         }*/
     }
 
+    private void DashFinishCheck()
+    {
+        if (OnDash)
+        {
+            if (GetComponent<Rigidbody>().velocity.magnitude < 3)
+            {
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
+                ConteneurRigibody.constraints = RigidbodyConstraints.FreezeAll;
+                JustFinishedDash = true;
+                OnDash = false;
+                GetComponent<CapsuleCollider>().enabled = !enabled;
+                Avatar.layer = 9;
+                tag = "Untagged";
+                ConteneurRigibody.useGravity = true;
+                ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            }
+
+            if (Vector3.Distance(HitPosition, transform.position) < 2 && HitPosition != new Vector3())
+            {
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
+                ConteneurRigibody.constraints = RigidbodyConstraints.FreezeAll;
+                JustFinishedDash = true;
+                OnDash = false;
+                GetComponent<CapsuleCollider>().enabled = !enabled;
+                Avatar.layer = 9;
+                tag = "Untagged";
+                ConteneurRigibody.useGravity = true;
+                ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            }
+            GetComponent<LineRenderer>().enabled = false;
+        }
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.transform.CompareTag("sol") && !Grounded)
@@ -144,4 +180,6 @@ public class CharacterMovement : MonoBehaviour
             Grounded = false;
         }
     }
+    
+
 }

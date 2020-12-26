@@ -8,6 +8,10 @@ public class shootSkill : MonoBehaviour
     private skillSystem skillSystem;
 
     private Camera cam;
+    
+    [SerializeField] private detectDead detectD;
+
+    [SerializeField]
 
     // Start is called before the first frame update
     void Start()
@@ -34,11 +38,18 @@ public class shootSkill : MonoBehaviour
             skillSystem.changeSKill();
         }
 
+        // if (Input.GetButton("Fire3") && detectD.deadList.Count >=3)
+        // {
+        //     skillSystem.ChargingSkill();
+        // }
+        // else if (Input.GetButtonUp("Fire3") && detectD.deadList.Count >=3)
+        // {
+        //     skillSystem.EndUsing(rayon);
+        // }
+
         if (skillSystem.skills[skillSystem.skillID].chargedSkill)
         {
-            skillSystem.ChargingSkill();
+            skillSystem.ChargingSkill(skillSystem.skillID);
         }
-
-
     }
 }

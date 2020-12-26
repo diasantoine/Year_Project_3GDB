@@ -195,7 +195,15 @@
             <e p="DashAvatar.cs" t="Include" />
             <e p="detectDead.cs" t="Include" />
             <e p="shootDead.cs" t="Include" />
+            <e p="shootSkill.cs" t="Include" />
             <e p="takeCadavre.cs" t="Include" />
+          </e>
+          <e p="Room" t="Include">
+            <e p="RoomScript.cs" t="Include" />
+          </e>
+          <e p="Skill" t="Include">
+            <e p="ChargedDash.cs" t="Include" />
+            <e p="ImpulseCharge.cs" t="Include" />
           </e>
           <e p="System" t="Include">
             <e p="CameraController.cs" t="Include" />
@@ -205,6 +213,10 @@
             <e p="spawn.cs" t="Include" />
             <e p="spawnEnnemyBasique.cs" t="Include" />
             <e p="spawnEnnemyTahLesFous.cs" t="Include" />
+          </e>
+          <e p="SystemSkill" t="Include">
+            <e p="skill.cs" t="Include" />
+            <e p="skillSystem.cs" t="Include" />
           </e>
           <e p="Weapon" t="Include">
             <e p="DeadProjo.cs" t="Include" />

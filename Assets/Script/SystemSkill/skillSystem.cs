@@ -30,9 +30,9 @@ public class skillSystem : MonoBehaviour
         skills[skillID].EndUsing(rayon);
     }
 
-    public void ChargingSkill()
+    public void ChargingSkill(int WhichWeapon)
     {
-        skills[skillID].ChargingSkill();
+        skills[skillID].ChargingSkill(WhichWeapon);
     }
 
     public void changeSKill()

@@ -26,13 +26,13 @@ public class ImpulseCharge : skill
         conteneur.GetComponent<Rigidbody>().isKinematic = true;
     }
 
-    public override void ChargingSkill()
+    public override void ChargingSkill(int WhichWeapon)
     {
         if(conteneur != null)
         {
             if (isCharging && conteneur.GetComponent<TirCharge>().nCharge < conteneur.GetComponent<TirCharge>().nChargeMax)
             {
-                base.ChargingSkill();
+                base.ChargingSkill(WhichWeapon);
 
             }
         }
