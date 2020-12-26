@@ -7,13 +7,13 @@ public class spawnEnnemyBasique : MonoBehaviour
 
     [SerializeField] private GameObject ennemyPre;
 
-    [SerializeField] private List<GameObject> ennemyPreList;
+    [SerializeField] List<GameObject> ennemyPreList;
     [Range(0, 1)] [SerializeField] private float chanceForMini;
     [Range(0, 1)] [SerializeField] private float chanceForBig;
 
     [SerializeField] private Transform parentEnnemy;
     [SerializeField] private Transform player;
-
+    [SerializeField] private int ennemyPerSpawn;
 
     [SerializeField] private float freqSpawn;
     private float freqChrno;
@@ -27,14 +27,16 @@ public class spawnEnnemyBasique : MonoBehaviour
     private int ennemySpawningRemaining;
     [HideInInspector] public int numberEnnemy;
 
-    //[SerializeField] private float vitesseRotation;
 
-    private bool vagueEnCours;
+    [HideInInspector] public bool vagueEnCours;
+    [HideInInspector] public bool vagueFini;
 
     // Start is called before the first frame update
     void Start()
     {
+        maxEnnemy = ennemyPerSpawn * spawnPoz.Count;
         ennemySpawningRemaining = maxEnnemy;
+
         vagueEnCours = true;
     }
 
@@ -51,29 +53,31 @@ public class spawnEnnemyBasique : MonoBehaviour
             else
             {
                 freqChrno += Time.deltaTime;
-                //transform.Rotate(0, vitesseRotation * Time.deltaTime, 0);
             }
 
             if(numberEnnemy <= 0 && ennemySpawningRemaining <= 0)
             {
                 vagueEnCours = false;
+                vagueFini = true;
                 Debug.Log("Manche Finie");
                 freqChrno = 0;
             }
         }
         else
         {
-
-            if(waitChrono >= waitTime)
+            if(!vagueFini)
             {
-                RefreshNumberEnnemy();
+                if (waitChrono >= waitTime)
+                {
+                    RefreshNumberEnnemy();
 
-                waitChrono = 0;
-                vagueEnCours = true;
-            }
-            else
-            {
-                waitChrono += Time.deltaTime;
+                    waitChrono = 0;
+                    vagueEnCours = true;
+                }
+                else
+                {
+                    waitChrono += Time.deltaTime;
+                }
             }
         }
 
@@ -81,12 +85,17 @@ public class spawnEnnemyBasique : MonoBehaviour
 
     private void RefreshNumberEnnemy()
     {
-        float maxEnnemyFloat = maxEnnemy;
+
+        maxEnnemy = ennemyPerSpawn * spawnPoz.Count;
+        ennemySpawningRemaining = maxEnnemy;
+
+        /*float maxEnnemyFloat = maxEnnemy;
 
         maxEnnemyFloat *= 1.25f;
         maxEnnemy = Mathf.RoundToInt(maxEnnemyFloat);
         ennemySpawningRemaining = maxEnnemy;
-        Debug.Log(maxEnnemy);
+        Debug.Log(maxEnnemy);*/
+
     }
 
     void Spawning()
