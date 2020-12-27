@@ -961,6 +961,26 @@ PrefabInstance:
       propertyPath: IdSkill
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -2354946963662099171, guid: 8650e54b5aed87248ad84653bebe98b7,
+        type: 3}
+      propertyPath: PorteMaximale
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -2354946963662099171, guid: 8650e54b5aed87248ad84653bebe98b7,
+        type: 3}
+      propertyPath: PorteMinimale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -2354946963662099171, guid: 8650e54b5aed87248ad84653bebe98b7,
+        type: 3}
+      propertyPath: DistanceBetweenEachDash
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2354946963662099171, guid: 8650e54b5aed87248ad84653bebe98b7,
+        type: 3}
+      propertyPath: MultiplePorteMinimale
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6923046105467757287, guid: 8650e54b5aed87248ad84653bebe98b7,
         type: 3}
       propertyPath: m_Name
@@ -4115,7 +4135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1208942157
 MonoBehaviour:
   m_ObjectHideFlags: 0

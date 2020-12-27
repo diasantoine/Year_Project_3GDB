@@ -11,10 +11,12 @@ public class ChargedDash : skill
     [SerializeField] public float ChargeMax = 7;
     [SerializeField] private GameObject Parent;
     [SerializeField] private GameObject Avatar;
+    [SerializeField] private int PorteMaximale;
     private float Compteur = 0;
     public int Charge = 0;
     private LineRenderer lineRenderer;
     private Vector3 HitPosition;
+    private Vector3 LastPosition;
     RaycastHit floorHit;
     public bool isCharging;
     void Start()
@@ -42,7 +44,6 @@ public class ChargedDash : skill
             if (Charge<ChargeMax && ressource.deadList.Count>0)
             {
                 base.ChargingSkill(WhichWeapon);
-                Debug.Log("?");
             }
             if (!Parent.GetComponent<LineRenderer>())
             {
@@ -56,11 +57,33 @@ public class ChargedDash : skill
             if (Physics.Raycast(MousePosition, out RaycastHit Hit))
             {
                 lineRenderer.SetPosition(0, transform.position);
-                Vector3 HitPosition = Hit.point;
-                HitPosition.x = transform.position.x + (Hit.point.x - transform.position.x)*(Charge/ChargeMax); 
-                HitPosition.z = transform.position.z + (Hit.point.z - transform.position.z)*(Charge/ChargeMax);
-                lineRenderer.SetPosition(1,new Vector3(HitPosition.x,transform.position.y,HitPosition.z));
+                Vector3 HitPosition = Hit.point - Parent.transform.position;
+                HitPosition = HitPosition.normalized;
+                Vector3 PositionPlayerAfterDash = Parent.transform.position;
+                float Multiple = 0.5f;
+                while (Vector3.Distance(Parent.transform.position,PositionPlayerAfterDash)<PorteMaximale)
+                {
+                    Debug.Log(Multiple);
+                    PositionPlayerAfterDash.x = Parent.transform.position.x + HitPosition.x * Multiple;
+                    PositionPlayerAfterDash.z = Parent.transform.position.z + HitPosition.z * Multiple;
+                    Multiple += 0.5f;
+                    if (Multiple >=1000)
+                    {
+                        Debug.Log("ho");
+                        break;
+                    }
+                }
+                Debug.Log("bouh");
+                LastPosition = PositionPlayerAfterDash;
+                LastPosition.x = Parent.transform.position.x + (LastPosition.x - Parent.transform.position.x)*(Charge/ChargeMax); 
+                LastPosition.z = Parent.transform.position.z + (LastPosition.z - Parent.transform.position.z)*(Charge/ChargeMax);
+                lineRenderer.SetPosition(1,LastPosition);
                 lineRenderer.startColor = Color.cyan;
+                //LastPosition = new Vector3(HitPosition.x, transform.position.y, HitPosition.z);
+                // if (Vector3.Distance(transform.position,HitPosition)< 10)
+                // {
+                //    
+                // }
             }
         }
         // if (Charge < ChargeMax && Charge < detectD.deadList.Count && Compteur <=0)
@@ -81,36 +104,60 @@ public class ChargedDash : skill
 
     public override void EndUsing(Ray rayon)
     {
-        if (Physics.Raycast(rayon, out RaycastHit hit,Mathf.Infinity,LayerMask.GetMask("Sol")))
-        {
-            if (hit.transform.tag != "Collider")
-            {
-                //RemoveDeadList();
-                //HitPosition = hit.point;
-                HitPosition.x = transform.position.x + (hit.point.x - transform.position.x)*(Charge/ChargeMax); 
-                HitPosition.z = transform.position.z + (hit.point.z - transform.position.z)*(Charge/ChargeMax);
-                // HitPosition.x *= (Charge / ChargeMax);
-                // HitPosition.z *= (Charge / ChargeMax);
-                Vector3 playerToMouse = HitPosition - transform.parent.parent.position;
-                playerToMouse.y = 0;
-                playerToMouse = playerToMouse.normalized;
-                //playerToMouse *= (Charge / ChargeMax);
-                Parent.GetComponent<CharacterMovement>().OnDash = true;
-                Parent.GetComponent<CharacterMovement>().HitPosition = HitPosition;
-                Avatar.layer = 12;
-                Parent.GetComponent<CapsuleCollider>().enabled = enabled;
-                Parent.tag = "Player";
-                ConteneurRigibody.useGravity = false;
-                ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                //Vector3 Dir = (hit.transform.position - transform.parent.position).normalized;
-                ConteneurRigibody.velocity = playerToMouse*DashSpeed;
-                Debug.Log("    ?");
-                // ConteneurRigibody.velocity *= (Charge / ChargeMax);
-                //ConteneurRigibody.AddForce(playerToMouse*DashSpeed, ForceMode.Impulse);
-            }
-            Charge = 0;
-            isCharging = false;
-        }
+        
+        
+        
+        Vector3 playerToMouse = LastPosition - transform.parent.parent.position;
+        playerToMouse.y = 0;
+        playerToMouse = playerToMouse.normalized;
+        //playerToMouse *= (Charge / ChargeMax);
+        Parent.GetComponent<CharacterMovement>().OnDash = true;
+        Parent.GetComponent<CharacterMovement>().HitPosition = LastPosition;
+        Avatar.layer = 12;
+        Parent.GetComponent<CapsuleCollider>().enabled = enabled;
+        Parent.tag = "Player";
+        ConteneurRigibody.useGravity = false;
+        ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+        //Vector3 Dir = (hit.transform.position - transform.parent.position).normalized;
+        ConteneurRigibody.velocity = playerToMouse*DashSpeed;
+        Debug.Log("    ?");
+        // ConteneurRigibody.velocity *= (Charge / ChargeMax);
+        //ConteneurRigibody.AddForce(playerToMouse*DashSpeed, ForceMode.Impulse);
+        Charge = 0;
+        isCharging = false;
+        
+        
+        
+        // if (Physics.Raycast(rayon, out RaycastHit hit,Mathf.Infinity,LayerMask.GetMask("Sol")))
+        // {
+        //     if (hit.transform.tag != "Collider")
+        //     {
+        //         //RemoveDeadList();
+        //         //HitPosition = hit.point;
+        //         HitPosition.x = transform.position.x + (hit.point.x - transform.position.x)*(Charge/ChargeMax); 
+        //         HitPosition.z = transform.position.z + (hit.point.z - transform.position.z)*(Charge/ChargeMax);
+        //         // HitPosition.x *= (Charge / ChargeMax);
+        //         // HitPosition.z *= (Charge / ChargeMax);
+        //         Vector3 playerToMouse = HitPosition - transform.parent.parent.position;
+        //         playerToMouse.y = 0;
+        //         playerToMouse = playerToMouse.normalized;
+        //         //playerToMouse *= (Charge / ChargeMax);
+        //         Parent.GetComponent<CharacterMovement>().OnDash = true;
+        //         Parent.GetComponent<CharacterMovement>().HitPosition = HitPosition;
+        //         Avatar.layer = 12;
+        //         Parent.GetComponent<CapsuleCollider>().enabled = enabled;
+        //         Parent.tag = "Player";
+        //         ConteneurRigibody.useGravity = false;
+        //         ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+        //         //Vector3 Dir = (hit.transform.position - transform.parent.position).normalized;
+        //         ConteneurRigibody.velocity = playerToMouse*DashSpeed;
+        //         Debug.Log("    ?");
+        //         // ConteneurRigibody.velocity *= (Charge / ChargeMax);
+        //         //ConteneurRigibody.AddForce(playerToMouse*DashSpeed, ForceMode.Impulse);
+        //     }
+        //     Charge = 0;
+        //     isCharging = false;
+        // }
     }
     
     void ChargementDash()

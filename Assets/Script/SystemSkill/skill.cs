@@ -46,7 +46,6 @@ public class skill : MonoBehaviour
                         TC.bombe = conteneur.transform;
                     }else if (WhichWeapon == 1)
                     {
-                        Debug.Log("HEY");
                         TC.gameObject.layer = 0;
                         TC.GetComponent<BoxCollider>().isTrigger = true;
                         TC.dash = true;
