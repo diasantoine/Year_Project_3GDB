@@ -54,29 +54,37 @@ public class ChargedDash : skill
                 Parent.GetComponent<LineRenderer>().enabled = true;
             }
             Ray MousePosition = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(MousePosition, out RaycastHit Hit))
+            if (Physics.Raycast(MousePosition, out RaycastHit Hit,Mathf.Infinity, LayerMask.GetMask("Sol")))
             {
                 lineRenderer.SetPosition(0, transform.position);
-                Vector3 HitPosition = Hit.point - Parent.transform.position;
+                Vector3 HitPosition = Hit.point;
+                HitPosition.y = Parent.transform.position.y;
+                HitPosition -= Parent.transform.position;
                 HitPosition = HitPosition.normalized;
-                Vector3 PositionPlayerAfterDash = Parent.transform.position;
-                float Multiple = 0.5f;
-                while (Vector3.Distance(Parent.transform.position,PositionPlayerAfterDash)<PorteMaximale)
-                {
-                    Debug.Log(Multiple);
-                    PositionPlayerAfterDash.x = Parent.transform.position.x + HitPosition.x * Multiple;
-                    PositionPlayerAfterDash.z = Parent.transform.position.z + HitPosition.z * Multiple;
-                    Multiple += 0.5f;
-                    if (Multiple >=1000)
-                    {
-                        Debug.Log("ho");
-                        break;
-                    }
-                }
+                HitPosition *= PorteMaximale*(Charge/ChargeMax);
+                Debug.Log(HitPosition);
+                //Vector3 HitPosition = Hit.point - Parent.transform.position;
+                //HitPosition = HitPosition.normalized;
+                // Vector3 PositionPlayerAfterDash = Parent.transform.position;
+                // float Multiple = 0.5f;
+                // while (Vector3.Distance(Parent.transform.position,PositionPlayerAfterDash)<PorteMaximale)
+                // {
+                //     Debug.Log(Multiple);
+                //     PositionPlayerAfterDash.x = Parent.transform.position.x + HitPosition.x * Multiple;
+                //     PositionPlayerAfterDash.z = Parent.transform.position.z + HitPosition.z * Multiple;
+                //     Multiple += 0.5f;
+                //     if (Multiple >=1000)
+                //     {
+                //         Debug.Log("ho");
+                //         break;
+                //     }
+                // }
                 Debug.Log("bouh");
-                LastPosition = PositionPlayerAfterDash;
-                LastPosition.x = Parent.transform.position.x + (LastPosition.x - Parent.transform.position.x)*(Charge/ChargeMax); 
-                LastPosition.z = Parent.transform.position.z + (LastPosition.z - Parent.transform.position.z)*(Charge/ChargeMax);
+                //LastPosition = PositionPlayerAfterDash;
+                //LastPosition = HitPosition;
+                LastPosition = Parent.transform.position + HitPosition;
+                // LastPosition.x = Parent.transform.position.x + (LastPosition.x - Parent.transform.position.x);
+                // LastPosition.z = Parent.transform.position.z + (LastPosition.z - Parent.transform.position.z);//*(Charge/ChargeMax);
                 lineRenderer.SetPosition(1,LastPosition);
                 lineRenderer.startColor = Color.cyan;
                 //LastPosition = new Vector3(HitPosition.x, transform.position.y, HitPosition.z);
@@ -104,9 +112,6 @@ public class ChargedDash : skill
 
     public override void EndUsing(Ray rayon)
     {
-        
-        
-        
         Vector3 playerToMouse = LastPosition - transform.parent.parent.position;
         playerToMouse.y = 0;
         playerToMouse = playerToMouse.normalized;
