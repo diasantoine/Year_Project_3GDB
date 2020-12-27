@@ -6,6 +6,7 @@ public class spawnEnnemyBasique : MonoBehaviour
 {
 
     [SerializeField] private GameObject ennemyPre;
+    [SerializeField] private choiceSkill CS;
 
     [SerializeField] List<GameObject> ennemyPreList;
     [Range(0, 1)] [SerializeField] private float chanceForMini;
@@ -55,12 +56,13 @@ public class spawnEnnemyBasique : MonoBehaviour
                 freqChrno += Time.deltaTime;
             }
 
-            if(numberEnnemy <= 0 && ennemySpawningRemaining <= 0)
+            if (numberEnnemy <= 0 && ennemySpawningRemaining <= 0)
             {
                 vagueEnCours = false;
                 vagueFini = true;
                 Debug.Log("Manche Finie");
                 freqChrno = 0;
+                CS.nVague++;
             }
         }
         else
@@ -77,6 +79,13 @@ public class spawnEnnemyBasique : MonoBehaviour
                 else
                 {
                     waitChrono += Time.deltaTime;
+                }
+            }
+            else
+            {
+                if (GameObject.Find("LDSalle") == null)
+                {
+                    vagueFini = false;
                 }
             }
         }
