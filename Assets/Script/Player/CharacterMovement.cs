@@ -89,8 +89,11 @@ public class CharacterMovement : MonoBehaviour
         }
         
         if ((Input.GetButton("Vertical")|| Input.GetButton("Horizontal")) && Grounded && !OnDash)
-        { 
-            Vector3 Vector3_Deplacement_Player =  new Vector3(-Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal"));
+        {
+            Vector3 ConteneurCameraPositionForward = Camera.main.transform.forward * Input.GetAxis("Vertical");
+            Vector3 ConteneurCameraPositionRight = Camera.main.transform.right *  Input.GetAxis("Horizontal");
+            //Vector3 Vector3_Deplacement_Player =  new Vector3(-Input.GetAxis("Vertical") , 0, Input.GetAxis("Horizontal"));
+            Vector3 Vector3_Deplacement_Player = ConteneurCameraPositionForward + ConteneurCameraPositionRight;
             //Vector3_Deplacement_Player = transform.TransformDirection(Vector3_Deplacement_Player);
             ConteneurRigibody.velocity = Vector3_Deplacement_Player * vitesse;
             //RigibodyAvatar.AddForce(Vector3_Deplacement_Player * Speed_Player);

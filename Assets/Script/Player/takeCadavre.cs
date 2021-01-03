@@ -120,7 +120,6 @@ public class takeCadavre : MonoBehaviour
             {
                 if (Dash.GetComponent<ChargedDash>().isCharging)
                 {
-                    Debug.Log("SA MARCHE?");
                     Vector3 direction = Dash.position - transform.position;
 
                     direction = direction.normalized;

@@ -37,16 +37,6 @@ public class shootSkill : MonoBehaviour
         {
             skillSystem.changeSKill();
         }
-
-        // if (Input.GetButton("Fire3") && detectD.deadList.Count >=3)
-        // {
-        //     skillSystem.ChargingSkill();
-        // }
-        // else if (Input.GetButtonUp("Fire3") && detectD.deadList.Count >=3)
-        // {
-        //     skillSystem.EndUsing(rayon);
-        // }
-
         if (skillSystem.skills[skillSystem.skillID].chargedSkill)
         {
             skillSystem.ChargingSkill(skillSystem.skills[skillSystem.skillID].IdSkill);
