@@ -6,6 +6,7 @@ public class skill : MonoBehaviour
 {
     public detectDead ressource;
     public bool chargedSkill;
+    public int IdSkill;
 
     [SerializeField] protected private float freqCharge;
     protected private float chrono;

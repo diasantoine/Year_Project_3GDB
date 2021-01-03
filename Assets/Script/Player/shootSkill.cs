@@ -49,7 +49,7 @@ public class shootSkill : MonoBehaviour
 
         if (skillSystem.skills[skillSystem.skillID].chargedSkill)
         {
-            skillSystem.ChargingSkill(skillSystem.skillID);
+            skillSystem.ChargingSkill(skillSystem.skills[skillSystem.skillID].IdSkill);
         }
     }
 }
