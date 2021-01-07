@@ -31,6 +31,9 @@ public class shootDead : MonoBehaviour
 
     RaycastHit floorHit;
 
+    private float MultipleSpeed = 1;
+    private int NombreDeProjectile = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -148,15 +151,55 @@ public class shootDead : MonoBehaviour
                 RaycastHit floorHit;
                 chrono = 0;
 
-                var projectile = Instantiate(preProjo, canon.position, Quaternion.identity);
-                FMODUnity.RuntimeManager.PlayOneShot(TireSon, transform.position);
-
-                if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity, LayerMask.GetMask("Sol")))
+                switch (NombreDeProjectile)
                 {
-                    Vector3 playerToMouse = floorHit.point - canon.position;
-                    projectile.GetComponent<DeadProjo>().Shoot(playerToMouse);
+                    case 1:
+                        var projectile = Instantiate(preProjo, canon.position, Quaternion.identity);
+                        FMODUnity.RuntimeManager.PlayOneShot(TireSon, transform.position);
+                        if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity, LayerMask.GetMask("Sol")))
+                        {
+                            Vector3 playerToMouse = floorHit.point - canon.position;
+                            projectile.GetComponent<DeadProjo>().vitesse *= MultipleSpeed;
+                            projectile.GetComponent<DeadProjo>().Shoot(playerToMouse);
 
+                        }
+                        break;
+                    case 2:
+                        var projectile2 = Instantiate(preProjo, canon.position, Quaternion.identity);
+                        var projectile22 = Instantiate(preProjo, canon.position + new Vector3(0,0,1), Quaternion.identity);
+                        FMODUnity.RuntimeManager.PlayOneShot(TireSon, transform.position);
+                        if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity, LayerMask.GetMask("Sol")))
+                        {
+                            Vector3 playerToMouse = floorHit.point - canon.position;
+                            projectile2.GetComponent<DeadProjo>().vitesse *= MultipleSpeed;
+                            projectile2.GetComponent<DeadProjo>().Shoot(playerToMouse);
+                            projectile22.GetComponent<DeadProjo>().vitesse *= MultipleSpeed;
+                            projectile22.GetComponent<DeadProjo>().Shoot(playerToMouse);
+
+                        }
+                        break;
+                    case 3:
+                        var projectile3 = Instantiate(preProjo, canon.position, Quaternion.identity);
+                        var projectile32 = Instantiate(preProjo, canon.position + new Vector3(0,0,1), Quaternion.identity);
+                        var projectile33 = Instantiate(preProjo, canon.position  + new Vector3(0,0,-1), Quaternion.identity);
+                        FMODUnity.RuntimeManager.PlayOneShot(TireSon, transform.position);
+                        if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity, LayerMask.GetMask("Sol")))
+                        {
+                            Vector3 playerToMouse = floorHit.point - canon.position;
+                            projectile3.GetComponent<DeadProjo>().vitesse *= MultipleSpeed;
+                            projectile3.GetComponent<DeadProjo>().Shoot(playerToMouse);
+                            projectile32.GetComponent<DeadProjo>().vitesse *= MultipleSpeed;
+                            projectile32.GetComponent<DeadProjo>().Shoot(playerToMouse);
+                            projectile33.GetComponent<DeadProjo>().vitesse *= MultipleSpeed;
+                            projectile33.GetComponent<DeadProjo>().Shoot(playerToMouse);
+
+                        }
+                        break;
+                    default:
+                        break;
                 }
+                
+              
 
             }
         }
@@ -205,6 +248,22 @@ public class shootDead : MonoBehaviour
             pierre.transform.parent = null;
             pierre.GetComponent<TirCharge>().Shoot(playerToMouse);
 
+        }
+    }
+
+    public void TirNormalUpgrade(string TypeUpgrade)
+    {
+        switch (TypeUpgrade)
+        {
+            case "FrequenceDeTir":
+                freqTir *= 0.9f;
+                break;
+            case "Speed":
+                MultipleSpeed *= 1.1f;
+                break;
+            case "NombreDeProjectile":
+                NombreDeProjectile++;
+                break;
         }
     }
 }

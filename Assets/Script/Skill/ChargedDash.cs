@@ -7,7 +7,7 @@ public class ChargedDash : skill
     // Start is called before the first frame update
     //[SerializeField] private detectDead detectD;
     [SerializeField] private Rigidbody ConteneurRigibody;
-    [SerializeField] private float DashSpeed = 20;
+    [SerializeField] public float DashSpeed = 20;
     [SerializeField] public float ChargeMax = 7;
     [SerializeField] private GameObject Parent;
     [SerializeField] private GameObject Avatar;
@@ -115,5 +115,20 @@ public class ChargedDash : skill
         //     Charge = 0;
         //     isCharging = false;
         // }
+    }
+
+    public void DashUpgrade(string TypeUpgrade)
+    {
+        switch (TypeUpgrade)
+        {
+            case "Speed":
+                DashSpeed *= 1.5f;
+                break;
+            case "Charge":
+                ChargeMax--;
+                break;
+            default:
+                break;
+        }
     }
 }

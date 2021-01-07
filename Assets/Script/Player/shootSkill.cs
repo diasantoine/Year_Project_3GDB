@@ -23,23 +23,27 @@ public class shootSkill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Ray rayon = cam.ScreenPointToRay(Input.mousePosition);
+        if (skillSystem.skills.Count > 0)
+        {
+            Ray rayon = cam.ScreenPointToRay(Input.mousePosition);
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            skillSystem.UsingSkill();
-        }
-        else if (Input.GetMouseButtonUp(1))
-        {
-            skillSystem.EndUsing(rayon);
-        }
-        else if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            skillSystem.changeSKill();
-        }
-        if (skillSystem.skills[skillSystem.skillID].chargedSkill)
-        {
-            skillSystem.ChargingSkill(skillSystem.skills[skillSystem.skillID].IdSkill);
+            if (Input.GetMouseButtonDown(1))
+            {
+                skillSystem.UsingSkill();
+            }
+            else if (Input.GetMouseButtonUp(1))
+            {
+                skillSystem.EndUsing(rayon);
+            }
+            else if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                skillSystem.changeSKill();
+            }
+
+            if (skillSystem.skills[skillSystem.skillID].chargedSkill)
+            {
+                skillSystem.ChargingSkill(skillSystem.skills[skillSystem.skillID].IdSkill);
+            }
         }
     }
 }

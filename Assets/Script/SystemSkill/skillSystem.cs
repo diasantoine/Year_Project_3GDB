@@ -35,6 +35,12 @@ public class skillSystem : MonoBehaviour
         skills[skillID].ChargingSkill(WhichWeapon);
     }
 
+    public void AddNewSkill(skill Skill)
+    {
+        skills.Add(Skill);
+        changeSKill();
+    }
+
     public void changeSKill()
     {
         skillID++;
