@@ -11,7 +11,7 @@ public class choiceSkill : MonoBehaviour
 
     public int nVague;
     [SerializeField] private int vagueChoice;
-
+    [SerializeField] private skillSystem Skill;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +53,7 @@ public class choiceSkill : MonoBehaviour
         GameObject newChoice = Instantiate(skillItem[Random.Range(0, skillItem.Count + 1)]);
         newChoice.transform.SetParent(Canvas.transform);
         newChoice.GetComponent<RectTransform>().localPosition = poz;
+        newChoice.GetComponent<buttonChoice>().Skill = Skill;
         buttonList.Add(newChoice);
     }
 }
