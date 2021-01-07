@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2554626166860202}
   - component: {fileID: 6939146243761094065}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Exits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8447881167804754954}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Exit 1
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -85,7 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2083180620719871891}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Exit 3
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -116,9 +116,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1190004260237462961}
   - component: {fileID: 6097536851214569045}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Room3
-  m_TagString: Untagged
+  m_TagString: sol
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,7 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 647063676113583760}
   - component: {fileID: 6311786956086266649}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7435879996808445193}
   - component: {fileID: 2499103860644511495}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Box 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 5583685322666413737}
   - component: {fileID: 4668458792080931891}
   - component: {fileID: 5381917354168835048}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,6 +302,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -313,6 +314,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -334,7 +336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1578732947941794123}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Exit 2
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
