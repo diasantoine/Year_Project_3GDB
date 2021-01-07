@@ -179,4 +179,19 @@ public class takeCadavre : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void ExplosionShield()
+    {
+        foreach (var Ressource in deadD.deadList)
+        {
+            deadD.deadList.Remove(Ressource);
+            int Explosion = 20;
+            Vector3 VectorDirection = Ressource.transform.position - player.transform.position;
+            VectorDirection = VectorDirection.normalized;
+            //Instantiate(Projectile, Ressource.transform.position, Ressource.transform.rotation);
+            Destroy(Ressource);
+            //FMODUnity.RuntimeManager.PlayOneShot(TireSon, transform.position);
+            //Projectile.GetComponent<Rigidbody>().AddForce(VectorDirection * Explosion, ForceMode.Impulse);
+        }
+    }
 }

@@ -10,7 +10,7 @@ public class DeadProjo : MonoBehaviour
 
     //public Transform cible;
 
-    [SerializeField] private float vitesse;
+    [SerializeField] public float vitesse;
     [SerializeField] private float écart;
 
     [SerializeField] private float dégat;
