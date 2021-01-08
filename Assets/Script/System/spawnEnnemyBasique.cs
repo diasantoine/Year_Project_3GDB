@@ -35,15 +35,20 @@ public class spawnEnnemyBasique : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        maxEnnemy = ennemyPerSpawn * spawnPoz.Count;
-        ennemySpawningRemaining = maxEnnemy;
-
+       
         vagueEnCours = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (spawnPoz.Count < 0 || maxEnnemy == 0)
+        {
+            maxEnnemy = ennemyPerSpawn * spawnPoz.Count;
+            ennemySpawningRemaining = maxEnnemy;
+        }
+
         if (vagueEnCours)
         {
             if (freqChrno >= freqSpawn)
@@ -61,8 +66,8 @@ public class spawnEnnemyBasique : MonoBehaviour
                 vagueEnCours = false;
                 vagueFini = true;
                 Debug.Log("Manche Finie");
-                freqChrno = 0;
                 CS.nVague++;
+                freqChrno = 0;
             }
         }
         else
@@ -74,6 +79,7 @@ public class spawnEnnemyBasique : MonoBehaviour
                     RefreshNumberEnnemy();
 
                     waitChrono = 0;
+                    CS.nVague++;
                     vagueEnCours = true;
                 }
                 else
