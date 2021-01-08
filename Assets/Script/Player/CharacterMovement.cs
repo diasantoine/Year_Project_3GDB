@@ -21,8 +21,10 @@ public class CharacterMovement : MonoBehaviour
     public bool JustHit = false;
     private float Compteur = 0;
     private float Compteur1 = 0;
+    private float Compteu12 = 0;
     [SerializeField] private GameObject Avatar;
     public Vector3 HitPosition = new Vector3();
+    [SerializeField] private Transform SpawnPositionPlayer;
     
 
     // Start is called before the first frame update
@@ -50,32 +52,45 @@ public class CharacterMovement : MonoBehaviour
 
         if (JustHit)
         {
-            if (Compteur1<=0.1f)
+            if (!Grounded)
             {
-                Compteur1 += Time.deltaTime;
+                ConteneurRigibody.constraints = RigidbodyConstraints.None;
             }
             else
             {
-                if (Compteur1 != 0)
+                if (Compteu12< 0.3f)
                 {
-                    Compteur1 = 0;
-                }
-                if (ConteneurRigibody.velocity.magnitude<=1)
-                {
-                    Debug.Log("bjr");
-                    JustHit = false;
+                    Compteu12 += Time.deltaTime;
                 }
                 else
                 {
-                    ConteneurRigibody.velocity *=0.5f;
+                    JustHit = false;
+                    Compteu12 = 0;
+                    Compteur1 = 0;
                 }
+                
+                // if (Compteur1<=0.5f)
+                // {
+                //     Compteur1 += Time.deltaTime;
+                // }
+                // else
+                // {
+                //     ConteneurRigibody.velocity *=0.3f;
+                //     if (Compteur1 != 0)
+                //     {
+                //         Compteur1 = 0;
+                //     }
+                //     if (ConteneurRigibody.velocity.magnitude<=4)
+                //     {
+                //         Debug.Log("bjr");
+                //         JustHit = false;
+                //     }
+                // }
             }
-
-
         }
         if (transform.position.y<=-6)
         {
-            transform.position = new Vector3(30, 1.25f, -15.7f);
+            transform.position = SpawnPositionPlayer.position;
             if (OnDash)
             {
                 OnDash = false;
@@ -88,12 +103,12 @@ public class CharacterMovement : MonoBehaviour
             ConteneurRigibody.velocity = Vector3.zero;
         }
         
-        if ((Input.GetButton("Vertical")|| Input.GetButton("Horizontal")) && Grounded && !OnDash)
+        if ((Input.GetButton("Vertical")|| Input.GetButton("Horizontal")) && Grounded && !OnDash && !JustHit)
         {
             Vector3 ConteneurCameraPositionForward = Camera.main.transform.forward * Input.GetAxis("Vertical");
             Vector3 ConteneurCameraPositionRight = Camera.main.transform.right *  Input.GetAxis("Horizontal");
             //Vector3 Vector3_Deplacement_Player =  new Vector3(-Input.GetAxis("Vertical") , 0, Input.GetAxis("Horizontal"));
-            Vector3 Vector3_Deplacement_Player = ConteneurCameraPositionForward + ConteneurCameraPositionRight;
+            Vector3 Vector3_Deplacement_Player = Vector3.ClampMagnitude(ConteneurCameraPositionForward + ConteneurCameraPositionRight, 1);
             //Vector3_Deplacement_Player = transform.TransformDirection(Vector3_Deplacement_Player);
             ConteneurRigibody.velocity = Vector3_Deplacement_Player * vitesse;
             //RigibodyAvatar.AddForce(Vector3_Deplacement_Player * Speed_Player);
@@ -131,10 +146,11 @@ public class CharacterMovement : MonoBehaviour
     {
         if (OnDash)
         {
+            Debug.Log(ConteneurRigibody.velocity.magnitude);
             if (GetComponent<Rigidbody>().velocity.magnitude < 3)
             {
-                GetComponent<Rigidbody>().velocity = Vector3.zero;
-                ConteneurRigibody.constraints = RigidbodyConstraints.FreezeAll;
+                ConteneurRigibody.velocity = ConteneurRigibody.velocity.normalized * vitesse;
+                //ConteneurRigibody.constraints = RigidbodyConstraints.FreezeAll;
                 JustFinishedDash = true;
                 OnDash = false;
                 GetComponent<CapsuleCollider>().enabled = !enabled;
@@ -146,8 +162,8 @@ public class CharacterMovement : MonoBehaviour
 
             if (Vector3.Distance(HitPosition, transform.position) < 2 && HitPosition != new Vector3())
             {
-                GetComponent<Rigidbody>().velocity = Vector3.zero;
-                ConteneurRigibody.constraints = RigidbodyConstraints.FreezeAll;
+                ConteneurRigibody.velocity = ConteneurRigibody.velocity.normalized * vitesse;
+                //ConteneurRigibody.constraints = RigidbodyConstraints.FreezeAll;
                 JustFinishedDash = true;
                 OnDash = false;
                 GetComponent<CapsuleCollider>().enabled = !enabled;
@@ -162,7 +178,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.transform.CompareTag("sol") && !Grounded)
+        if ((other.transform.CompareTag("sol") ||other.transform.CompareTag("Ennemy"))  && !Grounded && transform.position.y >= 1.75f)
         {
             Grounded = true;
         }
@@ -170,7 +186,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionStay(Collision other)
     {
-        if (other.transform.CompareTag("sol") && !Grounded)
+        if (other.transform.CompareTag("sol") && !Grounded && transform.position.y >= 1.75f)
         {
             Grounded = true;
         }

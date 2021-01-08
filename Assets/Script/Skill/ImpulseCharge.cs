@@ -45,7 +45,7 @@ public class ImpulseCharge : skill
             isCharging = false;
             RaycastHit floorHit;
 
-            if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity))
+            if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
             {
                 Vector3 playerToMouse = floorHit.point - canonCharge.position;
                 conteneur.GetComponent<TirCharge>().tipar = true;

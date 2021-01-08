@@ -50,7 +50,8 @@ public class choiceSkill : MonoBehaviour
 
     void InstantiateButton(Vector2 poz)
     {
-        GameObject newChoice = Instantiate(skillItem[Random.Range(0, skillItem.Count + 1)]);
+        //GameObject newChoice = Instantiate(skillItem[Random.Range(0, skillItem.Count + 1)]);
+        GameObject newChoice = Instantiate(skillItem[1]);
         newChoice.transform.SetParent(Canvas.transform);
         newChoice.GetComponent<RectTransform>().localPosition = poz;
         newChoice.GetComponent<buttonChoice>().Skill = Skill;

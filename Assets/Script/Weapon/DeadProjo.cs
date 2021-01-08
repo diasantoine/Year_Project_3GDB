@@ -67,14 +67,13 @@ public class DeadProjo : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Destroy(gameObject);
         if (collision.gameObject.CompareTag("Ennemy"))
         {
             FMODUnity.RuntimeManager.PlayOneShot(TireTouche, transform.position);
             collision.gameObject.GetComponent<ennemyState>().damage(dégat);
-            Debug.Log("TOUCHE");
         }
 
-        Destroy(gameObject);
 
     }
 

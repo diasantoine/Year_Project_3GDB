@@ -30,9 +30,11 @@ public class ChargedDash : skill
 
     public override void UsingSkill()
     {
-        conteneur = gameObject;
-        isCharging = true;
-
+        if (!Parent.GetComponent<CharacterMovement>().JustHit)
+        {
+            conteneur = gameObject;
+            isCharging = true;
+        }
     }
 
     public override void ChargingSkill(int WhichWeapon)
@@ -54,9 +56,9 @@ public class ChargedDash : skill
             Ray MousePosition = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(MousePosition, out RaycastHit Hit,Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
             {
-                lineRenderer.SetPosition(0, transform.position);
+                lineRenderer.SetPosition(0, Parent.transform.position);
                 Vector3 HitPosition = Hit.point;
-                HitPosition.y = Parent.transform.position.y;
+                //HitPosition.y = Parent.transform.position.y;
                 HitPosition -= Parent.transform.position;
                 HitPosition = HitPosition.normalized;
                 HitPosition *= PorteMaximale*(Charge/ChargeMax);
@@ -69,22 +71,26 @@ public class ChargedDash : skill
 
     public override void EndUsing(Ray rayon)
     {
-        Vector3 playerToMouse = LastPosition - transform.parent.parent.position;
-        playerToMouse.y = 0;
-        playerToMouse = playerToMouse.normalized;
-        //playerToMouse *= (Charge / ChargeMax);
-        Parent.GetComponent<CharacterMovement>().OnDash = true;
-        Parent.GetComponent<CharacterMovement>().HitPosition = LastPosition;
-        Avatar.layer = 12;
-        Parent.GetComponent<CapsuleCollider>().enabled = enabled;
-        Parent.tag = "Player";
-        ConteneurRigibody.useGravity = false;
-        ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-        ConteneurRigibody.velocity = playerToMouse*DashSpeed;
-        Charge = 0;
-        isCharging = false;
-        
-        
+        if (isCharging)
+        {
+            Vector3 playerToMouse = LastPosition - transform.parent.parent.position;
+            playerToMouse.y = 0;
+            playerToMouse = playerToMouse.normalized;
+            //playerToMouse *= (Charge / ChargeMax);
+            Parent.GetComponent<CharacterMovement>().OnDash = true;
+            Parent.GetComponent<CharacterMovement>().HitPosition = LastPosition;
+            Avatar.layer = 12;
+            Parent.GetComponent<CapsuleCollider>().enabled = enabled;
+            Destroy(Parent.GetComponent<LineRenderer>());
+            Parent.tag = "Player";
+            ConteneurRigibody.useGravity = false;
+            ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            ConteneurRigibody.velocity = playerToMouse * DashSpeed;
+            Charge = 0;
+            isCharging = false;
+        }
+
+
         // if (Physics.Raycast(rayon, out RaycastHit hit,Mathf.Infinity,LayerMask.GetMask("Sol")))
         // {
         //     if (hit.transform.tag != "Collider")

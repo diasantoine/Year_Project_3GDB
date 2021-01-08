@@ -25,11 +25,10 @@ public class ennemyState : MonoBehaviour
     //[SerializeField] private float vitesse;
     [SerializeField] private int numberCadav;
 
-    public float RandomMultiplicatorSize = 0;
-
     private Rigidbody ConteneurRigibody;
     
     public int DMG_Percentage = 1;
+    public int Size = 1;
 
     //private bool JustHit = false;
     //private bool HitPlayer = false;

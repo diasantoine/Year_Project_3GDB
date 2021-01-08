@@ -156,7 +156,7 @@ public class shootDead : MonoBehaviour
                     case 1:
                         var projectile = Instantiate(preProjo, canon.position, Quaternion.identity);
                         FMODUnity.RuntimeManager.PlayOneShot(TireSon, transform.position);
-                        if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity, LayerMask.GetMask("Sol")))
+                        if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
                         {
                             Vector3 playerToMouse = floorHit.point - canon.position;
                             projectile.GetComponent<DeadProjo>().vitesse *= MultipleSpeed;
@@ -168,7 +168,7 @@ public class shootDead : MonoBehaviour
                         var projectile2 = Instantiate(preProjo, canon.position, Quaternion.identity);
                         var projectile22 = Instantiate(preProjo, canon.position + new Vector3(0,0,1), Quaternion.identity);
                         FMODUnity.RuntimeManager.PlayOneShot(TireSon, transform.position);
-                        if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity, LayerMask.GetMask("Sol")))
+                        if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
                         {
                             Vector3 playerToMouse = floorHit.point - canon.position;
                             projectile2.GetComponent<DeadProjo>().vitesse *= MultipleSpeed;
@@ -183,7 +183,7 @@ public class shootDead : MonoBehaviour
                         var projectile32 = Instantiate(preProjo, canon.position + new Vector3(0,0,1), Quaternion.identity);
                         var projectile33 = Instantiate(preProjo, canon.position  + new Vector3(0,0,-1), Quaternion.identity);
                         FMODUnity.RuntimeManager.PlayOneShot(TireSon, transform.position);
-                        if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity, LayerMask.GetMask("Sol")))
+                        if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
                         {
                             Vector3 playerToMouse = floorHit.point - canon.position;
                             projectile3.GetComponent<DeadProjo>().vitesse *= MultipleSpeed;

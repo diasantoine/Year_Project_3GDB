@@ -6,6 +6,7 @@ public class reticulePoint : MonoBehaviour
 {
 
     // Start is called before the first frame update
+    [SerializeField] private GameObject Player;
     void Start()
     {
         Cursor.visible = false;
@@ -17,6 +18,6 @@ public class reticulePoint : MonoBehaviour
 
         Vector2 position = Input.mousePosition;
 
-        gameObject.transform.position = position;
+        transform.position = position;
     }
 }
