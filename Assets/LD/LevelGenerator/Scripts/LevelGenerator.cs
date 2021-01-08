@@ -4,6 +4,7 @@ using LevelGenerator.Scripts.Exceptions;
 using LevelGenerator.Scripts.Helpers;
 using LevelGenerator.Scripts.Structure;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace LevelGenerator.Scripts
 {
@@ -58,6 +59,8 @@ namespace LevelGenerator.Scripts
         protected List<Collider> DeadEndColliders = new List<Collider>();
         protected bool HalfLevelBuilt => registeredSections.Count > LevelSize;
 
+        public NavMeshSurface NS;
+
         protected void Start()
         {
             if (Seed != 0)
@@ -69,6 +72,8 @@ namespace LevelGenerator.Scripts
             LevelSize = MaxLevelSize;
             CreateInitialSection();
             DeactivateBounds();
+            NS.BuildNavMesh();
+
         }
 
         protected void CheckRuleIntegrity()
