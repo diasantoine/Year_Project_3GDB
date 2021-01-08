@@ -79,7 +79,6 @@ public class spawnEnnemyBasique : MonoBehaviour
                     RefreshNumberEnnemy();
 
                     waitChrono = 0;
-                    CS.nVague++;
                     vagueEnCours = true;
                 }
                 else
