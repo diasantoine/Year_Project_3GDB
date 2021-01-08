@@ -169,6 +169,7 @@
           </e>
         </e>
         <e p="Script" t="Include">
+          <e p="ClickMouse.cs" t="Include" />
           <e p="ennemy" t="Include">
             <e p="barFollowCam.cs" t="Include" />
             <e p="ciblage.cs" t="Include" />
@@ -205,6 +206,7 @@
             <e p="ChargedDash.cs" t="Include" />
             <e p="ImpulseCharge.cs" t="Include" />
           </e>
+          <e p="SpawnPlayer.cs" t="Include" />
           <e p="System" t="Include">
             <e p="CameraController.cs" t="Include" />
             <e p="CameraTarget.cs" t="Include" />

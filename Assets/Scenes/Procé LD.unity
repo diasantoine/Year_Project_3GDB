@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -459,6 +459,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 603385501785221005, guid: 8650e54b5aed87248ad84653bebe98b7,
+        type: 3}
+      propertyPath: freqCharge
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 603385501785221005, guid: 8650e54b5aed87248ad84653bebe98b7,
+        type: 3}
+      propertyPath: DashSpeed
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 3971526282532939895, guid: 8650e54b5aed87248ad84653bebe98b7,
         type: 3}
@@ -1082,7 +1092,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1387058622}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.4848096, z: 0, w: -0.8746197}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1090,7 +1100,7 @@ Transform:
   - {fileID: 111777320}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -302, z: 0}
 --- !u!1001 &1405363706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1108,6 +1118,11 @@ PrefabInstance:
       propertyPath: ressource
       value: 
       objectReference: {fileID: 1787951899}
+    - target: {fileID: 1925898319563361555, guid: 834556059aba45f45a6b9d55611ed96e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6923046105467757287, guid: 834556059aba45f45a6b9d55611ed96e,
         type: 3}
       propertyPath: m_Name
@@ -1209,7 +1224,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1405363706}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ef17e1bc0ca098458d49bf63589ad13, type: 3}
   m_Name: 
@@ -1353,6 +1368,64 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1609515154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1609515155}
+  - component: {fileID: 1609515156}
+  - component: {fileID: 1609515157}
+  m_Layer: 14
+  m_Name: ClickMouse
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1609515155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609515154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.975738, y: -28.473034, z: 2.7141843}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1609515156
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609515154}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1000, y: 0, z: 1000}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1609515157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609515154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78ac6ad6089e920458be45e86ec633a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 2036771605}
 --- !u!1 &1631124729
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,7 +1475,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
     m_Time: 2
@@ -1722,13 +1795,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f34a00a0600d946b71a947e8cc178e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vitesse: 10
+  vitesse: 13
   Grounded: 0
   OnDash: 0
   JustFinishedDash: 0
   JustHit: 0
   Avatar: {fileID: 913331040}
   HitPosition: {x: 0, y: 0, z: 0}
+  SpawnPositionPlayer: {x: 0, y: 0, z: 0}
 --- !u!96 &2036771609
 TrailRenderer:
   serializedVersion: 2
@@ -1923,6 +1997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62d38a4d4f7fd3b49b8309905de187ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
 --- !u!114 &2125552964
 MonoBehaviour:
   m_ObjectHideFlags: 0

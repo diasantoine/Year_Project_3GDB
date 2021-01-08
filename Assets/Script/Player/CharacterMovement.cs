@@ -2,13 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine.Utility;
+using UnityEditor;
 using UnityEngine;
+using System.Runtime.InteropServices;
 
 public class CharacterMovement : MonoBehaviour
 {
-
+    
     //[SerializeField] private Animator anim;
+    [DllImport("user32.dll")]
+    static extern bool SetCursorPos(int X, int Y);
 
+    int xPos = 0, yPos = 0;   
+    
     private bool isWalking;
 
     public float vitesse = 6f;
@@ -22,20 +28,23 @@ public class CharacterMovement : MonoBehaviour
     private float Compteur = 0;
     private float Compteur1 = 0;
     private float Compteu12 = 0;
+    private float Compteur3 = 0;
     [SerializeField] private GameObject Avatar;
     public Vector3 HitPosition = new Vector3();
-    [SerializeField] private Transform SpawnPositionPlayer;
+    public Vector3 SpawnPositionPlayer;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        //Cursor.lockState = CursorLockMode.Locked;
         ConteneurRigibody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(Input.mousePosition);
         DashFinishCheck();
         if (JustFinishedDash)
         {
@@ -90,7 +99,8 @@ public class CharacterMovement : MonoBehaviour
         }
         if (transform.position.y<=-6)
         {
-            transform.position = SpawnPositionPlayer.position;
+            transform.position = SpawnPositionPlayer;
+            //SetCursorPos(xPos,yPos);//Call this when you want to set the mouse position
             if (OnDash)
             {
                 OnDash = false;
