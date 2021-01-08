@@ -49,10 +49,13 @@ public class RoomScript : MonoBehaviour
             if (spawnScript.vagueFini)
             {
                 col.isTrigger = true;
+                gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
             }
             else
             {
                 col.isTrigger = false;
+                gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+
             }
         }
     }
@@ -70,6 +73,7 @@ public class RoomScript : MonoBehaviour
             else
             {
                 col.enabled = false;
+                gameObject.transform.GetChild(0).gameObject.SetActive(false);
             }
         }
     }
