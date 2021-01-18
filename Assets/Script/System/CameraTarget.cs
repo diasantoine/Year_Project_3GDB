@@ -24,16 +24,16 @@ public class CameraTarget : MonoBehaviour
     {
         Ray rayon = cam.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(rayon, out hit, Mathf.Infinity, LayerMask.GetMask("Sol")))
+        if (Physics.Raycast(rayon, out hit, Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
         {
             Vector3 mousePos = hit.point;
             Vector3 targetPos = (player.position + mousePos) / 2f;
 
             Vector3 playerToMouse = mousePos - player.position;
-            playerToMouse.y = 0;
+
             playerToMouse = playerToMouse.normalized;
 
-            player.LookAt(playerToMouse * 50);
+            player.LookAt(playerToMouse * 150);
             Debug.DrawRay(player.position, playerToMouse * 50);
 
             targetPos.x = Mathf.Clamp(targetPos.x, -threshold + player.position.x, threshold + player.position.x);

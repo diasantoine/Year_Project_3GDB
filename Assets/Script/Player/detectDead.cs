@@ -12,7 +12,7 @@ public class detectDead : MonoBehaviour
 
     [SerializeField] private Vector3 tailleTake;
 
-    [SerializeField] private Transform parent;
+    //[SerializeField] private Transform parent;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +42,7 @@ public class detectDead : MonoBehaviour
                 deadList.Add(other.gameObject);
                 other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 other.gameObject.GetComponent<takeCadavre>().gotcha = true;
-                other.gameObject.GetComponent<takeCadavre>().player = parent;
+                //other.gameObject.GetComponent<takeCadavre>().player = parent;
                 other.gameObject.GetComponent<takeCadavre>().deadD = gameObject.GetComponent<detectDead>();
                 other.gameObject.transform.localScale = tailleTake;
             }

@@ -32,6 +32,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private GameObject Avatar;
     public Vector3 HitPosition = new Vector3();
     public Vector3 SpawnPositionPlayer;
+
+    [SerializeField] private Animator animAvatar;
     
 
     // Start is called before the first frame update
@@ -44,7 +46,7 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Input.mousePosition);
+      
         DashFinishCheck();
         if (JustFinishedDash)
         {
@@ -115,6 +117,7 @@ public class CharacterMovement : MonoBehaviour
         
         if ((Input.GetButton("Vertical")|| Input.GetButton("Horizontal")) && Grounded && !OnDash && !JustHit)
         {
+            animAvatar.SetBool("isWalking", true);
             Vector3 ConteneurCameraPositionForward = Camera.main.transform.forward * Input.GetAxis("Vertical");
             Vector3 ConteneurCameraPositionRight = Camera.main.transform.right *  Input.GetAxis("Horizontal");
             //Vector3 Vector3_Deplacement_Player =  new Vector3(-Input.GetAxis("Vertical") , 0, Input.GetAxis("Horizontal"));
@@ -122,6 +125,15 @@ public class CharacterMovement : MonoBehaviour
             //Vector3_Deplacement_Player = transform.TransformDirection(Vector3_Deplacement_Player);
             ConteneurRigibody.velocity = Vector3_Deplacement_Player * vitesse;
             //RigibodyAvatar.AddForce(Vector3_Deplacement_Player * Speed_Player);
+        }
+        else
+        {
+            if(ConteneurRigibody.velocity.magnitude < 0.05f)
+            {
+                animAvatar.SetBool("isWalking", false);
+
+            }
+
         }
 
         if (!Grounded && !OnDash)
@@ -188,7 +200,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if ((other.transform.CompareTag("sol") ||other.transform.CompareTag("Ennemy"))  && !Grounded && transform.position.y >= 1.75f)
+        if ((other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy")) && !Grounded)
         {
             Grounded = true;
         }
@@ -196,7 +208,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionStay(Collision other)
     {
-        if (other.transform.CompareTag("sol") && !Grounded && transform.position.y >= 1.75f)
+        if (other.transform.CompareTag("sol") && !Grounded)
         {
             Grounded = true;
         }
@@ -209,6 +221,6 @@ public class CharacterMovement : MonoBehaviour
             Grounded = false;
         }
     }
-    
+
 
 }
