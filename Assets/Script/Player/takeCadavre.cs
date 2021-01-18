@@ -49,6 +49,7 @@ public class takeCadavre : MonoBehaviour
                     gotcha = false;
                     gameObject.transform.parent = player.transform;
                     gameObject.layer = 10;
+                    gameObject.SetActive(false);
 
                 }
 
@@ -60,7 +61,7 @@ public class takeCadavre : MonoBehaviour
 
         if (player != null)
         {
-            if (player.parent.GetComponent<CharacterMovement>().OnDash)
+            if (player.GetComponent<CharacterMovement>().OnDash)
             {
                 GetComponent<BoxCollider>().enabled = !enabled;
             }
@@ -76,10 +77,10 @@ public class takeCadavre : MonoBehaviour
                 deadD.deadList.Add(this.gameObject);
             }
 
-            Vector3 Position = 2 * Vector3.Normalize(transform.position - player.position) + player.position;
-            transform.position = Position;
-            gameObject.transform.RotateAround(player.position, Vector3.up, 280f * Time.deltaTime);
-            gameObject.transform.LookAt(player);
+            // Vector3 Position = 2 * Vector3.Normalize(transform.position - player.position) + player.position;
+            // transform.position = Position;
+            // gameObject.transform.RotateAround(player.position, Vector3.up, 280f * Time.deltaTime);
+            // gameObject.transform.LookAt(player);
         }
 
         if (charge)

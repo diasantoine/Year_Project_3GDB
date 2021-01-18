@@ -50,7 +50,7 @@ public class CharacterMovement : MonoBehaviour
         DashFinishCheck();
         if (JustFinishedDash)
         {
-            if (Compteur<=0.4f)
+            if (Compteur<=0.8f)
             {
                 Compteur += Time.deltaTime;
             }
