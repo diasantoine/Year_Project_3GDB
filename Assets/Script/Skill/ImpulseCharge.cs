@@ -16,7 +16,6 @@ public class ImpulseCharge : skill
     void Start()
     {
         chrono = freqCharge;
-        canonCharge = GameObject.Find("CanonCharge").transform;
     }
 
     public override void UsingSkill()

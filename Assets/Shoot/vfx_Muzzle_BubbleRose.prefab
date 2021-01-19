@@ -52,8 +52,8 @@ MonoBehaviour:
   lights: 1
   trails: 1
   changeColor: 1
-  newMaxColor: {r: 0.9433962, g: 0, b: 0.08292333, a: 1}
-  newMinColor: {r: 0.5283019, g: 0.022871515, b: 0.002491996, a: 1}
+  newMaxColor: {r: 0, g: 0.94509804, b: 0.030585924, a: 1}
+  newMinColor: {r: 0.022926254, g: 0.3490566, b: 0, a: 1}
   ParticleSystems:
   - {fileID: 1872551001706542}
   ActiveParticleSystems: 01
@@ -278,8 +278,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.21545717, b: 0.18382353, a: 1}
-      maxColor: {r: 1, g: 0.33823532, b: 0.39640358, a: 1}
+      minColor: {r: 0.2374305, g: 1, b: 0.18382353, a: 1}
+      maxColor: {r: 0.33823532, g: 1, b: 0.3596518, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1402,7 +1402,7 @@ ParticleSystem:
         atime1: 19661
         atime2: 45875
         atime3: 65535
-        atime4: 65535
+        atime4: 0
         atime5: 0
         atime6: 0
         atime7: 0

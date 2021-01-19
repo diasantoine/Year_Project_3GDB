@@ -128,11 +128,7 @@ public class CharacterMovement : MonoBehaviour
         }
         else
         {
-            if(ConteneurRigibody.velocity.magnitude < 0.05f)
-            {
-                animAvatar.SetBool("isWalking", false);
-
-            }
+            animAvatar.SetBool("isWalking", false);
 
         }
 
