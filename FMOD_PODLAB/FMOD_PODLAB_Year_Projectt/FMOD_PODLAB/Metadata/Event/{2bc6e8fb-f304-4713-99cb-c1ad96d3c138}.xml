@@ -5,7 +5,7 @@
 			<value>Joueur_FootStep</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{256e3730-29a1-476c-83e1-5cff90871cd4}</destination>
@@ -31,6 +31,9 @@
 		</relationship>
 		<relationship name="timeline">
 			<destination>{5db0cdc7-01f3-42bf-bb97-7cd47d269e53}</destination>
+		</relationship>
+		<relationship name="banks">
+			<destination>{d2be5914-bfc5-4059-8b41-f338bf293b9a}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{c2c783a5-6c1a-4ff4-9aeb-165950685981}">
@@ -157,7 +160,6 @@
 	<object class="MixerBusEffectChain" id="{71a73165-6502-4f69-8d9e-8d2814b58186}">
 		<relationship name="effects">
 			<destination>{36f00a33-f943-4032-b2c1-01f3fbebbc7e}</destination>
-			<destination>{03284cdf-c4cf-4881-b495-0ddb4e490c15}</destination>
 			<destination>{54df1035-966a-4c4d-8d3a-d50c43dca910}</destination>
 		</relationship>
 	</object>
@@ -212,7 +214,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{0cfdba78-b655-41d2-a5fa-da29a7ae7cd1}" />
 	<object class="MixerBusFader" id="{36f00a33-f943-4032-b2c1-01f3fbebbc7e}" />
-	<object class="SpatialiserEffect" id="{03284cdf-c4cf-4881-b495-0ddb4e490c15}" />
 	<object class="SFXReverbEffect" id="{54df1035-966a-4c4d-8d3a-d50c43dca910}">
 		<property name="earlyDelay">
 			<value>7</value>
