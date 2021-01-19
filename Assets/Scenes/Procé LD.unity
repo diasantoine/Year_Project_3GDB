@@ -667,7 +667,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TireSon: event:/TIRE
-  detectD: {fileID: 1787951899}
   preProjo: {fileID: 1374267004960804, guid: 22d294288012ca446bf50ffb2281ba95, type: 3}
   "preProjoCharg\xE9": {fileID: 933570394997345196, guid: 0490a40a3c8c0504bbb696f4fa40ee91,
     type: 3}
@@ -1023,7 +1022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6626a6e366a9c48a48525cde4050d0b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Seed: 240
+  Seed: 350151
   SectionContainer: {fileID: 1632285702}
   MaxLevelSize: 20
   MaxAllowedOrder: 15
@@ -1566,7 +1565,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadList: []
-  zone: {fileID: 0}
   tailleTake: {x: 0.3, y: 0.3, z: 0.3}
   parent: {fileID: 1346967713}
 --- !u!135 &1787951900
@@ -1789,6 +1787,7 @@ MonoBehaviour:
   Avatar: {fileID: 913331040}
   HitPosition: {x: 0, y: 0, z: 0}
   SpawnPositionPlayer: {x: 0, y: 0, z: 0}
+  animAvatar: {fileID: 0}
 --- !u!96 &2036771609
 TrailRenderer:
   serializedVersion: 2
