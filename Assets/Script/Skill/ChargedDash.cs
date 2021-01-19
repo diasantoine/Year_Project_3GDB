@@ -6,6 +6,7 @@ public class ChargedDash : skill
 {
     // Start is called before the first frame update
     //[SerializeField] private detectDead detectD;
+
     [SerializeField] private Rigidbody ConteneurRigibody;
     [SerializeField] public float DashSpeed = 20;
     [SerializeField] public float ChargeMax = 7;

@@ -7,6 +7,7 @@ public class detectDead : MonoBehaviour
 {
 
     public List<GameObject> deadList;
+    public static int ressourceInt;
 
     [SerializeField] private Vector3 tailleTake;
 
@@ -43,6 +44,7 @@ public class detectDead : MonoBehaviour
                 other.gameObject.GetComponent<takeCadavre>().player = parent;
                 other.gameObject.GetComponent<takeCadavre>().deadD = gameObject.GetComponent<detectDead>();
                 other.gameObject.transform.localScale = tailleTake;
+                ressourceInt++;
             }
         }
     }
