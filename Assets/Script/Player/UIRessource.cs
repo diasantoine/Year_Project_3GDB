@@ -6,28 +6,30 @@ using UnityEngine.UI;
 public class UIRessource : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] private detectDead ListCadavre;
     private int CountChanged;
     void Start()
     {
-        CountChanged = ListCadavre.deadList.Count;
+        CountChanged = detectDead.ressourceInt;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ListCadavre.deadList.Count != CountChanged)
+
+        int ressource = detectDead.ressourceInt;
+
+        if (ressource != CountChanged)
         {
-            if (ListCadavre.deadList.Count == 0)
+            if (ressource == 0)
             {
                 transform.localScale = new Vector3(transform.localScale.x, 0, transform.localScale.z);
-                CountChanged = ListCadavre.deadList.Count;
+                CountChanged = ressource;
             }
-            else if(ListCadavre.deadList.Count > 0)
+            else if(ressource > 0)
             {
-                float ConteneurYScale = Mathf.Clamp(0.01f * ListCadavre.deadList.Count, 0, 0.93f);
+                float ConteneurYScale = Mathf.Clamp(0.01f * ressource, 0, 0.93f);
                 transform.localScale = new Vector3(transform.localScale.x, ConteneurYScale, transform.localScale.z);
-                CountChanged = ListCadavre.deadList.Count;
+                CountChanged = ressource;
             }
         }
     }

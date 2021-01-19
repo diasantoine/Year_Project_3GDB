@@ -32,7 +32,7 @@ public class skill : MonoBehaviour
     
     public virtual void ChargingSkill(int WhichWeapon)
     {
-        if (ressource.deadList.Count > 0)
+        if (detectDead.ressourceInt > 0)
         {
             if (chrono >= freqCharge)
             {
@@ -44,10 +44,11 @@ public class skill : MonoBehaviour
                     {
                         TC.charge = true;
                         TC.bombe = conteneur.transform;
-                    }else if (WhichWeapon == 1)
+                    }
+                    else if (WhichWeapon == 1)
                     {
                         TC.gameObject.layer = 0;
-                        TC.GetComponent<BoxCollider>().isTrigger = true;
+                        TC.GetComponent<Collider>().isTrigger = true;
                         TC.dash = true;
                         TC.Dash = conteneur.transform;
                     }
@@ -55,6 +56,7 @@ public class skill : MonoBehaviour
                     chrono = 0;
                 }
 
+                detectDead.ressourceInt--;
             }
             else
             {

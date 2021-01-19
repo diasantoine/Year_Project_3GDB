@@ -8,8 +8,6 @@ public class shootDead : MonoBehaviour
     [FMODUnity.EventRef]
     public string TireSon = "";
 
-    [SerializeField] private detectDead detectD;
-
     RaycastHit hit;
 
     private Camera cam;
@@ -208,49 +206,7 @@ public class shootDead : MonoBehaviour
             chrono += Time.deltaTime;
         }
     }
-
-    void ChargementTir()
-    {
-        if(detectD.deadList.Count > 0)
-        {
-            
-            for (int i = 0; i < detectD.deadList.Count; i++)
-            {
-                
-                takeCadavre TC = detectD.deadList[0].GetComponent<takeCadavre>();
-
-                if(TC.isMunitions)
-                {
-                    TC.isMunitions = false;
-                    TC.charge = true;
-                    TC.bombe = pierre.transform;
-
-                    detectD.deadList.Remove(detectD.deadList[0]);
-                }
-
-            }
-        }
-
-    }
     
-  
-
-    void TirCharge(Ray rayon)
-    {
-        RaycastHit floorHit;
-        chrono = 0;
-
-        if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity))
-        {
-            Vector3 playerToMouse = floorHit.point - canon.position;
-            pierre.GetComponent<TirCharge>().tipar = true;
-            pierre.GetComponent<Rigidbody>().isKinematic = false;
-            pierre.transform.parent = null;
-            pierre.GetComponent<TirCharge>().Shoot(playerToMouse);
-
-        }
-    }
-
     public void TirNormalUpgrade(string TypeUpgrade)
     {
         switch (TypeUpgrade)

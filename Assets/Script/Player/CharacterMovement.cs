@@ -190,7 +190,7 @@ public class CharacterMovement : MonoBehaviour
                 ConteneurRigibody.useGravity = true;
                 ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
-            GetComponent<LineRenderer>().enabled = false;
+            //GetComponent<LineRenderer>().enabled = false;
         }
     }
 

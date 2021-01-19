@@ -66,8 +66,8 @@ public class TirCharge : MonoBehaviour
 
         Collider[] hit = Physics.OverlapSphere(hitPoint, radiusExploBase + transform.localScale.x);
 
-        GameObject newExplo = Instantiate(exploFeedback, hitPoint, Quaternion.identity);
-        newExplo.transform.localScale = new Vector3(radiusExploBase + transform.localScale.x, radiusExploBase + transform.localScale.x, radiusExploBase + transform.localScale.x) * 2;
+        GameObject newExplo = Instantiate(exploFeedback, hitPoint + new Vector3(0, 0.5f, 0), Quaternion.identity);
+        newExplo.transform.localScale = new Vector3(radiusExploBase + transform.localScale.x, radiusExploBase + transform.localScale.x, radiusExploBase + transform.localScale.x);
 
         for (int i = 0; i < hit.Length; i++)
         {
@@ -77,7 +77,7 @@ public class TirCharge : MonoBehaviour
             }
         }
 
-        Destroy(newExplo, 0.1f);
+        Destroy(newExplo, 0.2f);
         Destroy(gameObject);
     }
 
