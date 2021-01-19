@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8786,6 +8786,7 @@ MonoBehaviour:
   HitPosition: {x: 0, y: 0, z: 0}
   SpawnPositionPlayer: {x: 0, y: 0, z: 0}
   animAvatar: {fileID: 539434708}
+  DeadList: {fileID: 1940458176}
 --- !u!136 &1095651190
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12985,7 +12986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ac6ad6089e920458be45e86ec633a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1095651184}
+  Canon: {fileID: 615524528}
 --- !u!1 &1618316440
 GameObject:
   m_ObjectHideFlags: 0
@@ -14671,7 +14672,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1793176458}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8075e5e8a3bbe18488a2d5a45b654c33, type: 3}
   m_Name: 
@@ -16283,7 +16284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deadList: []
   tailleTake: {x: 0.1, y: 0.1, z: 0.1}
-  parent: {fileID: 1888144569}
+  parent: {fileID: 1095651192}
 --- !u!135 &1940458177
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16364,6 +16365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1944988506}
+  - component: {fileID: 1944988507}
   m_Layer: 0
   m_Name: Liquide
   m_TagString: Untagged
@@ -16380,12 +16382,25 @@ Transform:
   m_GameObject: {fileID: 1944988505}
   m_LocalRotation: {x: 0.00000008195638, y: -0.002823252, z: 0.00000019872093, w: 0.999996}
   m_LocalPosition: {x: 0.019, y: 0.721, z: -1.411}
-  m_LocalScale: {x: 0.42183292, y: 0.01, z: 0.38451487}
+  m_LocalScale: {x: 0.42183292, y: 0, z: 0.38451487}
   m_Children:
   - {fileID: 1735170003}
   m_Father: {fileID: 1895441291}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1944988507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944988505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8305e9df03dcf145b56b42eb1b247c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListCadavre: {fileID: 1940458176}
 --- !u!1 &1954777891
 GameObject:
   m_ObjectHideFlags: 0

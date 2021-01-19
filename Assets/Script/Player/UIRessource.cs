@@ -20,15 +20,14 @@ public class UIRessource : MonoBehaviour
         {
             if (ListCadavre.deadList.Count == 0)
             {
-                Vector2 ConteneurHeigh =  GetComponent<RectTransform>().sizeDelta;
-                ConteneurHeigh = new Vector2(ConteneurHeigh.x,0);
-                GetComponent<RectTransform>().sizeDelta = ConteneurHeigh;
+                transform.localScale = new Vector3(transform.localScale.x, 0, transform.localScale.z);
+                CountChanged = ListCadavre.deadList.Count;
             }
-            else
+            else if(ListCadavre.deadList.Count > 0)
             {
-                Vector2 ConteneurHeigh =  GetComponent<RectTransform>().sizeDelta;
-                ConteneurHeigh = new Vector2(ConteneurHeigh.x,50* ListCadavre.deadList.Count);
-                GetComponent<RectTransform>().sizeDelta = ConteneurHeigh;
+                float ConteneurYScale = Mathf.Clamp(0.1f * ListCadavre.deadList.Count, 0, 0.93f);
+                transform.localScale = new Vector3(transform.localScale.x, ConteneurYScale, transform.localScale.z);
+                CountChanged = ListCadavre.deadList.Count;
             }
         }
     }

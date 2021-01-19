@@ -49,7 +49,7 @@ public class takeCadavre : MonoBehaviour
                     gotcha = false;
                     gameObject.transform.parent = player.transform;
                     gameObject.layer = 10;
-                    gameObject.SetActive(false);
+                    GetComponent<MeshRenderer>().enabled = false;
 
                 }
 
@@ -63,11 +63,11 @@ public class takeCadavre : MonoBehaviour
         {
             if (player.GetComponent<CharacterMovement>().OnDash)
             {
-                GetComponent<BoxCollider>().enabled = !enabled;
+                GetComponent<SphereCollider>().enabled = !enabled;
             }
-            else if(GetComponent<BoxCollider>().enabled == !enabled)
+            else if(GetComponent<SphereCollider>().enabled == !enabled)
             {
-                GetComponent<BoxCollider>().enabled = enabled;
+                GetComponent<SphereCollider>().enabled = enabled;
             }
         }
         if (isMunitions)
@@ -121,12 +121,15 @@ public class takeCadavre : MonoBehaviour
             {
                 if (Dash.GetComponent<ChargedDash>().isCharging)
                 {
-                    Vector3 direction = Dash.position - transform.position;
-
-                    direction = direction.normalized;
-
-                    transform.position += direction * vitesse * Time.deltaTime;
-
+                    // Vector3 direction = Dash.position - transform.position;
+                    //
+                    // direction = direction.normalized;
+                    //
+                    // transform.position += direction * vitesse * Time.deltaTime;
+                    Destroy(gameObject);
+                    deadD.deadList.Remove(gameObject);
+                    Dash.GetComponent<ChargedDash>().Charge++;
+                    Debug.Log(GetComponent<ChargedDash>().Charge);
                     if(Dash.GetComponent<ChargedDash>().Charge >= Dash.GetComponent<ChargedDash>().ChargeMax)
                     {
                         gotcha = true;
