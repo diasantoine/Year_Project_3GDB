@@ -34,9 +34,7 @@ public class CameraTarget : MonoBehaviour
             playerToMouse = playerToMouse.normalized;
 
             player.LookAt(playerToMouse * 150);
-            Vector3 eulerAngles = player.rotation.eulerAngles;
-            eulerAngles = new Vector3(0, eulerAngles.y, 0);
-            player.rotation = Quaternion.Euler(eulerAngles);
+            Debug.DrawRay(player.position, playerToMouse * 50);
 
             targetPos.x = Mathf.Clamp(targetPos.x, -threshold + player.position.x, threshold + player.position.x);
             targetPos.z = Mathf.Clamp(targetPos.z, -threshold + player.position.z, threshold + player.position.z);

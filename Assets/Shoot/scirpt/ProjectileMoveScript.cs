@@ -83,7 +83,6 @@ public class ProjectileMoveScript : MonoBehaviour {
 			}
 		
 			speed = 0;
-			GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
 			GetComponent<Rigidbody> ().isKinematic = true;
 
 			ContactPoint contact = co.contacts [0];

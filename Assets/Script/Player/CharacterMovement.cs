@@ -34,7 +34,6 @@ public class CharacterMovement : MonoBehaviour
     public Vector3 SpawnPositionPlayer;
 
     [SerializeField] private Animator animAvatar;
-    [SerializeField] private detectDead DeadList;
     
 
     // Start is called before the first frame update
@@ -51,7 +50,7 @@ public class CharacterMovement : MonoBehaviour
         DashFinishCheck();
         if (JustFinishedDash)
         {
-            if (Compteur<=0.8f)
+            if (Compteur<=0.4f)
             {
                 Compteur += Time.deltaTime;
             }
@@ -102,23 +101,6 @@ public class CharacterMovement : MonoBehaviour
         }
         if (transform.position.y<=-6)
         {
-            if ( DeadList.deadList.Count < 3 && DeadList.deadList.Count > 0)
-            {
-                int ConteneurCount = DeadList.deadList.Count;
-                for (int i = 0; i <= ConteneurCount; i++)
-                {
-                    Destroy(DeadList.deadList[0]);
-                    DeadList.deadList.RemoveAt(0);
-                }
-            }
-            else if(DeadList.deadList.Count >= 3)
-            {
-                for (int i = 0; i <= 2; i++)
-                {
-                    Destroy(DeadList.deadList[0]);
-                    DeadList.deadList.RemoveAt(0);
-                }
-            }
             transform.position = SpawnPositionPlayer;
             //SetCursorPos(xPos,yPos);//Call this when you want to set the mouse position
             if (OnDash)
@@ -182,6 +164,7 @@ public class CharacterMovement : MonoBehaviour
     {
         if (OnDash)
         {
+            Debug.Log(ConteneurRigibody.velocity.magnitude);
             if (GetComponent<Rigidbody>().velocity.magnitude < 3)
             {
                 ConteneurRigibody.velocity = ConteneurRigibody.velocity.normalized * vitesse;
@@ -221,7 +204,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionStay(Collision other)
     {
-        if ((other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy")) && !Grounded)
+        if (other.transform.CompareTag("sol") && !Grounded)
         {
             Grounded = true;
         }
@@ -229,7 +212,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionExit(Collision other)
     {
-        if ((other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy")) && Grounded)
+        if (other.transform.CompareTag("sol") && Grounded)
         {
             Grounded = false;
         }

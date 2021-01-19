@@ -49,7 +49,6 @@ public class takeCadavre : MonoBehaviour
                     gotcha = false;
                     gameObject.transform.parent = player.transform;
                     gameObject.layer = 10;
-                    GetComponent<MeshRenderer>().enabled = false;
 
                 }
 
@@ -61,13 +60,13 @@ public class takeCadavre : MonoBehaviour
 
         if (player != null)
         {
-            if (player.GetComponent<CharacterMovement>().OnDash)
+            if (player.parent.GetComponent<CharacterMovement>().OnDash)
             {
-                GetComponent<SphereCollider>().enabled = !enabled;
+                GetComponent<BoxCollider>().enabled = !enabled;
             }
-            else if(GetComponent<SphereCollider>().enabled == !enabled)
+            else if(GetComponent<BoxCollider>().enabled == !enabled)
             {
-                GetComponent<SphereCollider>().enabled = enabled;
+                GetComponent<BoxCollider>().enabled = enabled;
             }
         }
         if (isMunitions)
@@ -77,10 +76,10 @@ public class takeCadavre : MonoBehaviour
                 deadD.deadList.Add(this.gameObject);
             }
 
-            // Vector3 Position = 2 * Vector3.Normalize(transform.position - player.position) + player.position;
-            // transform.position = Position;
-            // gameObject.transform.RotateAround(player.position, Vector3.up, 280f * Time.deltaTime);
-            // gameObject.transform.LookAt(player);
+            Vector3 Position = 2 * Vector3.Normalize(transform.position - player.position) + player.position;
+            transform.position = Position;
+            gameObject.transform.RotateAround(player.position, Vector3.up, 280f * Time.deltaTime);
+            gameObject.transform.LookAt(player);
         }
 
         if (charge)
@@ -121,15 +120,12 @@ public class takeCadavre : MonoBehaviour
             {
                 if (Dash.GetComponent<ChargedDash>().isCharging)
                 {
-                    // Vector3 direction = Dash.position - transform.position;
-                    //
-                    // direction = direction.normalized;
-                    //
-                    // transform.position += direction * vitesse * Time.deltaTime;
-                    Destroy(gameObject);
-                    deadD.deadList.Remove(gameObject);
-                    Dash.GetComponent<ChargedDash>().Charge++;
-                    Debug.Log(GetComponent<ChargedDash>().Charge);
+                    Vector3 direction = Dash.position - transform.position;
+
+                    direction = direction.normalized;
+
+                    transform.position += direction * vitesse * Time.deltaTime;
+
                     if(Dash.GetComponent<ChargedDash>().Charge >= Dash.GetComponent<ChargedDash>().ChargeMax)
                     {
                         gotcha = true;

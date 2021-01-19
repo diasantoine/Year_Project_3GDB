@@ -47,7 +47,7 @@ public class skill : MonoBehaviour
                     }else if (WhichWeapon == 1)
                     {
                         TC.gameObject.layer = 0;
-                        TC.GetComponent<SphereCollider>().isTrigger = true;
+                        TC.GetComponent<BoxCollider>().isTrigger = true;
                         TC.dash = true;
                         TC.Dash = conteneur.transform;
                     }
