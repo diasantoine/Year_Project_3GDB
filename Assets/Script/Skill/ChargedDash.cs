@@ -17,7 +17,6 @@ public class ChargedDash : skill
     private LineRenderer lineRenderer;
     private Vector3 HitPosition;
     private Vector3 LastPosition;
-    public bool isCharging;
     void Start()
     {
         

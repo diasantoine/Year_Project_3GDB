@@ -35,9 +35,12 @@ public class shootSkill : MonoBehaviour
             {
                 skillSystem.EndUsing(rayon);
             }
-            else if (Input.GetKeyDown(KeyCode.Tab))
+            else if (!skillSystem.skills[skillSystem.skillID].isCharging)
             {
-                skillSystem.changeSKill();
+                if (Input.GetKeyDown(KeyCode.Tab))
+                {
+                    skillSystem.changeSKill();
+                }
             }
 
             if (skillSystem.skills[skillSystem.skillID].chargedSkill)

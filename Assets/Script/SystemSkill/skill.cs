@@ -11,6 +11,8 @@ public class skill : MonoBehaviour
     [SerializeField] protected private float freqCharge;
     protected private float chrono;
 
+    public bool isCharging;
+
     [HideInInspector] public GameObject conteneur;
 
     // Start is called before the first frame update

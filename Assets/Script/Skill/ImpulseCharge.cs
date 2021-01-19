@@ -8,9 +8,6 @@ public class ImpulseCharge : skill
     [SerializeField] private GameObject preProjo;
     [SerializeField] private Transform canonCharge;
 
-    
-    private bool isCharging;
-
 
     // Start is called before the first frame update
     void Start()

@@ -76,5 +76,13 @@ public class RoomScript : MonoBehaviour
                 gameObject.transform.GetChild(0).gameObject.SetActive(false);
             }
         }
+
+        if (other.gameObject.CompareTag("Ennemy"))
+        {
+            if(!roomAcces)
+            {
+                other.gameObject.GetComponent<ennemyState>().damage(10);
+            }
+        }
     }
 }
