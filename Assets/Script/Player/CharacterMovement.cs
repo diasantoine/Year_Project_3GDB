@@ -34,7 +34,8 @@ public class CharacterMovement : MonoBehaviour
     public Vector3 SpawnPositionPlayer;
 
     [SerializeField] private Animator animAvatar;
-    
+
+    private Vector3 ConteneurLastForward = new Vector3();
 
     // Start is called before the first frame update
     void Start()
@@ -114,7 +115,7 @@ public class CharacterMovement : MonoBehaviour
             }
             ConteneurRigibody.velocity = Vector3.zero;
         }
-        
+        //Debug.DrawRay(transform.position, transform.forward*20, Color.blue);
         if ((Input.GetButton("Vertical")|| Input.GetButton("Horizontal")) && Grounded && !OnDash && !JustHit)
         {
             animAvatar.SetBool("isWalking", true);
@@ -122,8 +123,20 @@ public class CharacterMovement : MonoBehaviour
             Vector3 ConteneurCameraPositionRight = Camera.main.transform.right *  Input.GetAxis("Horizontal");
             //Vector3 Vector3_Deplacement_Player =  new Vector3(-Input.GetAxis("Vertical") , 0, Input.GetAxis("Horizontal"));
             Vector3 Vector3_Deplacement_Player = Vector3.ClampMagnitude(ConteneurCameraPositionForward + ConteneurCameraPositionRight, 1);
-            //Vector3_Deplacement_Player = transform.TransformDirection(Vector3_Deplacement_Player);
+            if (Mathf.RoundToInt(Vector3.Dot(transform.forward, ConteneurRigibody.velocity.normalized)) == 1)
+            {
+                Debug.Log("Forward");
+            }else if(Mathf.RoundToInt(Vector3.Dot(transform.forward, ConteneurRigibody.velocity.normalized)) == -1)
+            {
+                Debug.Log("Backward");
+            }
+            else
+            {
+                Debug.Log("Perpendiculaire");
+            }
             ConteneurRigibody.velocity = Vector3_Deplacement_Player * vitesse;
+            // Debug.DrawRay(transform.position, ConteneurRigibody.velocity.normalized*20, Color.red);
+            // Debug.Log(Mathf.RoundToInt(Vector3.Dot(transform.forward, ConteneurRigibody.velocity.normalized)));
             //RigibodyAvatar.AddForce(Vector3_Deplacement_Player * Speed_Player);
         }
         else
@@ -204,7 +217,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionStay(Collision other)
     {
-        if (other.transform.CompareTag("sol") && !Grounded)
+        if ((other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy")) && !Grounded)
         {
             Grounded = true;
         }
@@ -212,7 +225,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionExit(Collision other)
     {
-        if (other.transform.CompareTag("sol") && Grounded)
+        if ((other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy")) && Grounded)
         {
             Grounded = false;
         }
