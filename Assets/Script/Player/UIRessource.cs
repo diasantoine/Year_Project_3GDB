@@ -25,7 +25,7 @@ public class UIRessource : MonoBehaviour
             }
             else if(ListCadavre.deadList.Count > 0)
             {
-                float ConteneurYScale = Mathf.Clamp(0.1f * ListCadavre.deadList.Count, 0, 0.93f);
+                float ConteneurYScale = Mathf.Clamp(0.01f * ListCadavre.deadList.Count, 0, 0.93f);
                 transform.localScale = new Vector3(transform.localScale.x, ConteneurYScale, transform.localScale.z);
                 CountChanged = ListCadavre.deadList.Count;
             }
