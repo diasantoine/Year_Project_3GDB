@@ -33,7 +33,7 @@ public class spawn : MonoBehaviour
 
         if(chrono >= chronoMax)
         {
-            if (Input.GetKey(KeyCode.E))
+            /*if (Input.GetKey(KeyCode.E))
             {
                 if (Physics.Raycast(rayon, out hit, Mathf.Infinity))
                 {
@@ -46,22 +46,21 @@ public class spawn : MonoBehaviour
                         ConteneurGameobject.GetComponent<ennemyState>().player = player.transform;
                     }
                 }
-            }
+            }*/
 
             if (Input.GetKey(KeyCode.F))
             {
-                if (Physics.Raycast(rayon, out hit, Mathf.Infinity))
+                if (Physics.Raycast(rayon, out hit, Mathf.Infinity, LayerMask.GetMask("Sol")))
                 {
-                    if (hit.collider.gameObject.CompareTag("sol"))
-                    {
-                        Instantiate(preCadavre, hit.point + new Vector3(0, 0.2f, 0), Quaternion.identity, GameObject.Find("CadavreParent").transform);
-                        chrono = 0;
-
-                    }
+                    Instantiate(preCadavre, hit.point + new Vector3(0, 0.2f, 0), Quaternion.identity, GameObject.Find("CadavreParent").transform);
+                    chrono = 0;
                 }
             }
         }
+        else
+        {
+            chrono += Time.deltaTime;
 
-        chrono += Time.deltaTime;
+        }
     }
 }

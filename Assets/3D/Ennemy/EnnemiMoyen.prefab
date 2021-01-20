@@ -651,7 +651,10 @@ MonoBehaviour:
   numberCadav: 0
   DMG_Percentage: 2
   Size: 2
-  timeBar: 0
+  timeBar: 0.5
+  Empoisonne: 0
+  freqTick: 0.2
+  dpsTick: 0
 --- !u!114 &4800483746173253678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -668,7 +671,7 @@ MonoBehaviour:
   player: {fileID: 0}
   Grounded: 0
   JustHit: 0
-  ForceTirNormal: 0.2
+  ImpactTirNormal: 1
   FieldOfView: 90
 --- !u!1 &7794950221876338459
 GameObject:

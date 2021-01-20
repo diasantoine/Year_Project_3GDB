@@ -148,7 +148,13 @@ public class CharacterMovement : MonoBehaviour
         {
             animAvatar.SetBool("Forward", false);
             animAvatar.SetBool("Backward", false);
-            ConteneurRigibody.velocity = new Vector3(0, ConteneurRigibody.velocity.y, 0);
+
+            if (!JustHit)
+            {
+                ConteneurRigibody.velocity = new Vector3(0, ConteneurRigibody.velocity.y, 0);
+
+            }
+
 
         }
 
