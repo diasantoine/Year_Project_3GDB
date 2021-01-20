@@ -10085,16 +10085,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vitesse: 10
-  ConteneurRigibody: {fileID: 0}
   Grounded: 0
   OnDash: 0
   JustFinishedDash: 0
   JustHit: 0
   Avatar: {fileID: 6034419131433875071}
   HitPosition: {x: 0, y: 0, z: 0}
-  SpawnPositionPlayer: {fileID: 0}
+  SpawnPositionPlayer: {x: 0, y: 0, z: 0}
   animAvatar: {fileID: 1338175546}
-  Aftershock: 0
 --- !u!136 &1604406077
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10156,12 +10154,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TireSon: event:/TIRE
+  detectD: {fileID: 436116487}
   preProjo: {fileID: 1374267004960804, guid: 22d294288012ca446bf50ffb2281ba95, type: 3}
   "preProjoCharg\xE9": {fileID: 0}
   canon: {fileID: 1391880796}
   canonCharge: {fileID: 0}
   freqTir: 0.2
-  NombreDeProjectile: 0
 --- !u!114 &1604406081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10345,7 +10343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ac6ad6089e920458be45e86ec633a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Canon: {fileID: 0}
+  Player: {fileID: 1604406075}
 --- !u!1 &1619073580
 GameObject:
   m_ObjectHideFlags: 0
@@ -15022,7 +15020,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2146892439}
   m_LocalRotation: {x: -0.4920657, y: 0.5287787, z: 0.36281404, w: 0.5887534}
-  m_LocalPosition: {x: 0.0017, y: 0.0066, z: -0.005}
+  m_LocalPosition: {x: 0.0001, y: 0.0074, z: 0.0036}
   m_LocalScale: {x: 0.07314168, y: 0.073141664, z: 0.073141664}
   m_Children:
   - {fileID: 1338031491}
