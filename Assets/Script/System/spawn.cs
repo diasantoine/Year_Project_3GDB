@@ -10,7 +10,7 @@ public class spawn : MonoBehaviour
 
     RaycastHit hit;
 
-    private Camera cam;
+    [SerializeField] private Camera cam;
 
     private float chrono;
 
@@ -23,7 +23,7 @@ public class spawn : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        //cam = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
     // Update is called once per frame

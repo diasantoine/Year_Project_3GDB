@@ -9,7 +9,7 @@ public class ennemyAI : MonoBehaviour
 
     public NavMeshAgent agent;
 
-    [HideInInspector] public Transform player;
+    public Transform player;
 
     [SerializeField] private bool Grounded = false;
     [SerializeField] private bool JustHit = false;

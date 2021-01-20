@@ -30,7 +30,7 @@ public class shootDead : MonoBehaviour
     RaycastHit floorHit;
 
     private float MultipleSpeed = 1;
-    private int NombreDeProjectile = 3;
+    [SerializeField] private int NombreDeProjectile;
     private bool Empoisonnement = false;
     private bool Rocket = false;
 

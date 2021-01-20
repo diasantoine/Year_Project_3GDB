@@ -72,7 +72,6 @@ namespace LevelGenerator.Scripts
             LevelSize = MaxLevelSize;
             CreateInitialSection();
             DeactivateBounds();
-            NS.BuildNavMesh();
 
         }
 

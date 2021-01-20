@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class ennemyState : MonoBehaviour
 {
 
-    [HideInInspector] public Transform player;
+    public Transform player;
 
     [HideInInspector] public spawnEnnemyBasique SEB;
 
@@ -114,7 +114,7 @@ public class ennemyState : MonoBehaviour
             {
                 if (transform.position.y<= -10)
                 {
-                    Instantiate(preDead, new Vector3(player.position.x+4, player.position.y, player.position.z)
+                    Instantiate(preDead, new Vector3(player.position.x + 1, player.position.y, player.position.z)
                                          + new Vector3(0, 0, écart * 1.25f), 
                         Quaternion.identity, GameObject.Find("CadavreParent").transform);
                 }
@@ -126,7 +126,11 @@ public class ennemyState : MonoBehaviour
                 écart++;
             }
 
-            SEB.numberEnnemy--;
+            if(SEB != null)
+            {
+                SEB.numberEnnemy--;
+
+            }
         }
        
     }
