@@ -211,7 +211,7 @@ public class shootDead : MonoBehaviour
                 MultipleSpeed *= 1.1f;
                 break;
             case "NombreDeProjectile":
-                NombreDeProjectile++;
+                NombreDeProjectile = 3;
                 break;
             case "Empoisonnement":
                 Empoisonnement = true;

@@ -57,7 +57,4 @@ public class ImpulseCharge : skill
             isCharging = false;
         }
     }
-
-
-
 }
