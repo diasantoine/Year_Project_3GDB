@@ -628,6 +628,9 @@ MonoBehaviour:
   DMG_Percentage: 1
   Size: 1
   timeBar: 0.5
+  Empoisonne: 0
+  freqTick: 0.2
+  dpsTick: 0
 --- !u!114 &-1967969514887407709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -644,7 +647,7 @@ MonoBehaviour:
   player: {fileID: 0}
   Grounded: 0
   JustHit: 0
-  ForceTirNormal: 0.4
+  ImpactTirNormal: 1
   FieldOfView: 90
 --- !u!1 &6644085096381652423
 GameObject:

@@ -38,10 +38,14 @@ public class ennemyState : MonoBehaviour
 
     [SerializeField] private float timeBar;
     private float chrono;
+    private float chronoTick;
     private bool touched;
 
     public bool Empoisonne = false;
-    private float EmpoisonnementTick = 1;
+    private float EmpoisonnementTick;
+
+    [SerializeField] private float freqTick;
+    [HideInInspector] public float dpsTick;
 
 
     // Start is called before the first frame update
@@ -72,6 +76,8 @@ public class ennemyState : MonoBehaviour
 
         numberCadav = Random.Range(1, 4);
 
+        EmpoisonnementTick = 0;
+
     }
 
     // Update is called once per frame
@@ -79,14 +85,18 @@ public class ennemyState : MonoBehaviour
     {
         if (Empoisonne)
         {
-            if (EmpoisonnementTick >= 0)
+            if (EmpoisonnementTick >= freqTick)
             {
-                EmpoisonnementTick -= Time.deltaTime;
+
+                damage(dpsTick);
+                Empoisonne = false;
+                EmpoisonnementTick = 0;
+                
+
             }
             else
             {
-                EmpoisonnementTick = 1;
-                damage(1);
+                EmpoisonnementTick += Time.deltaTime;
             }
         }
         HealthbarDecrease();
