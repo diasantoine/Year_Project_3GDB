@@ -57,8 +57,8 @@ public class skill : MonoBehaviour
                     {
                         TC.gameObject.layer = 0;
                         TC.GetComponent<Collider>().isTrigger = true;
-                        TC.dash = true;
-                        TC.Dash = conteneur.transform;
+                        TC.ShieldProtection = true;
+                        TC.Protection = conteneur.transform;
                     }
                     ressource.deadList.Remove(ressource.deadList[0]);
                     chrono = 0;

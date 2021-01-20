@@ -8,7 +8,7 @@ public class ShieldProtection : skill
     [SerializeField] private GameObject Parent;
     [SerializeField] private detectDead DetecList;
     // Start is called before the first frame update
-    private float Tick = 1f;
+    private float Tick = 0.5f;
     void Start()
     {
         
@@ -18,7 +18,7 @@ public class ShieldProtection : skill
     {
         if (isCharging)
         {
-            if (Tick >=1)
+            if (Tick >=0.5f)
             {
                 Tick -= Time.deltaTime;
             }
@@ -26,15 +26,22 @@ public class ShieldProtection : skill
             {
                 if (DetecList.deadList.Count == 0)
                 {
-                    Tick = 1;
+                    Tick = 0.5f;
                     isCharging = false;
                 }
                 else
                 {
-                    Tick = 1;
+                    Tick = 0.5f;
                     base.ChargingSkill(3);
                 }
             }
+        }
+        else if(Parent.GetComponent<CharacterMovement>().OnShieldProtection)
+        {
+            isCharging = false;
+            Tick = 1;
+            BulleProtectrice.SetActive(false);
+            Parent.GetComponent<CharacterMovement>().OnShieldProtection = false;
         }
     }
 
@@ -52,6 +59,7 @@ public class ShieldProtection : skill
             isCharging = true;
             BulleProtectrice.SetActive(true);
             Parent.GetComponent<CharacterMovement>().OnShieldProtection = true;
+            conteneur = gameObject;
         }
     }
 }
