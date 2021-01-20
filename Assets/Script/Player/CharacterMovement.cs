@@ -25,6 +25,7 @@ public class CharacterMovement : MonoBehaviour
     public bool OnDash = false;
     public bool JustFinishedDash = false;
     public bool JustHit = false;
+    public bool OnShieldProtection = false;
     private float Compteur = 0;
     private float Compteur1 = 0;
     private float Compteu12 = 0;

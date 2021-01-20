@@ -53,6 +53,12 @@ public class skill : MonoBehaviour
                         TC.GetComponent<Collider>().isTrigger = true;
                         TC.dash = true;
                         TC.Dash = conteneur.transform;
+                    }else if (WhichWeapon == 3)
+                    {
+                        TC.gameObject.layer = 0;
+                        TC.GetComponent<Collider>().isTrigger = true;
+                        TC.dash = true;
+                        TC.Dash = conteneur.transform;
                     }
                     ressource.deadList.Remove(ressource.deadList[0]);
                     chrono = 0;

@@ -11,11 +11,13 @@ public class takeCadavre : MonoBehaviour
     [HideInInspector] public bool isMunitions;
     [HideInInspector] public bool charge;
     [HideInInspector] public bool dash;
+    [HideInInspector] public bool ShieldProtection;
 
 
     public Transform player;
     public Transform Dash;
     public Transform bombe;
+    public Transform Protection;
 
 
     [SerializeField] private float threshold;
@@ -146,6 +148,38 @@ public class takeCadavre : MonoBehaviour
             {
                 gotcha = true;
                 dash = false;
+                gameObject.layer = 8;
+            } 
+        }else if (ShieldProtection)
+        {
+            if (Protection != null)
+            {
+                if (Protection.GetComponent<ShieldProtection>().isCharging)
+                {
+                    //Vector3 direction = Dash.position - transform.position;
+
+                    //direction = direction.normalized;
+
+                    //transform.position += direction * vitesse * Time.deltaTime;
+                    Destroy(gameObject);
+                    deadD.deadList.Remove(gameObject);
+                    if (deadD.deadList.Count == 0)
+                    {
+                        gotcha = true;
+                        ShieldProtection = false;
+                        gameObject.layer = 8;
+                    }
+                }
+                else
+                {
+                    Protection = null;
+                }
+                ;
+            }
+            else
+            {
+                gotcha = true;
+                ShieldProtection = false;
                 gameObject.layer = 8;
             } 
         }

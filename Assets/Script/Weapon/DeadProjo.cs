@@ -76,7 +76,6 @@ public class DeadProjo : MonoBehaviour
             if (Empoisonnement)
             {
                 collision.gameObject.GetComponent<ennemyState>().Empoisonne = true;
-                collision.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
             }
             if (Rocket)
             {

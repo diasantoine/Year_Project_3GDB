@@ -90,7 +90,7 @@ public class ennemyAI : MonoBehaviour
             }
             else
             {
-                if (ConteneurRigibody.velocity.magnitude < 1f)
+                if (ConteneurRigibody.velocity.magnitude < 1f )
                 {
                     if (Pansement)
                     {
@@ -145,7 +145,7 @@ public class ennemyAI : MonoBehaviour
         var rayDirection = this.player.transform.position - transform.position;
         if (Vector3.Angle(rayDirection, transform.forward) < this.FieldOfView && 
             Vector3.Distance(transform.position, player.transform.position) < 30f && !player.GetComponent<CharacterMovement>().OnDash
-            &&!player.GetComponent<CharacterMovement>().JustFinishedDash)
+            &&!player.GetComponent<CharacterMovement>().JustFinishedDash && !player.GetComponent<CharacterMovement>().OnShieldProtection)
         {
             // Detect if player is within the field of view
             if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, Mathf.Infinity,LayerMask.GetMask("Player")))
@@ -197,7 +197,6 @@ public class ennemyAI : MonoBehaviour
             }
         }
     }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("sol") && !Grounded)
@@ -220,7 +219,6 @@ public class ennemyAI : MonoBehaviour
             }
             //ConteneurRigibody.AddForceAtPosition(collision.transform.forward.normalized * ForceTirNormal, collision.GetContact(0).point);
         }
-
         if (collision.transform.CompareTag("Ennemy")
             && collision.gameObject.GetComponent<ennemyAI>().ConteneurRigibody.constraints == RigidbodyConstraints.None 
                 && collision.gameObject.GetComponent<ennemyState>().Size >= GetComponent<ennemyState>().Size)
@@ -246,6 +244,7 @@ public class ennemyAI : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
+        Debug.Log(collision.transform.name);
         if (collision.transform.CompareTag("sol") && !Grounded)
         {
             Grounded = true;
