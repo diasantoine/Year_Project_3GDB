@@ -8,10 +8,14 @@ public class PoisonShield : skill
 
     private bool isActive;
 
+    [FMODUnity.EventRef]
+    public string SonPoisonShield = "";
+    FMOD.Studio.EventInstance sonPoisonShield;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        sonPoisonShield = FMODUnity.RuntimeManager.CreateInstance(SonPoisonShield);
     }
 
      public override void UsingSkill()
@@ -22,6 +26,8 @@ public class PoisonShield : skill
             {
                 isActive = false;
                 SphereCollider.SetActive(false);
+                Debug.Log("Stop son poison");
+                sonPoisonShield.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
             }
             else
@@ -29,6 +35,9 @@ public class PoisonShield : skill
                 isActive = true;
                 SphereCollider.SetActive(true);
                 SphereCollider.GetComponent<PoisonCollider>().timer = 0;
+                Debug.Log("Start son poison");
+                sonPoisonShield.start();
+                
 
 
             }
