@@ -19,6 +19,9 @@ public class DeadProjo : MonoBehaviour
 
     [SerializeField] private Rigidbody RB;
 
+    public bool Empoisonnement = false;
+    public bool Rocket = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -70,11 +73,20 @@ public class DeadProjo : MonoBehaviour
         Destroy(gameObject);
         if (collision.gameObject.CompareTag("Ennemy"))
         {
+            if (Empoisonnement)
+            {
+                collision.gameObject.GetComponent<ennemyState>().Empoisonne = true;
+                collision.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+            }
+            if (Rocket)
+            {
+                dégat *= 1.5f;
+                // faire une mini explosion qui peut toucher d'autre ennemie
+            }
+          
             FMODUnity.RuntimeManager.PlayOneShot(TireTouche, transform.position);
             collision.gameObject.GetComponent<ennemyState>().damage(dégat);
         }
-
-
     }
 
 

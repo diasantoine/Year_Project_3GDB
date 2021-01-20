@@ -34,8 +34,9 @@ public class CharacterMovement : MonoBehaviour
     public Vector3 SpawnPositionPlayer;
 
     [SerializeField] private Animator animAvatar;
-    
 
+
+    public bool Aftershock;
     // Start is called before the first frame update
     void Start()
     {
@@ -183,8 +184,7 @@ public class CharacterMovement : MonoBehaviour
     {
         if (OnDash)
         {
-            Debug.Log(ConteneurRigibody.velocity.magnitude);
-            if (GetComponent<Rigidbody>().velocity.magnitude < 3)
+            if (Vector3.Distance(HitPosition, transform.position) < 0.5f && HitPosition != new Vector3())
             {
                 ConteneurRigibody.velocity = ConteneurRigibody.velocity.normalized * vitesse;
                 //ConteneurRigibody.constraints = RigidbodyConstraints.FreezeAll;
@@ -195,9 +195,12 @@ public class CharacterMovement : MonoBehaviour
                 tag = "Untagged";
                 ConteneurRigibody.useGravity = true;
                 ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                if (Aftershock)
+                {
+                    //explosion
+                }
             }
-
-            if (Vector3.Distance(HitPosition, transform.position) < 2 && HitPosition != new Vector3())
+            else if (GetComponent<Rigidbody>().velocity.magnitude < 3)
             {
                 ConteneurRigibody.velocity = ConteneurRigibody.velocity.normalized * vitesse;
                 //ConteneurRigibody.constraints = RigidbodyConstraints.FreezeAll;
@@ -208,6 +211,10 @@ public class CharacterMovement : MonoBehaviour
                 tag = "Untagged";
                 ConteneurRigibody.useGravity = true;
                 ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                if (Aftershock)
+                {
+                    //explosion
+                }
             }
             //GetComponent<LineRenderer>().enabled = false;
         }

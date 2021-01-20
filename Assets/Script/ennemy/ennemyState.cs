@@ -40,6 +40,9 @@ public class ennemyState : MonoBehaviour
     private float chrono;
     private bool touched;
 
+    public bool Empoisonne = false;
+    private float EmpoisonnementTick = 1;
+
 
     // Start is called before the first frame update
 
@@ -74,7 +77,18 @@ public class ennemyState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Empoisonne)
+        {
+            if (EmpoisonnementTick >= 0)
+            {
+                EmpoisonnementTick -= Time.deltaTime;
+            }
+            else
+            {
+                EmpoisonnementTick = 1;
+                damage(1);
+            }
+        }
         HealthbarDecrease();
 
         if (transform.position.y <= -10)

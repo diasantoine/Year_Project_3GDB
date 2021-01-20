@@ -17,6 +17,7 @@ public class ChargedDash : skill
     private LineRenderer lineRenderer;
     private Vector3 HitPosition;
     private Vector3 LastPosition;
+    public bool AfterShock = false;
     void Start()
     {
         
@@ -73,6 +74,10 @@ public class ChargedDash : skill
     {
         if (isCharging)
         {
+            if (AfterShock)
+            {
+                Parent.GetComponent<CharacterMovement>().Aftershock = AfterShock;
+            }
             Vector3 playerToMouse = LastPosition - transform.parent.parent.position;
             playerToMouse.y = 0;
             playerToMouse = playerToMouse.normalized;
@@ -132,6 +137,9 @@ public class ChargedDash : skill
                 break;
             case "Charge":
                 ChargeMax--;
+                break;
+            case "AfterShock":
+                AfterShock = true;
                 break;
             default:
                 break;

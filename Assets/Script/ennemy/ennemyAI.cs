@@ -15,7 +15,7 @@ public class ennemyAI : MonoBehaviour
     [SerializeField] private bool JustHit = false;
     private bool HitPlayer = false;
 
-    public float ForceTirNormal = 1;
+    [SerializeField] private float ImpactTirNormal = 1;
 
     private Rigidbody ConteneurRigibody;
 
@@ -206,9 +206,18 @@ public class ennemyAI : MonoBehaviour
         }
         if (collision.transform.CompareTag("Projectile"))
         {
-            JustHit = true;
-            agent.enabled = false;
-            ConteneurRigibody.velocity *= ForceTirNormal;
+            if (collision.transform.GetComponent<DeadProjo>().Empoisonnement)
+            {
+                JustHit = true;
+                agent.enabled = false;
+                ConteneurRigibody.velocity *= ImpactTirNormal*1.5f;
+            }
+            else
+            {
+                JustHit = true;
+                agent.enabled = false;
+                ConteneurRigibody.velocity *= ImpactTirNormal;
+            }
             //ConteneurRigibody.AddForceAtPosition(collision.transform.forward.normalized * ForceTirNormal, collision.GetContact(0).point);
         }
 

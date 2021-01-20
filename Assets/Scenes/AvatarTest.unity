@@ -2859,6 +2859,7 @@ Transform:
   m_Children:
   - {fileID: 1547098168}
   - {fileID: 714918614}
+  - {fileID: 3959191608774943554}
   m_Father: {fileID: 1095651192}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8800,6 +8801,7 @@ MonoBehaviour:
   HitPosition: {x: 0, y: 0, z: 0}
   SpawnPositionPlayer: {x: 0, y: 0, z: 0}
   animAvatar: {fileID: 539434708}
+  Aftershock: 0
 --- !u!136 &1095651190
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12999,7 +13001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ac6ad6089e920458be45e86ec633a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1095651184}
+  Canon: {fileID: 615524528}
 --- !u!1 &1618316440
 GameObject:
   m_ObjectHideFlags: 0
@@ -18526,3 +18528,52 @@ Transform:
   m_Father: {fileID: 1398782803}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &3959191608774943554
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3959191608774943564}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 381582047}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3959191608774943564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3959191608774943554}
+  - component: {fileID: 3959191608774943565}
+  m_Layer: 0
+  m_Name: Shield
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &3959191608774943565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3959191608774943564}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be48806d5f4f0648b0b7125cda5eb19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ressource: {fileID: 0}
+  chargedSkill: 0
+  IdSkill: 0
+  freqCharge: 0
+  isCharging: 0
+  conteneur: {fileID: 0}
