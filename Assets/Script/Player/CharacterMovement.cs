@@ -19,7 +19,7 @@ public class CharacterMovement : MonoBehaviour
 
     public float vitesse = 6f;
 
-    private Rigidbody ConteneurRigibody;
+    public Rigidbody ConteneurRigibody;
 
     [SerializeField] private bool Grounded;
     public bool OnDash = false;
@@ -34,14 +34,12 @@ public class CharacterMovement : MonoBehaviour
     public Vector3 SpawnPositionPlayer;
 
     [SerializeField] private Animator animAvatar;
-
-    private Vector3 ConteneurLastForward = new Vector3();
+    
 
     // Start is called before the first frame update
     void Start()
     {
         //Cursor.lockState = CursorLockMode.Locked;
-        ConteneurRigibody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -115,33 +113,41 @@ public class CharacterMovement : MonoBehaviour
             }
             ConteneurRigibody.velocity = Vector3.zero;
         }
+
         //Debug.DrawRay(transform.position, transform.forward*20, Color.blue);
-        if ((Input.GetButton("Vertical")|| Input.GetButton("Horizontal")) && Grounded && !OnDash && !JustHit)
+        if ((Input.GetButton("Vertical") || Input.GetButton("Horizontal")) && Grounded && !OnDash && !JustHit)
         {
-            animAvatar.SetBool("isWalking", true);
             Vector3 ConteneurCameraPositionForward = Camera.main.transform.forward * Input.GetAxis("Vertical");
-            Vector3 ConteneurCameraPositionRight = Camera.main.transform.right *  Input.GetAxis("Horizontal");
+            Vector3 ConteneurCameraPositionRight = Camera.main.transform.right * Input.GetAxis("Horizontal");
             //Vector3 Vector3_Deplacement_Player =  new Vector3(-Input.GetAxis("Vertical") , 0, Input.GetAxis("Horizontal"));
             Vector3 Vector3_Deplacement_Player = Vector3.ClampMagnitude(ConteneurCameraPositionForward + ConteneurCameraPositionRight, 1);
             if (Mathf.RoundToInt(Vector3.Dot(transform.forward, ConteneurRigibody.velocity.normalized)) == 1)
             {
-                Debug.Log("Forward");
-            }else if(Mathf.RoundToInt(Vector3.Dot(transform.forward, ConteneurRigibody.velocity.normalized)) == -1)
+                animAvatar.SetBool("Forward", true);
+                animAvatar.SetBool("Backward", false);
+
+            }
+            else if (Mathf.RoundToInt(Vector3.Dot(transform.forward, ConteneurRigibody.velocity.normalized)) == -1)
             {
-                Debug.Log("Backward");
+                animAvatar.SetBool("Backward", true);
+                animAvatar.SetBool("Forward", false);
+
             }
             else
             {
-                Debug.Log("Perpendiculaire");
+                animAvatar.SetBool("Forward", true);         
+                animAvatar.SetBool("Backward", false);
+
             }
             ConteneurRigibody.velocity = Vector3_Deplacement_Player * vitesse;
             // Debug.DrawRay(transform.position, ConteneurRigibody.velocity.normalized*20, Color.red);
-            // Debug.Log(Mathf.RoundToInt(Vector3.Dot(transform.forward, ConteneurRigibody.velocity.normalized)));
             //RigibodyAvatar.AddForce(Vector3_Deplacement_Player * Speed_Player);
         }
         else
         {
-            animAvatar.SetBool("isWalking", false);
+            animAvatar.SetBool("Forward", false);
+            animAvatar.SetBool("Backward", false);
+            ConteneurRigibody.velocity = new Vector3(0, ConteneurRigibody.velocity.y, 0);
 
         }
 
@@ -217,7 +223,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionStay(Collision other)
     {
-        if ((other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy")) && !Grounded)
+        if (other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy") &&  !Grounded)
         {
             Grounded = true;
         }
@@ -225,7 +231,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionExit(Collision other)
     {
-        if ((other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy")) && Grounded)
+        if (other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy") && Grounded)
         {
             Grounded = false;
         }
