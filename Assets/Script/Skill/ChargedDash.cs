@@ -32,11 +32,12 @@ public class ChargedDash : skill
 
     public override void UsingSkill()
     {
-        if (!Parent.GetComponent<CharacterMovement>().JustHit)
-        {
-            conteneur = gameObject;
-            isCharging = true;
-        }
+        // if (!Parent.GetComponent<CharacterMovement>().JustHit)
+        // {
+        //     
+        // }
+        conteneur = gameObject;
+        isCharging = true;
     }
 
     public override void ChargingSkill(int WhichWeapon)
