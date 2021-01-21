@@ -250,6 +250,4 @@ public class CharacterMovement : MonoBehaviour
             Grounded = false;
         }
     }
-
-
 }

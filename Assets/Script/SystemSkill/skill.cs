@@ -9,6 +9,7 @@ public class skill : MonoBehaviour
     public int IdSkill;
 
     [SerializeField] protected private float freqCharge;
+    [SerializeField] private takeCadavre parentTakeCadavre;
     protected private float chrono;
 
     public bool isCharging;
@@ -38,38 +39,68 @@ public class skill : MonoBehaviour
         {
             if (chrono >= freqCharge)
             {
-                takeCadavre TC = ressource.deadList[0].GetComponent<takeCadavre>();
-                if (TC.isMunitions)
-                {
-                    TC.isMunitions = false;
                     if (WhichWeapon == 0)
                     {
-                        TC.charge = true;
-                        TC.bombe = conteneur.transform;
+                        parentTakeCadavre.charge = true;
+                        parentTakeCadavre.bombe = conteneur.transform;
+                        parentTakeCadavre.SkillCharging();
                     }
                     else if (WhichWeapon == 1)
                     {
-                        TC.gameObject.layer = 0;
-                        TC.GetComponent<Collider>().isTrigger = true;
-                        TC.dash = true;
-                        TC.Dash = conteneur.transform;
+                        parentTakeCadavre.dash = true;
+                        parentTakeCadavre.Dash = conteneur.transform;
+                        parentTakeCadavre.SkillCharging();
                     }else if (WhichWeapon == 3)
                     {
-                        TC.gameObject.layer = 0;
-                        TC.GetComponent<Collider>().isTrigger = true;
-                        TC.ShieldProtection = true;
-                        TC.Protection = conteneur.transform;
-                    }
-                    ressource.deadList.Remove(ressource.deadList[0]);
+                        parentTakeCadavre.ShieldProtection = true;
+                        parentTakeCadavre.Protection = conteneur.transform;
+                        parentTakeCadavre.SkillCharging();
+                    } 
+                    detectDead.ressourceInt--;
                     chrono = 0;
-                }
-
-                detectDead.ressourceInt--;
             }
             else
             {
                 chrono += Time.deltaTime;
             }
+                
+                
+                
+                
+                
+                //takeCadavre TC = ressource.deadList[0].GetComponent<takeCadavre>();
+            //     int TC = detectDead.ressourceInt;
+            //     if (TC.isMunitions)
+            //     {
+            //         TC.isMunitions = false;
+            //         if (WhichWeapon == 0)
+            //         {
+            //             TC.charge = true;
+            //             TC.bombe = conteneur.transform;
+            //         }
+            //         else if (WhichWeapon == 1)
+            //         {
+            //             TC.gameObject.layer = 0;
+            //             TC.GetComponent<Collider>().isTrigger = true;
+            //             TC.dash = true;
+            //             TC.Dash = conteneur.transform;
+            //         }else if (WhichWeapon == 3)
+            //         {
+            //             TC.gameObject.layer = 0;
+            //             TC.GetComponent<Collider>().isTrigger = true;
+            //             TC.ShieldProtection = true;
+            //             TC.Protection = conteneur.transform;
+            //         }
+            //         ressource.deadList.Remove(ressource.deadList[0]);
+            //         chrono = 0;
+            //     }
+            //
+            //     detectDead.ressourceInt--;
+            // }
+            // else
+            // {
+            //     chrono += Time.deltaTime;
+            // }
         }
     }
 

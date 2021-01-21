@@ -14,6 +14,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/SystemSkill/choiceSkill.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/DashAvatar.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2DB13BA0-D523-4322-8AA9-892C408FB49A/bd/80c54866/Input.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/FMOD/src/Runtime/wrapper/fmod_studio.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/SystemSkill/buttonChoice.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/System/reticulePoint.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/ennemy/ennemyAI.cs" root0="FORCE_HIGHLIGHTING" />
@@ -25,6 +26,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/SystemSkill/skillSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Weapon/DeadProjo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/ChargedDash.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/PoisonShield.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Weapon/TirCharge.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/ImpulseCharge.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/UIRessource.cs" root0="FORCE_HIGHLIGHTING" />
@@ -32,6 +34,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Shoot/scirpt/ProjectileMoveScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/CharacterMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/detectDead.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Weapon/PoisonCollider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/shootDead.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/SystemSkill/skill.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/ShieldProtection.cs" root0="FORCE_HIGHLIGHTING" />
@@ -66,16 +69,18 @@
         <option value="$PROJECT_DIR$/Assets/Script/Skill/Shield.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Skill/ShieldCollider.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Skill/ShieldProtectionCollider.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Player/takeCadavre.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Weapon/DeadProjo.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/ennemy/ennemyAI.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/SystemSkill/skill.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/ennemy/ennemyState.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Skill/ShieldProtection.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Skill/ChargedDash.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/shootSkill.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/shootDead.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/System/CameraTarget.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Player/detectDead.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Player/takeCadavre.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Skill/ChargedDash.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/SystemSkill/skill.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Skill/PoisonShield.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Skill/ShieldProtection.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/CharacterMovement.cs" />
       </list>
     </option>
@@ -161,6 +166,7 @@
       <workItem from="1611161445613" duration="902000" />
       <workItem from="1611192058583" duration="5672000" />
       <workItem from="1611230874409" duration="5474000" />
+      <workItem from="1611237368339" duration="6853000" />
     </task>
     <servers />
   </component>
@@ -177,6 +183,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="824" y="382" key="#Notifications/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607358503496" />
+    <state x="196" y="-12" width="1342" height="1028" maximized="true" key="dock-window-1" timestamp="1611244834152">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="196" y="-12" width="1342" height="1028" maximized="true" key="dock-window-1/0.0.1920.1040/1920.-124.1920.1040@0.0.1920.1040" timestamp="1611244834152" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1611161938424">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

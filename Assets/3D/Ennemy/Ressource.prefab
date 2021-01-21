@@ -118,7 +118,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4441296243471229557}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac5e159d725323a49b7961d9aba0dd89, type: 3}
   m_Name: 
@@ -127,9 +127,11 @@ MonoBehaviour:
   isMunitions: 0
   charge: 0
   dash: 0
+  ShieldProtection: 0
   player: {fileID: 0}
   Dash: {fileID: 0}
   bombe: {fileID: 0}
+  Protection: {fileID: 0}
   threshold: 1.5
   vitesse: 10
   radiusGave: 0.1

@@ -17,6 +17,14 @@ public class PoisonShield : skill
     {
         sonPoisonShield = FMODUnity.RuntimeManager.CreateInstance(SonPoisonShield);
     }
+    
+    void Update()
+    {
+        if (detectDead.ressourceInt == 0)
+        {
+            sonPoisonShield.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
+    }
 
      public override void UsingSkill()
      {
@@ -26,20 +34,14 @@ public class PoisonShield : skill
             {
                 isActive = false;
                 SphereCollider.SetActive(false);
-                Debug.Log("Stop son poison");
                 sonPoisonShield.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-
             }
             else
             {
                 isActive = true;
                 SphereCollider.SetActive(true);
                 SphereCollider.GetComponent<PoisonCollider>().timer = 0;
-                Debug.Log("Start son poison");
                 sonPoisonShield.start();
-                
-
-
             }
         }
          

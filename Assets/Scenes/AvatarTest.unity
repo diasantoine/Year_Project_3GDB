@@ -4159,7 +4159,7 @@ GameObject:
   - component: {fileID: 411034221}
   - component: {fileID: 411034220}
   - component: {fileID: 411034218}
-  m_Layer: 15
+  m_Layer: 17
   m_Name: ShieldProtectionCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5647,7 +5647,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 1631124732}
   player: {fileID: 1095651192}
-  Canon: {fileID: 615524528}
   threshold: 7.5
 --- !u!1 &577448385
 GameObject:
@@ -5849,6 +5848,21 @@ PrefabInstance:
       propertyPath: ressource
       value: 
       objectReference: {fileID: 1940458176}
+    - target: {fileID: 5105120252955428958, guid: 9de7fdf27a4be7846a1d23b0d6274f71,
+        type: 3}
+      propertyPath: parentTakeCadavre
+      value: 
+      objectReference: {fileID: 1095651193}
+    - target: {fileID: 5105120252955428958, guid: 9de7fdf27a4be7846a1d23b0d6274f71,
+        type: 3}
+      propertyPath: TickVar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5105120252955428958, guid: 9de7fdf27a4be7846a1d23b0d6274f71,
+        type: 3}
+      propertyPath: TirDisabel
+      value: 
+      objectReference: {fileID: 1095651188}
     - target: {fileID: 5105120252955428959, guid: 9de7fdf27a4be7846a1d23b0d6274f71,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7503,6 +7517,11 @@ PrefabInstance:
       propertyPath: Canon
       value: 
       objectReference: {fileID: 615524528}
+    - target: {fileID: 603385501785221005, guid: 8650e54b5aed87248ad84653bebe98b7,
+        type: 3}
+      propertyPath: parentTakeCadavre
+      value: 
+      objectReference: {fileID: 1095651193}
     - target: {fileID: 3971526282532939895, guid: 8650e54b5aed87248ad84653bebe98b7,
         type: 3}
       propertyPath: m_Name
@@ -9563,7 +9582,7 @@ MonoBehaviour:
   preEnnemy: {fileID: 0}
   preCadavre: {fileID: 4441296243471229557, guid: 769c49c587ad566438ec968768fbe2e7,
     type: 3}
-  cam: {fileID: 0}
+  cam: {fileID: 1631124732}
   chronoMax: 0.2
 --- !u!4 &1008085602
 Transform:
@@ -10475,6 +10494,7 @@ GameObject:
   - component: {fileID: 1095651187}
   - component: {fileID: 1095651186}
   - component: {fileID: 1095651185}
+  - component: {fileID: 1095651193}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -10704,6 +10724,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1095651193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095651184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5e159d725323a49b7961d9aba0dd89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gotcha: 0
+  isMunitions: 0
+  charge: 0
+  dash: 0
+  ShieldProtection: 0
+  player: {fileID: 0}
+  Dash: {fileID: 0}
+  bombe: {fileID: 0}
+  Protection: {fileID: 0}
+  threshold: 1.5
+  vitesse: 10
+  radiusGave: 0.1
+  DmgShield: 1
+  deadD: {fileID: 0}
 --- !u!1 &1097131016
 GameObject:
   m_ObjectHideFlags: 0
@@ -13169,6 +13215,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1925898319563361555, guid: 834556059aba45f45a6b9d55611ed96e,
+        type: 3}
+      propertyPath: parentTakeCadavre
+      value: 
+      objectReference: {fileID: 1095651193}
     - target: {fileID: 6923046105467757287, guid: 834556059aba45f45a6b9d55611ed96e,
         type: 3}
       propertyPath: m_Name
@@ -17438,7 +17489,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1793176458}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8075e5e8a3bbe18488a2d5a45b654c33, type: 3}
   m_Name: 
@@ -19616,7 +19667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0342ee2c266ecbf41b25c9a5f0a9588b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1095651192}
   spawnList:
   - {fileID: 418335158}
   - {fileID: 719469108}
@@ -21591,5 +21642,10 @@ PrefabInstance:
       propertyPath: SonPoisonShield
       value: event:/PoisonShield
       objectReference: {fileID: 0}
+    - target: {fileID: 992651095280887801, guid: 9ac032004c958154688dcc6295208091,
+        type: 3}
+      propertyPath: parentTakeCadavre
+      value: 
+      objectReference: {fileID: 1095651193}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ac032004c958154688dcc6295208091, type: 3}
