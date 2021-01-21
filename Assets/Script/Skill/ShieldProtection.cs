@@ -54,7 +54,7 @@ public class ShieldProtection : skill
             BulleProtectrice.SetActive(false);
             Parent.GetComponent<CharacterMovement>().OnShieldProtection = false;
         }
-        else
+        else if(DetecList.deadList.Count>0)
         {
             isCharging = true;
             BulleProtectrice.SetActive(true);

@@ -13,6 +13,7 @@ public class ChargedDash : skill
     [SerializeField] private GameObject Parent;
     [SerializeField] private GameObject Avatar;
     [SerializeField] private int PorteMaximale;
+    [SerializeField] private GameObject Canon;
     public int Charge = 0;
     private LineRenderer lineRenderer;
     private Vector3 HitPosition;
@@ -57,15 +58,16 @@ public class ChargedDash : skill
             Ray MousePosition = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(MousePosition, out RaycastHit Hit,Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
             {
-                lineRenderer.SetPosition(0, Parent.transform.position);
+                lineRenderer.SetPosition(0, Canon.transform.position);
                 Vector3 HitPosition = Hit.point;
                 //HitPosition.y = Parent.transform.position.y;
-                HitPosition -= Parent.transform.position;
+                HitPosition -= Canon.transform.position;
                 HitPosition = HitPosition.normalized;
                 HitPosition *= PorteMaximale*(Charge/ChargeMax);
-                LastPosition = Parent.transform.position + HitPosition;
+                LastPosition = Canon.transform.position + HitPosition;
                 lineRenderer.SetPosition(1,LastPosition);
                 lineRenderer.startColor = Color.cyan;
+                //LastPosition = HitPosition;
             }
         }
     }
@@ -78,7 +80,9 @@ public class ChargedDash : skill
             {
                 Parent.GetComponent<CharacterMovement>().Aftershock = AfterShock;
             }
-            Vector3 playerToMouse = LastPosition - transform.parent.parent.position;
+            Vector3 playerToMouse = LastPosition - Canon.transform.position; //transform.parent.parent.position;
+            lineRenderer.SetPosition(1,playerToMouse);
+            Debug.DrawRay(LastPosition,transform.forward, Color.black, 500f);
             playerToMouse.y = 0;
             playerToMouse = playerToMouse.normalized;
             //playerToMouse *= (Charge / ChargeMax);

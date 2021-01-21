@@ -35,6 +35,7 @@ public class CharacterMovement : MonoBehaviour
     public Transform SpawnPositionPlayer;
 
     [SerializeField] private Animator animAvatar;
+    [SerializeField] private GameObject Canon;
 
 
     public bool Aftershock;
@@ -150,13 +151,11 @@ public class CharacterMovement : MonoBehaviour
             animAvatar.SetBool("Forward", false);
             animAvatar.SetBool("Backward", false);
 
-            if (!JustHit)
+            if (!JustHit && !OnDash)
             {
                 ConteneurRigibody.velocity = new Vector3(0, ConteneurRigibody.velocity.y, 0);
 
             }
-
-
         }
 
         if (!Grounded && !OnDash)
@@ -191,9 +190,10 @@ public class CharacterMovement : MonoBehaviour
     {
         if (OnDash)
         {
-            if (Vector3.Distance(HitPosition, transform.position) < 0.5f && HitPosition != new Vector3())
+            Debug.Log(Vector3.Distance(HitPosition, Canon.transform.position));
+            if (Vector3.Distance(HitPosition, Canon.transform.position) < 0.5f && HitPosition != new Vector3())
             {
-                ConteneurRigibody.velocity = ConteneurRigibody.velocity.normalized * vitesse;
+                ConteneurRigibody.velocity = ConteneurRigibody.velocity.normalized * vitesse * 0;
                 //ConteneurRigibody.constraints = RigidbodyConstraints.FreezeAll;
                 JustFinishedDash = true;
                 OnDash = false;
