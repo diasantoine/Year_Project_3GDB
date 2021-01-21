@@ -6,12 +6,15 @@ public class Data_SD : MonoBehaviour
 {
 
     [FMODUnity.EventRef]
+    public string Ambiance = "";
+
+    [FMODUnity.EventRef]
     public string footStep = "";
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        FMODUnity.RuntimeManager.PlayOneShot(Ambiance, transform.position);
     }
 
     // Update is called once per frame

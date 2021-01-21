@@ -37,10 +37,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD_PODLAB/FMOD_PODLAB_Year_Projectt/FMOD_PODLAB/Build/Desktop/Master.bank
   Name: Master
-  lastModified: 637467919976482850
+  lastModified: 637468538177404854
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &-5815243264688127412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Lights
+  m_EditorClassIdentifier: 
+  Path: event:/Lights
+  guid: e1157f52cb29044387df49b952aa76f6
+  Banks:
+  - {fileID: -6639937667616358054}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 15
+  Length: 54683
 --- !u!114 &-5190969414953019947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,11 +101,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD_PODLAB/FMOD_PODLAB_Year_Projectt/FMOD_PODLAB/Build/Desktop/Master.strings.bank
   Name: Master.strings
-  lastModified: 637467919976492807
+  lastModified: 637468538177424783
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 982
+    Value: 1108
   Exists: 1
 --- !u!114 &-2743512074893303403
 MonoBehaviour:
@@ -153,6 +176,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1641
+--- !u!114 &-586274607248233076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambiance
+  m_EditorClassIdentifier: 
+  Path: event:/Ambiance
+  guid: 4b6fdccacb9cbb45ba15f91686c3751e
+  Banks:
+  - {fileID: -6639937667616358054}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 145296
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,12 +221,15 @@ MonoBehaviour:
   - {fileID: 3743324231664270762}
   - {fileID: -7075543804356524481}
   - {fileID: -691932408803547495}
+  - {fileID: -586274607248233076}
+  - {fileID: -5815243264688127412}
+  - {fileID: 3355194235912775395}
   EditorParameters: []
   MasterBanks:
   - {fileID: -6639937667616358054}
   StringsBanks:
   - {fileID: -4753088208096374989}
-  stringsBankWriteTime: 637467919976492807
+  stringsBankWriteTime: 637468538177424783
   cacheVersion: 5
 --- !u!114 &2639607439694556820
 MonoBehaviour:
@@ -196,6 +245,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/TIRE
   guid: 3fa859def3857b41994059e622dad2a7
+  Banks:
+  - {fileID: -6639937667616358054}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 333
+--- !u!114 &3355194235912775395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TIRE_SHOTGUN
+  m_EditorClassIdentifier: 
+  Path: event:/TIRE_SHOTGUN
+  guid: f9c7b86ca5a47648b7a7331a0dd8d9de
   Banks:
   - {fileID: -6639937667616358054}
   IsStream: 0
