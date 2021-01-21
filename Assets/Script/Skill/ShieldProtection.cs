@@ -54,6 +54,7 @@ public class ShieldProtection : skill
             Tick = 1;
             BulleProtectrice.SetActive(false);
             Parent.GetComponent<CharacterMovement>().OnShieldProtection = false;
+            Parent.GetComponent<CharacterMovement>().ConteneurRigibody.mass = 1;
             TirDisabel.enabled = true;
         }
         else if(detectDead.ressourceInt>0)
@@ -61,6 +62,7 @@ public class ShieldProtection : skill
             isCharging = true;
             BulleProtectrice.SetActive(true);
             Parent.GetComponent<CharacterMovement>().OnShieldProtection = true;
+            Parent.GetComponent<CharacterMovement>().ConteneurRigibody.mass = 250;
             TirDisabel.enabled = false;
             conteneur = gameObject;
         }

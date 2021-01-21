@@ -7,9 +7,11 @@ public class UIRessource : MonoBehaviour
 {
     // Start is called before the first frame update
     private int CountChanged;
+    private Vector3 ConteneurScale;
     void Start()
     {
         CountChanged = detectDead.ressourceInt;
+        ConteneurScale = transform.localScale;
     }
 
     // Update is called once per frame
