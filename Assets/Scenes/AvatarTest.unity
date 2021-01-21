@@ -12817,7 +12817,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1532689466}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb73b268641e89b478708c35bbfbbe99, type: 3}
   m_Name: 
@@ -15014,7 +15014,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1793176458}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8075e5e8a3bbe18488a2d5a45b654c33, type: 3}
   m_Name: 
@@ -18954,6 +18954,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 992651095280887801, guid: 9ac032004c958154688dcc6295208091,
+        type: 3}
+      propertyPath: SonPoisonShield
+      value: event:/PoisonShield
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ac032004c958154688dcc6295208091, type: 3}

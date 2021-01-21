@@ -13,10 +13,7 @@ public class SpawnPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(transform.parent);
-        player = GameObject.Find("Player").transform;
         player.position = gameObject.transform.position;
-        player.GetComponent<CharacterMovement>().SpawnPositionPlayer = transform.position;
         SEB = GameObject.Find("SpawnSystem").GetComponent<spawnEnnemyBasique>();
 
         if (spawnList.Count > 0)

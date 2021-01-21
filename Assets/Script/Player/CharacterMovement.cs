@@ -32,7 +32,7 @@ public class CharacterMovement : MonoBehaviour
     private float Compteur3 = 0;
     [SerializeField] private GameObject Avatar;
     public Vector3 HitPosition = new Vector3();
-    public Vector3 SpawnPositionPlayer;
+    public Transform SpawnPositionPlayer;
 
     [SerializeField] private Animator animAvatar;
 
@@ -102,7 +102,7 @@ public class CharacterMovement : MonoBehaviour
         }
         if (transform.position.y<=-6)
         {
-            transform.position = SpawnPositionPlayer;
+            transform.position = SpawnPositionPlayer.position;
             //SetCursorPos(xPos,yPos);//Call this when you want to set the mouse position
             if (OnDash)
             {

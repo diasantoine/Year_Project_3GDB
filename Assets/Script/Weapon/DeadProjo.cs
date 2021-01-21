@@ -84,7 +84,15 @@ public class DeadProjo : MonoBehaviour
             }
           
             FMODUnity.RuntimeManager.PlayOneShot(TireTouche, transform.position);
-            collision.gameObject.GetComponent<ennemyState>().damage(dégat);
+            if (collision.gameObject.GetComponent<ennemyState>() != null)
+            {
+                collision.gameObject.GetComponent<ennemyState>().damage(dégat);
+
+            }
+            else
+            {
+                collision.gameObject.GetComponent<damageTuto>().damage(dégat);
+            }
         }
     }
 
