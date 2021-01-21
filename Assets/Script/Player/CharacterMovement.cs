@@ -151,7 +151,7 @@ public class CharacterMovement : MonoBehaviour
             animAvatar.SetBool("Forward", false);
             animAvatar.SetBool("Backward", false);
 
-            if (!JustHit && !OnDash)
+            if (!JustHit && !OnDash && Grounded)
             {
                 ConteneurRigibody.velocity = new Vector3(0, ConteneurRigibody.velocity.y, 0);
 
@@ -190,10 +190,10 @@ public class CharacterMovement : MonoBehaviour
     {
         if (OnDash)
         {
-            Debug.Log(Vector3.Distance(HitPosition, Canon.transform.position));
-            if (Vector3.Distance(HitPosition, Canon.transform.position) < 0.5f && HitPosition != new Vector3())
+            if (Vector3.Distance(HitPosition, new Vector3(transform.position.x, Canon.transform.position.y,transform.position.z)) 
+                < 0.5f && HitPosition != new Vector3())
             {
-                ConteneurRigibody.velocity = ConteneurRigibody.velocity.normalized * vitesse * 0;
+                ConteneurRigibody.velocity = ConteneurRigibody.velocity.normalized * vitesse;
                 //ConteneurRigibody.constraints = RigidbodyConstraints.FreezeAll;
                 JustFinishedDash = true;
                 OnDash = false;

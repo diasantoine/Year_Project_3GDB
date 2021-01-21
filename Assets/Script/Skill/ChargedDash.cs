@@ -80,6 +80,18 @@ public class ChargedDash : skill
             {
                 Parent.GetComponent<CharacterMovement>().Aftershock = AfterShock;
             }
+            if (Physics.Raycast(rayon, out RaycastHit Hit,Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
+            {
+                Vector3 HitPosition = Hit.point;
+                //HitPosition.y = Parent.transform.position.y;
+                HitPosition -= Canon.transform.position;
+                HitPosition = HitPosition.normalized;
+                HitPosition *= PorteMaximale*(Charge/ChargeMax);
+                LastPosition = Canon.transform.position + HitPosition;
+                lineRenderer.SetPosition(1,LastPosition);
+                lineRenderer.startColor = Color.cyan;
+                //LastPosition = HitPosition;
+            }
             Vector3 playerToMouse = LastPosition - Canon.transform.position; //transform.parent.parent.position;
             lineRenderer.SetPosition(1,playerToMouse);
             Debug.DrawRay(LastPosition,transform.forward, Color.black, 500f);

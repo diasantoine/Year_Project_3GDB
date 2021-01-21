@@ -153,6 +153,7 @@ public class shootDead : MonoBehaviour
                 {
                     if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
                     {
+                        Debug.Log(floorHit.transform.name);
                         if (i != 0)
                         {
                             if (i%2 == 0)
