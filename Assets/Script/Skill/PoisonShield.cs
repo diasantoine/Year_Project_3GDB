@@ -12,10 +12,15 @@ public class PoisonShield : skill
     public string SonPoisonShield = "";
     FMOD.Studio.EventInstance sonPoisonShield;
 
+    [SerializeField] private GameObject poisonCloud;
+    private GameObject cloudNow;
+
     // Start is called before the first frame update
     void Start()
     {
         sonPoisonShield = FMODUnity.RuntimeManager.CreateInstance(SonPoisonShield);
+        
+
     }
     
     void Update()
@@ -23,18 +28,28 @@ public class PoisonShield : skill
         if (detectDead.ressourceInt == 0)
         {
             sonPoisonShield.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            SphereCollider.SetActive(false);
+            isActive = false;
+            if (cloudNow != null)
+            {
+                cloudNow.GetComponent<ParticleSystem>().Stop();
+                Destroy(cloudNow, 2);
+            }
         }
     }
 
      public override void UsingSkill()
      {
-        if(detectDead.ressourceInt >= 0)
+        if(detectDead.ressourceInt > 0)
         {
             if (isActive)
             {
                 isActive = false;
                 SphereCollider.SetActive(false);
                 sonPoisonShield.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                cloudNow.GetComponent<ParticleSystem>().Stop();
+                Destroy(cloudNow, 2);
+
             }
             else
             {
@@ -42,11 +57,10 @@ public class PoisonShield : skill
                 SphereCollider.SetActive(true);
                 SphereCollider.GetComponent<PoisonCollider>().timer = 0;
                 sonPoisonShield.start();
+                cloudNow = Instantiate(poisonCloud, transform.position + new Vector3(0, 0.5f, 0), poisonCloud.transform.rotation);
             }
         }
          
-        //lancement la fonction
-        // si fonction déjà en route tu stops
     }
      
 
