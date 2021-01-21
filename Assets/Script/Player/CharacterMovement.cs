@@ -229,7 +229,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if ((other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy")) && !Grounded)
+        if ((other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy"))  || other.transform.CompareTag("Mur") && !Grounded)
         {
             Grounded = true;
         }
@@ -237,7 +237,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionStay(Collision other)
     {
-        if (other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy") &&  !Grounded)
+        if (other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy") || other.transform.CompareTag("Mur") &&  !Grounded)
         {
             Grounded = true;
         }
@@ -245,11 +245,9 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionExit(Collision other)
     {
-        if (other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy") && Grounded)
+        if (other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy") || other.transform.CompareTag("Mur") && Grounded)
         {
             Grounded = false;
         }
     }
-
-
 }

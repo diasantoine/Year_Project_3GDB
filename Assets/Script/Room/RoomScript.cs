@@ -14,6 +14,10 @@ public class RoomScript : MonoBehaviour
 
     private spawnEnnemyBasique spawnScript;
 
+    [SerializeField] private GameObject door;
+    [SerializeField] private GameObject doorNext;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,12 +53,18 @@ public class RoomScript : MonoBehaviour
             if (spawnScript.vagueFini)
             {
                 col.isTrigger = true;
-                gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+                door.GetComponent<MeshRenderer>().enabled = true;
+                doorNext.GetComponent<MeshRenderer>().enabled = true;
+
+
             }
             else
             {
                 col.isTrigger = false;
-                gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+                door.GetComponent<MeshRenderer>().enabled = false;
+                doorNext.GetComponent<MeshRenderer>().enabled = false;
+
+
 
             }
         }
@@ -73,7 +83,10 @@ public class RoomScript : MonoBehaviour
             else
             {
                 col.enabled = false;
-                gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                door.GetComponent<MeshRenderer>().enabled = false;
+                doorNext.GetComponent<MeshRenderer>().enabled = false;
+
+
             }
         }
 
