@@ -90,7 +90,7 @@ public class ennemyAI : MonoBehaviour
             }
             else
             {
-                if (ConteneurRigibody.velocity.magnitude < 1f )
+                if (ConteneurRigibody.velocity.magnitude < 2f )
                 {
                     if (Pansement)
                     {
@@ -210,7 +210,7 @@ public class ennemyAI : MonoBehaviour
             {
                 JustHit = true;
                 agent.enabled = false;
-                ConteneurRigibody.velocity *= ImpactTirNormal*1.5f;
+                ConteneurRigibody.velocity *= ImpactTirNormal;
             }
             else
             {

@@ -52,7 +52,7 @@ public class CharacterMovement : MonoBehaviour
         DashFinishCheck();
         if (JustFinishedDash)
         {
-            if (Compteur<=0.4f)
+            if (Compteur<=0.6f)
             {
                 Compteur += Time.deltaTime;
             }
@@ -191,7 +191,7 @@ public class CharacterMovement : MonoBehaviour
         if (OnDash)
         {
             if (Vector3.Distance(HitPosition, new Vector3(transform.position.x, Canon.transform.position.y,transform.position.z)) 
-                < 0.5f && HitPosition != new Vector3())
+                < 1f && HitPosition != new Vector3())
             {
                 ConteneurRigibody.velocity = ConteneurRigibody.velocity.normalized * vitesse;
                 //ConteneurRigibody.constraints = RigidbodyConstraints.FreezeAll;
@@ -199,7 +199,7 @@ public class CharacterMovement : MonoBehaviour
                 OnDash = false;
                 GetComponent<CapsuleCollider>().enabled = !enabled;
                 Avatar.layer = 9;
-                tag = "Untagged";
+                tag = "Player";
                 ConteneurRigibody.useGravity = true;
                 ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 if (Aftershock)
@@ -215,7 +215,7 @@ public class CharacterMovement : MonoBehaviour
                 OnDash = false;
                 GetComponent<CapsuleCollider>().enabled = !enabled;
                 Avatar.layer = 9;
-                tag = "Untagged";
+                tag = "Player";
                 ConteneurRigibody.useGravity = true;
                 ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 if (Aftershock)

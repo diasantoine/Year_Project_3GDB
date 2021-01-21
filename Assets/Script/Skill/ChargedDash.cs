@@ -103,7 +103,7 @@ public class ChargedDash : skill
             Avatar.layer = 12;
             Parent.GetComponent<CapsuleCollider>().enabled = enabled;
             Destroy(Parent.GetComponent<LineRenderer>());
-            Parent.tag = "Player";
+            Parent.tag = "Dash";
             ConteneurRigibody.useGravity = false;
             ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             ConteneurRigibody.velocity = playerToMouse * DashSpeed;
