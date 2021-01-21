@@ -145,7 +145,8 @@ public class ennemyAI : MonoBehaviour
         var rayDirection = this.player.transform.position - transform.position;
         if (Vector3.Angle(rayDirection, transform.forward) < this.FieldOfView && 
             Vector3.Distance(transform.position, player.transform.position) < 30f && !player.GetComponent<CharacterMovement>().OnDash
-            &&!player.GetComponent<CharacterMovement>().JustFinishedDash && !player.GetComponent<CharacterMovement>().OnShieldProtection)
+            &&!player.GetComponent<CharacterMovement>().JustFinishedDash && !player.GetComponent<CharacterMovement>().OnShieldProtection
+            && player.GetComponent<CharacterMovement>().Grounded)
         {
             // Detect if player is within the field of view
             if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, Mathf.Infinity,LayerMask.GetMask("Player")))

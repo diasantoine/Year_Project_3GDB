@@ -21,7 +21,7 @@ public class CharacterMovement : MonoBehaviour
 
     public Rigidbody ConteneurRigibody;
 
-    [SerializeField] private bool Grounded;
+    [SerializeField] public bool Grounded;
     public bool OnDash = false;
     public bool JustFinishedDash = false;
     public bool JustHit = false;
@@ -48,7 +48,7 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+      Debug.Log(Grounded);
         DashFinishCheck();
         if (JustFinishedDash)
         {
@@ -226,28 +226,11 @@ public class CharacterMovement : MonoBehaviour
             //GetComponent<LineRenderer>().enabled = false;
         }
     }
-
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if ((other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy"))  || other.transform.CompareTag("Mur") && !Grounded)
+        if (other.transform.CompareTag("DeathFall"))
         {
-            Grounded = true;
-        }
-    }
-
-    private void OnCollisionStay(Collision other)
-    {
-        if (other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy") || other.transform.CompareTag("Mur") &&  !Grounded)
-        {
-            Grounded = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision other)
-    {
-        if (other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy") || other.transform.CompareTag("Mur") && Grounded)
-        {
-            Grounded = false;
+            transform.position = SpawnPositionPlayer.position;
         }
     }
 }

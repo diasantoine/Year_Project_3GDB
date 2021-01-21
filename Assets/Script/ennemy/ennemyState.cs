@@ -47,6 +47,8 @@ public class ennemyState : MonoBehaviour
     [SerializeField] private float freqTick;
     [HideInInspector] public float dpsTick;
 
+    private bool Fall = false;
+
 
     // Start is called before the first frame update
 
@@ -112,11 +114,9 @@ public class ennemyState : MonoBehaviour
             Destroy(gameObject);
             for (int i = 1; i <= numberCadav; i++)
             {
-                if (transform.position.y<= -10)
+                if (Fall)
                 {
-                    Instantiate(preDead, new Vector3(player.position.x + 1, player.position.y, player.position.z)
-                                         + new Vector3(0, 0, écart * 1.25f), 
-                        Quaternion.identity, GameObject.Find("CadavreParent").transform);
+                    Instantiate(preDead, player.position,Quaternion.identity, GameObject.Find("CadavreParent").transform);
                 }
                 else
                 {
@@ -164,7 +164,16 @@ public class ennemyState : MonoBehaviour
         }
 
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("DeathFall"))
+        {
+            hpNow = 0;
+            Fall = true;
+        }
+    }
+
     /*void MoveSansRigidboy()
     {
         if (Grounded)

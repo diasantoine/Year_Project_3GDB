@@ -7,6 +7,11 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="2D" t="Include">
+          <e p="Material" t="Include">
+            <e p="AlwaysVisible.shader" t="Include" />
+          </e>
+        </e>
         <e p="3D" t="Include">
           <e p="effect" t="Include">
             <e p="GabrielAguiarProductions" t="Include">
@@ -21,6 +26,23 @@
                   <e p="AlphaBlendedMobile_Scroll01.shader" t="Include" />
                 </e>
               </e>
+            </e>
+          </e>
+        </e>
+        <e p="BrokenVector" t="Include">
+          <e p="UltimateDungeonPack" t="Include">
+            <e p="Scenes" t="Include">
+              <e p="Demo" t="Include">
+                <e p="FPControls" t="Include">
+                  <e p="Scripts" t="Include">
+                    <e p="CharacterController.cs" t="Include" />
+                    <e p="MouseCamLook.cs" t="Include" />
+                  </e>
+                </e>
+              </e>
+            </e>
+            <e p="Scripts" t="Include">
+              <e p="LightImprove.cs" t="Include" />
             </e>
           </e>
         </e>
@@ -196,6 +218,8 @@
             <e p="CharacterMovement.cs" t="Include" />
             <e p="DashAvatar.cs" t="Include" />
             <e p="detectDead.cs" t="Include" />
+            <e p="GroundDetect.cs" t="Include" />
+            <e p="seeThrought.cs" t="Include" />
             <e p="shootDead.cs" t="Include" />
             <e p="shootSkill.cs" t="Include" />
             <e p="takeCadavre.cs" t="Include" />
@@ -250,6 +274,12 @@
             <e p="SaveParticleSystemScript.cs" t="Include" />
             <e p="Serializables.cs" t="Include" />
             <e p="SpawnProjectilesScript.cs" t="Include" />
+          </e>
+        </e>
+        <e p="tranparentWall.cs" t="Include" />
+        <e p="Ultra Emissive Particles Shader" t="Include">
+          <e p="Shaders" t="Include">
+            <e p="ParticleEmmissive.shader" t="Include" />
           </e>
         </e>
         <e p="Velocity.cs" t="Include" />
