@@ -2448,6 +2448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4707606295407609060}
   - component: {fileID: 26755709228041981}
+  - component: {fileID: 2816127432476408871}
   m_Layer: 0
   m_Name: Script
   m_TagString: Untagged
@@ -2463,13 +2464,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5238673994791729036}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 398157390609073130}
-  - {fileID: 7837824883627240045}
+  m_LocalPosition: {x: 0, y: 0, z: 31.9}
+  m_LocalScale: {x: 22.751, y: 15.79, z: 60.297523}
+  m_Children: []
   m_Father: {fileID: 6960505330010952999}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &26755709228041981
 MonoBehaviour:
@@ -2484,11 +2483,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Room: 1
-  col: {fileID: 5472278283707966170}
+  col: {fileID: 2816127432476408871}
   spawnEnnemy:
   - {fileID: 831562194947388385}
   - {fileID: 1228325674249662154}
   - {fileID: 1535021171641209602}
+  door: {fileID: 0}
+  doorNext: {fileID: 0}
+--- !u!65 &2816127432476408871
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238673994791729036}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5317974890236829106
 GameObject:
   m_ObjectHideFlags: 0
@@ -3573,6 +3587,7 @@ Transform:
   - {fileID: 3940022676638299097}
   - {fileID: 4486794323655871406}
   - {fileID: 1228195441006995450}
+  - {fileID: 398157390609073130}
   - {fileID: 4707606295407609060}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -3752,50 +3767,6 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6960505331261758898}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &7000082411805129325
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7837824883627240045}
-  - component: {fileID: 5472278283707966170}
-  m_Layer: 0
-  m_Name: Box 1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7837824883627240045
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7000082411805129325}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 5.4, z: 32.13}
-  m_LocalScale: {x: 15.914973, y: 14.25, z: 61.132496}
-  m_Children: []
-  m_Father: {fileID: 4707606295407609060}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5472278283707966170
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7000082411805129325}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
@@ -4249,15 +4220,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7477166223349829096}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 831562194947388385}
   - {fileID: 1228325674249662154}
   - {fileID: 1535021171641209602}
-  m_Father: {fileID: 4707606295407609060}
-  m_RootOrder: 0
+  m_Father: {fileID: 6960505330010952999}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7496900698143134211
 GameObject:

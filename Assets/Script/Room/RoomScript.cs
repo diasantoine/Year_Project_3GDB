@@ -53,16 +53,16 @@ public class RoomScript : MonoBehaviour
             if (spawnScript.vagueFini)
             {
                 col.isTrigger = true;
-                door.GetComponent<MeshRenderer>().enabled = true;
-                doorNext.GetComponent<MeshRenderer>().enabled = true;
+                door.GetComponent<MeshRenderer>().enabled = false;
+                doorNext.GetComponent<MeshRenderer>().enabled = false;
 
 
             }
             else
             {
                 col.isTrigger = false;
-                door.GetComponent<MeshRenderer>().enabled = false;
-                doorNext.GetComponent<MeshRenderer>().enabled = false;
+                door.GetComponent<MeshRenderer>().enabled = true;
+                doorNext.GetComponent<MeshRenderer>().enabled = true;
 
 
 
@@ -83,8 +83,8 @@ public class RoomScript : MonoBehaviour
             else
             {
                 col.enabled = false;
-                door.GetComponent<MeshRenderer>().enabled = false;
-                doorNext.GetComponent<MeshRenderer>().enabled = false;
+                door.SetActive(false);
+                doorNext.SetActive(false);
 
 
             }
