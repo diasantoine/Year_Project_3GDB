@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,13 +16,14 @@ public class ChargedDash : skill
     [SerializeField] private GameObject Avatar;
     [SerializeField] private int PorteMaximale;
     [SerializeField] private GameObject Canon;
-    [SerializeField] private GameObject SpriteDashFeedback;
     public int Charge = 0;
     private LineRenderer lineRenderer;
     private Vector3 HitPosition;
     private Vector3 LastPosition;
     public bool AfterShock = false;
+    [SerializeField] private Material BRO;
     private int LastCharge = 0;
+    private Vector3 StockLastPosition = new Vector3();
     void Start()
     {
         
@@ -31,6 +33,23 @@ public class ChargedDash : skill
     void Update()
     {
         
+    }
+
+    IEnumerator LineDraw()
+    {
+        float t = 0;
+        float time = freqCharge*ChargeMax;
+        Vector3 orig = lineRenderer.GetPosition(0);
+        Vector3 orig2 = lineRenderer.GetPosition(1);
+        lineRenderer.SetPosition(1, orig);
+        Vector3 newpos;
+        for (; t < time; t += Time.deltaTime)
+        {
+            newpos = Vector3.Lerp(orig, orig2, t / time);
+            lineRenderer.SetPosition(1, newpos);
+            yield return null;
+        }
+        lineRenderer.SetPosition(1, orig2);
     }
 
     public override void UsingSkill()
@@ -60,26 +79,50 @@ public class ChargedDash : skill
                 Parent.GetComponent<LineRenderer>().enabled = true;
             }
 
-            if (LastCharge!= Charge)
-            {
-                LastCharge = Charge;
-                float Distance = Vector3.Distance(LastPosition,Canon.transform.position);
-                SpriteDashFeedback.transform.localScale += new Vector3(2*(Charge/ChargeMax),0,0);
-            }
+
             Ray MousePosition = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(MousePosition, out RaycastHit Hit,Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
             {
-                lineRenderer.SetPosition(0, Canon.transform.position);
+                lineRenderer.SetPosition(0,Canon.transform.position);
                 Vector3 HitPosition = Hit.point;
                 //HitPosition.y = Parent.transform.position.y;
                 HitPosition -= Canon.transform.position;
                 HitPosition = HitPosition.normalized;
+                //StockLastPosition = (HitPosition * PorteMaximale) + Canon.transform.position;
                 HitPosition *= PorteMaximale*(Charge/ChargeMax);
                 LastPosition = Canon.transform.position + HitPosition;
                 lineRenderer.SetPosition(1,LastPosition);
-                lineRenderer.startColor = Color.cyan;
+                //lineRenderer.startColor = Color.cyan;
+                lineRenderer.material = BRO;
+                lineRenderer.startWidth = 2;
                 //LastPosition = HitPosition;
+                //StartCoroutine(LineDraw());
             }
+
+                // float t = 0;
+                // float time = 0.2f;
+                // Vector3 orig = lineRenderer.GetPosition(0);
+                // Vector3 orig2 = lineRenderer.GetPosition(1);
+                // lineRenderer.SetPosition(1, orig);
+                // Vector3 newpos;
+                // for (; t < time; t += Time.deltaTime)
+                // {
+                //     newpos = Vector3.Lerp(orig, orig2, t / time);
+                //     lineRenderer.SetPosition(1, newpos);
+                // }
+                // lineRenderer.SetPosition(1, orig2);
+                
+                // if (Pourcentage<1)
+                // {
+                //     Mathf.Clamp(Pourcentage += Time.deltaTime,0,1);
+                //     StockLastPosition = new Vector3(LastPosition.x*Pourcentage, LastPosition.y*Pourcentage, LastPosition.z*Pourcentage);
+                //     lineRenderer.SetPosition(1,StockLastPosition);
+                // }
+                // else
+                // {
+                //     StockLastPosition = new Vector3(LastPosition.x, LastPosition.y, LastPosition.z);
+                //     lineRenderer.SetPosition(1,StockLastPosition);
+                // }
         }
     }
 
@@ -93,6 +136,7 @@ public class ChargedDash : skill
             }
             if (Physics.Raycast(rayon, out RaycastHit Hit,Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
             {
+                lineRenderer.SetPosition(0, Canon.transform.position);
                 Vector3 HitPosition = Hit.point;
                 //HitPosition.y = Parent.transform.position.y;
                 HitPosition -= Canon.transform.position;
@@ -100,19 +144,20 @@ public class ChargedDash : skill
                 HitPosition *= PorteMaximale*(Charge/ChargeMax);
                 LastPosition = Canon.transform.position + HitPosition;
                 lineRenderer.SetPosition(1,LastPosition);
-                lineRenderer.startColor = Color.cyan;
-                //LastPosition = HitPosition;
+                //lineRenderer.startColor = Color.cyan;
+                lineRenderer.material = BRO;
+                lineRenderer.startWidth = 2;
             }
-            SpriteDashFeedback.transform.localScale = 
-                new Vector3(0,6,6);
+            float Distance = Vector3.Distance(LastPosition, Canon.transform.position);
             Vector3 playerToMouse = LastPosition - Canon.transform.position; //transform.parent.parent.position;
-            lineRenderer.SetPosition(1,playerToMouse);
             Debug.DrawRay(LastPosition,transform.forward, Color.black, 500f);
             playerToMouse.y = 0;
             playerToMouse = playerToMouse.normalized;
             //playerToMouse *= (Charge / ChargeMax);
             Parent.GetComponent<CharacterMovement>().OnDash = true;
             Parent.GetComponent<CharacterMovement>().HitPosition = LastPosition;
+            Parent.GetComponent<CharacterMovement>().DistanceDash = Distance;
+            Parent.GetComponent<CharacterMovement>().PointOrigine = Canon.transform.position;
             Avatar.layer = 12;
             Parent.GetComponent<CapsuleCollider>().enabled = enabled;
             Destroy(Parent.GetComponent<LineRenderer>());
