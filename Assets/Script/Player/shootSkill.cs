@@ -11,7 +11,7 @@ public class shootSkill : MonoBehaviour
     
     [SerializeField] private detectDead detectD;
 
-    [SerializeField]
+    [SerializeField] private UISkill UI;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +40,7 @@ public class shootSkill : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Tab))
                 {
                     skillSystem.changeSKill();
+                    UI.changeSKill(skillSystem.skillID);
                 }
             }
 
