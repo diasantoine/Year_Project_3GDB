@@ -22,6 +22,9 @@ public class TirCharge : MonoBehaviour
 
     private Vector3 hitPoint;
 
+    [FMODUnity.EventRef]
+    public string TirCharge_Impact = "";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +44,7 @@ public class TirCharge : MonoBehaviour
         {
             //ExplosionTahLesFous(other);
             ImpulsionTahLesfous(other);
-
+            FMODUnity.RuntimeManager.PlayOneShot(TirCharge_Impact, transform.position);
         }
 
     }

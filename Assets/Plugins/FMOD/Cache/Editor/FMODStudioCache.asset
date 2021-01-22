@@ -60,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD_PODLAB/FMOD_PODLAB_Year_Projectt/FMOD_PODLAB/Build/Desktop/Master.bank
   Name: Master
-  lastModified: 637469083049152199
+  lastModified: 637469210670366726
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -124,12 +124,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD_PODLAB/FMOD_PODLAB_Year_Projectt/FMOD_PODLAB/Build/Desktop/Master.strings.bank
   Name: Master.strings
-  lastModified: 637469083049172169
+  lastModified: 637469210670386669
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1156
+    Value: 1356
   Exists: 1
+--- !u!114 &-3934129662978126101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TirCharge_Impact
+  m_EditorClassIdentifier: 
+  Path: event:/TirCharge_Impact
+  guid: 094abf175fc9fb4c95abc8967a2ac1d8
+  Banks:
+  - {fileID: -6639937667616358054}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0.6
+  MaxDistance: 25
+  Length: 3484
 --- !u!114 &-2743512074893303403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,6 +245,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 145296
+--- !u!114 &-548750883479095874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TirCharge_Tir
+  m_EditorClassIdentifier: 
+  Path: event:/TirCharge_Tir
+  guid: 5a5746cf3f03e3418123739acbf8088c
+  Banks:
+  - {fileID: -6639937667616358054}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1385
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,21 +286,47 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: -5190969414953019947}
   - {fileID: -1285600416485939621}
-  - {fileID: 2639607439694556820}
   - {fileID: 3743324231664270762}
   - {fileID: -7075543804356524481}
   - {fileID: -691932408803547495}
   - {fileID: -586274607248233076}
   - {fileID: -5815243264688127412}
-  - {fileID: 3355194235912775395}
   - {fileID: -9014697298221564072}
+  - {fileID: 7105876016951794586}
+  - {fileID: -3934129662978126101}
+  - {fileID: 5215063967262524155}
+  - {fileID: -548750883479095874}
+  - {fileID: 4227875738319004912}
+  - {fileID: 4711552741596368270}
   EditorParameters: []
   MasterBanks:
   - {fileID: -6639937667616358054}
   StringsBanks:
   - {fileID: -4753088208096374989}
-  stringsBankWriteTime: 637469083049172169
+  stringsBankWriteTime: 637469210670386669
   cacheVersion: 5
+--- !u!114 &1387076795254091687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TIRCharge_Tir
+  m_EditorClassIdentifier: 
+  Path: event:/TIRCharge_Tir
+  guid: 5a5746cf3f03e3418123739acbf8088c
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1385
 --- !u!114 &2639607439694556820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,8 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/TIRE
   guid: 3fa859def3857b41994059e622dad2a7
-  Banks:
-  - {fileID: -6639937667616358054}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -292,8 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/TIRE_SHOTGUN
   guid: f9c7b86ca5a47648b7a7331a0dd8d9de
-  Banks:
-  - {fileID: -6639937667616358054}
+  Banks: []
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -324,3 +394,117 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 100
   Length: 227
+--- !u!114 &4227875738319004912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TirCharge_Charge
+  m_EditorClassIdentifier: 
+  Path: event:/TirCharge_Charge
+  guid: 8a5711658c299648aef59446387d4b5d
+  Banks:
+  - {fileID: -6639937667616358054}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 13301
+--- !u!114 &4711552741596368270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TirE_SHOTGUN
+  m_EditorClassIdentifier: 
+  Path: event:/TirE_SHOTGUN
+  guid: f9c7b86ca5a47648b7a7331a0dd8d9de
+  Banks:
+  - {fileID: -6639937667616358054}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 407
+--- !u!114 &5215063967262524155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TirE
+  m_EditorClassIdentifier: 
+  Path: event:/TirE
+  guid: 3fa859def3857b41994059e622dad2a7
+  Banks:
+  - {fileID: -6639937667616358054}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 333
+--- !u!114 &5610300141484635781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TIRCharge_Charge
+  m_EditorClassIdentifier: 
+  Path: event:/TIRCharge_Charge
+  guid: 8a5711658c299648aef59446387d4b5d
+  Banks: []
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 13301
+--- !u!114 &7105876016951794586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambiance_MultipleWaterDrops
+  m_EditorClassIdentifier: 
+  Path: event:/Ambiance_MultipleWaterDrops
+  guid: ffb5066583e4db4aa53f881cd0ebf373
+  Banks:
+  - {fileID: -6639937667616358054}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3968

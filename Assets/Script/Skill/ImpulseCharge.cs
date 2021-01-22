@@ -8,16 +8,24 @@ public class ImpulseCharge : skill
     [SerializeField] private GameObject preProjo;
     [SerializeField] private Transform canonCharge;
 
+    [FMODUnity.EventRef]
+    public string TirCharge_Charge = "";
+    FMOD.Studio.EventInstance _TirCharge_Charge;
+
+    [FMODUnity.EventRef]
+    public string TirCharge_Tir = "";
 
     // Start is called before the first frame update
     void Start()
     {
         chrono = freqCharge;
+        _TirCharge_Charge = FMODUnity.RuntimeManager.CreateInstance(TirCharge_Charge);
     }
 
     public override void UsingSkill()
     {
         isCharging = true;
+        _TirCharge_Charge.start();
         conteneur = Instantiate(preProjo, canonCharge.position, Quaternion.identity, transform.parent);
         conteneur.GetComponent<Rigidbody>().isKinematic = true;
     }
@@ -48,7 +56,7 @@ public class ImpulseCharge : skill
                 conteneur.GetComponent<Rigidbody>().isKinematic = false;
                 conteneur.transform.parent = null;
                 conteneur.GetComponent<TirCharge>().Shoot(playerToMouse);
-
+                FMODUnity.RuntimeManager.PlayOneShot(TirCharge_Tir, transform.position);
             }
         }
         else
@@ -56,5 +64,6 @@ public class ImpulseCharge : skill
             Destroy(conteneur);
             isCharging = false;
         }
+        _TirCharge_Charge.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }
