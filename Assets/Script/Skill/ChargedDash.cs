@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChargedDash : skill
 {
@@ -14,11 +15,13 @@ public class ChargedDash : skill
     [SerializeField] private GameObject Avatar;
     [SerializeField] private int PorteMaximale;
     [SerializeField] private GameObject Canon;
+    [SerializeField] private GameObject SpriteDashFeedback;
     public int Charge = 0;
     private LineRenderer lineRenderer;
     private Vector3 HitPosition;
     private Vector3 LastPosition;
     public bool AfterShock = false;
+    private int LastCharge = 0;
     void Start()
     {
         
@@ -55,6 +58,13 @@ public class ChargedDash : skill
             else
             {
                 Parent.GetComponent<LineRenderer>().enabled = true;
+            }
+
+            if (LastCharge!= Charge)
+            {
+                LastCharge = Charge;
+                float Distance = Vector3.Distance(LastPosition,Canon.transform.position);
+                SpriteDashFeedback.transform.localScale += new Vector3(2*(Charge/ChargeMax),0,0);
             }
             Ray MousePosition = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(MousePosition, out RaycastHit Hit,Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
@@ -93,6 +103,8 @@ public class ChargedDash : skill
                 lineRenderer.startColor = Color.cyan;
                 //LastPosition = HitPosition;
             }
+            SpriteDashFeedback.transform.localScale = 
+                new Vector3(0,6,6);
             Vector3 playerToMouse = LastPosition - Canon.transform.position; //transform.parent.parent.position;
             lineRenderer.SetPosition(1,playerToMouse);
             Debug.DrawRay(LastPosition,transform.forward, Color.black, 500f);
@@ -106,8 +118,9 @@ public class ChargedDash : skill
             Destroy(Parent.GetComponent<LineRenderer>());
             Parent.tag = "Dash";
             ConteneurRigibody.useGravity = false;
-            ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+           // ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             ConteneurRigibody.velocity = playerToMouse * DashSpeed;
+            ConteneurRigibody.mass = 250;
             Charge = 0;
             isCharging = false;
         }
