@@ -30,6 +30,8 @@ public class ennemyAI : MonoBehaviour
     private float Compteur = 0;
     private bool ActivationCompteur = false;
 
+    [SerializeField] private Animator AnimatorConteneur;
+
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +50,11 @@ public class ennemyAI : MonoBehaviour
             {
                 if (!HitPlayer)
                 {
-                    VisionCone();
+                    if(player.name == "Player")
+                    {
+                        VisionCone();
+
+                    }
                     /*Debug.DrawRay(new Vector3(transform.position.x,1, transform.position.z)
                         , player.position-transform.position, Color.blue);
                         if (Physics.Raycast(new Vector3(transform.position.x,1, transform.position.z), 
@@ -69,6 +75,17 @@ public class ennemyAI : MonoBehaviour
                 }
                 else
                 {
+
+
+                    if (AnimatorConteneur != null)
+                    {
+                        if (AnimatorConteneur.GetBool("Taper"))
+                        {
+                            AnimatorConteneur.SetBool("Taper", false);
+
+                        }
+                    }
+
                     if (Cooldown <= 0)
                     {
                         HitPlayer = false;
@@ -79,17 +96,47 @@ public class ennemyAI : MonoBehaviour
                         Cooldown -= Time.deltaTime;
                     }
 
+
+
                 }
                 if (agent.isOnNavMesh && Vector3.Distance(player.position, transform.position)>5)
                 {
                     agent.SetDestination(player.position);
                     ConteneurRigibody.velocity = agent.velocity;// attention
+
+                    /*if(player.name == "Poteau")
+                    {
+                        var dir = player.position - gameObject.transform.position;
+                        Debug.Log(dir.magnitude);
+                        if (dir.magnitude < 5.2)
+                        {
+                            agent.enabled = false;
+                        }
+                    }*/
+                 
+
+                    if (AnimatorConteneur != null)
+                    {
+                        if (!AnimatorConteneur.GetBool("Taper"))
+                        {
+                            AnimatorConteneur.SetBool("Marche", true);
+
+                        }
+                    }
+                    
+                    
                 }
                 //agent.SetDestination(player.position);
 
             }
             else
             {
+                if(AnimatorConteneur != null)
+                {
+                    AnimatorConteneur.SetBool("Marche", false);
+
+                }
+
                 if (ConteneurRigibody.velocity.magnitude < 2f )
                 {
                     if (Pansement)
@@ -115,18 +162,16 @@ public class ennemyAI : MonoBehaviour
         }
         else
         {
-            if (Compteur == 0)
+
+            if(Compteur >= 4)
             {
-                Compteur = 1;
+                ConteneurRigibody.constraints = RigidbodyConstraints.None;
+                Compteur = 0;
+
             }
             else
             {
                 Compteur += Time.deltaTime;
-            }
-
-            if (Compteur >= 4)
-            {
-                //ConteneurRigibody.constraints = RigidbodyConstraints.None;
             }
         }
                
@@ -134,9 +179,11 @@ public class ennemyAI : MonoBehaviour
     
     public void ExplosionImpact(Vector3 position, float radius, float explosionForce)
     {
+
         JustHit = true;
         agent.enabled = false;
-        //ConteneurRigibody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezePositionY;
+
+        ConteneurRigibody.freezeRotation = false;
         ConteneurRigibody.AddExplosionForce(explosionForce, position, radius, 5f, ForceMode.Impulse);
     }
         
@@ -148,6 +195,8 @@ public class ennemyAI : MonoBehaviour
             &&!player.GetComponent<CharacterMovement>().JustFinishedDash && !player.GetComponent<CharacterMovement>().OnShieldProtection
             && player.GetComponent<CharacterMovement>().Grounded)
         {
+
+            //Debug.Log("prout");
             // Detect if player is within the field of view
             if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, Mathf.Infinity,LayerMask.GetMask("Player")))
             { 
@@ -156,6 +205,11 @@ public class ennemyAI : MonoBehaviour
                 if(hit.transform.name == "Player" && Vector3.Distance(hit.transform.position, new Vector3(transform.position.x, 1, transform.position.z)) < 5f)
                 {
                     Debug.Log("JeTape");
+                    if(AnimatorConteneur != null)
+                    {
+                        AnimatorConteneur.SetBool("Taper", true);
+                        AnimatorConteneur.SetBool("Marcher", false);
+                    }
                     float Explosion = 10*GetComponent<ennemyState>().DMG_Percentage;
                    // hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                     hit.transform.GetComponent<Rigidbody>()
@@ -173,7 +227,7 @@ public class ennemyAI : MonoBehaviour
         {
             if (collision.transform.GetComponent<CharacterMovement>().OnDash && !JustHit)
             {
-                Debug.Log(transform.position - collision.transform.position);
+                //Debug.Log(transform.position - collision.transform.position);
             
                 JustHit = true;
                 agent.enabled = false;
@@ -226,10 +280,10 @@ public class ennemyAI : MonoBehaviour
             agent.enabled = false;
             if (Pansement)
             {
-                GetComponent<Rigidbody>().velocity += collision.transform.GetComponent<Rigidbody>().velocity*0.5f;
+                GetComponent<Rigidbody>().velocity += collision.transform.GetComponent<Rigidbody>().velocity;
             }
             //transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None; 
-            // if (collision.gameObject.GetComponent<ennemyState>().Size > 2*GetComponent<ennemyState>().Size)
+            // if (collision.gameObject.GetComponent<ennemyState>().Size > 2GetComponent<ennemyState>().Size)
             // {
             //     JustHit = true;
             //     agent.enabled = false;
@@ -250,7 +304,7 @@ public class ennemyAI : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        Debug.Log(collision.transform.name);
+        //Debug.Log(collision.transform.name);
         if (collision.transform.CompareTag("sol") && !Grounded)
         {
             Grounded = true;
@@ -261,7 +315,7 @@ public class ennemyAI : MonoBehaviour
     {
         if (collision.transform.CompareTag("sol") && Grounded)
         {
-            Grounded = false;
+            Grounded = false;           
         }
     }
 

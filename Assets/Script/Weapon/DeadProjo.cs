@@ -22,11 +22,13 @@ public class DeadProjo : MonoBehaviour
     public bool Empoisonnement = false;
     public bool Rocket = false;
 
+    [SerializeField] private float portée;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, 4f);
+        Destroy(gameObject, portée);
     }
 
     // Update is called once per frame
