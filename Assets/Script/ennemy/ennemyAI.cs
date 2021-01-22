@@ -136,7 +136,7 @@ public class ennemyAI : MonoBehaviour
     {
         JustHit = true;
         agent.enabled = false;
-        ConteneurRigibody.constraints = RigidbodyConstraints.None;
+        //ConteneurRigibody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezePositionY;
         ConteneurRigibody.AddExplosionForce(explosionForce, position, radius, 5f, ForceMode.Impulse);
     }
         

@@ -5,7 +5,7 @@ using UnityEngine;
 public class shootSkill : MonoBehaviour
 {
 
-    private skillSystem skillSystem;
+    public skillSystem skillSystem;
 
     private Camera cam;
     
