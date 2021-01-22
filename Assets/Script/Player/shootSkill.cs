@@ -13,6 +13,9 @@ public class shootSkill : MonoBehaviour
 
     [SerializeField] private UISkill UI;
 
+    [FMODUnity.EventRef]
+    public string Changement_Skill = "";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +42,7 @@ public class shootSkill : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Tab))
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot(Changement_Skill, transform.position);
                     skillSystem.changeSKill();
                     UI.changeSKill(skillSystem.skillID);
                 }
