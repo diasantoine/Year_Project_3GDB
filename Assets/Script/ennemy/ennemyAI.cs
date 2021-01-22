@@ -50,7 +50,11 @@ public class ennemyAI : MonoBehaviour
             {
                 if (!HitPlayer)
                 {
-                    VisionCone();
+                    if(player.name == "Player")
+                    {
+                        VisionCone();
+
+                    }
                     /*Debug.DrawRay(new Vector3(transform.position.x,1, transform.position.z)
                         , player.position-transform.position, Color.blue);
                         if (Physics.Raycast(new Vector3(transform.position.x,1, transform.position.z), 
@@ -100,6 +104,17 @@ public class ennemyAI : MonoBehaviour
                     agent.SetDestination(player.position);
                     ConteneurRigibody.velocity = agent.velocity;// attention
 
+                    /*if(player.name == "Poteau")
+                    {
+                        var dir = player.position - gameObject.transform.position;
+                        Debug.Log(dir.magnitude);
+                        if (dir.magnitude < 5.2)
+                        {
+                            agent.enabled = false;
+                        }
+                    }*/
+                 
+
                     if (AnimatorConteneur != null)
                     {
                         if (!AnimatorConteneur.GetBool("Taper"))
@@ -147,18 +162,16 @@ public class ennemyAI : MonoBehaviour
         }
         else
         {
-            if (Compteur == 0)
+
+            if(Compteur >= 4)
             {
-                Compteur = 1;
+                ConteneurRigibody.constraints = RigidbodyConstraints.None;
+                Compteur = 0;
+
             }
             else
             {
                 Compteur += Time.deltaTime;
-            }
-
-            if (Compteur >= 4)
-            {
-                //ConteneurRigibody.constraints = RigidbodyConstraints.None;
             }
         }
                
@@ -166,10 +179,11 @@ public class ennemyAI : MonoBehaviour
     
     public void ExplosionImpact(Vector3 position, float radius, float explosionForce)
     {
+
         JustHit = true;
         agent.enabled = false;
 
-        //ConteneurRigibody.constraints = RigidbodyConstraints.None;
+        ConteneurRigibody.freezeRotation = false;
         ConteneurRigibody.AddExplosionForce(explosionForce, position, radius, 5f, ForceMode.Impulse);
     }
         
@@ -182,7 +196,7 @@ public class ennemyAI : MonoBehaviour
             && player.GetComponent<CharacterMovement>().Grounded)
         {
 
-            Debug.Log("prout");
+            //Debug.Log("prout");
             // Detect if player is within the field of view
             if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, Mathf.Infinity,LayerMask.GetMask("Player")))
             { 
@@ -213,7 +227,7 @@ public class ennemyAI : MonoBehaviour
         {
             if (collision.transform.GetComponent<CharacterMovement>().OnDash && !JustHit)
             {
-                Debug.Log(transform.position - collision.transform.position);
+                //Debug.Log(transform.position - collision.transform.position);
             
                 JustHit = true;
                 agent.enabled = false;
@@ -266,7 +280,7 @@ public class ennemyAI : MonoBehaviour
             agent.enabled = false;
             if (Pansement)
             {
-                GetComponent<Rigidbody>().velocity += collision.transform.GetComponent<Rigidbody>().velocity0.5f;
+                GetComponent<Rigidbody>().velocity += collision.transform.GetComponent<Rigidbody>().velocity;
             }
             //transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None; 
             // if (collision.gameObject.GetComponent<ennemyState>().Size > 2GetComponent<ennemyState>().Size)
@@ -290,7 +304,7 @@ public class ennemyAI : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        Debug.Log(collision.transform.name);
+        //Debug.Log(collision.transform.name);
         if (collision.transform.CompareTag("sol") && !Grounded)
         {
             Grounded = true;
@@ -301,7 +315,7 @@ public class ennemyAI : MonoBehaviour
     {
         if (collision.transform.CompareTag("sol") && Grounded)
         {
-            Grounded = false;
+            Grounded = false;           
         }
     }
 

@@ -48,7 +48,7 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      Debug.Log(Grounded);
+        //Debug.Log(Grounded);
         DashFinishCheck();
         if (JustFinishedDash)
         {
