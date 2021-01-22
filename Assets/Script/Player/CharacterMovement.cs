@@ -71,17 +71,25 @@ public class CharacterMovement : MonoBehaviour
             }
             else
             {
-                if (Compteu12< 0.3f)
-                {
-                    Compteu12 += Time.deltaTime;
-                }
-                else
+                if (OnDash)
                 {
                     JustHit = false;
                     Compteu12 = 0;
                     Compteur1 = 0;
                 }
-                
+                else
+                {
+                    if (Compteu12< 0.3f)
+                    {
+                        Compteu12 += Time.deltaTime;
+                    }
+                    else
+                    {
+                        JustHit = false;
+                        Compteu12 = 0;
+                        Compteur1 = 0;
+                    }
+                }
                 // if (Compteur1<=0.5f)
                 // {
                 //     Compteur1 += Time.deltaTime;
