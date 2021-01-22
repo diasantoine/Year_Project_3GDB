@@ -30,6 +30,8 @@ public class ennemyAI : MonoBehaviour
     private float Compteur = 0;
     private bool ActivationCompteur = false;
 
+    [SerializeField] private Animator AnimatorConteneur;
+
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +71,17 @@ public class ennemyAI : MonoBehaviour
                 }
                 else
                 {
+
+
+                    if (AnimatorConteneur != null)
+                    {
+                        if (AnimatorConteneur.GetBool("Taper"))
+                        {
+                            AnimatorConteneur.SetBool("Taper", false);
+
+                        }
+                    }
+
                     if (Cooldown <= 0)
                     {
                         HitPlayer = false;
@@ -79,17 +92,36 @@ public class ennemyAI : MonoBehaviour
                         Cooldown -= Time.deltaTime;
                     }
 
+
+
                 }
                 if (agent.isOnNavMesh && Vector3.Distance(player.position, transform.position)>5)
                 {
                     agent.SetDestination(player.position);
                     ConteneurRigibody.velocity = agent.velocity;// attention
+
+                    if (AnimatorConteneur != null)
+                    {
+                        if (!AnimatorConteneur.GetBool("Taper"))
+                        {
+                            AnimatorConteneur.SetBool("Marche", true);
+
+                        }
+                    }
+                    
+                    
                 }
                 //agent.SetDestination(player.position);
 
             }
             else
             {
+                if(AnimatorConteneur != null)
+                {
+                    AnimatorConteneur.SetBool("Marche", false);
+
+                }
+
                 if (ConteneurRigibody.velocity.magnitude < 2f )
                 {
                     if (Pansement)
@@ -136,6 +168,7 @@ public class ennemyAI : MonoBehaviour
     {
         JustHit = true;
         agent.enabled = false;
+
         ConteneurRigibody.constraints = RigidbodyConstraints.None;
         ConteneurRigibody.AddExplosionForce(explosionForce, position, radius, 5f, ForceMode.Impulse);
     }
@@ -148,6 +181,8 @@ public class ennemyAI : MonoBehaviour
             &&!player.GetComponent<CharacterMovement>().JustFinishedDash && !player.GetComponent<CharacterMovement>().OnShieldProtection
             && player.GetComponent<CharacterMovement>().Grounded)
         {
+
+            Debug.Log("prout");
             // Detect if player is within the field of view
             if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, Mathf.Infinity,LayerMask.GetMask("Player")))
             { 
@@ -156,6 +191,11 @@ public class ennemyAI : MonoBehaviour
                 if(hit.transform.name == "Player" && Vector3.Distance(hit.transform.position, new Vector3(transform.position.x, 1, transform.position.z)) < 5f)
                 {
                     Debug.Log("JeTape");
+                    if(AnimatorConteneur != null)
+                    {
+                        AnimatorConteneur.SetBool("Taper", true);
+                        AnimatorConteneur.SetBool("Marcher", false);
+                    }
                     float Explosion = 10*GetComponent<ennemyState>().DMG_Percentage;
                    // hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                     hit.transform.GetComponent<Rigidbody>()

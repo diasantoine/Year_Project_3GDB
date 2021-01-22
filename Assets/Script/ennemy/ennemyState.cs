@@ -17,7 +17,7 @@ public class ennemyState : MonoBehaviour
     [SerializeField] private Slider healthBar;
     [SerializeField] private Slider healthBarSec;
 
-    [SerializeField] private Animator AnimatorConteneur;
+    //[SerializeField] private Animator AnimatorConteneur;
 
     private float hpNow;
 
@@ -76,7 +76,7 @@ public class ennemyState : MonoBehaviour
         healthBarSec.maxValue = healthBar.maxValue;
         healthBarSec.value = healthBar.maxValue;
 
-        numberCadav = Random.Range(1, 4);
+        //numberCadav = Random.Range(1, 4);
 
         EmpoisonnementTick = 0;
 
