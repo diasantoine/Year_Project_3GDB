@@ -23069,6 +23069,8 @@ MonoBehaviour:
   SpawnPositionPlayer: {fileID: 714322723}
   animAvatar: {fileID: 1080423940}
   Canon: {fileID: 456003758}
+  DistanceDash: 0
+  PointOrigine: {x: 0, y: 0, z: 0}
   Aftershock: 0
 --- !u!136 &365186363
 CapsuleCollider:
@@ -71323,7 +71325,7 @@ PrefabInstance:
     - target: {fileID: 603385501785221005, guid: 8650e54b5aed87248ad84653bebe98b7,
         type: 3}
       propertyPath: freqCharge
-      value: 0.1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 603385501785221005, guid: 8650e54b5aed87248ad84653bebe98b7,
         type: 3}
@@ -71345,6 +71347,11 @@ PrefabInstance:
       propertyPath: SpriteDashFeedback
       value: 
       objectReference: {fileID: 1482358910}
+    - target: {fileID: 603385501785221005, guid: 8650e54b5aed87248ad84653bebe98b7,
+        type: 3}
+      propertyPath: BRO
+      value: 
+      objectReference: {fileID: 2100000, guid: bc27352d1ea246c41a30f725e70a5194, type: 2}
     - target: {fileID: 3971526282532939895, guid: 8650e54b5aed87248ad84653bebe98b7,
         type: 3}
       propertyPath: m_Name
@@ -94610,7 +94617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1482358911
 RectTransform:
   m_ObjectHideFlags: 0
@@ -94619,7 +94626,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482358910}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0, z: -0.71}
+  m_LocalPosition: {x: 0, y: 0, z: 0.54}
   m_LocalScale: {x: 0, y: 6, z: 6}
   m_Children: []
   m_Father: {fileID: 1167651447}
