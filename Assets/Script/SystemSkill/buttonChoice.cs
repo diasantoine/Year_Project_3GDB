@@ -16,6 +16,7 @@ public class buttonChoice : MonoBehaviour
     void Start()
     {
         CS = GameObject.Find("SystemChoice").GetComponent<choiceSkill>();
+
         SetSkill();
     }
 
@@ -37,7 +38,10 @@ public class buttonChoice : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!CS.buttonList.Contains(this.gameObject))
+        {
+            CS.buttonList.Add(this.gameObject);
+        }
     }
 
     public void Choice()
