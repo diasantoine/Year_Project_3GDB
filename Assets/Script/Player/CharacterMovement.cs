@@ -118,7 +118,7 @@ public class CharacterMovement : MonoBehaviour
                 OnDash = false;
                 GetComponent<CapsuleCollider>().enabled = !enabled;
                 Avatar.layer = 9;
-                transform.tag = "Untagged";
+                transform.tag = "Player";
                 ConteneurRigibody.useGravity = true;
                 ConteneurRigibody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
             }
@@ -201,6 +201,7 @@ public class CharacterMovement : MonoBehaviour
             if (Vector3.Distance(HitPosition, new Vector3(transform.position.x, Canon.transform.position.y,transform.position.z)) 
                 < 1f && HitPosition != new Vector3())
             {
+                ConteneurRigibody.mass = 1;
                 ConteneurRigibody.velocity = ConteneurRigibody.velocity.normalized * vitesse;
                 //ConteneurRigibody.constraints = RigidbodyConstraints.FreezeAll;
                 JustFinishedDash = true;
@@ -217,6 +218,7 @@ public class CharacterMovement : MonoBehaviour
             }
             else if (GetComponent<Rigidbody>().velocity.magnitude < 3)
             {
+                ConteneurRigibody.mass = 1;
                 ConteneurRigibody.velocity = ConteneurRigibody.velocity.normalized * vitesse;
                 //ConteneurRigibody.constraints = RigidbodyConstraints.FreezeAll;
                 JustFinishedDash = true;

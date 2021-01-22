@@ -126,7 +126,7 @@ public class ennemyAI : MonoBehaviour
 
             if (Compteur >= 4)
             {
-                ConteneurRigibody.constraints = RigidbodyConstraints.None;
+                //ConteneurRigibody.constraints = RigidbodyConstraints.None;
             }
         }
                
@@ -190,7 +190,7 @@ public class ennemyAI : MonoBehaviour
                         ConteneurDashScript = Child;
                     }
                 }
-                ConteneurRigibody.constraints = RigidbodyConstraints.None;
+                //ConteneurRigibody.constraints = RigidbodyConstraints.None;
                 ConteneurRigibody.AddForceAtPosition(dir * ConteneurDashScript.GetComponent<ChargedDash>().DashSpeed  * collision.GetComponent<Rigidbody>().velocity.magnitude
                                                              * RegulationForce, 
                     ConteneurRigibody.ClosestPointOnBounds(collision.transform.position));
@@ -220,23 +220,28 @@ public class ennemyAI : MonoBehaviour
             }
             //ConteneurRigibody.AddForceAtPosition(collision.transform.forward.normalized * ForceTirNormal, collision.GetContact(0).point);
         }
-        if (collision.transform.CompareTag("Ennemy")
-            && collision.gameObject.GetComponent<ennemyAI>().ConteneurRigibody.constraints == RigidbodyConstraints.None 
-                && collision.gameObject.GetComponent<ennemyState>().Size >= GetComponent<ennemyState>().Size)
+        if (collision.transform.CompareTag("Ennemy") && collision.gameObject.GetComponent<ennemyAI>().JustHit)
         {
-            if (collision.gameObject.GetComponent<ennemyState>().Size > 2*GetComponent<ennemyState>().Size)
+            JustHit = true;
+            agent.enabled = false;
+            if (Pansement)
             {
-                JustHit = true;
-                agent.enabled = false;
-                transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                GetComponent<ennemyState>().damage(99999);
+                GetComponent<Rigidbody>().velocity += collision.transform.GetComponent<Rigidbody>().velocity*0.5f;
             }
-            else
-            {
-                JustHit = true;
-                agent.enabled = false;
-                transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None; 
-            }
+            //transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None; 
+            // if (collision.gameObject.GetComponent<ennemyState>().Size > 2*GetComponent<ennemyState>().Size)
+            // {
+            //     JustHit = true;
+            //     agent.enabled = false;
+            //     transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            //     GetComponent<ennemyState>().damage(99999);
+            // }
+            // else
+            // {
+            //     JustHit = true;
+            //     agent.enabled = false;
+            //     transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None; 
+            // }
             /*transform.GetComponent<Rigidbody>()
                 .AddForceAtPosition(transform.forward * collision.gameObject.GetComponent<ennemyState>().DMG_Percentage
                     , collision.GetContact(0).point);*/

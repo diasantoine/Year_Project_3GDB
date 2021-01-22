@@ -28,7 +28,7 @@ public class UISkill : MonoBehaviour
             }
             else
             {
-                ID = SkillConteneur.skillID + 1;
+                ID = SkillConteneur.skillID;
             }
             switch (SkillConteneur.skills[ID].transform.name)
             {
@@ -58,7 +58,7 @@ public class UISkill : MonoBehaviour
         if (Compteur < TimeFeedback)
         {
             Compteur += Time.deltaTime;
-            GetComponent<Image>().color -= new Color(0,0,0,Compteur*0.005f);
+            GetComponent<Image>().color -= new Color(0,0,0,Compteur*0.008f);
         }
         else if(GetComponent<Image>().enabled)
         {
