@@ -32,6 +32,10 @@ public class ennemyAI : MonoBehaviour
 
     [SerializeField] private Animator AnimatorConteneur;
 
+    private RaycastHit hit;
+
+    [SerializeField] private float portée;
+
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +48,27 @@ public class ennemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        Debug.DrawRay(transform.position, -Vector3.up * portée);
+
+        if(Physics.Raycast(transform.position, -Vector3.up, out hit , portée, LayerMask.GetMask("Sol", "Wall")))
+        {
+            if (hit.collider.CompareTag("sol") || hit.collider.CompareTag("Mur"))
+            {
+                
+                Grounded = true;              
+                Debug.Log(Grounded);
+            }
+        }
+        else
+        {
+            Grounded = false;
+            agent.enabled = false;
+            ConteneurRigibody.constraints = RigidbodyConstraints.None;
+            Debug.Log(Grounded);
+
+        }
+
         if (Grounded)
         {
             if (!JustHit)
@@ -84,6 +109,7 @@ public class ennemyAI : MonoBehaviour
                             AnimatorConteneur.SetBool("Taper", false);
 
                         }
+                        
                     }
 
                     if (Cooldown <= 0)
@@ -119,6 +145,7 @@ public class ennemyAI : MonoBehaviour
                     {
                         if (!AnimatorConteneur.GetBool("Taper"))
                         {
+                            AnimatorConteneur.SetBool("Hit", false);
                             AnimatorConteneur.SetBool("Marche", true);
 
                         }
@@ -137,7 +164,7 @@ public class ennemyAI : MonoBehaviour
 
                 }
 
-                if (ConteneurRigibody.velocity.magnitude < 2f )
+                if (ConteneurRigibody.velocity.magnitude < 3f )
                 {
                     if (Pansement)
                     {
@@ -147,6 +174,8 @@ public class ennemyAI : MonoBehaviour
                     {
                         JustHit = false;
                         agent.enabled = true;
+                        ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY;
+                        ConteneurRigibody.freezeRotation = true;
                         //transform.rotation = Quaternion.identity;
                         transform.position = new Vector3(transform.position.x, 0.12f, transform.position.z);
                         // if (ConteneurRigibody.constraints == (RigidbodyConstraints.FreezeRotationX & RigidbodyConstraints.FreezeRotationZ))
@@ -163,7 +192,7 @@ public class ennemyAI : MonoBehaviour
         else
         {
 
-            if(Compteur >= 4)
+            /*if(Compteur >= 4)
             {
                 ConteneurRigibody.constraints = RigidbodyConstraints.None;
                 Compteur = 0;
@@ -172,7 +201,7 @@ public class ennemyAI : MonoBehaviour
             else
             {
                 Compteur += Time.deltaTime;
-            }
+            }*/
         }
                
     }
@@ -208,7 +237,7 @@ public class ennemyAI : MonoBehaviour
                     if(AnimatorConteneur != null)
                     {
                         AnimatorConteneur.SetBool("Taper", true);
-                        AnimatorConteneur.SetBool("Marcher", false);
+                        AnimatorConteneur.SetBool("Marche", false);
                     }
                     float Explosion = 10*GetComponent<ennemyState>().DMG_Percentage;
                    // hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
@@ -231,6 +260,7 @@ public class ennemyAI : MonoBehaviour
             
                 JustHit = true;
                 agent.enabled = false;
+                ConteneurRigibody.freezeRotation = false;
                 Vector3 dir = transform.position;
                 dir = (dir - collision.transform.position).normalized;
                 //dir = (dir + collision.GetComponent<Rigidbody>().velocity) / 2;
@@ -271,6 +301,12 @@ public class ennemyAI : MonoBehaviour
                 JustHit = true;
                 agent.enabled = false;
                 ConteneurRigibody.velocity *= ImpactTirNormal;
+
+            }
+            if(AnimatorConteneur != null)
+            {
+                AnimatorConteneur.SetBool("Hit", true);
+                AnimatorConteneur.SetBool("Marche", false);
             }
             //ConteneurRigibody.AddForceAtPosition(collision.transform.forward.normalized * ForceTirNormal, collision.GetContact(0).point);
         }
@@ -302,22 +338,22 @@ public class ennemyAI : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay(Collision collision)
+    /*private void OnCollisionStay(Collision collision)
     {
         //Debug.Log(collision.transform.name);
         if (collision.transform.CompareTag("sol") && !Grounded)
         {
             Grounded = true;
         }
-    }
+    }*/
 
-    private void OnCollisionExit(Collision collision)
+    /*private void OnCollisionExit(Collision collision)
     {
         if (collision.transform.CompareTag("sol") && Grounded)
         {
             Grounded = false;           
         }
-    }
+    }*/
 
 
 }
