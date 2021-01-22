@@ -60,25 +60,26 @@ public class ChargedDash : skill
                 Parent.GetComponent<LineRenderer>().enabled = true;
             }
 
-            if (LastCharge!= Charge)
-            {
-                LastCharge = Charge;
-                float Distance = Vector3.Distance(LastPosition,Canon.transform.position);
-                SpriteDashFeedback.transform.localScale += new Vector3(2*(Charge/ChargeMax),0,0);
-            }
+
             Ray MousePosition = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(MousePosition, out RaycastHit Hit,Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
             {
-                lineRenderer.SetPosition(0, Canon.transform.position);
+                //lineRenderer.SetPosition(0, Canon.transform.position);
                 Vector3 HitPosition = Hit.point;
                 //HitPosition.y = Parent.transform.position.y;
                 HitPosition -= Canon.transform.position;
                 HitPosition = HitPosition.normalized;
                 HitPosition *= PorteMaximale*(Charge/ChargeMax);
                 LastPosition = Canon.transform.position + HitPosition;
-                lineRenderer.SetPosition(1,LastPosition);
-                lineRenderer.startColor = Color.cyan;
+                //lineRenderer.SetPosition(1,LastPosition);
+                //lineRenderer.startColor = Color.cyan;
                 //LastPosition = HitPosition;
+            }
+            if (LastCharge!= Charge)
+            {
+                LastCharge = Charge;
+                float Distance = Vector3.Distance(LastPosition,Canon.transform.position)/7;
+                SpriteDashFeedback.transform.localScale += new Vector3(Distance,0,0);
             }
         }
     }
@@ -99,8 +100,8 @@ public class ChargedDash : skill
                 HitPosition = HitPosition.normalized;
                 HitPosition *= PorteMaximale*(Charge/ChargeMax);
                 LastPosition = Canon.transform.position + HitPosition;
-                lineRenderer.SetPosition(1,LastPosition);
-                lineRenderer.startColor = Color.cyan;
+                //lineRenderer.SetPosition(1,LastPosition);
+                //lineRenderer.startColor = Color.cyan;
                 //LastPosition = HitPosition;
             }
             SpriteDashFeedback.transform.localScale = 
