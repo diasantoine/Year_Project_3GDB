@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class spawnEnnemyBasique : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class spawnEnnemyBasique : MonoBehaviour
     private int ennemySpawningRemaining;
     [HideInInspector] public int numberEnnemy;
 
+    [SerializeField] private Text text;
 
     [HideInInspector] public bool vagueEnCours;
     [HideInInspector] public bool vagueFini;
@@ -35,7 +37,6 @@ public class spawnEnnemyBasique : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
         vagueEnCours = true;
     }
 
@@ -64,6 +65,7 @@ public class spawnEnnemyBasique : MonoBehaviour
             if (numberEnnemy <= 0 && ennemySpawningRemaining <= 0)
             {
                 vagueEnCours = false;
+                text.gameObject.SetActive(true);
                 vagueFini = true;
                 Debug.Log("Manche Finie");
                 CS.nVague++;
@@ -77,7 +79,7 @@ public class spawnEnnemyBasique : MonoBehaviour
                 if (waitChrono >= waitTime)
                 {
                     RefreshNumberEnnemy();
-
+                    text.gameObject.SetActive(false);
                     waitChrono = 0;
                     vagueEnCours = true;
                 }
@@ -133,8 +135,8 @@ public class spawnEnnemyBasique : MonoBehaviour
             }*/
 
             GameObject newEnnemy = Instantiate(ennemyPre);
+            newEnnemy.transform.position = spawnPoz[i].position;
             newEnnemy.transform.parent = parentEnnemy;
-            newEnnemy.transform.position = spawnPoz[i].position + new Vector3(0, 1.25f, 0);
             newEnnemy.GetComponent<ennemyState>().SEB = gameObject.GetComponent<spawnEnnemyBasique>();
             newEnnemy.GetComponent<ennemyAI>().player = player;
             newEnnemy.GetComponent<ennemyState>().player = player;

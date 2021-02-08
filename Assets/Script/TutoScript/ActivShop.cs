@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ActivShop : MonoBehaviour
 {
@@ -24,6 +25,11 @@ public class ActivShop : MonoBehaviour
                 shop[0].SetActive(true);
                 shop.Remove(shop[0]);
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            SceneManager.LoadScene(1);
         }
     }
 }

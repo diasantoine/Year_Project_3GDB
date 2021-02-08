@@ -21,14 +21,13 @@ public class ennemyAI : MonoBehaviour
 
     private float Cooldown = 2;
 
-    private GameObject Player;
     private GameObject Skill;
 
     [SerializeField] private int FieldOfView = 90;
 
     private bool Pansement = false;
     private float Compteur = 0;
-    private bool ActivationCompteur = false;
+    private bool startNav = false;
 
     [SerializeField] private Animator AnimatorConteneur;
 
@@ -37,17 +36,32 @@ public class ennemyAI : MonoBehaviour
     [SerializeField] private float portée;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
-        Player = GameObject.Find("Player");
+        agent.enabled = false;
         Skill = GameObject.Find("Skill");
         ConteneurRigibody = GetComponent<Rigidbody>();
+        Compteur = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (!agent.enabled && !startNav)
+        {
+            if(Compteur >= 0.1f)
+            {
+                agent.enabled = true;
+                startNav = true;
+            }
+            else
+            {
+                Compteur += Time.deltaTime;
+            }
+        }
 
         Debug.DrawRay(transform.position, -Vector3.up * portée);
 

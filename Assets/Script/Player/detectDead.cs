@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class detectDead : MonoBehaviour
 {
@@ -16,7 +17,10 @@ public class detectDead : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(SceneManager.GetActiveScene().name == "LDSoutenance 1")
+        {
+            ressourceInt = 25;
+        }
     }
 
     // Update is called once per frame

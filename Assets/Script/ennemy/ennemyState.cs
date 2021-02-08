@@ -117,6 +117,7 @@ public class ennemyState : MonoBehaviour
                 if (Fall)
                 {
                     Instantiate(preDead, player.position,Quaternion.identity, GameObject.Find("CadavreParent").transform);
+                    Debug.Log(detectDead.ressourceInt);
                 }
                 else
                 {
