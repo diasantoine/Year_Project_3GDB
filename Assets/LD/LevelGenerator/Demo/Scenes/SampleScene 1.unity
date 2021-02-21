@@ -46270,7 +46270,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 644377262}
   m_LocalRotation: {x: -0.11728052, y: -0.8768248, z: 0.3794365, w: -0.2710194}
-  m_LocalPosition: {x: 56.211834, y: 22.869078, z: -42.94542}
+  m_LocalPosition: {x: -9.488163, y: 22.86908, z: 29.554588}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1837386709}
@@ -57969,7 +57969,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 857330141}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 67.799995, y: 0.99999976, z: -59.9}
+  m_LocalPosition: {x: 2.1, y: 0.99999976, z: 12.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -66529,6 +66529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab67181d5edc39e478423977af0ff5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Ambiance: 
   footStep: event:/Joueur_FootStep
 --- !u!95 &977598659
 Animator:
@@ -67163,7 +67164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993936117}
   m_LocalRotation: {x: -0.11728052, y: -0.8768248, z: 0.3794365, w: -0.2710194}
-  m_LocalPosition: {x: 56.211834, y: 22.869078, z: -42.94542}
+  m_LocalPosition: {x: -9.488163, y: 22.86908, z: 29.554588}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -73242,7 +73243,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1161165595}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 64.119995, y: 2.799999, z: -59.5}
+  m_LocalPosition: {x: 32, y: 2.799999, z: -59.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -92515,7 +92516,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69adf0af359d1db4194d91d7172cbfd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillSystem: {fileID: 0}
   detectD: {fileID: 1699859118}
+  UI: {fileID: 0}
+  Changement_Skill: 
 --- !u!114 &1460552203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92576,6 +92580,8 @@ MonoBehaviour:
   SpawnPositionPlayer: {fileID: 0}
   animAvatar: {fileID: 977598659}
   Canon: {fileID: 0}
+  DistanceDash: 0
+  PointOrigine: {x: 0, y: 0, z: 0}
   Aftershock: 0
 --- !u!136 &1460552206
 CapsuleCollider:
