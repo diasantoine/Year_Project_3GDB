@@ -18,6 +18,7 @@ public class Ennemy : MonoBehaviour
 
     private protected bool JustHit;
     private protected bool Grounded;
+    private protected bool SeeThePlayer;
 
     public void VisionCone(Transform player)
     {
@@ -29,7 +30,14 @@ public class Ennemy : MonoBehaviour
             // Detect if player is within the field of view
             if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Player")))
             {
+                SeeThePlayer = true;
                 Debug.DrawRay(new Vector3(transform.position.x, 1, transform.position.z), player.position - transform.position, Color.blue);
+
+            }
+            else
+            {
+                Debug.Log(SeeThePlayer);
+                SeeThePlayer = false;
             }
         }
     }

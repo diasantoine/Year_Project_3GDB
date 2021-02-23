@@ -195,9 +195,15 @@
         <e p="Script" t="Include">
           <e p="ClickMouse.cs" t="Include" />
           <e p="ennemy" t="Include">
+            <e p="OLD" t="Include">
+              <e p="ennemyAI.cs" t="Include" />
+            </e>
+            <e p="RuantScript.cs" t="Include" />
+            <e p="ScreamerScript.cs" t="Include" />
+          </e>
+          <e p="EnnemySystem" t="Include">
             <e p="barFollowCam.cs" t="Include" />
-            <e p="ciblage.cs" t="Include" />
-            <e p="ennemyAI.cs" t="Include" />
+            <e p="Ennemy.cs" t="Include" />
             <e p="ennemyState.cs" t="Include" />
           </e>
           <e p="NavMeshComponents" t="Include">
@@ -239,6 +245,7 @@
           </e>
           <e p="Sound Design Scripts" t="Include">
             <e p="Data_SD.cs" t="Include" />
+            <e p="SpawnSound.cs" t="Include" />
           </e>
           <e p="SpawnPlayer.cs" t="Include" />
           <e p="System" t="Include">
