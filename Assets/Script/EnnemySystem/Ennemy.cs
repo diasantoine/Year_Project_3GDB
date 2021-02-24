@@ -9,8 +9,8 @@ public class Ennemy : MonoBehaviour
     [SerializeField] private float fieldOfView;
     [SerializeField] private float distanceOfView;
     [SerializeField] private float disToGround;
-    [SerializeField] private Rigidbody RB;
-    [SerializeField] private Animator AnimatorConteneur;
+    [SerializeField] private protected Rigidbody RB;
+    [SerializeField] private protected Animator AnimatorConteneur;
 
     public NavMeshAgent agent;
     public ennemyState health;
@@ -30,7 +30,7 @@ public class Ennemy : MonoBehaviour
             // Detect if player is within the field of view
             if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Player")))
             {
-                SeeThePlayer = true;
+                SeeThePlayer = true;               
                 Debug.DrawRay(new Vector3(transform.position.x, 1, transform.position.z), player.position - transform.position, Color.blue);
 
             }
