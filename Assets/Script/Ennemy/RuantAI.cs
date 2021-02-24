@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RuantScript : Ennemy
+public class RuantAI : Ennemy
 {
 
     [SerializeField] private float distForRush;
     [SerializeField] private float waitRush;
+    [SerializeField] private float stunTime;
     [SerializeField] private float speedRush;
     [SerializeField] private float deceleration;
 
@@ -63,6 +64,7 @@ public class RuantScript : Ennemy
                 if (Grounded)
                 {
                     SwitchState(State.CHASE);
+                    RB.isKinematic = true;
 
                 }
                 break;
@@ -74,8 +76,10 @@ public class RuantScript : Ennemy
                 break;
             case State.RUSH:
                 speedRush = speedRushIni;
+                RB.isKinematic = false;
                 break;
             case State.STUN:
+                chrono = 0;
                 break;
             case State.DEATH:
                 break;
@@ -95,7 +99,6 @@ public class RuantScript : Ennemy
                 if (chrono >= waitRush)
                 {
                     SwitchState(State.RUSH);
-                    chrono = 0;
 
                 }
                 else
@@ -107,7 +110,6 @@ public class RuantScript : Ennemy
 
             case State.CHASE:
                 Vector3 dist = transform.position - player.position;
-                Debug.Log(dist.magnitude);
                 if(distForRush < dist.magnitude)
                 {
                     agent.SetDestination(player.position);
@@ -129,9 +131,9 @@ public class RuantScript : Ennemy
                     if (isRushing)
                     {
                         Vector3 place = rushPlace - transform.position;
-                        RB.AddForce(place.normalized * speedRush, ForceMode.Acceleration);
+                        RB.AddForce(place.normalized * speedRush, ForceMode.Impulse);
 
-                        if (place.magnitude < 1f)
+                        if (place.magnitude < 0.5f)
                         {
                             isRushing = false;
                         }
@@ -139,18 +141,32 @@ public class RuantScript : Ennemy
                     }
                     else
                     {
-                        RB.velocity = transform.forward * speedRush;
-                        speedRush -= deceleration * Time.deltaTime;
+                        RB.drag = deceleration;
 
-                        if (speedRush <= 0)
+                        if (RB.velocity.magnitude < 1)
                         {
                             SwitchState(State.IDLE);
+
                         }
                     }
                 }
                 break;
 
             case State.STUN:
+                if(chrono >= stunTime)
+                {                   
+                    SwitchState(State.IDLE);
+                    chrono = 0;
+                }
+                else
+                {
+                    chrono += Time.deltaTime;
+
+                    if(chrono < 0.5f)
+                    {
+                        transform.position += -transform.forward * 0.75f * Time.deltaTime;
+                    }
+                }
                 break;
 
             case State.DEATH:
@@ -169,6 +185,7 @@ public class RuantScript : Ennemy
                 break;
             case State.WAIT:
                 rushPlace = player.position;
+                chrono = 0;
                 isRushing = true;
                 break;
             case State.CHASE:
@@ -176,6 +193,7 @@ public class RuantScript : Ennemy
                 agent.enabled = false;
                 break;
             case State.RUSH:
+                RB.drag = 0;
                 break;
             case State.STUN:
                 break;
@@ -183,6 +201,20 @@ public class RuantScript : Ennemy
                 break;
             default:
                 break;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Mur"))
+        {
+            if(state == State.RUSH)
+            {
+                RB.velocity = Vector3.zero;
+                SwitchState(State.STUN);
+                RB.isKinematic = true;
+
+            }
         }
     }
 }

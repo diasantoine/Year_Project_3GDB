@@ -91,7 +91,7 @@ public class DeadProjo : MonoBehaviour
                 collision.gameObject.GetComponent<ennemyState>().damage(dégat);
 
             }
-            else
+            else if(collision.gameObject.GetComponent<damageTuto>() != null)
             {
                 collision.gameObject.GetComponent<damageTuto>().damage(dégat);
             }
