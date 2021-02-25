@@ -5,6 +5,8 @@ using UnityEngine;
 public class RuantAI : Ennemy
 {
 
+    [SerializeField] private GameObject preExplo;
+
     [SerializeField] private float distForRush;
     [SerializeField] private float waitRush;
     [SerializeField] private float stunTime;
@@ -22,6 +24,7 @@ public class RuantAI : Ennemy
     public enum State
     {
         IDLE,
+        SPAWN,
         WAIT,
         CHASE,
         RUSH,
@@ -44,7 +47,7 @@ public class RuantAI : Ennemy
     // Start is called before the first frame update
     void Start()
     {
-        state = State.CHASE;
+        state = State.SPAWN;
         speedRushIni = speedRush;
     }
 
@@ -62,11 +65,12 @@ public class RuantAI : Ennemy
         {
             case State.IDLE:
                 if (Grounded)
-                {
-                    SwitchState(State.CHASE);
+                {                   
                     RB.isKinematic = true;
 
                 }
+                break;
+            case State.SPAWN:
                 break;
             case State.WAIT:
                 break;
@@ -79,9 +83,14 @@ public class RuantAI : Ennemy
                 RB.isKinematic = false;
                 break;
             case State.STUN:
+                SeeThePlayer = false;
                 chrono = 0;
                 break;
             case State.DEATH:
+                chrono = 0;
+                agent.enabled = false;
+                RB.constraints = RigidbodyConstraints.None;
+                RB.isKinematic = true;
                 break;
             default:
                 break;
@@ -93,6 +102,29 @@ public class RuantAI : Ennemy
         switch (state)
         {
             case State.IDLE:
+
+                if(chrono >= 0.5f)
+                {
+                    SwitchState(State.CHASE);
+                    chrono = 0;
+                }
+                else
+                {
+                    chrono += Time.deltaTime;
+                }
+
+                break;
+
+            case State.SPAWN:
+
+                if (Grounded)
+                {
+                    GameObject newExplo = Instantiate(preExplo, transform.position, Quaternion.identity);
+                    Destroy(newExplo, 0.2f);
+                    SwitchState(State.IDLE);
+                    
+                }
+
                 break;
 
             case State.WAIT:
@@ -110,18 +142,12 @@ public class RuantAI : Ennemy
 
             case State.CHASE:
                 Vector3 dist = transform.position - player.position;
-                if(distForRush < dist.magnitude)
-                {
-                    agent.SetDestination(player.position);
+                agent.SetDestination(player.position);
 
-                }
-                else
+                if (SeeThePlayer)
                 {
-                    if (SeeThePlayer)
-                    {
-                        SwitchState(State.WAIT);
+                    SwitchState(State.WAIT);
 
-                    }
                 }
                 break;
 
@@ -170,6 +196,19 @@ public class RuantAI : Ennemy
                 break;
 
             case State.DEATH:
+                transform.Rotate(-35f * Time.deltaTime, 0, 0);
+
+                if(chrono >= 2.5f)
+                {
+                    GetComponent<RuantState>().Die();
+                    GameObject exploFee = Instantiate(preExplo, transform.position, Quaternion.identity);
+                    Destroy(exploFee, 0.25f);
+                }
+                else
+                {
+                    chrono += Time.deltaTime;
+                    Debug.Log(chrono);
+                }
                 break;
 
             default:
@@ -183,6 +222,10 @@ public class RuantAI : Ennemy
         {
             case State.IDLE:
                 break;
+
+            case State.SPAWN:
+                break;
+
             case State.WAIT:
                 rushPlace = player.position;
                 chrono = 0;
