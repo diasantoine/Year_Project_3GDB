@@ -19,6 +19,7 @@ public class ScreamerScript : Ennemy
     [SerializeField] private float ForceExplosion;
     [SerializeField] private float radiusExploBase;
     [SerializeField] private float DMG;
+    [SerializeField] private float compteur = 2;
 
 
     // Start is called before the first frame update
@@ -32,15 +33,19 @@ public class ScreamerScript : Ennemy
     void Update()
     {
         VisionCone(player);
-        
-        if (SeeThePlayer)
+
+        if (ScreamerState != State.dead)
         {
-            ScreamerState = State.TriggerState;
+            if (SeeThePlayer)
+            {
+                ScreamerState = State.TriggerState;
+            }
+            else 
+            {
+                ScreamerState = State.SleepState;
+            }
         }
-        else
-        {
-            ScreamerState = State.SleepState;
-        }
+       
 
         switch (ScreamerState)
         {
@@ -49,19 +54,22 @@ public class ScreamerScript : Ennemy
                 agent.speed = 0;
                 break;
             case State.TriggerState:
-                agent.speed = SpeedConteneur;
-                agent.SetDestination(player.transform.position);
-                if (Vector3.Distance(transform.position, player.transform.position) <= 2)
+                if (Vector3.Distance(transform.position, player.transform.position) <= 4)
                 {
+                    agent.speed = 0;
                     if (Poisoned)
                     {
                         //coup
                     }
                     else
                     {
-                        Explosion = true;
-                        ImpulsionTahLesfous();
+                        ScreamerState = State.dead;
                     }
+                }
+                else
+                {
+                    agent.speed = SpeedConteneur;
+                    agent.SetDestination(player.transform.position);
                 }
                 break;
             case State.dead:
@@ -71,7 +79,16 @@ public class ScreamerScript : Ennemy
                 }
                 else
                 {
-                    Explosion = true;
+                    if (compteur >= 0)
+                    {
+                        compteur -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        Explosion = true;
+                        ImpulsionTahLesfous();
+                        compteur = 1;
+                    }
                 }
                 break;
             default:
@@ -88,7 +105,8 @@ public class ScreamerScript : Ennemy
             if (hit[i].gameObject.CompareTag("Player"))
             { 
                 hit[i].gameObject.transform.parent.GetComponent<CharacterMovement>().JustHit = true;
-                hit[i].gameObject.transform.parent.GetComponent<CharacterMovement>().ConteneurRigibody.AddForce(ForceExplosion*transform.forward);
+                hit[i].gameObject.transform.parent.GetComponent<CharacterMovement>().
+                    ConteneurRigibody.AddForce(ForceExplosion*(hit[i].gameObject.transform.position - transform.position).normalized);
                 /*.AddExplosionForce(ForceExplosion,hitPoint, 
                radiusExploBase + transform.localScale.x, 5f);*/
             }
