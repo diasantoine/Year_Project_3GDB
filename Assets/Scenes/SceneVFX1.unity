@@ -1169,6 +1169,54 @@ Transform:
   m_Father: {fileID: 2013154810}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &332025747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 332025749}
+  - component: {fileID: 332025748}
+  m_Layer: 0
+  m_Name: test vfx
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &332025748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332025747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0601255462d1b3b4a89a59bf174eaa4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactParticle: {fileID: 0}
+  projectileParticle: {fileID: 0}
+  muzzleParticle: {fileID: 0}
+  colliderRadius: 1
+  collideOffset: 0.15
+--- !u!4 &332025749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332025747}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.0681527, y: 4.8062973, z: 6.9137235}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &345450167
 GameObject:
   m_ObjectHideFlags: 0
@@ -6260,7 +6308,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TireSon: event:/TIRE
-  preProjo: {fileID: 1374267004960804, guid: 22d294288012ca446bf50ffb2281ba95, type: 3}
+  preProjo: {fileID: 3343631162176341865, guid: cbf28b9a9841e5345815ffa97331a790,
+    type: 3}
   "preProjoCharg\xE9": {fileID: 0}
   canon: {fileID: 219307243}
   canonCharge: {fileID: 0}
