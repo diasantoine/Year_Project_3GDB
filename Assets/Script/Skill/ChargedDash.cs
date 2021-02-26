@@ -58,7 +58,7 @@ public class ChargedDash : skill
         // {
         //     
         // }
-        conteneur = gameObject;
+        theProjo = gameObject;
         isCharging = true;
     }
 
