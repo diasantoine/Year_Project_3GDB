@@ -136,7 +136,7 @@ public class RuantAI : Ennemy
                 else
                 {
                     chrono += Time.deltaTime;
-                    transform.LookAt(player);
+                    //transform.LookAt(player);
                 }
                 break;
 
