@@ -34,11 +34,12 @@ public class Ennemy : MonoBehaviour
                 Debug.DrawRay(new Vector3(transform.position.x, 1, transform.position.z), player.position - transform.position, Color.blue);
 
             }
-            else
-            {
-                Debug.Log(SeeThePlayer);
-                SeeThePlayer = false;
-            }
+
+        }
+        else
+        {
+            SeeThePlayer = false;
+            //Debug.Log(SeeThePlayer);
         }
     }
 
@@ -50,6 +51,8 @@ public class Ennemy : MonoBehaviour
             {
 
                 Grounded = true;
+                RB.constraints = RigidbodyConstraints.FreezeRotation;
+                RB.constraints = RigidbodyConstraints.FreezePositionY;
                 //Debug.Log(Grounded);
             }
         }
