@@ -35,6 +35,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Shoot/scirpt/ProjectileMoveScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/CharacterMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9B956647-017D-4DC1-B8D3-D25EEF012467/10/cd73d594/Rigidbody.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/RuantState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/detectDead.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Weapon/PoisonCollider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/shootDead.cs" root0="FORCE_HIGHLIGHTING" />
@@ -44,12 +45,12 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/takeCadavre.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/seeThrought.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/EnnemySystem/ennemyState.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/RuantScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/ClickMouse.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/FMOD/src/Runtime/RuntimeManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/SpawnPlayer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/GroundDetect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/RuantAI.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -75,7 +76,6 @@
         <option value="$PROJECT_DIR$/Assets/Script/Skill/Shield.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Skill/ShieldCollider.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Skill/ShieldProtectionCollider.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Weapon/DeadProjo.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/shootDead.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/System/CameraTarget.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/detectDead.cs" />
@@ -93,6 +93,7 @@
         <option value="$PROJECT_DIR$/Assets/Script/EnnemySystem/Ennemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Weapon/TirCharge.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/CharacterMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Weapon/DeadProjo.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerScript.cs" />
       </list>
     </option>
@@ -186,7 +187,7 @@
       <workItem from="1614090286835" duration="2076000" />
       <workItem from="1614169057405" duration="4556000" />
       <workItem from="1614267705413" duration="2665000" />
-      <workItem from="1614341339052" duration="2969000" />
+      <workItem from="1614341339052" duration="6581000" />
     </task>
     <servers />
   </component>

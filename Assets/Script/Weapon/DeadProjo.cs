@@ -102,6 +102,11 @@ public class DeadProjo : MonoBehaviour
                 }
             }
 
+            if (collision.gameObject.GetComponent<ScreamerScript>() != null)
+            {
+                collision.gameObject.GetComponent<ScreamerScript>().damage(dégat);
+            }
+
             
         }
 

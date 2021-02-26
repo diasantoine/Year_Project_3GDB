@@ -16,6 +16,7 @@ public class ScreamerScript : Ennemy
     public State ScreamerState;
     private float SpeedConteneur;
     public bool Poisoned;
+    
     [SerializeField] private float ForceExplosion;
     [SerializeField] private float radiusExploBase;
     [SerializeField] private float DMG;
@@ -28,7 +29,7 @@ public class ScreamerScript : Ennemy
     [SerializeField] private Slider healthBar;
     [SerializeField] private Slider healthBarSec;
     [SerializeField] private float hpMax;
-    private Rigidbody ConteneurRigibody;
+    
     private float dpsTick;
     private float chrono;
     private float chronoTick;
@@ -36,12 +37,28 @@ public class ScreamerScript : Ennemy
     private float EmpoisonnementTick = 0;
     private float HpNow = 0;
 
+    [SerializeField] private bool JustHit = false;
+    private bool HitPlayer = false;
+
+    [SerializeField] private float ImpactTirNormal = 1;
+
+    private float Cooldown = 2;
+
+    private GameObject Skill;
+
+    [SerializeField] private int FieldOfView = 90;
+
+    private bool Pansement = false;
+    private float Compteur = 0;
+    private bool startNav = false;
+
+    private RaycastHit hit;
+
     // Start is called before the first frame update
     void Start()
     {
         ScreamerState = State.SleepState;
         SpeedConteneur = agent.speed;
-        ConteneurRigibody = GetComponent<Rigidbody>();
         chrono = 0;
         HpNow = hpMax;
 
@@ -68,6 +85,11 @@ public class ScreamerScript : Ennemy
                 ScreamerState = State.TriggerState;
             }
         }
+        Ground();
+        if (Grounded && !Fall && !agent.enabled)
+        {
+            agent.enabled = true;
+        }
 
         switch (ScreamerState)
         {
@@ -79,7 +101,7 @@ public class ScreamerScript : Ennemy
                 }
                 break;
             case State.TriggerState:
-                if (Vector3.Distance(transform.position, player.transform.position) <= 4)
+                if (Vector3.Distance(transform.position, player.transform.position) <= 6)
                 {
                     if (Poisoned)
                     {
@@ -93,7 +115,9 @@ public class ScreamerScript : Ennemy
                 }
                 else
                 {
+                    Debug.Log("a");
                     agent.speed = SpeedConteneur;
+                    transform.LookAt(player.transform.position);
                     agent.SetDestination(player.transform.position);
                 }
                 break;
@@ -213,5 +237,72 @@ public class ScreamerScript : Ennemy
             }
         }
     
+    }
+    
+    
+     private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.layer == 9)
+        {
+            if (collision.transform.GetComponent<CharacterMovement>().OnDash && !JustHit)
+            {
+                JustHit = true;
+                agent.enabled = false;
+                RB.freezeRotation = false;
+                Vector3 dir = transform.position;
+                dir = (dir - collision.transform.position).normalized;
+                dir.y = 0;
+                float RegulationForce = 3;
+                Transform ConteneurDashScript = null;
+                foreach (Transform Child in Skill.transform)
+                {
+                    if (Child.name == "DashCharge")
+                    {
+                        ConteneurDashScript = Child;
+                    }
+                }
+                RB.AddForceAtPosition(dir * ConteneurDashScript.GetComponent<ChargedDash>().DashSpeed  * collision.GetComponent<Rigidbody>().velocity.magnitude
+                                                             * RegulationForce, 
+                    RB.ClosestPointOnBounds(collision.transform.position));
+                Pansement = true;
+            }
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("sol") && !Grounded)
+        {
+            Grounded = true;
+        }
+        if (collision.transform.CompareTag("Projectile"))
+        {
+            if (collision.transform.GetComponent<DeadProjo>().Empoisonnement)
+            {
+                JustHit = true;
+                agent.enabled = false;
+                RB.velocity *= ImpactTirNormal;
+            }
+            else
+            {
+                JustHit = true;
+                agent.enabled = false;
+                RB.velocity *= ImpactTirNormal;
+
+            }
+            if(AnimatorConteneur != null)
+            {
+                AnimatorConteneur.SetBool("Hit", true);
+                AnimatorConteneur.SetBool("Marche", false);
+            }
+        }
+        if (collision.transform.CompareTag("Ennemy") && collision.gameObject.GetComponent<ScreamerScript>().JustHit)
+        {
+            JustHit = true;
+            agent.enabled = false;
+            if (Pansement)
+            {
+                GetComponent<Rigidbody>().velocity += collision.transform.GetComponent<Rigidbody>().velocity;
+            }
+        }
     }
 }
