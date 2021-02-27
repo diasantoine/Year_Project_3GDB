@@ -19,7 +19,7 @@ public class ScreamerScript : Ennemy
     
     [SerializeField] private float ForceExplosion;
     [SerializeField] private float radiusExploBase;
-    [SerializeField] private float DMG;
+    [SerializeField] private int DMG;
     [SerializeField] private float compteur = 2;
     [SerializeField] private float freqTick;
     [SerializeField] private int numberCadav;
@@ -37,7 +37,6 @@ public class ScreamerScript : Ennemy
     private float EmpoisonnementTick = 0;
     private float HpNow = 0;
 
-    [SerializeField] private bool JustHit = false;
     private bool HitPlayer = false;
 
     [SerializeField] private float ImpactTirNormal = 1;
@@ -46,15 +45,13 @@ public class ScreamerScript : Ennemy
 
     private GameObject Skill;
 
-    [SerializeField] private int FieldOfView = 90;
 
     private bool Pansement = false;
     private float Compteur = 0;
     private bool startNav = false;
 
     private RaycastHit hit;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         ScreamerState = State.SleepState;
@@ -76,7 +73,38 @@ public class ScreamerScript : Ennemy
     // Update is called once per frame
     void Update()
     {
-        VisionCone(player);
+        if (!agent.enabled && Grounded && !JustHit)
+        {
+            agent.enabled = true;
+        }
+        if (!Grounded && !JustHit)
+        {
+            Ground(hit);
+            
+        }else if(JustHit)
+        {
+            if (RB.velocity.magnitude < 3f )
+            {
+                if (Pansement)
+                {
+                    Pansement = false;
+                }
+                else
+                {
+                    JustHit = false;
+                    agent.enabled = true;
+                    RB.constraints = RigidbodyConstraints.FreezePositionY;
+                    RB.freezeRotation = true;
+                    transform.position = new Vector3(transform.position.x, 0.12f, transform.position.z);
+                }
+            }
+        }
+
+        if (Grounded && !JustHit)
+        {
+           
+            VisionCone(player);
+        }
         
         if (ScreamerState == State.SleepState)
         {
@@ -84,11 +112,6 @@ public class ScreamerScript : Ennemy
             {
                 ScreamerState = State.TriggerState;
             }
-        }
-        Ground();
-        if (Grounded && !Fall && !agent.enabled)
-        {
-            agent.enabled = true;
         }
 
         switch (ScreamerState)
@@ -110,7 +133,10 @@ public class ScreamerScript : Ennemy
                     else
                     {
                         agent.speed = 0;
+                        //agent.enabled = false;
+                        agent.isStopped = true;
                         ScreamerState = State.dead;
+                        Debug.Log("?");
                     }
                 }
                 else
@@ -167,9 +193,9 @@ public class ScreamerScript : Ennemy
         if (HpNow <= 0)
         {
             float écart = -numberCadav / 2;
+            ScreamerState = State.dead;
+            compteur = -1;
 
-            Destroy(gameObject);
-            
             for (int i = 1; i <= numberCadav; i++)
             {
                 if (Fall)
@@ -201,9 +227,9 @@ public class ScreamerScript : Ennemy
                 /*.AddExplosionForce(ForceExplosion,hitPoint, 
                radiusExploBase + transform.localScale.x, 5f);*/
             }
-            else if (hit[i].GetComponent<ennemyAI>() != null)
+            else if (hit[i].gameObject.CompareTag("Ennemy"))
             {
-                hit[i].GetComponent<ennemyAI>().ExplosionImpact(hitPoint, radiusExploBase + transform.localScale.x, ForceExplosion);
+                hit[i].GetComponent<ScreamerScript>().ExplosionImpact(hitPoint, radiusExploBase + transform.localScale.x, ForceExplosion, DMG);
             }
         }
         Destroy(gameObject);
@@ -215,6 +241,17 @@ public class ScreamerScript : Ennemy
         healthBar.value = HpNow;
         touched = true;
         chrono = 0;
+    }
+    
+    public void ExplosionImpact(Vector3 position, float radius, float explosionForce, int DMG)
+    {
+
+        JustHit = true;
+        agent.enabled = false;
+        damage(DMG);
+
+        RB.freezeRotation = false;
+        RB.AddExplosionForce(explosionForce, position, radius, 5f, ForceMode.Impulse);
     }
     
     void HealthbarDecrease()
