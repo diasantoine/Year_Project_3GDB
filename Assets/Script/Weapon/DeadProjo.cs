@@ -72,7 +72,6 @@ public class DeadProjo : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
         if (collision.gameObject.CompareTag("Ennemy"))
         {
             if (Empoisonnement)
@@ -91,11 +90,28 @@ public class DeadProjo : MonoBehaviour
                 collision.gameObject.GetComponent<ennemyState>().damage(dégat);
 
             }
-            else
+            else if(collision.gameObject.GetComponent<damageTuto>() != null)
             {
                 collision.gameObject.GetComponent<damageTuto>().damage(dégat);
             }
+            else if (collision.gameObject.GetComponent<RuantState>() != null)
+            {
+                if (collision.gameObject.GetComponent<RuantState>().isWeak)
+                {
+                    collision.gameObject.GetComponent<RuantState>().takeDmg(dégat);
+                }
+            }
+
+            if (collision.gameObject.GetComponent<ScreamerScript>() != null)
+            {
+                collision.gameObject.GetComponent<ScreamerScript>().damage(dégat);
+            }
+
+            
         }
+
+        Destroy(gameObject);
+
     }
 
 

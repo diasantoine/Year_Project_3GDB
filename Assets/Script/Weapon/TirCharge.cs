@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TirCharge : MonoBehaviour
 {
@@ -30,6 +31,15 @@ public class TirCharge : MonoBehaviour
     {
         tipar = false;
         RB = GetComponent<Rigidbody>();
+
+        if(SceneManager.GetActiveScene().name == "SceneTuto")
+        {
+            ExploForce = 50;
+        }
+        else
+        {
+            ExploForce = 120;
+        }
     }
 
     // Update is called once per frame
@@ -40,7 +50,7 @@ public class TirCharge : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (tipar && other.CompareTag("sol"))
+        if (tipar && other.CompareTag("sol") || other.CompareTag("Mur"))
         {
             //ExplosionTahLesFous(other);
             ImpulsionTahLesfous(other);
@@ -66,7 +76,7 @@ public class TirCharge : MonoBehaviour
     void ImpulsionTahLesfous(Collider col)
     {
         hitPoint = transform.position;
-
+        ExploForce = ExploForce + nCharge * 10;
         Collider[] hit = Physics.OverlapSphere(hitPoint, radiusExploBase + transform.localScale.x);
 
         GameObject newExplo = Instantiate(exploFeedback, hitPoint + new Vector3(0, 0.5f, 0), Quaternion.identity);

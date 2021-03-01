@@ -37,6 +37,9 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private Animator animAvatar;
     [SerializeField] private GameObject Canon;
 
+    public float DistanceDash = 0;
+    public Vector3 PointOrigine = new Vector3();
+
 
     public bool Aftershock;
     // Start is called before the first frame update
@@ -198,8 +201,9 @@ public class CharacterMovement : MonoBehaviour
     {
         if (OnDash)
         {
-            if (Vector3.Distance(HitPosition, new Vector3(transform.position.x, Canon.transform.position.y,transform.position.z)) 
-                < 1f && HitPosition != new Vector3())
+            float Distance = Vector3.Distance(Canon.transform.position, PointOrigine);
+            Debug.Log(Distance);
+            if (Distance>=DistanceDash)
             {
                 ConteneurRigibody.mass = 1;
                 ConteneurRigibody.velocity = ConteneurRigibody.velocity.normalized * vitesse;
@@ -216,23 +220,42 @@ public class CharacterMovement : MonoBehaviour
                     //explosion
                 }
             }
-            else if (GetComponent<Rigidbody>().velocity.magnitude < 3)
-            {
-                ConteneurRigibody.mass = 1;
-                ConteneurRigibody.velocity = ConteneurRigibody.velocity.normalized * vitesse;
-                //ConteneurRigibody.constraints = RigidbodyConstraints.FreezeAll;
-                JustFinishedDash = true;
-                OnDash = false;
-                GetComponent<CapsuleCollider>().enabled = !enabled;
-                Avatar.layer = 9;
-                tag = "Player";
-                ConteneurRigibody.useGravity = true;
-                ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                if (Aftershock)
-                {
-                    //explosion
-                }
-            }
+            // Debug.Log(Vector3.Distance(HitPosition, new Vector3(transform.position.x, Canon.transform.position.y,transform.position.z)));
+            // if (Vector3.Distance(HitPosition, new Vector3(transform.position.x, Canon.transform.position.y,transform.position.z)) 
+            //     < 0.5f && HitPosition != new Vector3())
+            // {
+            //     ConteneurRigibody.mass = 1;
+            //     ConteneurRigibody.velocity = ConteneurRigibody.velocity.normalized * vitesse;
+            //     //ConteneurRigibody.constraints = RigidbodyConstraints.FreezeAll;
+            //     JustFinishedDash = true;
+            //     OnDash = false;
+            //     GetComponent<CapsuleCollider>().enabled = !enabled;
+            //     Avatar.layer = 9;
+            //     tag = "Player";
+            //     ConteneurRigibody.useGravity = true;
+            //     ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            //     if (Aftershock)
+            //     {
+            //         //explosion
+            //     }
+            // }
+            // else if (GetComponent<Rigidbody>().velocity.magnitude < 3)
+            // {
+            //     ConteneurRigibody.mass = 1;
+            //     ConteneurRigibody.velocity = ConteneurRigibody.velocity.normalized * vitesse;
+            //     //ConteneurRigibody.constraints = RigidbodyConstraints.FreezeAll;
+            //     JustFinishedDash = true;
+            //     OnDash = false;
+            //     GetComponent<CapsuleCollider>().enabled = !enabled;
+            //     Avatar.layer = 9;
+            //     tag = "Player";
+            //     ConteneurRigibody.useGravity = true;
+            //     ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            //     if (Aftershock)
+            //     {
+            //         //explosion
+            //     }
+            // }
             //GetComponent<LineRenderer>().enabled = false;
         }
     }

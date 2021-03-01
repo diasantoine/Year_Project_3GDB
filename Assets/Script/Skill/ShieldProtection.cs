@@ -64,7 +64,7 @@ public class ShieldProtection : skill
             Parent.GetComponent<CharacterMovement>().OnShieldProtection = true;
             Parent.GetComponent<CharacterMovement>().ConteneurRigibody.mass = 250;
             TirDisabel.enabled = false;
-            conteneur = gameObject;
+            theProjo = gameObject;
         }
     }
 }

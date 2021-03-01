@@ -823,7 +823,7 @@ MonoBehaviour:
   preDead: {fileID: 4441296243471229557, guid: 769c49c587ad566438ec968768fbe2e7, type: 3}
   healthBar: {fileID: 3276467393305457480}
   healthBarSec: {fileID: 6540970307101279947}
-  hpMax: 6
+  hpMax: 30
   numberCadav: 3
   DMG_Percentage: 2
   Size: 2
@@ -850,6 +850,7 @@ MonoBehaviour:
   ImpactTirNormal: 0.3
   FieldOfView: 90
   AnimatorConteneur: {fileID: 4054988163417062154}
+  "port\xE9e": 1.25
 --- !u!1 &3794223865445992605
 GameObject:
   m_ObjectHideFlags: 0

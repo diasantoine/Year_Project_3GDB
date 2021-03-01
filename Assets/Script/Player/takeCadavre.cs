@@ -195,7 +195,7 @@ public class takeCadavre : MonoBehaviour
                 {
                     bombe.GetComponent<TirCharge>().nCharge++;
                     bombe.transform.localScale =
-                        bombe.transform.localScale + new Vector3(radiusGave, radiusGave, radiusGave);
+                    bombe.transform.localScale + new Vector3(radiusGave, radiusGave, radiusGave);
                 }
                 else
                 {

@@ -16,12 +16,11 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2DB13BA0-D523-4322-8AA9-892C408FB49A/bd/80c54866/Input.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/FMOD/src/Runtime/wrapper/fmod_studio.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/UISkill.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/OLD/ennemyAI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/SystemSkill/buttonChoice.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/System/reticulePoint.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Script/ennemy/barFollowCam.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Script/ennemy/ennemyAI.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Script/ennemy/ennemyState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/shootSkill.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/EnnemySystem/Ennemy.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/System/spawn.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/System/spawnEnnemyBasique.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/ShieldProtectionCollider.cs" root0="FORCE_HIGHLIGHTING" />
@@ -35,6 +34,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/System/CameraTarget.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Shoot/scirpt/ProjectileMoveScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/CharacterMovement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9B956647-017D-4DC1-B8D3-D25EEF012467/10/cd73d594/Rigidbody.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/RuantState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/detectDead.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Weapon/PoisonCollider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/shootDead.cs" root0="FORCE_HIGHLIGHTING" />
@@ -43,10 +44,13 @@
     <setting file="file://$PROJECT_DIR$/Assets/Shoot/scirpt/ParticleSystemController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/takeCadavre.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/seeThrought.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/EnnemySystem/ennemyState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/ClickMouse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/FMOD/src/Runtime/RuntimeManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/SpawnPlayer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/GroundDetect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/RuantAI.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -72,7 +76,6 @@
         <option value="$PROJECT_DIR$/Assets/Script/Skill/Shield.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Skill/ShieldCollider.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Skill/ShieldProtectionCollider.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Weapon/DeadProjo.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/shootDead.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/System/CameraTarget.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/detectDead.cs" />
@@ -83,12 +86,15 @@
         <option value="$PROJECT_DIR$/Assets/Script/Player/GroundDetect.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Skill/ShieldProtection.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/UIRessource.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Weapon/TirCharge.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/shootSkill.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Player/CharacterMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/ennemy/ennemyAI.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Skill/ChargedDash.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Skill/UISkill.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Skill/ChargedDash.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/EnnemySystem/Ennemy.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Weapon/TirCharge.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Player/CharacterMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Weapon/DeadProjo.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerScript.cs" />
       </list>
     </option>
   </component>
@@ -177,7 +183,12 @@
       <workItem from="1611246038585" duration="2302000" />
       <workItem from="1611249079876" duration="3821000" />
       <workItem from="1611258115865" duration="10475000" />
-      <workItem from="1611306071790" duration="9494000" />
+      <workItem from="1611306071790" duration="26528000" />
+      <workItem from="1614090286835" duration="2076000" />
+      <workItem from="1614169057405" duration="4556000" />
+      <workItem from="1614267705413" duration="2665000" />
+      <workItem from="1614341339052" duration="8251000" />
+      <workItem from="1614419855416" duration="2852000" />
     </task>
     <servers />
   </component>

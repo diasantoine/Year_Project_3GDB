@@ -46,6 +46,7 @@
             </e>
           </e>
         </e>
+        <e p="FollowPlayer.cs" t="Include" />
         <e p="LD" t="Include">
           <e p="LevelGenerator" t="Include">
             <e p="Scripts" t="Include">
@@ -194,9 +195,16 @@
         <e p="Script" t="Include">
           <e p="ClickMouse.cs" t="Include" />
           <e p="ennemy" t="Include">
+            <e p="OLD" t="Include">
+              <e p="ennemyAI.cs" t="Include" />
+            </e>
+            <e p="RuantAI.cs" t="Include" />
+            <e p="RuantState.cs" t="Include" />
+            <e p="ScreamerScript.cs" t="Include" />
+          </e>
+          <e p="EnnemySystem" t="Include">
             <e p="barFollowCam.cs" t="Include" />
-            <e p="ciblage.cs" t="Include" />
-            <e p="ennemyAI.cs" t="Include" />
+            <e p="Ennemy.cs" t="Include" />
             <e p="ennemyState.cs" t="Include" />
           </e>
           <e p="NavMeshComponents" t="Include">
@@ -230,6 +238,7 @@
           </e>
           <e p="Skill" t="Include">
             <e p="ChargedDash.cs" t="Include" />
+            <e p="ChargedShoot.cs" t="Include" />
             <e p="ImpulseCharge.cs" t="Include" />
             <e p="PoisonShield.cs" t="Include" />
             <e p="ShieldProtection.cs" t="Include" />
@@ -238,6 +247,7 @@
           </e>
           <e p="Sound Design Scripts" t="Include">
             <e p="Data_SD.cs" t="Include" />
+            <e p="SpawnSound.cs" t="Include" />
           </e>
           <e p="SpawnPlayer.cs" t="Include" />
           <e p="System" t="Include">
@@ -256,11 +266,13 @@
             <e p="skillSystem.cs" t="Include" />
           </e>
           <e p="TutoScript" t="Include">
+            <e p="ActivShop.cs" t="Include" />
             <e p="damageTuto.cs" t="Include" />
             <e p="SpawnSalle.cs" t="Include" />
           </e>
           <e p="Weapon" t="Include">
             <e p="DeadProjo.cs" t="Include" />
+            <e p="LaserShoot.cs" t="Include" />
             <e p="PoisonCollider.cs" t="Include" />
             <e p="TirCharge.cs" t="Include" />
           </e>
@@ -277,6 +289,7 @@
             <e p="SpawnProjectilesScript.cs" t="Include" />
           </e>
         </e>
+        <e p="SoundFollow.cs" t="Include" />
         <e p="tranparentWall.cs" t="Include" />
         <e p="Ultra Emissive Particles Shader" t="Include">
           <e p="Shaders" t="Include">
