@@ -6,7 +6,13 @@ public class skillSystem : MonoBehaviour
 {
 
     public List<skill> skills;
-    public int skillID;
+    //public int skillID;
+
+    [SerializeField] private changeSkill changing;
+
+    [HideInInspector] public skill skillA;
+    [HideInInspector] public skill skillR;
+    [HideInInspector] public skill skillE;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +26,37 @@ public class skillSystem : MonoBehaviour
         
     }
 
-    public void UsingSkill()
+
+
+    public void UsingSkill(skill thisSkill)
+    {
+        thisSkill.UsingSkill();
+    }
+
+    public void EndUsing(Ray rayon, skill thiSkill)
+    {
+        thiSkill.EndUsing(rayon);
+    }
+
+    public void ChargingSkill(int WhichWeapon, skill thisSkill)
+    {
+        thisSkill.ChargingSkill(WhichWeapon);
+    }
+
+    public void changeSkill()
+    {
+        //skillID++;
+        //skillID %= skills.Count;
+
+        changing.change();
+    }
+
+    public void AddNewSkill(skill Skill)
+    {
+        skills.Add(Skill);
+    }
+
+    /*public void UsingSkill()
     {
         skills[skillID].UsingSkill();
     }
@@ -39,11 +75,5 @@ public class skillSystem : MonoBehaviour
     {
         skills.Add(Skill);
         changeSKill();
-    }
-
-    public void changeSKill()
-    {
-        skillID++;
-        skillID %= skills.Count;
-    }
+    }*/
 }
