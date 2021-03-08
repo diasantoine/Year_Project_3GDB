@@ -103,7 +103,7 @@ public class changeSkill : MonoBehaviour
                     FB = Instantiate(UI, placementA.position, Quaternion.identity, placementA);
                     FB.transform.localScale = new Vector3(1, 1, 1);
                     break;
-                case KeyCode.Z:
+                case KeyCode.R:
                     system.skillR = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
 
                     if (system.skillE == UI.gameObject.GetComponent<UIgotSkill>().skillGot)
