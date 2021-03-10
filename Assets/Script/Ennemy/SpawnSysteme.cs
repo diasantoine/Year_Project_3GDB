@@ -67,20 +67,25 @@ public class SpawnSysteme : MonoBehaviour
         ParentLastra = GameObject.Find("ParentLastra").transform;
 
         DictionnaryEnnemy[Ennemy.Basic] = Resources.Load<GameObject>("MonstreArbre");
-        // DictionnaryEnnemy[Ennemy.Ruant] = Resources.Load<GameObject>("3D/Ennemy/EnnemiGrand");
-        // DictionnaryEnnemy[Ennemy.Screamer] = Resources.Load<GameObject>("3D/Ennemy/EnnemiGrand");
-        // DictionnaryEnnemy[Ennemy.Lastra] = Resources.Load<GameObject>("3D/Ennemy/EnnemiGrand");
+        DictionnaryEnnemy[Ennemy.Ruant] = Resources.Load<GameObject>("EnnemiGrand");
+        DictionnaryEnnemy[Ennemy.Screamer] = Resources.Load<GameObject>("EnnemiMoyen");
+        DictionnaryEnnemy[Ennemy.Lastra] = Resources.Load<GameObject>("EnnemiPetit");
 
     }
 
     void Start()
     {
-        StartCoroutine(NextWave());
+        StartCoroutine(SpawnBasic());
+    }
+
+    public void NextWave()
+    {
+        
     }
 
     // Update is called once per frame
 
-    IEnumerator NextWave()
+    IEnumerator SpawnBasic()
     {
          WaveStruct Wave = ListWave[IndexWave];
         ++IndexWave;
@@ -89,62 +94,63 @@ public class SpawnSysteme : MonoBehaviour
             switch (EnnemySelectioned)
             {
                 case Ennemy.Basic:
-                    //Debug.Log(Wave);
                     yield return new WaitForSeconds(Wave.CD_Spawn_Basic);
-                    //Wave.CD_Spawn_Basic = CD_Spawn_Stock_Basic; ta geule
+                    RandomPosition = Random.Range(0, Wave.ListSpawnBasic.Count);
                     Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnBasic[RandomPosition].position,
                         Quaternion.identity, ParentBasic);
                     break;
                 case Ennemy.Ruant:
-                    yield return new WaitForSeconds(Wave.CD_Spawn_Basic);
-                    if (Wave.CD_Spawn_Ruant > 0)
-                    {
-                        Wave.CD_Spawn_Ruant -= Time.deltaTime;
-                    }
-                    else
-                    {
-                        RandomPosition = Random.Range(0, Wave.ListSpawnRuant.Count);
-                        Wave.CD_Spawn_Ruant = CD_Spawn_Stock_Ruant;
-                        Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnRuant[RandomPosition].position,
-                            Quaternion.identity, ParentRuant);
-                    }
+                    yield return new WaitForSeconds(Wave.CD_Spawn_Ruant);
+                    RandomPosition = Random.Range(0, Wave.ListSpawnRuant.Count);
+                    Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnRuant[RandomPosition].position,
+                        Quaternion.identity, ParentRuant);
+                    // if (Wave.CD_Spawn_Ruant > 0)
+                    // {
+                    //     Wave.CD_Spawn_Ruant -= Time.deltaTime;
+                    // }
+                    // else
+                    // {
+                    //     RandomPosition = Random.Range(0, Wave.ListSpawnRuant.Count);
+                    //     Wave.CD_Spawn_Ruant = CD_Spawn_Stock_Ruant;
+                    //     Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnRuant[RandomPosition].position,
+                    //         Quaternion.identity, ParentRuant);
+                    // }
 
                     break;
                 case Ennemy.Screamer:
-                    if (Wave.CD_Spawn_Screamer > 0)
-                    {
-                        Wave.CD_Spawn_Screamer -= Time.deltaTime;
-                    }
-                    else
-                    {
-                        RandomPosition = Random.Range(0, Wave.ListSpawnScreamer.Count);
-                        Wave.CD_Spawn_Screamer = CD_Spawn_Stock_Screamer;
-                        Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnScreamer[RandomPosition].position,
-                            Quaternion.identity, ParentScreamer);
-                    }
-
+                    yield return new WaitForSeconds(Wave.CD_Spawn_Screamer);
+                    RandomPosition = Random.Range(0, Wave.ListSpawnScreamer.Count);
+                    Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnScreamer[RandomPosition].position,
+                        Quaternion.identity, ParentScreamer);
                     break;
                 case Ennemy.Lastra:
-                    if (Wave.CD_Spawn_Lastra > 0)
-                    {
-                        Wave.CD_Spawn_Lastra -= Time.deltaTime;
-                    }
-                    else
-                    {
-                        RandomPosition = Random.Range(0, Wave.ListSpawnLastra.Count);
-                        Wave.CD_Spawn_Lastra = CD_Spawn_Stock_Lastra;
-                        Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnLastra[RandomPosition].position,
-                            Quaternion.identity, ParentLastra);
-                    }
-
+                    yield return new WaitForSeconds(Wave.CD_Spawn_Lastra);
+                    RandomPosition = Random.Range(0, Wave.ListSpawnLastra.Count);
+                    Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnLastra[RandomPosition].position,
+                        Quaternion.identity, ParentLastra);
                     break;
                 default:
                     break;
             }
         }
     }
-    void Update()
+    IEnumerator SpawnRuant()
     {
-     
+         WaveStruct Wave = ListWave[0];
+        //++IndexWave;
+        foreach (var EnnemySelectioned in Wave.ListEnnemy)
+        {
+            switch (EnnemySelectioned)
+            {
+                case Ennemy.Ruant:
+                    yield return new WaitForSeconds(Wave.CD_Spawn_Ruant);
+                    RandomPosition = Random.Range(0, Wave.ListSpawnRuant.Count);
+                    Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnRuant[RandomPosition].position,
+                        Quaternion.identity, ParentRuant);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
