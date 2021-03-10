@@ -6,4 +6,5 @@ public class UIgotSkill : MonoBehaviour
 {
 
     public skill skillGot;
+    public GameObject UIFeedBack;
 }

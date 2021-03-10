@@ -44,7 +44,12 @@ public class changeSkill : MonoBehaviour
             foreach(RaycastResult result in results)
             {
                 if (result.gameObject.CompareTag("UiSkill"))
-                {                    
+                {
+                    if (result.gameObject.GetComponent<Animator>() != null)
+                    {
+                        result.gameObject.GetComponent<Animator>().SetTrigger("Touched");
+                    }
+
                     KeyDown(KeyCode.A, result.gameObject);
                     KeyDown(KeyCode.R, result.gameObject);
                     KeyDown(KeyCode.E, result.gameObject);
@@ -61,11 +66,14 @@ public class changeSkill : MonoBehaviour
         {
             onUI = true;
             RoundUI.SetActive(true);
+            gameObject.GetComponent<Pause>().StopGame();
         }
         else
         {
             onUI = false;
             RoundUI.SetActive(false);
+            gameObject.GetComponent<Pause>().StopGame();
+
 
         }
     }
@@ -100,8 +108,8 @@ public class changeSkill : MonoBehaviour
                         Destroy(placementA.GetChild(0).gameObject);
                     }
 
-                    FB = Instantiate(UI, placementA.position, Quaternion.identity, placementA);
-                    FB.transform.localScale = new Vector3(1, 1, 1);
+                    FB = Instantiate(UI.gameObject.GetComponent<UIgotSkill>().UIFeedBack, placementA.position, Quaternion.identity, placementA);
+                    FB.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                     break;
                 case KeyCode.R:
                     system.skillR = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
@@ -125,8 +133,8 @@ public class changeSkill : MonoBehaviour
                         Destroy(placementR.GetChild(0).gameObject);
                     }
 
-                    FB = Instantiate(UI, placementR.position, Quaternion.identity, placementR);
-                    FB.transform.localScale = new Vector3(1, 1, 1);
+                    FB = Instantiate(UI.gameObject.GetComponent<UIgotSkill>().UIFeedBack, placementR.position, Quaternion.identity, placementR);
+                    FB.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                     break;
                 case KeyCode.E:
                     system.skillE = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
@@ -150,8 +158,8 @@ public class changeSkill : MonoBehaviour
                         Destroy(placementE.GetChild(0).gameObject);
                     }
 
-                    FB = Instantiate(UI, placementE.position, Quaternion.identity, placementE);
-                    FB.transform.localScale = new Vector3(1, 1, 1);
+                    FB = Instantiate(UI.gameObject.GetComponent<UIgotSkill>().UIFeedBack, placementE.position, Quaternion.identity, placementE);
+                    FB.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                     break;
             }
         }
