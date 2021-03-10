@@ -8,6 +8,10 @@ public class DeadProjo : MonoBehaviour
     [FMODUnity.EventRef]
     public string TireTouche = "";
 
+    [FMODUnity.EventRef]
+    public string Ruant_Touche_N = "";
+    // FMODUnity.RuntimeManager.PlayOneShot(Ruant_Touche_N, transform.position); // son no-degat
+
     //public Transform cible;
 
     [SerializeField] public float vitesse;
@@ -99,6 +103,10 @@ public class DeadProjo : MonoBehaviour
                 if (collision.gameObject.GetComponent<RuantState>().isWeak)
                 {
                     collision.gameObject.GetComponent<RuantState>().takeDmg(dégat);
+                }
+                else
+                {
+                    FMODUnity.RuntimeManager.PlayOneShot(Ruant_Touche_N, transform.position); // son no-degat
                 }
             }
 

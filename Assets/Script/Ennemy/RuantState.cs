@@ -26,6 +26,9 @@ public class RuantState : MonoBehaviour
 
     [SerializeField] private float weakPoint;
 
+    [FMODUnity.EventRef]
+    public string Ruant_Touche_O = "";
+    // FMODUnity.RuntimeManager.PlayOneShot(Ruant_Touche_O, transform.position); // son degat
 
     // Start is called before the first frame update
     void Start()
@@ -107,6 +110,7 @@ public class RuantState : MonoBehaviour
     public void takeDmg(float damage)
     {
         hpNow -= damage;
+        FMODUnity.RuntimeManager.PlayOneShot(Ruant_Touche_O, transform.position); // son degat
         healthBar.value = hpNow;
         touched = true;
         chrono = 0;
