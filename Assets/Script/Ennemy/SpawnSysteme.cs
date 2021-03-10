@@ -20,8 +20,11 @@ public class SpawnSysteme : MonoBehaviour
     public struct WaveStruct
     {
         [Header("EnnemyType")]
-        public List<Ennemy> ListEnnemy;
-    
+        public int NumberBasic;
+        public int NumberRuant;
+        public int NumberScreamer;
+        public int NumberLastra;
+
     
         [Header("EnnemyPosition")]
         public List<Transform> ListSpawnBasic;
@@ -56,6 +59,8 @@ public class SpawnSysteme : MonoBehaviour
 
     [Header("WaveIndex")]
     public int IndexWave = 0;
+    [Header("Number_Ennemy_Alive")]
+    [SerializeField] private List<GameObject> ListEnnemy = new List<GameObject>();
     
     // Start is called before the first frame update
 
@@ -75,82 +80,75 @@ public class SpawnSysteme : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(SpawnBasic());
+        NextWave();
     }
 
     public void NextWave()
     {
-        
+        foreach (Ennemy Ennemy_Type in Enum.GetValues(typeof(Ennemy)))
+        {
+            StartCoroutine(SpawnEnnemy(Ennemy_Type));
+        }
+        ++IndexWave;
     }
 
     // Update is called once per frame
 
-    IEnumerator SpawnBasic()
+    IEnumerator SpawnEnnemy(Ennemy EnnemySelectioned)
     {
-         WaveStruct Wave = ListWave[IndexWave];
-        ++IndexWave;
-        foreach (var EnnemySelectioned in Wave.ListEnnemy)
+        Debug.Log("ab");
+        WaveStruct Wave = ListWave[IndexWave];
+        switch (EnnemySelectioned)
         {
-            switch (EnnemySelectioned)
-            {
-                case Ennemy.Basic:
-                    yield return new WaitForSeconds(Wave.CD_Spawn_Basic);
+            case Ennemy.Basic:
+                for (int i = 0; i < Wave.NumberBasic; i++)
+                {
+                    yield return new WaitForSeconds(Wave.CD_Spawn_Basic);// le temps de respawn
                     RandomPosition = Random.Range(0, Wave.ListSpawnBasic.Count);
-                    Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnBasic[RandomPosition].position,
-                        Quaternion.identity, ParentBasic);
-                    break;
-                case Ennemy.Ruant:
+                    ListEnnemy.Add(Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnBasic[RandomPosition].position,
+                        Quaternion.identity, ParentBasic));
+                }
+                break;
+            case Ennemy.Ruant:
+                for (int i = 0; i < Wave.NumberRuant; i++)
+                {
                     yield return new WaitForSeconds(Wave.CD_Spawn_Ruant);
                     RandomPosition = Random.Range(0, Wave.ListSpawnRuant.Count);
-                    Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnRuant[RandomPosition].position,
-                        Quaternion.identity, ParentRuant);
-                    // if (Wave.CD_Spawn_Ruant > 0)
-                    // {
-                    //     Wave.CD_Spawn_Ruant -= Time.deltaTime;
-                    // }
-                    // else
-                    // {
-                    //     RandomPosition = Random.Range(0, Wave.ListSpawnRuant.Count);
-                    //     Wave.CD_Spawn_Ruant = CD_Spawn_Stock_Ruant;
-                    //     Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnRuant[RandomPosition].position,
-                    //         Quaternion.identity, ParentRuant);
-                    // }
-
-                    break;
-                case Ennemy.Screamer:
+                    ListEnnemy.Add(Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnRuant[RandomPosition].position,
+                        Quaternion.identity, ParentRuant));
+                }
+                // if (Wave.CD_Spawn_Ruant > 0)
+                // {
+                //     Wave.CD_Spawn_Ruant -= Time.deltaTime;
+                // }
+                // else
+                // {
+                //     RandomPosition = Random.Range(0, Wave.ListSpawnRuant.Count);
+                //     Wave.CD_Spawn_Ruant = CD_Spawn_Stock_Ruant;
+                //     Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnRuant[RandomPosition].position,
+                //         Quaternion.identity, ParentRuant);
+                // }
+                break;
+            case Ennemy.Screamer:
+                for (int i = 0; i < Wave.NumberScreamer; i++)
+                {
                     yield return new WaitForSeconds(Wave.CD_Spawn_Screamer);
                     RandomPosition = Random.Range(0, Wave.ListSpawnScreamer.Count);
-                    Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnScreamer[RandomPosition].position,
-                        Quaternion.identity, ParentScreamer);
-                    break;
-                case Ennemy.Lastra:
+                    ListEnnemy.Add(Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnScreamer[RandomPosition].position,
+                        Quaternion.identity, ParentScreamer));
+                }
+                break;
+            case Ennemy.Lastra:
+                for (int i = 0; i < Wave.NumberLastra; i++)
+                {
                     yield return new WaitForSeconds(Wave.CD_Spawn_Lastra);
                     RandomPosition = Random.Range(0, Wave.ListSpawnLastra.Count);
-                    Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnLastra[RandomPosition].position,
-                        Quaternion.identity, ParentLastra);
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-    IEnumerator SpawnRuant()
-    {
-         WaveStruct Wave = ListWave[0];
-        //++IndexWave;
-        foreach (var EnnemySelectioned in Wave.ListEnnemy)
-        {
-            switch (EnnemySelectioned)
-            {
-                case Ennemy.Ruant:
-                    yield return new WaitForSeconds(Wave.CD_Spawn_Ruant);
-                    RandomPosition = Random.Range(0, Wave.ListSpawnRuant.Count);
-                    Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnRuant[RandomPosition].position,
-                        Quaternion.identity, ParentRuant);
-                    break;
-                default:
-                    break;
-            }
+                    ListEnnemy.Add(Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnLastra[RandomPosition].position,
+                        Quaternion.identity, ParentLastra));
+                }
+                break;
+            default:
+                break;
         }
     }
 }

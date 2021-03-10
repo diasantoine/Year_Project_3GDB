@@ -686,7 +686,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListWave:
-  - ListEnnemy: 0000000000000000000000000100000001000000020000000300000003000000
+  - NumberBasic: 3
+    NumberRuant: 2
+    NumberScreamer: 2
+    NumberLastra: 3
     ListSpawnBasic:
     - {fileID: 1343928906}
     ListSpawnRuant:
@@ -697,9 +700,10 @@ MonoBehaviour:
     - {fileID: 696321911}
     CD_Spawn_Basic: 2
     CD_Spawn_Ruant: 3
-    CD_Spawn_Screamer: 10
+    CD_Spawn_Screamer: 5
     CD_Spawn_Lastra: 1
   IndexWave: 0
+  ListEnnemy: []
 --- !u!4 &109184170
 Transform:
   m_ObjectHideFlags: 0

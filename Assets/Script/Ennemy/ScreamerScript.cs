@@ -150,6 +150,7 @@ public class ScreamerScript : Ennemy
             case State.dead:
                 if (Poisoned)
                 {
+                    // enlever de la liste
                    Destroy(gameObject);
                 }
                 else
