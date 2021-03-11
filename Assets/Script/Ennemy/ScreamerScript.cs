@@ -117,7 +117,6 @@ public class ScreamerScript : Ennemy
         switch (ScreamerState)
         {
             case State.SleepState:
-                //agent.SetDestination(transform.position);
                 if (agent.speed !=0)
                 {
                     agent.speed = 0;
@@ -128,7 +127,9 @@ public class ScreamerScript : Ennemy
                 {
                     if (Poisoned)
                     {
-                        //coup
+                        agent.speed = 0;
+                        agent.isStopped = true;
+                        ScreamerState = State.dead;
                     }
                     else
                     {
@@ -150,8 +151,15 @@ public class ScreamerScript : Ennemy
             case State.dead:
                 if (Poisoned)
                 {
-                    // enlever de la liste
-                   Destroy(gameObject);
+                    if (compteur >= 0)
+                    {
+                        compteur -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        ImpulsionTahLesfous();
+                        compteur = 1;
+                    }
                 }
                 else
                 {
@@ -231,6 +239,7 @@ public class ScreamerScript : Ennemy
             else if (hit[i].gameObject.CompareTag("Ennemy"))
             {
                 hit[i].GetComponent<ScreamerScript>().ExplosionImpact(hitPoint, radiusExploBase + transform.localScale.x, ForceExplosion, DMG);
+                //if(poisonned) { hit[i].GetComponent<ScreamerScript>().Poisonned = true;
             }
         }
         Destroy(gameObject);
