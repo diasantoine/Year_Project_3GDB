@@ -7,6 +7,10 @@ using UnityEngine.EventSystems;
 public class changeSkill : MonoBehaviour
 {
 
+
+    [FMODUnity.EventRef]
+    public string ChangeUI = "";
+
     [SerializeField] private GameObject RoundUI;
     [SerializeField] private skillSystem system;
 
@@ -21,13 +25,13 @@ public class changeSkill : MonoBehaviour
     [SerializeField] private RectTransform placementR;
     [SerializeField] private RectTransform placementE;
 
-
     // Start is called before the first frame update
     void Start()
     {
         gra = GetComponent<GraphicRaycaster>();
         ped = new PointerEventData(eve);
         onUI = false;
+
     }
 
     // Update is called once per frame
@@ -66,6 +70,7 @@ public class changeSkill : MonoBehaviour
         {
             onUI = true;
             RoundUI.SetActive(true);
+            FMODUnity.RuntimeManager.PlayOneShot(ChangeUI);
             gameObject.GetComponent<Pause>().StopGame();
         }
         else
@@ -78,7 +83,7 @@ public class changeSkill : MonoBehaviour
         }
     }
 
-    private void KeyDown(KeyCode bind, GameObject UI)
+    public void KeyDown(KeyCode bind, GameObject UI)
     {
         if (Input.GetKeyDown(bind))
         {

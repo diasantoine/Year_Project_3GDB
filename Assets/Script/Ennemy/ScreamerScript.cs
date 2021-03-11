@@ -16,6 +16,7 @@ public class ScreamerScript : Ennemy
     public State ScreamerState;
     private float SpeedConteneur;
     public bool Poisoned;
+    public SpawnSysteme spawn;
     
     [SerializeField] private float ForceExplosion;
     [SerializeField] private float radiusExploBase;
@@ -203,6 +204,12 @@ public class ScreamerScript : Ennemy
         {
             float écart = -numberCadav / 2;
             ScreamerState = State.dead;
+
+            if (spawn.ListEnnemy.Contains(this.gameObject))
+            {
+                spawn.ListEnnemy.Remove(this.gameObject);
+            }
+
             compteur = -1;
 
             for (int i = 1; i <= numberCadav; i++)

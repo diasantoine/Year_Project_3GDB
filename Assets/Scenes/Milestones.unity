@@ -760,7 +760,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MANCHE FINIE
+  m_Text: ARENE FINIE
 --- !u!222 &187491946
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -852,7 +852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.21568628, g: 0.21568628, b: 0.21568628, a: 0.6117647}
+  m_Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 0.6117647}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3258,7 +3258,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 65.6}
+  m_AnchoredPosition: {x: 0, y: 41.4}
   m_SizeDelta: {x: 160, y: 36.13475}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &707217445
@@ -3274,7 +3274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.19900322, g: 0.9811321, b: 0.23274364, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3282,7 +3282,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -4099,8 +4099,8 @@ MonoBehaviour:
   RoundUI: {fileID: 1589177604}
   system: {fileID: 2013154805}
   eve: {fileID: 1732215619}
-  placementA: {fileID: 0}
-  placementR: {fileID: 0}
+  placementA: {fileID: 2097845786}
+  placementR: {fileID: 959898186}
   placementE: {fileID: 1225722501}
 --- !u!114 &997252352
 MonoBehaviour:
@@ -5380,6 +5380,19 @@ MonoBehaviour:
     CD_Spawn_Ruant: 10
     CD_Spawn_Screamer: 0
     CD_Spawn_Lastra: 0
+  - NumberBasic: 0
+    NumberRuant: 1
+    NumberScreamer: 0
+    NumberLastra: 0
+    ListSpawnBasic: []
+    ListSpawnRuant:
+    - {fileID: 1143314926}
+    ListSpawnScreamer: []
+    ListSpawnLastra: []
+    CD_Spawn_Basic: 0
+    CD_Spawn_Ruant: 2
+    CD_Spawn_Screamer: 0
+    CD_Spawn_Lastra: 0
   IndexWave: 0
   ListEnnemy: []
   mobRestant: 0
@@ -6263,7 +6276,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 65.6}
+  m_AnchoredPosition: {x: 14.3, y: 41.4}
   m_SizeDelta: {x: 160, y: 36.13475}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1503611221
@@ -6279,7 +6292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.19900322, g: 0.9811321, b: 0.23274364, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6287,7 +6300,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -8280,7 +8293,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 65.6}
+  m_AnchoredPosition: {x: 0, y: 41.4}
   m_SizeDelta: {x: 160, y: 36.13475}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2031464388
@@ -8296,7 +8309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.19900322, g: 0.9811321, b: 0.23274364, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -8304,7 +8317,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0

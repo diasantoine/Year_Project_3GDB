@@ -58,6 +58,7 @@ public class RuantAI : Ennemy
     {
         state = State.SPAWN;
         speedRushIni = speedRush;
+        player = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame
@@ -102,6 +103,8 @@ public class RuantAI : Ennemy
                 agent.enabled = false;
                 RB.constraints = RigidbodyConstraints.None;
                 RB.isKinematic = true;
+
+            
                 break;
             default:
                 break;
