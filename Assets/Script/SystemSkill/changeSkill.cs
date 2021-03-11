@@ -25,6 +25,8 @@ public class changeSkill : MonoBehaviour
     [SerializeField] private RectTransform placementR;
     [SerializeField] private RectTransform placementE;
 
+    [SerializeField] private float scaleUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -114,7 +116,7 @@ public class changeSkill : MonoBehaviour
                     }
 
                     FB = Instantiate(UI.gameObject.GetComponent<UIgotSkill>().UIFeedBack, placementA.position, Quaternion.identity, placementA);
-                    FB.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                    FB.transform.localScale = new Vector3(scaleUI, scaleUI, scaleUI);
                     break;
                 case KeyCode.R:
                     system.skillR = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
@@ -139,7 +141,7 @@ public class changeSkill : MonoBehaviour
                     }
 
                     FB = Instantiate(UI.gameObject.GetComponent<UIgotSkill>().UIFeedBack, placementR.position, Quaternion.identity, placementR);
-                    FB.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                    FB.transform.localScale = new Vector3(scaleUI, scaleUI, scaleUI);
                     break;
                 case KeyCode.E:
                     system.skillE = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
@@ -164,7 +166,7 @@ public class changeSkill : MonoBehaviour
                     }
 
                     FB = Instantiate(UI.gameObject.GetComponent<UIgotSkill>().UIFeedBack, placementE.position, Quaternion.identity, placementE);
-                    FB.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                    FB.transform.localScale = new Vector3(scaleUI, scaleUI, scaleUI);
                     break;
             }
         }
