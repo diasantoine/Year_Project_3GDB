@@ -23,6 +23,7 @@ public class RuantState : MonoBehaviour
     public bool isWeak;
 
     [HideInInspector] public spawnEnnemyBasique SEB;
+    public SpawnSysteme spawn;
 
     [SerializeField] private float weakPoint;
 
@@ -33,6 +34,8 @@ public class RuantState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player").transform;
+
         hpNow = HpMax;
         healthBar.maxValue = HpMax;
         healthBar.value = healthBar.maxValue;
@@ -72,6 +75,13 @@ public class RuantState : MonoBehaviour
 
     public void Die()
     {
+
+
+        if (spawn.ListEnnemy.Contains(this.gameObject))
+        {
+            spawn.ListEnnemy.Remove(this.gameObject);
+        }
+
         float écart = -nbRes / 2;
 
 

@@ -60,7 +60,8 @@ public class SpawnSysteme : MonoBehaviour
     [Header("WaveIndex")]
     public int IndexWave = 0;
     [Header("Number_Ennemy_Alive")]
-    [SerializeField] private List<GameObject> ListEnnemy = new List<GameObject>();
+    public List<GameObject> ListEnnemy = new List<GameObject>();
+    public int mobRestant;
     
     // Start is called before the first frame update
 
@@ -72,7 +73,7 @@ public class SpawnSysteme : MonoBehaviour
         ParentLastra = GameObject.Find("ParentLastra").transform;
 
         DictionnaryEnnemy[Ennemy.Basic] = Resources.Load<GameObject>("MonstreArbre");
-        DictionnaryEnnemy[Ennemy.Ruant] = Resources.Load<GameObject>("EnnemiGrand");
+        DictionnaryEnnemy[Ennemy.Ruant] = Resources.Load<GameObject>("Ruant");
         DictionnaryEnnemy[Ennemy.Screamer] = Resources.Load<GameObject>("EnnemiMoyen");
         DictionnaryEnnemy[Ennemy.Lastra] = Resources.Load<GameObject>("EnnemiPetit");
 
@@ -85,11 +86,21 @@ public class SpawnSysteme : MonoBehaviour
 
     public void NextWave()
     {
-        foreach (Ennemy Ennemy_Type in Enum.GetValues(typeof(Ennemy)))
+        if(ListWave.Count > IndexWave)
         {
-            StartCoroutine(SpawnEnnemy(Ennemy_Type));
+            mobRestant = ListWave[IndexWave].NumberRuant + ListWave[IndexWave].NumberScreamer + ListWave[IndexWave].NumberBasic + ListWave[IndexWave].NumberLastra;
+            Debug.Log(mobRestant);
+
+            foreach (Ennemy Ennemy_Type in Enum.GetValues(typeof(Ennemy)))
+            {
+                StartCoroutine(SpawnEnnemy(Ennemy_Type));
+            }
+            ++IndexWave;
         }
-        ++IndexWave;
+        else
+        {
+            gameObject.GetComponent<WaveSystem>().ArenaEnd = true;
+        }
     }
 
     // Update is called once per frame
@@ -107,6 +118,8 @@ public class SpawnSysteme : MonoBehaviour
                     RandomPosition = Random.Range(0, Wave.ListSpawnBasic.Count);
                     ListEnnemy.Add(Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnBasic[RandomPosition].position,
                         Quaternion.identity, ParentBasic));
+                    mobRestant--;
+
                 }
                 break;
             case Ennemy.Ruant:
@@ -114,8 +127,11 @@ public class SpawnSysteme : MonoBehaviour
                 {
                     yield return new WaitForSeconds(Wave.CD_Spawn_Ruant);
                     RandomPosition = Random.Range(0, Wave.ListSpawnRuant.Count);
-                    ListEnnemy.Add(Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnRuant[RandomPosition].position,
-                        Quaternion.identity, ParentRuant));
+                    GameObject Rut = Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnRuant[RandomPosition].position, Quaternion.identity, ParentRuant);
+                    Rut.GetComponent<RuantState>().spawn = GetComponent<SpawnSysteme>();
+                    ListEnnemy.Add(Rut);
+                    mobRestant--;
+
                 }
                 // if (Wave.CD_Spawn_Ruant > 0)
                 // {
@@ -134,8 +150,11 @@ public class SpawnSysteme : MonoBehaviour
                 {
                     yield return new WaitForSeconds(Wave.CD_Spawn_Screamer);
                     RandomPosition = Random.Range(0, Wave.ListSpawnScreamer.Count);
-                    ListEnnemy.Add(Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnScreamer[RandomPosition].position,
-                        Quaternion.identity, ParentScreamer));
+                    GameObject Scm = Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnScreamer[RandomPosition].position, Quaternion.identity, ParentScreamer);
+                    Scm.GetComponent<ScreamerScript>().spawn = GetComponent<SpawnSysteme>();
+                    ListEnnemy.Add(Scm);
+                    mobRestant--;
+
                 }
                 break;
             case Ennemy.Lastra:
@@ -145,6 +164,8 @@ public class SpawnSysteme : MonoBehaviour
                     RandomPosition = Random.Range(0, Wave.ListSpawnLastra.Count);
                     ListEnnemy.Add(Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnLastra[RandomPosition].position,
                         Quaternion.identity, ParentLastra));
+                    mobRestant--;
+
                 }
                 break;
             default:

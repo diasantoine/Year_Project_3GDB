@@ -5,14 +5,15 @@ using UnityEngine;
 public class skillSystem : MonoBehaviour
 {
 
+
     public List<skill> skills;
     //public int skillID;
 
     [SerializeField] private changeSkill changing;
 
-    [HideInInspector] public skill skillA;
-    [HideInInspector] public skill skillR;
-    [HideInInspector] public skill skillE;
+    public skill skillA;
+    public skill skillR;
+    public skill skillE;
 
     // Start is called before the first frame update
     void Start()

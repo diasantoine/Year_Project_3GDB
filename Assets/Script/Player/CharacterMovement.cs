@@ -31,6 +31,8 @@ public class CharacterMovement : MonoBehaviour
     private float Compteu12 = 0;
     private float Compteur3 = 0;
     [SerializeField] private GameObject Avatar;
+    [SerializeField] private float clamp;
+
     public Vector3 HitPosition = new Vector3();
     public Transform SpawnPositionPlayer;
 
@@ -153,7 +155,8 @@ public class CharacterMovement : MonoBehaviour
                 animAvatar.SetBool("Backward", false);
 
             }
-            ConteneurRigibody.velocity = Vector3_Deplacement_Player * vitesse;
+            ConteneurRigibody.velocity = Vector3_Deplacement_Player * (vitesse / Mathf.Clamp(detectDead.ressourceInt / clamp, 1, 2.25f));
+            animAvatar.speed = (vitesse / Mathf.Clamp(detectDead.ressourceInt / clamp, 1, 2.25f)) * 1/vitesse;
             // Debug.DrawRay(transform.position, ConteneurRigibody.velocity.normalized*20, Color.red);
             //RigibodyAvatar.AddForce(Vector3_Deplacement_Player * Speed_Player);
         }
