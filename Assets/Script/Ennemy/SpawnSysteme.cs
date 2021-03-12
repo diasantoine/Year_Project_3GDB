@@ -107,7 +107,6 @@ public class SpawnSysteme : MonoBehaviour
 
     IEnumerator SpawnEnnemy(Ennemy EnnemySelectioned)
     {
-        Debug.Log("ab");
         WaveStruct Wave = ListWave[IndexWave];
         switch (EnnemySelectioned)
         {
@@ -116,8 +115,9 @@ public class SpawnSysteme : MonoBehaviour
                 {
                     yield return new WaitForSeconds(Wave.CD_Spawn_Basic);// le temps de respawn
                     RandomPosition = Random.Range(0, Wave.ListSpawnBasic.Count);
-                    ListEnnemy.Add(Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnBasic[RandomPosition].position,
-                        Quaternion.identity, ParentBasic));
+                    GameObject Trh = Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnBasic[RandomPosition].position, Quaternion.identity, ParentBasic);
+                    Trh.GetComponent<ennemyState>().spawn = GetComponent<SpawnSysteme>();                 
+                    ListEnnemy.Add(Trh);
                     mobRestant--;
 
                 }

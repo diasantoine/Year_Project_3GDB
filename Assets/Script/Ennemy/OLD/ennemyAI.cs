@@ -40,6 +40,8 @@ public class ennemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player").transform;
+
         agent.enabled = false;
         Skill = GameObject.Find("Skill");
         ConteneurRigibody = GetComponent<Rigidbody>();

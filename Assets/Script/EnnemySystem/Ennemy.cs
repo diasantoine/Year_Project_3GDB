@@ -28,10 +28,20 @@ public class Ennemy : MonoBehaviour
             && player.GetComponent<CharacterMovement>().Grounded)
         {
             // Detect if player is within the field of view
-            if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Player")))
+            if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Player", "Wall")))
             {
-                SeeThePlayer = true;               
-                Debug.DrawRay(new Vector3(transform.position.x, 1, transform.position.z), player.position - transform.position, Color.blue);
+                if (hit.collider.CompareTag("Mur"))
+                {
+                    SeeThePlayer = false;
+
+                }
+                else if (hit.collider.CompareTag("Player"))
+                {
+                    SeeThePlayer = true;
+                    Debug.DrawRay(new Vector3(transform.position.x, 1, transform.position.z), player.position - transform.position, Color.blue);
+
+
+                }
 
             }
 

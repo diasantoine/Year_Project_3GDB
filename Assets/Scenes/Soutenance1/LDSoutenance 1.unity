@@ -27805,7 +27805,10 @@ MonoBehaviour:
   - {fileID: 1092459559}
   - {fileID: 1954501204}
   - {fileID: 34504549}
-  skillID: 0
+  changing: {fileID: 0}
+  skillA: {fileID: 0}
+  skillR: {fileID: 0}
+  skillE: {fileID: 0}
 --- !u!114 &365186361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27845,6 +27848,7 @@ MonoBehaviour:
   JustHit: 0
   OnShieldProtection: 0
   Avatar: {fileID: 1080423936}
+  clamp: 0
   HitPosition: {x: 0, y: 0, z: 0}
   SpawnPositionPlayer: {fileID: 1377474777}
   animAvatar: {fileID: 1080423940}
@@ -76485,6 +76489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ambiance: event:/Ambiance
   footStep: event:/Joueur_FootStep
+  Ruant_FootStep: 
 --- !u!95 &1080423940
 Animator:
   serializedVersion: 3
@@ -114698,7 +114703,7 @@ GameObject:
   - component: {fileID: 1587539191}
   - component: {fileID: 1587539190}
   m_Layer: 15
-  m_Name: GameObject
+  m_Name: PostProcess
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

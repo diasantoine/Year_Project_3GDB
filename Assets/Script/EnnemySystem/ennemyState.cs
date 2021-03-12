@@ -9,6 +9,7 @@ public class ennemyState : MonoBehaviour
 {
 
     public Transform player;
+    public SpawnSysteme spawn;
 
     [HideInInspector] public spawnEnnemyBasique SEB;
 
@@ -66,6 +67,9 @@ public class ennemyState : MonoBehaviour
 
     void Start()
     {
+
+        player = GameObject.Find("Player").transform;
+
         ConteneurRigibody = GetComponent<Rigidbody>();
         chrono = 0;
         hpNow = hpMax;
@@ -114,6 +118,11 @@ public class ennemyState : MonoBehaviour
             Destroy(gameObject);
             for (int i = 1; i <= numberCadav; i++)
             {
+                if (spawn.ListEnnemy.Contains(this.gameObject))
+                {
+                    spawn.ListEnnemy.Remove(this.gameObject);
+                }
+
                 if (Fall)
                 {
                     Instantiate(preDead, player.position,Quaternion.identity, GameObject.Find("CadavreParent").transform);

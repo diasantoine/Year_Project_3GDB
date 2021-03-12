@@ -159,7 +159,7 @@ public class RuantAI : Ennemy
                 Vector3 dist = transform.position - player.position;
                 agent.SetDestination(player.position);
 
-                if (SeeThePlayer)
+                if (SeeThePlayer && dist.magnitude <= distForRush)
                 {
                     SwitchState(State.WAIT);
 
@@ -270,6 +270,18 @@ public class RuantAI : Ennemy
             if(state == State.RUSH)
             {
                 FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, transform.position); // son de collision lorsque le ruant tape un mur
+                RB.velocity = Vector3.zero;
+                SwitchState(State.STUN);
+                RB.isKinematic = true;
+
+            }
+        }
+
+        if (collision.collider.CompareTag("Ennemy"))
+        {
+            if(collision.collider.name == "Ruant(Clone)")
+            {
+                FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, transform.position);
                 RB.velocity = Vector3.zero;
                 SwitchState(State.STUN);
                 RB.isKinematic = true;
