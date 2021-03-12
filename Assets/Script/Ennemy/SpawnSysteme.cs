@@ -73,8 +73,8 @@ public class SpawnSysteme : MonoBehaviour
         ParentLastra = GameObject.Find("ParentLastra").transform;
 
         DictionnaryEnnemy[Ennemy.Basic] = Resources.Load<GameObject>("MonstreArbre");
-        DictionnaryEnnemy[Ennemy.Ruant] = Resources.Load<GameObject>("Ruant");
-        DictionnaryEnnemy[Ennemy.Screamer] = Resources.Load<GameObject>("EnnemiMoyen");
+        DictionnaryEnnemy[Ennemy.Ruant] = Resources.Load<GameObject>("Ruant2");
+        DictionnaryEnnemy[Ennemy.Screamer] = Resources.Load<GameObject>("Screamer");
         DictionnaryEnnemy[Ennemy.Lastra] = Resources.Load<GameObject>("EnnemiPetit");
 
     }

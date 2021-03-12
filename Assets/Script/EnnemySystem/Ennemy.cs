@@ -55,14 +55,13 @@ public class Ennemy : MonoBehaviour
 
     public void Ground(RaycastHit hit)
     {
+        Debug.DrawRay(transform.position, -Vector3.up,Color.yellow);
         if (Physics.Raycast(transform.position, -Vector3.up, out hit, disToGround, LayerMask.GetMask("Sol", "Wall")))
         {
             if (hit.collider.CompareTag("sol") || hit.collider.CompareTag("Mur"))
             {
-
                 Grounded = true;
-                RB.constraints = RigidbodyConstraints.FreezeRotation;
-                RB.constraints = RigidbodyConstraints.FreezePositionY;
+                RB.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
                 //Debug.Log(Grounded);
             }
         }
@@ -75,5 +74,4 @@ public class Ennemy : MonoBehaviour
 
         }
     }
-
 }

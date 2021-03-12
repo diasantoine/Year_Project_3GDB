@@ -12,7 +12,8 @@ public class RuantAI : Ennemy
     [SerializeField] private float stunTime;
     [SerializeField] private float speedRush;
     [SerializeField] private float deceleration;
-
+    [SerializeField] private GameObject RuantCollider;
+    
     private float chrono;
     private float speedRushIni;
 
@@ -169,27 +170,28 @@ public class RuantAI : Ennemy
             case State.RUSH:
                 if (Grounded)
                 {
-                    if (isRushing)
-                    {
-                        Vector3 place = rushPlace - transform.position;
-                        RB.AddForce(place.normalized * speedRush, ForceMode.Impulse);
-
-                        if (place.magnitude < 0.5f)
-                        {
-                            isRushing = false;
-                        }
-
-                    }
-                    else
-                    {
-                        RB.drag = deceleration;
-
-                        if (RB.velocity.magnitude < 1)
-                        {
-                            SwitchState(State.IDLE);
-
-                        }
-                    }
+                    DashRuant();
+                    // if (isRushing)
+                    // {
+                    //     Vector3 place = rushPlace - transform.position;
+                    //     RB.AddForce(place.normalized * speedRush, ForceMode.Impulse);
+                    //
+                    //     if (place.magnitude < 0.5f)
+                    //     {
+                    //         isRushing = false;
+                    //     }
+                    //
+                    // }
+                    // else
+                    // {
+                    //     RB.drag = deceleration;
+                    //
+                    //     if (RB.velocity.magnitude < 1)
+                    //     {
+                    //         SwitchState(State.IDLE);
+                    //
+                    //     }
+                    // }
                 }
                 break;
 
@@ -261,6 +263,18 @@ public class RuantAI : Ennemy
             default:
                 break;
         }
+    }
+
+    private void DashRuant()
+    {
+        Vector3 Direction = (player.transform.position - transform.position).normalized;
+        RuantCollider.layer = 12;
+        GetComponent<CapsuleCollider>().enabled = enabled;
+        tag = "Dash";
+        RB.useGravity = false;
+        RB.mass = 250;
+        RB.velocity = Direction * speedRush;
+
     }
 
     private void OnCollisionEnter(Collision collision)

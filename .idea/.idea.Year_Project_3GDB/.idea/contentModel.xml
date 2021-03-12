@@ -46,6 +46,7 @@
             </e>
           </e>
         </e>
+        <e p="DeathScript.cs" t="Include" />
         <e p="FollowPlayer.cs" t="Include" />
         <e p="LD" t="Include">
           <e p="LevelGenerator" t="Include">
@@ -259,6 +260,7 @@
             <e p="spawn.cs" t="Include" />
             <e p="spawnEnnemyBasique.cs" t="Include" />
             <e p="spawnEnnemyTahLesFous.cs" t="Include" />
+            <e p="WaveSystem.cs" t="Include" />
           </e>
           <e p="SystemSkill" t="Include">
             <e p="buttonChoice.cs" t="Include" />
@@ -272,6 +274,9 @@
             <e p="ActivShop.cs" t="Include" />
             <e p="damageTuto.cs" t="Include" />
             <e p="SpawnSalle.cs" t="Include" />
+          </e>
+          <e p="UI" t="Include">
+            <e p="Pause.cs" t="Include" />
           </e>
           <e p="Weapon" t="Include">
             <e p="DeadProjo.cs" t="Include" />

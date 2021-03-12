@@ -48,13 +48,14 @@ public class ScreamerScript : Ennemy
 
 
     private bool Pansement = false;
-    private float Compteur = 0;
+    private bool Explosion;
     private bool startNav = false;
 
     private RaycastHit hit;
     
     void Start()
     {
+        
         ScreamerState = State.SleepState;
         SpeedConteneur = agent.speed;
         chrono = 0;
@@ -69,22 +70,21 @@ public class ScreamerScript : Ennemy
         //numberCadav = Random.Range(1, 4);
 
         EmpoisonnementTick = 0;
+        player = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(Grounded);
         if (!agent.enabled && Grounded && !JustHit)
         {
             agent.enabled = true;
         }
-        if (!Grounded && !JustHit)
+        Ground(hit);
+        if(JustHit)
         {
-            Ground(hit);
-            
-        }else if(JustHit)
-        {
-            if (RB.velocity.magnitude < 3f )
+            if (RB.velocity.magnitude < 8f  && ScreamerState != State.dead)
             {
                 if (Pansement)
                 {
@@ -92,11 +92,13 @@ public class ScreamerScript : Ennemy
                 }
                 else
                 {
+                    RB.isKinematic = false;
                     JustHit = false;
                     agent.enabled = true;
-                    RB.constraints = RigidbodyConstraints.FreezePositionY;
+                    RB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     RB.freezeRotation = true;
                     transform.position = new Vector3(transform.position.x, 0.12f, transform.position.z);
+                    ScreamerState = State.TriggerState;
                 }
             }
         }
@@ -122,6 +124,11 @@ public class ScreamerScript : Ennemy
                 {
                     agent.speed = 0;
                 }
+
+                if (!AnimatorConteneur.GetBool("SleepState"))
+                {
+                    AnimatorConteneur.SetBool("SleepState", true);
+                }
                 break;
             case State.TriggerState:
                 if (Vector3.Distance(transform.position, player.transform.position) <= 6)
@@ -129,20 +136,27 @@ public class ScreamerScript : Ennemy
                     if (Poisoned)
                     {
                         agent.speed = 0;
+                        RB.isKinematic = true;
+                        agent.enabled = false;
                         agent.isStopped = true;
                         ScreamerState = State.dead;
+                        
                     }
                     else
                     {
                         agent.speed = 0;
-                        //agent.enabled = false;
+                        agent.enabled = false;
+                        RB.isKinematic = true;
                         agent.isStopped = true;
                         ScreamerState = State.dead;
-                        Debug.Log("?");
                     }
                 }
                 else
                 {
+                    if (!AnimatorConteneur.GetBool("TriggerState"))
+                    {
+                        AnimatorConteneur.SetBool("TriggerState", true);
+                    }
                     Debug.Log("a");
                     agent.speed = SpeedConteneur;
                     transform.LookAt(player.transform.position);
@@ -152,27 +166,51 @@ public class ScreamerScript : Ennemy
             case State.dead:
                 if (Poisoned)
                 {
-                    if (compteur >= 0)
+                    if (!AnimatorConteneur.GetBool("PoisonedDeathState"))
                     {
-                        compteur -= Time.deltaTime;
+                        AnimatorConteneur.SetBool("PoisonedDeathState", true);
+                    }
+                    if (AnimatorConteneur.GetBool("Dead"))
+                    {
+                        HpNow = 0;
                     }
                     else
                     {
-                        ImpulsionTahLesfous();
-                        compteur = 1;
+                        Debug.Log("WaitDeath");
                     }
+                    // if (compteur >= 0)
+                    // {
+                    //     compteur -= Time.deltaTime;
+                    // }
+                    // else
+                    // {
+                    //     ImpulsionTahLesfous();
+                    //     compteur = 1;
+                    // }
                 }
                 else
                 {
-                    if (compteur >= 0)
+                    if (!AnimatorConteneur.GetBool("DeathState"))
                     {
-                        compteur -= Time.deltaTime;
+                        AnimatorConteneur.SetBool("DeathState", true);
+                    }
+                    if (AnimatorConteneur.GetBool("Dead"))
+                    {
+                        HpNow = 0;
                     }
                     else
                     {
-                        ImpulsionTahLesfous();
-                        compteur = 1;
+                        Debug.Log("WaitDeath");
                     }
+                    // if (compteur >= 0)
+                    // {
+                    //     compteur -= Time.deltaTime;
+                    // }
+                    // else
+                    // {
+                    //     ImpulsionTahLesfous();
+                    //     compteur = 1;
+                    // }
                 }
                 break;
             default:
@@ -200,10 +238,10 @@ public class ScreamerScript : Ennemy
            HpNow = 0;
            Fall = true;
         }
-        if (HpNow <= 0)
+        if (HpNow <= 0 && !Explosion)
         {
+            Explosion = true;
             float écart = -numberCadav / 2;
-            ScreamerState = State.dead;
 
             if (spawn.ListEnnemy.Contains(this.gameObject))
             {
@@ -226,32 +264,46 @@ public class ScreamerScript : Ennemy
                 }
                 écart++;
             }
+            ImpulsionTahLesfous();
         }
     }
 
     void ImpulsionTahLesfous()
     {
+        Destroy(gameObject);
         Vector3 hitPoint = transform.position;
         Collider[] hit = Physics.OverlapSphere(hitPoint, radiusExploBase + transform.localScale.x);
         for (int i = 0; i < hit.Length; i++)
         {
             if (hit[i].gameObject.CompareTag("Player"))
             { 
-                hit[i].gameObject.transform.parent.GetComponent<CharacterMovement>().JustHit = true;
-                hit[i].gameObject.transform.parent.GetComponent<CharacterMovement>().
+                hit[i].transform.parent.GetComponent<CharacterMovement>().JustHit = true;
+                hit[i].transform.parent.GetComponent<CharacterMovement>().ConteneurRigibody.velocity = Vector3.zero;
+                hit[i].transform.parent.GetComponent<CharacterMovement>().
                     ConteneurRigibody.AddForce(ForceExplosion*(hit[i].gameObject.transform.position - transform.position).normalized);
                 /*.AddExplosionForce(ForceExplosion,hitPoint, 
                radiusExploBase + transform.localScale.x, 5f);*/
             }
             else if (hit[i].gameObject.CompareTag("Ennemy"))
             {
-                hit[i].GetComponent<ScreamerScript>().ExplosionImpact(hitPoint, radiusExploBase + transform.localScale.x, ForceExplosion, DMG);
+                if (hit[i].GetComponent<ennemyAI>() != null)
+                {
+                    hit[i].GetComponent<ennemyAI>().ExplosionImpact(hitPoint, radiusExploBase +  transform.localScale.x, ForceExplosion/4);
+                    hit[i].GetComponent<ennemyState>().damage(DMG);
+                }
+                else if(hit[i].GetComponent<ScreamerScript>() != null)
+                {
+                    hit[i].GetComponent<ScreamerScript>().HpNow = 0;
+                }
+                else
+                {
+                    //rien
+                }
+                //hit[i].GetComponent<ScreamerScript>().ExplosionImpact(hitPoint, radiusExploBase + transform.localScale.x, ForceExplosion, DMG);
                 //if(poisonned) { hit[i].GetComponent<ScreamerScript>().Poisonned = true;
             }
         }
-        Destroy(gameObject);
     }
-    
     public void damage(float hit)
     {
         HpNow -= hit;
@@ -321,6 +373,12 @@ public class ScreamerScript : Ennemy
                 Pansement = true;
             }
         }
+
+        if (collision.gameObject.layer == 13 && collision.GetComponent<RuantAI>() != null &&
+            collision.GetComponent<RuantAI>().state == RuantAI.State.RUSH)
+        {
+            HpNow = 0;
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -334,13 +392,15 @@ public class ScreamerScript : Ennemy
             {
                 JustHit = true;
                 agent.enabled = false;
-                RB.velocity *= ImpactTirNormal;
+                RB.isKinematic = true;
+                //RB.velocity *= ImpactTirNormal;
             }
             else
             {
                 JustHit = true;
                 agent.enabled = false;
-                RB.velocity *= ImpactTirNormal;
+                RB.isKinematic = true;
+                // RB.velocity *= ImpactTirNormal;
 
             }
             if(AnimatorConteneur != null)
