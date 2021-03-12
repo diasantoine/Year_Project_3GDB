@@ -170,7 +170,19 @@ public class RuantAI : Ennemy
             case State.RUSH:
                 if (Grounded)
                 {
-                    DashRuant();
+                    if (isRushing)
+                    {
+                        DashRuant();
+                    }
+                    else
+                    {
+                        RB.drag = deceleration;
+
+                        if(RB.velocity.magnitude < 1)
+                        {
+                            SwitchState(State.IDLE);
+                        }
+                    }
                     // if (isRushing)
                     // {
                     //     Vector3 place = rushPlace - transform.position;
@@ -254,6 +266,7 @@ public class RuantAI : Ennemy
                 agent.enabled = false;
                 break;
             case State.RUSH:
+                DashFini();
                 RB.drag = 0;
                 break;
             case State.STUN:
@@ -265,15 +278,33 @@ public class RuantAI : Ennemy
         }
     }
 
+    private void DashFini()
+    {
+        RuantCollider.layer = 13;
+        GetComponent<CapsuleCollider>().enabled = !enabled;
+        tag = "Ennemy";
+        RB.useGravity = true;
+        RB.mass = 100;
+    }
+
     private void DashRuant()
     {
-        Vector3 Direction = (player.transform.position - transform.position).normalized;
+        Vector3 place = rushPlace - transform.position;
+        //Vector3 Direction = (player.transform.position - transform.position).normalized;
         RuantCollider.layer = 12;
         GetComponent<CapsuleCollider>().enabled = enabled;
         tag = "Dash";
         RB.useGravity = false;
         RB.mass = 250;
-        RB.velocity = Direction * speedRush;
+
+        if (place.magnitude < 0.5f)
+        {
+            isRushing = false;
+            DashFini();
+
+        }
+
+        RB.velocity = place.normalized * speedRush;
 
     }
 

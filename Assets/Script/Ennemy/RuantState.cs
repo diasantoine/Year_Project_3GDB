@@ -16,7 +16,7 @@ public class RuantState : MonoBehaviour
     [SerializeField] private GameObject preRessource;
 
     [SerializeField] private float HpMax;
-    [SerializeField] private int nbRes;
+    [SerializeField] private int nbCadav;
     private float hpNow;
 
     private bool Fall;
@@ -82,10 +82,10 @@ public class RuantState : MonoBehaviour
             spawn.ListEnnemy.Remove(this.gameObject);
         }
 
-        float écart = -nbRes / 2;
+        float écart = -nbCadav / 2;
 
 
-        for (int i = 1; i <= nbRes; i++)
+        for (int i = 1; i <= nbCadav; i++)
         {
             if (Fall)
             {
