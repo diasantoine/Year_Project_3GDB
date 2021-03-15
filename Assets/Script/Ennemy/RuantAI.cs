@@ -12,7 +12,8 @@ public class RuantAI : Ennemy
     [SerializeField] private float stunTime;
     [SerializeField] private float speedRush;
     [SerializeField] private float deceleration;
-
+    [SerializeField] private GameObject RuantCollider;
+    
     private float chrono;
     private float speedRushIni;
 
@@ -58,6 +59,7 @@ public class RuantAI : Ennemy
     {
         state = State.SPAWN;
         speedRushIni = speedRush;
+        player = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame
@@ -102,6 +104,8 @@ public class RuantAI : Ennemy
                 agent.enabled = false;
                 RB.constraints = RigidbodyConstraints.None;
                 RB.isKinematic = true;
+
+            
                 break;
             default:
                 break;
@@ -156,7 +160,7 @@ public class RuantAI : Ennemy
                 Vector3 dist = transform.position - player.position;
                 agent.SetDestination(player.position);
 
-                if (SeeThePlayer)
+                if (SeeThePlayer && dist.magnitude <= distForRush)
                 {
                     SwitchState(State.WAIT);
 
@@ -168,25 +172,38 @@ public class RuantAI : Ennemy
                 {
                     if (isRushing)
                     {
-                        Vector3 place = rushPlace - transform.position;
-                        RB.AddForce(place.normalized * speedRush, ForceMode.Impulse);
-
-                        if (place.magnitude < 0.5f)
-                        {
-                            isRushing = false;
-                        }
-
+                        DashRuant();
                     }
                     else
                     {
                         RB.drag = deceleration;
 
-                        if (RB.velocity.magnitude < 1)
+                        if(RB.velocity.magnitude < 1)
                         {
                             SwitchState(State.IDLE);
-
                         }
                     }
+                    // if (isRushing)
+                    // {
+                    //     Vector3 place = rushPlace - transform.position;
+                    //     RB.AddForce(place.normalized * speedRush, ForceMode.Impulse);
+                    //
+                    //     if (place.magnitude < 0.5f)
+                    //     {
+                    //         isRushing = false;
+                    //     }
+                    //
+                    // }
+                    // else
+                    // {
+                    //     RB.drag = deceleration;
+                    //
+                    //     if (RB.velocity.magnitude < 1)
+                    //     {
+                    //         SwitchState(State.IDLE);
+                    //
+                    //     }
+                    // }
                 }
                 break;
 
@@ -249,6 +266,7 @@ public class RuantAI : Ennemy
                 agent.enabled = false;
                 break;
             case State.RUSH:
+                DashFini();
                 RB.drag = 0;
                 break;
             case State.STUN:
@@ -260,6 +278,36 @@ public class RuantAI : Ennemy
         }
     }
 
+    private void DashFini()
+    {
+        RuantCollider.layer = 13;
+        GetComponent<CapsuleCollider>().enabled = !enabled;
+        tag = "Ennemy";
+        RB.useGravity = true;
+        RB.mass = 100;
+    }
+
+    private void DashRuant()
+    {
+        Vector3 place = rushPlace - transform.position;
+        //Vector3 Direction = (player.transform.position - transform.position).normalized;
+        RuantCollider.layer = 12;
+        GetComponent<CapsuleCollider>().enabled = enabled;
+        tag = "Dash";
+        RB.useGravity = false;
+        RB.mass = 250;
+
+        if (place.magnitude < 0.5f)
+        {
+            isRushing = false;
+            DashFini();
+
+        }
+
+        RB.velocity = place.normalized * speedRush;
+
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Mur"))
@@ -267,6 +315,18 @@ public class RuantAI : Ennemy
             if(state == State.RUSH)
             {
                 FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, transform.position); // son de collision lorsque le ruant tape un mur
+                RB.velocity = Vector3.zero;
+                SwitchState(State.STUN);
+                RB.isKinematic = true;
+
+            }
+        }
+
+        if (collision.collider.CompareTag("Ennemy"))
+        {
+            if(collision.collider.name == "Ruant(Clone)")
+            {
+                FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, transform.position);
                 RB.velocity = Vector3.zero;
                 SwitchState(State.STUN);
                 RB.isKinematic = true;

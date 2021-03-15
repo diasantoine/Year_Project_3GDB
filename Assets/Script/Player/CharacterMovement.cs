@@ -31,6 +31,8 @@ public class CharacterMovement : MonoBehaviour
     private float Compteu12 = 0;
     private float Compteur3 = 0;
     [SerializeField] private GameObject Avatar;
+    [SerializeField] private float clamp;
+
     public Vector3 HitPosition = new Vector3();
     public Transform SpawnPositionPlayer;
 
@@ -82,7 +84,7 @@ public class CharacterMovement : MonoBehaviour
                 }
                 else
                 {
-                    if (Compteu12< 0.3f)
+                    if (Compteu12< 0.4f)
                     {
                         Compteu12 += Time.deltaTime;
                     }
@@ -153,7 +155,8 @@ public class CharacterMovement : MonoBehaviour
                 animAvatar.SetBool("Backward", false);
 
             }
-            ConteneurRigibody.velocity = Vector3_Deplacement_Player * vitesse;
+            ConteneurRigibody.velocity = Vector3_Deplacement_Player * (vitesse / Mathf.Clamp(detectDead.ressourceInt / clamp, 1, 1.75f));
+            animAvatar.speed = (vitesse / Mathf.Clamp(detectDead.ressourceInt / clamp, 1, 1.75f)) * 1/vitesse;
             // Debug.DrawRay(transform.position, ConteneurRigibody.velocity.normalized*20, Color.red);
             //RigibodyAvatar.AddForce(Vector3_Deplacement_Player * Speed_Player);
         }
@@ -259,11 +262,29 @@ public class CharacterMovement : MonoBehaviour
             //GetComponent<LineRenderer>().enabled = false;
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("DeathFall"))
         {
             transform.position = SpawnPositionPlayer.position;
+        }
+
+        if (other.gameObject.layer == 13 && other.GetComponent<RuantAI>() != null &&
+            other.GetComponent<RuantAI>().state == RuantAI.State.RUSH)
+        {
+            JustHit = true;
+            ConteneurRigibody.freezeRotation = false;
+            Vector3 dir = transform.position;
+            dir = (dir - other.transform.position).normalized;
+            //dir = (dir + collision.GetComponent<Rigidbody>().velocity) / 2;
+            dir.y = 0;
+            float RegulationForce = 150;
+            ConteneurRigibody.velocity = Vector3.zero;
+            Debug.Log(ConteneurRigibody.velocity);
+            ConteneurRigibody.AddForceAtPosition(dir * other.GetComponent<Rigidbody>().velocity.magnitude
+                                                 * RegulationForce,
+                ConteneurRigibody.ClosestPointOnBounds(other.transform.position));
         }
     }
 }

@@ -40,6 +40,8 @@ public class ennemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player").transform;
+
         agent.enabled = false;
         Skill = GameObject.Find("Skill");
         ConteneurRigibody = GetComponent<Rigidbody>();
@@ -227,7 +229,8 @@ public class ennemyAI : MonoBehaviour
         agent.enabled = false;
 
         ConteneurRigibody.freezeRotation = false;
-        ConteneurRigibody.AddExplosionForce(explosionForce, position, radius, 5f, ForceMode.Impulse);
+        ConteneurRigibody.AddForce(explosionForce*(transform.position - position).normalized);
+        //ConteneurRigibody.AddExplosionForce(explosionForce, position, radius, 5f, ForceMode.Impulse);
     }
         
     private void VisionCone()
@@ -294,7 +297,22 @@ public class ennemyAI : MonoBehaviour
                     ConteneurRigibody.ClosestPointOnBounds(collision.transform.position));
                 Pansement = true;
             }
+        }else if (collision.gameObject.layer == 13 && collision.GetComponent<RuantAI>() != null &&
+                   collision.GetComponent<RuantAI>().state == RuantAI.State.RUSH)
+        {
+            JustHit = true;
+            agent.enabled = false;
+            ConteneurRigibody.freezeRotation = false;
+            Vector3 dir = transform.position;
+            dir = (dir - collision.transform.position).normalized;
+            dir.y = 0;
+            float RegulationForce = 100;
+            ConteneurRigibody.AddForceAtPosition(dir * collision.GetComponent<Rigidbody>().velocity.magnitude
+                                                 * RegulationForce, 
+                ConteneurRigibody.ClosestPointOnBounds(collision.transform.position));
+            Pansement = true;
         }
+        
     }
     private void OnCollisionEnter(Collision collision)
     {
