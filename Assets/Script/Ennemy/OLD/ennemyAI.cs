@@ -73,7 +73,6 @@ public class ennemyAI : MonoBehaviour
             {
                 
                 Grounded = true;              
-                Debug.Log(Grounded);
             }
         }
         else
@@ -237,9 +236,9 @@ public class ennemyAI : MonoBehaviour
     {
         var rayDirection = this.player.transform.position - transform.position;
         if (Vector3.Angle(rayDirection, transform.forward) < this.FieldOfView && 
-            Vector3.Distance(transform.position, player.transform.position) < 30f && !player.GetComponent<CharacterMovement>().OnDash
-            &&!player.GetComponent<CharacterMovement>().JustFinishedDash && !player.GetComponent<CharacterMovement>().OnShieldProtection
-            && player.GetComponent<CharacterMovement>().Grounded)
+            Vector3.Distance(transform.position, player.transform.position) < 30f && !player.GetComponent<The_Player_Script>().OnDash
+            &&!player.GetComponent<The_Player_Script>().JustFinishedDash && !player.GetComponent<The_Player_Script>().OnShieldProtection
+            && player.GetComponent<The_Player_Script>().Grounded)
         {
 
             //Debug.Log("prout");
@@ -261,7 +260,7 @@ public class ennemyAI : MonoBehaviour
                     hit.transform.GetComponent<Rigidbody>()
                         .AddForceAtPosition(transform.forward * Explosion, hit.point, ForceMode.Impulse);
                     this.HitPlayer = true;
-                    player.GetComponent<CharacterMovement>().JustHit = true;
+                    player.GetComponent<The_Player_Script>().JustHit = true;
                 }
             }
         }
@@ -271,7 +270,7 @@ public class ennemyAI : MonoBehaviour
     {
         if (collision.gameObject.layer == 9)
         {
-            if (collision.transform.GetComponent<CharacterMovement>().OnDash && !JustHit)
+            if (collision.transform.GetComponent<The_Player_Script>().OnDash && !JustHit)
             {
                 //Debug.Log(transform.position - collision.transform.position);
             

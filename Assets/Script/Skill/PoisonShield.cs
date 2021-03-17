@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class PoisonShield : skill
 {
-    [SerializeField] private GameObject SphereCollider;
+
+    [SerializeField] private float freqRessource;
+    private float timer;
+
+    [SerializeField] private float freqPoisonCloud;
+    private float timerCloud;
 
     private bool isActive;
 
@@ -13,27 +18,48 @@ public class PoisonShield : skill
     FMOD.Studio.EventInstance sonPoisonShield;
 
     [SerializeField] private GameObject poisonCloud;
-    private GameObject cloudNow;
+    [SerializeField] private Transform cuve;
 
     // Start is called before the first frame update
     void Start()
     {
         sonPoisonShield = FMODUnity.RuntimeManager.CreateInstance(SonPoisonShield);
-        
+        timer = freqRessource;
 
     }
     
     void Update()
     {
-        if (detectDead.ressourceInt == 0)
+        if (isActive)
         {
-            sonPoisonShield.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            SphereCollider.SetActive(false);
-            isActive = false;
-            if (cloudNow != null)
+            if (detectDead.ressourceInt > 0)
             {
-                cloudNow.GetComponent<ParticleSystem>().Stop();
-                Destroy(cloudNow, 2);
+                if (timer >= freqRessource)
+                {
+                    detectDead.ressourceInt--;                   
+                    timer = 0;
+                }
+                else
+                {
+                    timer += Time.deltaTime;
+                }
+
+                if(timerCloud >= freqPoisonCloud)
+                {
+                    Instantiate(poisonCloud, cuve.position, Quaternion.identity);
+                    timerCloud = 0;
+                }
+                else
+                {
+                    timerCloud += Time.deltaTime;
+
+                }
+
+            }
+            else
+            {
+                sonPoisonShield.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                isActive = false;
             }
         }
     }
@@ -45,19 +71,14 @@ public class PoisonShield : skill
             if (isActive)
             {
                 isActive = false;
-                SphereCollider.SetActive(false);
                 sonPoisonShield.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                cloudNow.GetComponent<ParticleSystem>().Stop();
-                Destroy(cloudNow, 2);
+                timer = freqRessource;
 
             }
             else
             {
                 isActive = true;
-                SphereCollider.SetActive(true);
-                SphereCollider.GetComponent<PoisonCollider>().timer = 0;
                 sonPoisonShield.start();
-                cloudNow = Instantiate(poisonCloud, transform.position + new Vector3(0, 0.5f, 0), poisonCloud.transform.rotation);
             }
         }
          

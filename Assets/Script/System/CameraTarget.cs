@@ -34,7 +34,8 @@ public class CameraTarget : MonoBehaviour
             
             Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
             
-            player.GetComponent<CharacterMovement>().ConteneurRigibody.MoveRotation(newRotation);
+            player.GetComponent<The_Player_Script>().ListOfYourPlayer[player.GetComponent<The_Player_Script>().
+            YourPlayerChoosed].ConteneurRigibody.MoveRotation(newRotation);
             
             Vector3 mousePos = FloorHit.point;
             Vector3 targetPos = (player.position + mousePos) / 2f;

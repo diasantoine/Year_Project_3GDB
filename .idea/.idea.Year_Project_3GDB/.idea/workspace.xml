@@ -33,6 +33,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/ImpulseCharge.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/UIRessource.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/System/CameraTarget.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Player/Avatar_overheated.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Shoot/scirpt/ProjectileMoveScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/CharacterMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9B956647-017D-4DC1-B8D3-D25EEF012467/10/cd73d594/Rigidbody.cs" root0="SKIP_HIGHLIGHTING" />
@@ -47,6 +48,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/takeCadavre.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/seeThrought.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/EnnemySystem/ennemyState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Player/The_Player_Script.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/ClickMouse.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/FMOD/src/Runtime/RuntimeManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -78,29 +80,31 @@
         <option value="$PROJECT_DIR$/Assets/Script/Skill/Shield.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Skill/ShieldCollider.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Skill/ShieldProtectionCollider.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Player/shootDead.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/System/CameraTarget.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/detectDead.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/takeCadavre.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/SystemSkill/skill.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Skill/PoisonShield.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/ennemy/ennemyState.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Skill/ShieldProtection.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/UIRessource.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/shootSkill.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/ennemy/ennemyAI.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Skill/UISkill.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Skill/ChargedDash.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Weapon/TirCharge.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Weapon/DeadProjo.cs" />
         <option value="$PROJECT_DIR$/Assets/DeathScript.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/EnnemySystem/Ennemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Ennemy/SpawnSysteme.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Ennemy/RuantAI.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Ennemy/OLD/ennemyAI.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Player/GroundDetect.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/CharacterMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Player/Avatar_overheated.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Player/shootDead.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Skill/ShieldProtection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Player/GroundDetect.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/System/CameraTarget.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Ennemy/OLD/ennemyAI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/EnnemySystem/Ennemy.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Player/The_Player_Script.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Skill/ChargedDash.cs" />
       </list>
     </option>
   </component>
@@ -202,6 +206,8 @@
       <workItem from="1615460170961" duration="1293000" />
       <workItem from="1615470155560" duration="1292000" />
       <workItem from="1615549695018" duration="13871000" />
+      <workItem from="1615917274291" duration="5749000" />
+      <workItem from="1615980424594" duration="6006000" />
     </task>
     <servers />
   </component>
@@ -218,11 +224,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="824" y="382" key="#Notifications/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1607358503496" />
-    <state x="561" y="317" width="1342" height="1028" key="dock-window-1" timestamp="1611266001502">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="2115" y="0" width="1470" height="1028" key="dock-window-1" timestamp="1615980776325">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="561" y="317" width="1342" height="1028" key="dock-window-1/0.0.1920.1040/1920.-124.1920.1040@0.0.1920.1040" timestamp="1611266001502" />
     <state x="348" y="-8" width="1342" height="1028" maximized="true" key="dock-window-1/0.0.1920.1040/1920.-124.1920.1040@1920.-124.1920.1040" timestamp="1611265697608" />
+    <state x="2115" y="0" width="1470" height="1028" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1615980776325" />
     <state x="616" y="240" key="run.anything.popup" timestamp="1611161938424">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
