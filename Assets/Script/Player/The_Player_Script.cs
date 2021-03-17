@@ -18,38 +18,29 @@ public class The_Player_Script : MonoBehaviour
         public float vitesse;
         public Rigidbody ConteneurRigibody;
         public Transform SpawnPositionPlayer;
-        [SerializeField] private float clamp;
-        [SerializeField] private GameObject Avatar;
-        [SerializeField] private GameObject Canon;
-        [SerializeField] private Animator animAvatar;
+        public float clamp;
+        public GameObject Avatar;
+        public GameObject Canon;
+        public Animator animAvatar;
 
-
-        [Header("PlayerBool")]
-        public bool Grounded;
-        public bool OnDash;
-        public bool JustFinishedDash;
-        public bool JustHit;
-        public bool OnShieldProtection;
-        
         [Header("OverHeated_Armor")] 
-        [SerializeField] private List<GameObject> ListArmorPart;
-        [SerializeField] private float CompteurBeforeDecreaseHeatArmor;
-        public int PercentageArmorHeat;
+        public List<GameObject> ListArmorPart;
+        public float CompteurBeforeDecreaseHeatArmor;
+        public float FrequenceDecreaseArmorHeat;
+        public int NumberOfDecreaseByFrequence_Armor;
         
         [Header("OverHeated_Weapon")] 
-        [SerializeField] private List<GameObject> ListWeaponPart;
-        [SerializeField] private float CompteurBeforeDecreaseHeatWeapon;
-        public int PercentageWeaponHeat;
+        public List<GameObject> ListWeaponPart;
+        public float FrequenceDecreaseWeaponHeat;
+        public int NumberOfDecreaseByFrequence_Weapon;
+        public float CompteurBeforeDecreaseHeatWeapon;
         
-        [Header("PlayerDash")]
-        public Vector3 HitPosition;
-        public float DistanceDash;
-        public Vector3 PointOrigine;
-        public bool Aftershock;
+      
 
     }
-    [SerializeField] private List<YourPlayer> ListOfYourPlayer = new List<YourPlayer>();
-    [SerializeField] private int YourPlayerChoosed;
+    [Header("ChooseYourPlayer")]
+    public List<YourPlayer> ListOfYourPlayer = new List<YourPlayer>();
+    public int YourPlayerChoosed;
 
     
     
@@ -65,6 +56,29 @@ public class The_Player_Script : MonoBehaviour
     private float Compteur1 = 0;
     private float Compteu12 = 0;
     private float Compteur3 = 0;
+    private float CompteurForArmorHeat = 0;
+    private float CompteurForWeaponHeat = 0;
+    
+    [Header("PlayerStatArmorHeat")]
+    public int PercentageArmorHeat;
+    
+    [Header("PlayerStatWeaponHeat")]
+    public int PercentageWeaponHeat;
+
+    [Header("PlayerBool")]
+    public bool Grounded;
+    public bool OnDash;
+    public bool JustFinishedDash;
+    public bool JustHit;
+    public bool OnShieldProtection;
+    public bool ArmorHeated;
+    public bool IsNotUsingNormalWeapon = true;
+    public bool WeaponOverHeated;
+    
+    [Header("PlayerDash")]
+    public float DistanceDash;
+    public Vector3 PointOrigine;
+    public bool Aftershock;
     
     void Start()
     {
@@ -74,12 +88,87 @@ public class The_Player_Script : MonoBehaviour
     void Update()
     {
         CharacterMouvement();
-    }
-
-    private void OverHeatedPlayer()
-    {
+        HeatPlayer();
         
     }
+
+    private void HeatPlayer()
+    {
+       HeatArmor();
+       HeatWeapon();
+    }
+
+    private void HeatArmor()
+    {
+        if (!JustHit && PercentageArmorHeat >0)
+        {
+            if (CompteurForArmorHeat >= ListOfYourPlayer[YourPlayerChoosed].CompteurBeforeDecreaseHeatArmor)
+            {
+                CompteurForArmorHeat = 0;
+                DecreaseArmorHeat();
+            }
+            else
+            {
+                CompteurForArmorHeat += Time.deltaTime;
+            }
+        }
+        else
+        {
+            if (CompteurForArmorHeat != 0)
+            {
+                CompteurForArmorHeat = 0;
+            }
+        }
+    }
+    
+    
+    private void HeatWeapon()
+    {
+        if ((IsNotUsingNormalWeapon || WeaponOverHeated) && PercentageWeaponHeat >0)
+        {
+            if (CompteurForWeaponHeat >= ListOfYourPlayer[YourPlayerChoosed].CompteurBeforeDecreaseHeatWeapon)
+            {
+                CompteurForWeaponHeat = 0;
+                DecreaseWeaponHeat();
+            }
+            else
+            {
+                CompteurForWeaponHeat += Time.deltaTime;
+            }
+        }
+        else
+        {
+            if (CompteurForWeaponHeat != 0)
+            {
+                CompteurForWeaponHeat = 0;
+            }
+        }
+    }
+
+    IEnumerator DecreaseArmorHeat()
+    {
+        yield return new WaitForSeconds(ListOfYourPlayer[YourPlayerChoosed].FrequenceDecreaseArmorHeat);
+        PercentageArmorHeat -= ListOfYourPlayer[YourPlayerChoosed].NumberOfDecreaseByFrequence_Armor;
+        ListOfYourPlayer[YourPlayerChoosed].ListArmorPart[0].
+            GetComponent<SkinnedMeshRenderer>().material.SetColor("_EmissionColor",
+                new Color(1,PercentageArmorHeat/100, PercentageArmorHeat/100));
+
+    }
+    
+    IEnumerator DecreaseWeaponHeat()
+    {
+        yield return new WaitForSeconds(ListOfYourPlayer[YourPlayerChoosed].FrequenceDecreaseWeaponHeat);
+        PercentageWeaponHeat -= ListOfYourPlayer[YourPlayerChoosed].NumberOfDecreaseByFrequence_Weapon;
+        ListOfYourPlayer[YourPlayerChoosed].ListWeaponPart[0].
+            GetComponent<MeshRenderer>().material.SetColor("_EmissionColor",
+                new Color(1,PercentageWeaponHeat/100, PercentageWeaponHeat/100));
+        if (WeaponOverHeated && PercentageWeaponHeat <=0)
+        {
+            WeaponOverHeated = false;
+        }
+
+    }
+
     private void CharacterMouvement()
     {
         DashFinishCheck(); // Check if the dash is finished, if it is set var at the normal state
@@ -93,30 +182,39 @@ public class The_Player_Script : MonoBehaviour
 
     private void Player_Reaction_After_Hit()
     {
-        if (ListOfYourPlayer[YourPlayerChoosed].JustHit)
+        if (JustHit)
         {
-            if (!ListOfYourPlayer[YourPlayerChoosed].Grounded)
+            if (!Grounded)
             {
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.constraints = RigidbodyConstraints.None;
             }
             else
             {
-                if (ListOfYourPlayer[YourPlayerChoosed].OnDash)
+                if (OnDash)
                 {
-                    ListOfYourPlayer[YourPlayerChoosed].JustHit = 
-                    ListOfYourPlayer[YourPlayerChoosed].JustHit = false;
+                    JustHit = 
+                    JustHit = false;
                     Compteu12 = 0;
                     Compteur1 = 0;
                 }
                 else
                 {
+                    if (!ArmorHeated)
+                    {
+                        ListOfYourPlayer[YourPlayerChoosed].ListArmorPart[0].
+                            GetComponent<SkinnedMeshRenderer>().material.SetColor("_EmissionColor",
+                                new Color(1,PercentageArmorHeat/100, PercentageArmorHeat/100));
+                        ArmorHeated = true;
+                    }
                     if (Compteu12 < 0.4f)
                     {
                         Compteu12 += Time.deltaTime;
                     }
                     else
                     {
+                        
                         JustHit = false;
+                        ArmorHeated = false;
                         Compteu12 = 0;
                         Compteur1 = 0;
                     }
@@ -127,9 +225,7 @@ public class The_Player_Script : MonoBehaviour
 
     private void Player_Deplacement()
     {
-        if ((Input.GetButton("Vertical") || Input.GetButton("Horizontal")) && 
-            ListOfYourPlayer[YourPlayerChoosed].Grounded && !ListOfYourPlayer[YourPlayerChoosed].OnDash 
-            && !ListOfYourPlayer[YourPlayerChoosed].JustHit)
+        if ((Input.GetButton("Vertical") || Input.GetButton("Horizontal")) && Grounded && !OnDash && !JustHit)
         {
             Vector3 ConteneurCameraPositionForward = Camera.main.transform.forward * Input.GetAxis("Vertical");
             Vector3 ConteneurCameraPositionRight = Camera.main.transform.right * Input.GetAxis("Horizontal");
@@ -138,36 +234,37 @@ public class The_Player_Script : MonoBehaviour
             if (Mathf.RoundToInt(Vector3.Dot(transform.forward, 
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized)) == 1)
             {
-                animAvatar.SetBool("Forward", true);
-                animAvatar.SetBool("Backward", false);
+                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", true);
+                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
             }
             else if (Mathf.RoundToInt(Vector3.Dot(transform.forward, 
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized)) == -1)
             {
-                animAvatar.SetBool("Backward", true);
-                animAvatar.SetBool("Forward", false);
+                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", true);
+                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
             }
             else
             {
-                animAvatar.SetBool("Forward", true);
-                animAvatar.SetBool("Backward", false);
+                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", true);
+                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
             }
 
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = 
                 Vector3_Deplacement_Player * 
                 (ListOfYourPlayer[YourPlayerChoosed].vitesse / 
-                 Mathf.Clamp(detectDead.ressourceInt / clamp, 1, 1.75f));
-            animAvatar.speed = (ListOfYourPlayer[YourPlayerChoosed].vitesse / 
-                                Mathf.Clamp(detectDead.ressourceInt / clamp, 1, 1.75f)) 
+                 Mathf.Clamp(detectDead.ressourceInt / 
+                             ListOfYourPlayer[YourPlayerChoosed].clamp, 1, 1.75f));
+            ListOfYourPlayer[YourPlayerChoosed].animAvatar.speed = 
+                (ListOfYourPlayer[YourPlayerChoosed].vitesse / Mathf.Clamp(
+                    detectDead.ressourceInt / ListOfYourPlayer[YourPlayerChoosed].clamp, 1, 1.75f)) 
                 * 1 / ListOfYourPlayer[YourPlayerChoosed].vitesse;
         }
         else
         {
-            animAvatar.SetBool("Forward", false);
-            animAvatar.SetBool("Backward", false);
+            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
+            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
 
-            if (!ListOfYourPlayer[YourPlayerChoosed].JustHit && !ListOfYourPlayer[YourPlayerChoosed].OnDash 
-                                                             && ListOfYourPlayer[YourPlayerChoosed].Grounded)
+            if (!JustHit && !OnDash && Grounded)
             {
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = 
                     new Vector3(0, ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.y, 0);
@@ -181,7 +278,7 @@ public class The_Player_Script : MonoBehaviour
         {
             transform.position = ListOfYourPlayer[YourPlayerChoosed].SpawnPositionPlayer.position;
             //SetCursorPos(xPos,yPos);//Call this when you want to set the mouse position
-            if (ListOfYourPlayer[YourPlayerChoosed].OnDash)
+            if (OnDash)
             {
                 OnDash = false;
                 GetComponent<CapsuleCollider>().enabled = !enabled;
@@ -195,7 +292,7 @@ public class The_Player_Script : MonoBehaviour
         }
         else
         {
-            if (!ListOfYourPlayer[YourPlayerChoosed].Grounded && !ListOfYourPlayer[YourPlayerChoosed].OnDash)
+            if (!Grounded && !OnDash)
             {
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.constraints 
                     = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
@@ -211,25 +308,23 @@ public class The_Player_Script : MonoBehaviour
 
     private void DashFinishCheck()
     {
-        if (ListOfYourPlayer[YourPlayerChoosed].OnDash)
+        if (OnDash)
         {
-            float Distance = Vector3.Distance(Canon.transform.position, 
-                ListOfYourPlayer[YourPlayerChoosed].PointOrigine);
-            Debug.Log(Distance);
-            if (Distance >= ListOfYourPlayer[YourPlayerChoosed].DistanceDash)
+            float Distance = Vector3.Distance(ListOfYourPlayer[YourPlayerChoosed].Canon.transform.position, PointOrigine);
+            if (Distance >= DistanceDash)
             {
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.mass = 1;
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = 
                     ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized * 
                     ListOfYourPlayer[YourPlayerChoosed].vitesse;
-                ListOfYourPlayer[YourPlayerChoosed].JustFinishedDash = true;
-                ListOfYourPlayer[YourPlayerChoosed].OnDash = false;
+                JustFinishedDash = true;
+                OnDash = false;
                 GetComponent<CapsuleCollider>().enabled = !enabled;
                 ListOfYourPlayer[YourPlayerChoosed].Avatar.layer = 9;
                 tag = "Player";
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.useGravity = true;
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                if (ListOfYourPlayer[YourPlayerChoosed].Aftershock)
+                if (Aftershock)
                 {
                     //explosion
                 }
@@ -237,7 +332,7 @@ public class The_Player_Script : MonoBehaviour
         }
         else
         {
-            if (ListOfYourPlayer[YourPlayerChoosed].JustFinishedDash)
+            if (JustFinishedDash)
             {
                 if (Compteur<=0.6f)
                 {
@@ -246,7 +341,7 @@ public class The_Player_Script : MonoBehaviour
                 else
                 {
                     Compteur = 0;
-                    ListOfYourPlayer[YourPlayerChoosed].JustFinishedDash = false;
+                    JustFinishedDash = false;
                 }
             }
         }
@@ -262,7 +357,7 @@ public class The_Player_Script : MonoBehaviour
         if (other.gameObject.layer == 13 && other.GetComponent<RuantAI>() != null &&
             other.GetComponent<RuantAI>().state == RuantAI.State.RUSH)
         {
-            ListOfYourPlayer[YourPlayerChoosed].JustHit = true;
+            JustHit = true;
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.freezeRotation = false;
             Vector3 dir = transform.position;
             dir = (dir - other.transform.position).normalized;

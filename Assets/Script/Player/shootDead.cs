@@ -150,6 +150,8 @@ public class shootDead : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
+                GetComponent<The_Player_Script>().IsNotUsingNormalWeapon = false;
+                GetComponent<The_Player_Script>().PercentageWeaponHeat += 1;
                 RaycastHit floorHit;
                 chrono = 0;
                 for (int i = 0; i < NombreDeProjectile; i++)
@@ -194,6 +196,10 @@ public class shootDead : MonoBehaviour
                     }
                 }
                 FMODUnity.RuntimeManager.PlayOneShot(TireSon, transform.position);
+            }
+            else
+            {
+                GetComponent<The_Player_Script>().IsNotUsingNormalWeapon = true;
             }
         }
         else

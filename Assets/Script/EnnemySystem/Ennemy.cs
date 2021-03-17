@@ -25,7 +25,7 @@ public class Ennemy : MonoBehaviour
         var rayDirection = player.transform.position - transform.position;
         if (Vector3.Angle(rayDirection, transform.forward) < fieldOfView
             && Vector3.Distance(transform.position, player.transform.position) < distanceOfView 
-            && player.GetComponent<CharacterMovement>().Grounded)
+            && player.GetComponent<The_Player_Script>().Grounded)
         {
             // Detect if player is within the field of view
             if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Player", "Wall")))

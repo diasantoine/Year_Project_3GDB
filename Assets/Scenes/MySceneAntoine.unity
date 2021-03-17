@@ -3563,13 +3563,14 @@ GameObject:
   m_Component:
   - component: {fileID: 742391567}
   - component: {fileID: 742391566}
+  - component: {fileID: 742391568}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &742391566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3582,19 +3583,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66887cd06d34f2542b7c0be47333e773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ListWave:
-  - NumberBasic: 0
-    NumberRuant: 0
-    NumberScreamer: 0
-    NumberLastra: 0
-    ListSpawnBasic: []
-    ListSpawnRuant: []
-    ListSpawnScreamer: []
-    ListSpawnLastra: []
-    CD_Spawn_Basic: 0
-    CD_Spawn_Ruant: 0
-    CD_Spawn_Screamer: 0
-    CD_Spawn_Lastra: 0
+  ListOfYourPlayer:
+  - vitesse: 10
+    ConteneurRigibody: {fileID: 2013154809}
+    SpawnPositionPlayer: {fileID: 1152712082}
+    clamp: 20
+    Avatar: {fileID: 1413358518}
+    Canon: {fileID: 219307242}
+    animAvatar: {fileID: 1413358522}
+    ListArmorPart:
+    - {fileID: 1320025709}
+    - {fileID: 640082655}
+    - {fileID: 1702127946}
+    - {fileID: 642286243}
+    - {fileID: 592064887}
+    CompteurBeforeDecreaseHeatArmor: 2
+    FrequenceDecreaseArmorHeat: 2
+    NumberOfDecreaseByFrequence_Armor: 10
+    ListWeaponPart:
+    - {fileID: 2028912100}
+    FrequenceDecreaseWeaponHeat: 2
+    NumberOfDecreaseByFrequence_Weapon: 2
+    CompteurBeforeDecreaseHeatWeapon: 10
+  YourPlayerChoosed: 0
+  PercentageArmorHeat: 0
+  PercentageWeaponHeat: 0
+  Grounded: 0
+  OnDash: 0
+  JustFinishedDash: 0
+  JustHit: 0
+  OnShieldProtection: 0
+  ArmorHeated: 0
+  IsNotUsingNormalWeapon: 0
+  WeaponOverHeated: 0
+  HitPosition: {x: 0, y: 0, z: 0}
+  DistanceDash: 0
+  PointOrigine: {x: 0, y: 0, z: 0}
+  Aftershock: 0
 --- !u!4 &742391567
 Transform:
   m_ObjectHideFlags: 0
@@ -3609,6 +3634,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &742391568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742391565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f34a00a0600d946b71a947e8cc178e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vitesse: 10
+  ConteneurRigibody: {fileID: 2013154809}
+  Grounded: 0
+  OnDash: 0
+  JustFinishedDash: 0
+  JustHit: 0
+  OnShieldProtection: 0
+  Avatar: {fileID: 1413358518}
+  clamp: 20
+  HitPosition: {x: 0, y: 0, z: 0}
+  SpawnPositionPlayer: {fileID: 1152712082}
+  animAvatar: {fileID: 1413358522}
+  Canon: {fileID: 219307242}
+  DistanceDash: 0
+  PointOrigine: {x: 0, y: 0, z: 0}
+  Aftershock: 0
 --- !u!1 &752979449
 GameObject:
   m_ObjectHideFlags: 0
@@ -8572,7 +8625,7 @@ GameObject:
   - component: {fileID: 2013154810}
   - component: {fileID: 2013154809}
   - component: {fileID: 2013154808}
-  - component: {fileID: 2013154807}
+  - component: {fileID: 2013154811}
   - component: {fileID: 2013154806}
   - component: {fileID: 2013154805}
   - component: {fileID: 2013154804}
@@ -8666,34 +8719,6 @@ MonoBehaviour:
   canonCharge: {fileID: 0}
   freqTir: 0.2
   NombreDeProjectile: 1
---- !u!114 &2013154807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2013154802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12f34a00a0600d946b71a947e8cc178e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vitesse: 10
-  ConteneurRigibody: {fileID: 2013154809}
-  Grounded: 0
-  OnDash: 0
-  JustFinishedDash: 0
-  JustHit: 0
-  OnShieldProtection: 0
-  Avatar: {fileID: 1413358518}
-  clamp: 20
-  HitPosition: {x: 0, y: 0, z: 0}
-  SpawnPositionPlayer: {fileID: 1152712082}
-  animAvatar: {fileID: 1413358522}
-  Canon: {fileID: 219307242}
-  DistanceDash: 0
-  PointOrigine: {x: 0, y: 0, z: 0}
-  Aftershock: 0
 --- !u!136 &2013154808
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8746,6 +8771,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2013154811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013154802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66887cd06d34f2542b7c0be47333e773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListOfYourPlayer:
+  - vitesse: 10
+    ConteneurRigibody: {fileID: 2013154809}
+    SpawnPositionPlayer: {fileID: 1152712082}
+    clamp: 20
+    Avatar: {fileID: 1413358518}
+    Canon: {fileID: 219307242}
+    animAvatar: {fileID: 1413358522}
+    ListArmorPart:
+    - {fileID: 1320025709}
+    - {fileID: 640082655}
+    - {fileID: 1702127946}
+    - {fileID: 642286243}
+    - {fileID: 592064887}
+    CompteurBeforeDecreaseHeatArmor: 2
+    FrequenceDecreaseArmorHeat: 2
+    NumberOfDecreaseByFrequence_Armor: 10
+    ListWeaponPart:
+    - {fileID: 2028912100}
+    FrequenceDecreaseWeaponHeat: 2
+    NumberOfDecreaseByFrequence_Weapon: 2
+    CompteurBeforeDecreaseHeatWeapon: 10
+  YourPlayerChoosed: 0
+  PercentageArmorHeat: 0
+  PercentageWeaponHeat: 0
+  Grounded: 0
+  OnDash: 0
+  JustFinishedDash: 0
+  JustHit: 0
+  OnShieldProtection: 0
+  ArmorHeated: 0
+  IsNotUsingNormalWeapon: 0
+  WeaponOverHeated: 0
+  HitPosition: {x: 0, y: 0, z: 0}
+  DistanceDash: 0
+  PointOrigine: {x: 0, y: 0, z: 0}
+  Aftershock: 0
 --- !u!1 &2028912100
 GameObject:
   m_ObjectHideFlags: 0

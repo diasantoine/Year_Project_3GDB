@@ -277,10 +277,14 @@ public class ScreamerScript : Ennemy
         {
             if (hit[i].gameObject.CompareTag("Player"))
             { 
-                hit[i].transform.parent.GetComponent<CharacterMovement>().JustHit = true;
-                hit[i].transform.parent.GetComponent<CharacterMovement>().ConteneurRigibody.velocity = Vector3.zero;
-                hit[i].transform.parent.GetComponent<CharacterMovement>().
-                    ConteneurRigibody.AddForce(ForceExplosion*(hit[i].gameObject.transform.position - transform.position).normalized);
+                hit[i].transform.parent.GetComponent<The_Player_Script>().JustHit = true;
+                hit[i].transform.parent.GetComponent<The_Player_Script>().ListOfYourPlayer[
+                    hit[i].GetComponent<The_Player_Script>().YourPlayerChoosed].
+                    ConteneurRigibody.velocity = Vector3.zero;
+                hit[i].transform.parent.GetComponent<The_Player_Script>().ListOfYourPlayer[
+                        hit[i].GetComponent<The_Player_Script>().YourPlayerChoosed].
+                    ConteneurRigibody.
+                    AddForce(ForceExplosion*(hit[i].gameObject.transform.position - transform.position).normalized);
                 /*.AddExplosionForce(ForceExplosion,hitPoint, 
                radiusExploBase + transform.localScale.x, 5f);*/
             }
@@ -350,7 +354,7 @@ public class ScreamerScript : Ennemy
     {
         if (collision.gameObject.layer == 9)
         {
-            if (collision.transform.GetComponent<CharacterMovement>().OnDash && !JustHit)
+            if (collision.transform.GetComponent<The_Player_Script>().OnDash && !JustHit)
             {
                 JustHit = true;
                 agent.enabled = false;
