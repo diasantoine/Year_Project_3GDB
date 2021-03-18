@@ -303,7 +303,6 @@ public class RuantAI : Ennemy
             DashFini();
 
         }
-
         RB.velocity = place.normalized * speedRush;
 
     }

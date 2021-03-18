@@ -89,7 +89,6 @@ public class SpawnSysteme : MonoBehaviour
         if(ListWave.Count > IndexWave)
         {
             mobRestant = ListWave[IndexWave].NumberRuant + ListWave[IndexWave].NumberScreamer + ListWave[IndexWave].NumberBasic + ListWave[IndexWave].NumberLastra;
-            Debug.Log(mobRestant);
 
             foreach (Ennemy Ennemy_Type in Enum.GetValues(typeof(Ennemy)))
             {
