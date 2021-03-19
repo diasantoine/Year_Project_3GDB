@@ -18,7 +18,6 @@ public class The_Player_Script : MonoBehaviour
         public float vitesse;
         public Rigidbody ConteneurRigibody;
         public Transform SpawnPositionPlayer;
-        public float clamp;
         public GameObject Avatar;
         public GameObject Canon;
         public Animator animAvatar;
@@ -31,9 +30,9 @@ public class The_Player_Script : MonoBehaviour
         
         [Header("OverHeated_Weapon")] 
         public List<GameObject> ListWeaponPart;
+        public float CompteurBeforeDecreaseHeatWeapon;
         public float FrequenceDecreaseWeaponHeat;
         public int NumberOfDecreaseByFrequence_Weapon;
-        public float CompteurBeforeDecreaseHeatWeapon;
         
       
 
@@ -105,7 +104,7 @@ public class The_Player_Script : MonoBehaviour
             if (CompteurForArmorHeat >= ListOfYourPlayer[YourPlayerChoosed].CompteurBeforeDecreaseHeatArmor)
             {
                 CompteurForArmorHeat = 0;
-                DecreaseArmorHeat();
+                StartCoroutine(DecreaseArmorHeat());
             }
             else
             {
@@ -129,7 +128,7 @@ public class The_Player_Script : MonoBehaviour
             if (CompteurForWeaponHeat >= ListOfYourPlayer[YourPlayerChoosed].CompteurBeforeDecreaseHeatWeapon)
             {
                 CompteurForWeaponHeat = 0;
-                DecreaseWeaponHeat();
+                StartCoroutine(DecreaseWeaponHeat());
             }
             else
             {
@@ -147,21 +146,26 @@ public class The_Player_Script : MonoBehaviour
 
     IEnumerator DecreaseArmorHeat()
     {
+        Debug.Log("the fuck?");
         yield return new WaitForSeconds(ListOfYourPlayer[YourPlayerChoosed].FrequenceDecreaseArmorHeat);
         PercentageArmorHeat -= ListOfYourPlayer[YourPlayerChoosed].NumberOfDecreaseByFrequence_Armor;
-        ListOfYourPlayer[YourPlayerChoosed].ListArmorPart[0].
-            GetComponent<SkinnedMeshRenderer>().material.SetColor("_EmissionColor",
-                new Color(1,PercentageArmorHeat/100, PercentageArmorHeat/100));
-
+        foreach (GameObject ArmorPart in  ListOfYourPlayer[YourPlayerChoosed].ListArmorPart)
+        {
+            Debug.Log("?");
+            ArmorPart.GetComponent<SkinnedMeshRenderer>().material.SetColor("_EmissionColor",
+                new Color(1,1 - PercentageArmorHeat/100f, 1 -PercentageArmorHeat/100f));
+        }
     }
     
     IEnumerator DecreaseWeaponHeat()
     {
         yield return new WaitForSeconds(ListOfYourPlayer[YourPlayerChoosed].FrequenceDecreaseWeaponHeat);
         PercentageWeaponHeat -= ListOfYourPlayer[YourPlayerChoosed].NumberOfDecreaseByFrequence_Weapon;
-        ListOfYourPlayer[YourPlayerChoosed].ListWeaponPart[0].
-            GetComponent<MeshRenderer>().material.SetColor("_EmissionColor",
-                new Color(1,PercentageWeaponHeat/100, PercentageWeaponHeat/100));
+        foreach (GameObject WeaponPart in  ListOfYourPlayer[YourPlayerChoosed].ListWeaponPart)
+        {
+            WeaponPart.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor",
+                new Color(GetComponent<The_Player_Script>().PercentageWeaponHeat/100f,0 ,0));
+        }
         if (WeaponOverHeated && PercentageWeaponHeat <=0)
         {
             WeaponOverHeated = false;
@@ -192,7 +196,6 @@ public class The_Player_Script : MonoBehaviour
             {
                 if (OnDash)
                 {
-                    JustHit = 
                     JustHit = false;
                     Compteu12 = 0;
                     Compteur1 = 0;
@@ -201,9 +204,11 @@ public class The_Player_Script : MonoBehaviour
                 {
                     if (!ArmorHeated)
                     {
-                        ListOfYourPlayer[YourPlayerChoosed].ListArmorPart[0].
-                            GetComponent<SkinnedMeshRenderer>().material.SetColor("_EmissionColor",
-                                new Color(1,PercentageArmorHeat/100, PercentageArmorHeat/100));
+                        foreach (GameObject ArmorPart in  ListOfYourPlayer[YourPlayerChoosed].ListArmorPart)
+                        {
+                            ArmorPart.GetComponent<SkinnedMeshRenderer>().material.SetColor("_EmissionColor",
+                                    new Color(1,1 - PercentageArmorHeat/100f, 1 -PercentageArmorHeat/100f));
+                        }
                         ArmorHeated = true;
                     }
                     if (Compteu12 < 0.4f)
@@ -249,15 +254,8 @@ public class The_Player_Script : MonoBehaviour
                 ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
             }
 
-            ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = 
-                Vector3_Deplacement_Player * 
-                (ListOfYourPlayer[YourPlayerChoosed].vitesse / 
-                 Mathf.Clamp(detectDead.ressourceInt / 
-                             ListOfYourPlayer[YourPlayerChoosed].clamp, 1, 1.75f));
-            ListOfYourPlayer[YourPlayerChoosed].animAvatar.speed = 
-                (ListOfYourPlayer[YourPlayerChoosed].vitesse / Mathf.Clamp(
-                    detectDead.ressourceInt / ListOfYourPlayer[YourPlayerChoosed].clamp, 1, 1.75f)) 
-                * 1 / ListOfYourPlayer[YourPlayerChoosed].vitesse;
+            ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity =
+                Vector3_Deplacement_Player * ListOfYourPlayer[YourPlayerChoosed].vitesse;
         }
         else
         {
@@ -287,8 +285,19 @@ public class The_Player_Script : MonoBehaviour
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.useGravity = true;
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
             }
-
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = Vector3.zero;
+            PercentageArmorHeat = 0;
+            PercentageWeaponHeat = 0;
+            foreach (GameObject ArmorPart in  ListOfYourPlayer[YourPlayerChoosed].ListArmorPart)
+            {
+                ArmorPart.GetComponent<SkinnedMeshRenderer>().material.SetColor("_EmissionColor",
+                    new Color(1,1 - PercentageArmorHeat/100f, 1 -PercentageArmorHeat/100f));
+            }
+            foreach (GameObject WeaponPart in  ListOfYourPlayer[YourPlayerChoosed].ListWeaponPart)
+            {
+                WeaponPart.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor",
+                    new Color(GetComponent<The_Player_Script>().PercentageWeaponHeat/100f,0 ,0));
+            }
         }
         else
         {
@@ -363,13 +372,14 @@ public class The_Player_Script : MonoBehaviour
             dir = (dir - other.transform.position).normalized;
             //dir = (dir + collision.GetComponent<Rigidbody>().velocity) / 2;
             dir.y = 0;
-            float RegulationForce = 150;
+            float RegulationForce = 250;
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = Vector3.zero;
             Debug.Log(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity);
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.
-                AddForceAtPosition(dir * other.GetComponent<Rigidbody>().velocity.magnitude 
-                                       * RegulationForce,
+                AddForceAtPosition(dir * (other.GetComponent<Rigidbody>().velocity.magnitude 
+                                       * RegulationForce + (other.GetComponent<Rigidbody>().velocity.magnitude * RegulationForce * PercentageArmorHeat/100)),
                     ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.ClosestPointOnBounds(other.transform.position));
+            PercentageArmorHeat += other.GetComponent<RuantAI>().DmgArmorHeat;
         }
     }
 }

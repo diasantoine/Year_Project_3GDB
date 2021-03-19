@@ -16,6 +16,7 @@ public class ennemyAI : MonoBehaviour
     private bool HitPlayer = false;
 
     [SerializeField] private float ImpactTirNormal = 1;
+    [SerializeField] private int DmgArmorHeat;
 
     private Rigidbody ConteneurRigibody;
 
@@ -240,8 +241,6 @@ public class ennemyAI : MonoBehaviour
             &&!player.GetComponent<The_Player_Script>().JustFinishedDash && !player.GetComponent<The_Player_Script>().OnShieldProtection
             && player.GetComponent<The_Player_Script>().Grounded)
         {
-
-            //Debug.Log("prout");
             // Detect if player is within the field of view
             if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, Mathf.Infinity,LayerMask.GetMask("Player")))
             { 
@@ -258,9 +257,13 @@ public class ennemyAI : MonoBehaviour
                     float Explosion = 10*GetComponent<ennemyState>().DMG_Percentage;
                    // hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                     hit.transform.GetComponent<Rigidbody>()
-                        .AddForceAtPosition(transform.forward * Explosion, hit.point, ForceMode.Impulse);
+                        .AddForceAtPosition(transform.forward * 
+                                            (Explosion + (Explosion * 
+                                                hit.transform.GetComponent<The_Player_Script>().PercentageArmorHeat / 100))
+                            , hit.point, ForceMode.Impulse);
                     this.HitPlayer = true;
                     player.GetComponent<The_Player_Script>().JustHit = true;
+                    player.GetComponent<The_Player_Script>().PercentageArmorHeat += DmgArmorHeat;
                 }
             }
         }

@@ -22,6 +22,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/shootSkill.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/SpawnSysteme.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/EnnemySystem/Ennemy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E81851A0-DC73-4A79-AFA9-F5B7273162BE/6f/c65f0335/IEnumerator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/System/spawn.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/System/spawnEnnemyBasique.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/ShieldProtectionCollider.cs" root0="FORCE_HIGHLIGHTING" />
@@ -52,7 +53,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/ClickMouse.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/FMOD/src/Runtime/RuntimeManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Script/SpawnPlayer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/GroundDetect.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/RuantAI.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -92,19 +92,19 @@
         <option value="$PROJECT_DIR$/Assets/Script/Weapon/TirCharge.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Weapon/DeadProjo.cs" />
         <option value="$PROJECT_DIR$/Assets/DeathScript.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Ennemy/SpawnSysteme.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Ennemy/RuantAI.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/CharacterMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/Avatar_overheated.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Player/shootDead.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Skill/ShieldProtection.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/GroundDetect.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/System/CameraTarget.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Ennemy/OLD/ennemyAI.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/EnnemySystem/Ennemy.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerScript.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Player/The_Player_Script.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Skill/ChargedDash.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Player/shootDead.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Ennemy/SpawnSysteme.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Ennemy/OLD/ennemyAI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Ennemy/RuantAI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Player/The_Player_Script.cs" />
       </list>
     </option>
   </component>
@@ -208,6 +208,8 @@
       <workItem from="1615549695018" duration="13871000" />
       <workItem from="1615917274291" duration="5749000" />
       <workItem from="1615980424594" duration="6006000" />
+      <workItem from="1616069917005" duration="11014000" />
+      <workItem from="1616137489232" duration="1823000" />
     </task>
     <servers />
   </component>

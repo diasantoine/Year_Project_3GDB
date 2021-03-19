@@ -2207,9 +2207,10 @@ MonoBehaviour:
   ScreamerState: 0
   Poisoned: 0
   spawn: {fileID: 0}
-  ForceExplosion: 3500
-  radiusExploBase: 20
+  ForceExplosion: 100
+  radiusExploBase: 10
   DMG: 6
+  DmgArmorHeat: 30
   compteur: 1.5
   freqTick: 0.2
   numberCadav: 3

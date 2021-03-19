@@ -3587,7 +3587,6 @@ MonoBehaviour:
   - vitesse: 10
     ConteneurRigibody: {fileID: 2013154809}
     SpawnPositionPlayer: {fileID: 1152712082}
-    clamp: 20
     Avatar: {fileID: 1413358518}
     Canon: {fileID: 219307242}
     animAvatar: {fileID: 1413358522}
@@ -3602,9 +3601,9 @@ MonoBehaviour:
     NumberOfDecreaseByFrequence_Armor: 10
     ListWeaponPart:
     - {fileID: 2028912100}
+    CompteurBeforeDecreaseHeatWeapon: 10
     FrequenceDecreaseWeaponHeat: 2
     NumberOfDecreaseByFrequence_Weapon: 2
-    CompteurBeforeDecreaseHeatWeapon: 10
   YourPlayerChoosed: 0
   PercentageArmorHeat: 0
   PercentageWeaponHeat: 0
@@ -3616,7 +3615,6 @@ MonoBehaviour:
   ArmorHeated: 0
   IsNotUsingNormalWeapon: 0
   WeaponOverHeated: 0
-  HitPosition: {x: 0, y: 0, z: 0}
   DistanceDash: 0
   PointOrigine: {x: 0, y: 0, z: 0}
   Aftershock: 0
@@ -4777,7 +4775,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2013154810}
-  spawnList: []
 --- !u!1 &1167504799
 GameObject:
   m_ObjectHideFlags: 0
@@ -5536,9 +5533,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df87ecda4b54234ea1e170ef4f1df8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FreqTick: 0.2
-  freqRessource: 1
-  timer: 0
+  cloud: {fileID: 0}
+  freqDie: 0
   dps: 1
 --- !u!135 &1329696590
 SphereCollider:
@@ -5677,8 +5673,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListWave:
-  - NumberBasic: 5
-    NumberRuant: 1
+  - NumberBasic: 4
+    NumberRuant: 0
     NumberScreamer: 0
     NumberLastra: 0
     ListSpawnBasic:
@@ -5690,8 +5686,8 @@ MonoBehaviour:
     - {fileID: 1725154621}
     - {fileID: 596509453}
     ListSpawnLastra: []
-    CD_Spawn_Basic: 3
-    CD_Spawn_Ruant: 10
+    CD_Spawn_Basic: 1
+    CD_Spawn_Ruant: 1
     CD_Spawn_Screamer: 1
     CD_Spawn_Lastra: 0
   - NumberBasic: 10
@@ -8787,7 +8783,6 @@ MonoBehaviour:
   - vitesse: 10
     ConteneurRigibody: {fileID: 2013154809}
     SpawnPositionPlayer: {fileID: 1152712082}
-    clamp: 20
     Avatar: {fileID: 1413358518}
     Canon: {fileID: 219307242}
     animAvatar: {fileID: 1413358522}
@@ -8802,9 +8797,9 @@ MonoBehaviour:
     NumberOfDecreaseByFrequence_Armor: 10
     ListWeaponPart:
     - {fileID: 2028912100}
+    CompteurBeforeDecreaseHeatWeapon: 2
     FrequenceDecreaseWeaponHeat: 2
-    NumberOfDecreaseByFrequence_Weapon: 2
-    CompteurBeforeDecreaseHeatWeapon: 10
+    NumberOfDecreaseByFrequence_Weapon: 10
   YourPlayerChoosed: 0
   PercentageArmorHeat: 0
   PercentageWeaponHeat: 0
@@ -8816,7 +8811,6 @@ MonoBehaviour:
   ArmorHeated: 0
   IsNotUsingNormalWeapon: 0
   WeaponOverHeated: 0
-  HitPosition: {x: 0, y: 0, z: 0}
   DistanceDash: 0
   PointOrigine: {x: 0, y: 0, z: 0}
   Aftershock: 0
@@ -8871,7 +8865,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3a7804791057a3c4ea3f80ec6b5124c5, type: 2}
+  - {fileID: 2100000, guid: 33ab393597b1adf439a74b606000d264, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

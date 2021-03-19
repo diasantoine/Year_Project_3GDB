@@ -22,6 +22,7 @@ public class ScreamerScript : Ennemy
     [SerializeField] private float ForceExplosion;
     [SerializeField] private float radiusExploBase;
     [SerializeField] private int DMG;
+    [SerializeField] private int DmgArmorHeat;
     [SerializeField] private float compteur = 2;
     [SerializeField] private float freqTick;
     [SerializeField] private int numberCadav;
@@ -77,7 +78,6 @@ public class ScreamerScript : Ennemy
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Grounded);
         if (!agent.enabled && Grounded && !JustHit)
         {
             agent.enabled = true;
@@ -138,17 +138,17 @@ public class ScreamerScript : Ennemy
                     {
                         agent.speed = 0;
                         RB.isKinematic = true;
-                        agent.enabled = false;
                         agent.isStopped = true;
+                        agent.enabled = false;
                         ScreamerState = State.dead;
                         
                     }
                     else
                     {
                         agent.speed = 0;
+                        agent.isStopped = true;
                         agent.enabled = false;
                         RB.isKinematic = true;
-                        agent.isStopped = true;
                         ScreamerState = State.dead;
                     }
                 }
@@ -158,7 +158,6 @@ public class ScreamerScript : Ennemy
                     {
                         AnimatorConteneur.SetBool("TriggerState", true);
                     }
-                    Debug.Log("a");
                     agent.speed = SpeedConteneur;
                     transform.LookAt(player.transform.position);
                     agent.SetDestination(player.transform.position);
@@ -201,7 +200,6 @@ public class ScreamerScript : Ennemy
                     }
                     else
                     {
-                        Debug.Log("WaitDeath");
                     }
                     // if (compteur >= 0)
                     // {
@@ -277,17 +275,19 @@ public class ScreamerScript : Ennemy
         for (int i = 0; i < hit.Length; i++)
         {
             if (hit[i].gameObject.CompareTag("Player"))
-            { 
-                hit[i].transform.parent.GetComponent<The_Player_Script>().JustHit = true;
-                hit[i].transform.parent.GetComponent<The_Player_Script>().ListOfYourPlayer[
-                    hit[i].GetComponent<The_Player_Script>().YourPlayerChoosed].
-                    ConteneurRigibody.velocity = Vector3.zero;
-                hit[i].transform.parent.GetComponent<The_Player_Script>().ListOfYourPlayer[
-                        hit[i].GetComponent<The_Player_Script>().YourPlayerChoosed].
-                    ConteneurRigibody.
-                    AddForce(ForceExplosion*(hit[i].gameObject.transform.position - transform.position).normalized);
-                /*.AddExplosionForce(ForceExplosion,hitPoint, 
-               radiusExploBase + transform.localScale.x, 5f);*/
+            {
+                float ForceExplosionWithArmorHeat = ForceExplosion + ForceExplosion * player.GetComponent<The_Player_Script>().PercentageArmorHeat / 100;
+                
+                player.GetComponent<The_Player_Script>().JustHit = true; player.GetComponent<The_Player_Script>().ListOfYourPlayer[
+                    player.GetComponent<The_Player_Script>().YourPlayerChoosed].ConteneurRigibody.velocity = Vector3.zero;
+                
+                player.GetComponent<The_Player_Script>().ListOfYourPlayer[player.GetComponent<The_Player_Script>().YourPlayerChoosed].
+                    ConteneurRigibody.angularVelocity = Vector3.zero;
+                
+                player.GetComponent<The_Player_Script>().ListOfYourPlayer[player.GetComponent<The_Player_Script>().YourPlayerChoosed].ConteneurRigibody.
+                    AddForce(ForceExplosionWithArmorHeat*(player.transform.position - transform.position).normalized,ForceMode.Impulse);
+
+                player.GetComponent<The_Player_Script>().PercentageArmorHeat += DmgArmorHeat;
             }
             else if (hit[i].gameObject.CompareTag("Ennemy"))
             {

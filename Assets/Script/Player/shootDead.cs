@@ -152,13 +152,19 @@ public class shootDead : MonoBehaviour
             {
                 GetComponent<The_Player_Script>().IsNotUsingNormalWeapon = false;
                 GetComponent<The_Player_Script>().PercentageWeaponHeat += 1;
+                foreach (GameObject WeaponPart in  
+                    GetComponent<The_Player_Script>().ListOfYourPlayer[
+                        GetComponent<The_Player_Script>().YourPlayerChoosed].ListWeaponPart)
+                {
+                    WeaponPart.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor",
+                        new Color(GetComponent<The_Player_Script>().PercentageWeaponHeat/100f,0 ,0));
+                }
                 RaycastHit floorHit;
                 chrono = 0;
                 for (int i = 0; i < NombreDeProjectile; i++)
                 {
                     if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
                     {
-                        Debug.Log(floorHit.transform.name);
                         if (i != 0)
                         {
                             if (i%2 == 0)
