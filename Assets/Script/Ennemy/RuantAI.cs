@@ -13,6 +13,8 @@ public class RuantAI : Ennemy
     [SerializeField] private float speedRush;
     [SerializeField] private float deceleration;
     [SerializeField] private GameObject RuantCollider;
+
+    public int DmgArmorHeat;
     
     private float chrono;
     private float speedRushIni;

@@ -16,6 +16,7 @@ public class ennemyAI : MonoBehaviour
     private bool HitPlayer = false;
 
     [SerializeField] private float ImpactTirNormal = 1;
+    [SerializeField] private int DmgArmorHeat;
 
     private Rigidbody ConteneurRigibody;
 
@@ -262,6 +263,7 @@ public class ennemyAI : MonoBehaviour
                             , hit.point, ForceMode.Impulse);
                     this.HitPlayer = true;
                     player.GetComponent<The_Player_Script>().JustHit = true;
+                    player.GetComponent<The_Player_Script>().PercentageArmorHeat += DmgArmorHeat;
                 }
             }
         }

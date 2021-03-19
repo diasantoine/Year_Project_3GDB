@@ -5673,8 +5673,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListWave:
-  - NumberBasic: 0
-    NumberRuant: 1
+  - NumberBasic: 4
+    NumberRuant: 0
     NumberScreamer: 0
     NumberLastra: 0
     ListSpawnBasic:
@@ -8800,46 +8800,6 @@ MonoBehaviour:
     CompteurBeforeDecreaseHeatWeapon: 2
     FrequenceDecreaseWeaponHeat: 2
     NumberOfDecreaseByFrequence_Weapon: 10
-  - vitesse: 10
-    ConteneurRigibody: {fileID: 2013154809}
-    SpawnPositionPlayer: {fileID: 1152712082}
-    Avatar: {fileID: 1413358518}
-    Canon: {fileID: 219307242}
-    animAvatar: {fileID: 1413358522}
-    ListArmorPart:
-    - {fileID: 1320025709}
-    - {fileID: 640082655}
-    - {fileID: 1702127946}
-    - {fileID: 642286243}
-    - {fileID: 592064887}
-    CompteurBeforeDecreaseHeatArmor: 2
-    FrequenceDecreaseArmorHeat: 2
-    NumberOfDecreaseByFrequence_Armor: 10
-    ListWeaponPart:
-    - {fileID: 2028912100}
-    CompteurBeforeDecreaseHeatWeapon: 10
-    FrequenceDecreaseWeaponHeat: 2
-    NumberOfDecreaseByFrequence_Weapon: 2
-  - vitesse: 10
-    ConteneurRigibody: {fileID: 2013154809}
-    SpawnPositionPlayer: {fileID: 1152712082}
-    Avatar: {fileID: 1413358518}
-    Canon: {fileID: 219307242}
-    animAvatar: {fileID: 1413358522}
-    ListArmorPart:
-    - {fileID: 1320025709}
-    - {fileID: 640082655}
-    - {fileID: 1702127946}
-    - {fileID: 642286243}
-    - {fileID: 592064887}
-    CompteurBeforeDecreaseHeatArmor: 2
-    FrequenceDecreaseArmorHeat: 2
-    NumberOfDecreaseByFrequence_Armor: 10
-    ListWeaponPart:
-    - {fileID: 2028912100}
-    CompteurBeforeDecreaseHeatWeapon: 10
-    FrequenceDecreaseWeaponHeat: 2
-    NumberOfDecreaseByFrequence_Weapon: 2
   YourPlayerChoosed: 0
   PercentageArmorHeat: 0
   PercentageWeaponHeat: 0

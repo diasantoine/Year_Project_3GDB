@@ -104,7 +104,7 @@ public class The_Player_Script : MonoBehaviour
             if (CompteurForArmorHeat >= ListOfYourPlayer[YourPlayerChoosed].CompteurBeforeDecreaseHeatArmor)
             {
                 CompteurForArmorHeat = 0;
-                DecreaseArmorHeat();
+                StartCoroutine(DecreaseArmorHeat());
             }
             else
             {
@@ -128,7 +128,7 @@ public class The_Player_Script : MonoBehaviour
             if (CompteurForWeaponHeat >= ListOfYourPlayer[YourPlayerChoosed].CompteurBeforeDecreaseHeatWeapon)
             {
                 CompteurForWeaponHeat = 0;
-                //DecreaseWeaponHeat();
+                StartCoroutine(DecreaseWeaponHeat());
             }
             else
             {
@@ -146,14 +146,15 @@ public class The_Player_Script : MonoBehaviour
 
     IEnumerator DecreaseArmorHeat()
     {
+        Debug.Log("the fuck?");
         yield return new WaitForSeconds(ListOfYourPlayer[YourPlayerChoosed].FrequenceDecreaseArmorHeat);
         PercentageArmorHeat -= ListOfYourPlayer[YourPlayerChoosed].NumberOfDecreaseByFrequence_Armor;
         foreach (GameObject ArmorPart in  ListOfYourPlayer[YourPlayerChoosed].ListArmorPart)
         {
+            Debug.Log("?");
             ArmorPart.GetComponent<SkinnedMeshRenderer>().material.SetColor("_EmissionColor",
                 new Color(1,1 - PercentageArmorHeat/100f, 1 -PercentageArmorHeat/100f));
         }
-
     }
     
     IEnumerator DecreaseWeaponHeat()
@@ -203,7 +204,6 @@ public class The_Player_Script : MonoBehaviour
                 {
                     if (!ArmorHeated)
                     {
-                        PercentageArmorHeat += 40;
                         foreach (GameObject ArmorPart in  ListOfYourPlayer[YourPlayerChoosed].ListArmorPart)
                         {
                             ArmorPart.GetComponent<SkinnedMeshRenderer>().material.SetColor("_EmissionColor",
@@ -285,8 +285,19 @@ public class The_Player_Script : MonoBehaviour
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.useGravity = true;
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
             }
-
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = Vector3.zero;
+            PercentageArmorHeat = 0;
+            PercentageWeaponHeat = 0;
+            foreach (GameObject ArmorPart in  ListOfYourPlayer[YourPlayerChoosed].ListArmorPart)
+            {
+                ArmorPart.GetComponent<SkinnedMeshRenderer>().material.SetColor("_EmissionColor",
+                    new Color(1,1 - PercentageArmorHeat/100f, 1 -PercentageArmorHeat/100f));
+            }
+            foreach (GameObject WeaponPart in  ListOfYourPlayer[YourPlayerChoosed].ListWeaponPart)
+            {
+                WeaponPart.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor",
+                    new Color(GetComponent<The_Player_Script>().PercentageWeaponHeat/100f,0 ,0));
+            }
         }
         else
         {
@@ -361,13 +372,14 @@ public class The_Player_Script : MonoBehaviour
             dir = (dir - other.transform.position).normalized;
             //dir = (dir + collision.GetComponent<Rigidbody>().velocity) / 2;
             dir.y = 0;
-            float RegulationForce = 150;
+            float RegulationForce = 250;
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = Vector3.zero;
             Debug.Log(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity);
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.
-                AddForceAtPosition(dir * other.GetComponent<Rigidbody>().velocity.magnitude 
-                                       * RegulationForce,
+                AddForceAtPosition(dir * (other.GetComponent<Rigidbody>().velocity.magnitude 
+                                       * RegulationForce + (other.GetComponent<Rigidbody>().velocity.magnitude * RegulationForce * PercentageArmorHeat/100)),
                     ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.ClosestPointOnBounds(other.transform.position));
+            PercentageArmorHeat += other.GetComponent<RuantAI>().DmgArmorHeat;
         }
     }
 }
