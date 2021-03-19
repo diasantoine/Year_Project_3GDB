@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ScreamerScript : Ennemy
 {
+
     public enum State
     {
         SleepState,
