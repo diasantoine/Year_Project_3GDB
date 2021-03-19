@@ -14,6 +14,12 @@ public class Data_SD : MonoBehaviour
     [FMODUnity.EventRef]
     public string Ruant_FootStep = "";
 
+    [FMODUnity.EventRef]
+    public string Screamer_Explosion = "";
+
+    [FMODUnity.EventRef]
+    public string Screamer_FootStep = "";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +43,18 @@ public class Data_SD : MonoBehaviour
     public void PlayFootStepRuant()
     {
         FMODUnity.RuntimeManager.PlayOneShot(Ruant_FootStep, transform.position);
+        /// Debug.Log("test son footstep");
+    }
+
+    public void PlayScreamerExplosion()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(Screamer_Explosion, transform.position);
+        /// Debug.Log("test son footstep");
+    }
+
+    public void PlayFootStepScreamer()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(Screamer_FootStep, transform.position);
         /// Debug.Log("test son footstep");
     }
 }

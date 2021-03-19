@@ -2103,6 +2103,7 @@ GameObject:
   - component: {fileID: 8346785384108656368}
   - component: {fileID: 8346785384108656370}
   - component: {fileID: 8346785384108656369}
+  - component: {fileID: -7886098598008790837}
   m_Layer: 13
   m_Name: Screamer
   m_TagString: Ennemy
@@ -2204,6 +2205,9 @@ MonoBehaviour:
   agent: {fileID: 8346785384108656371}
   health: {fileID: 0}
   player: {fileID: 0}
+  Screamer_Mort: event:/Enemy/Screamer/Screamer_Cris_Mort
+  Screamer_Explosion: event:/Enemy/Screamer/Screamer_Explosion
+  Screamer_Touche: event:/Enemy/Screamer/Screamer_Touche
   ScreamerState: 0
   Poisoned: 0
   spawn: {fileID: 0}
@@ -2235,6 +2239,23 @@ CapsuleCollider:
   m_Height: 7.2
   m_Direction: 1
   m_Center: {x: 0, y: 3.09, z: 0}
+--- !u!114 &-7886098598008790837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8346785384108656380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab67181d5edc39e478423977af0ff5b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ambiance: 
+  footStep: 
+  Ruant_FootStep: 
+  Screamer_Explosion: event:/Enemy/Screamer/Screamer_Explosion
+  Screamer_FootStep: event:/Enemy/Screamer/Screamer_Footstep
 --- !u!1 &9010566780366387691
 GameObject:
   m_ObjectHideFlags: 0

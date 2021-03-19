@@ -44,8 +44,8 @@ MonoBehaviour:
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 20
-  Length: 0
+  MaxDistance: 30
+  Length: 1000
 --- !u!114 &-7075543804356524481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1631
+  Length: 2600
 --- !u!114 &-6639937667616358054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD_PODLAB/FMOD_PODLAB_Year_Projectt/FMOD_PODLAB/Build/Desktop/Master.bank
   Name: Master
-  lastModified: 637517426321290317
+  lastModified: 637517485483495461
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD_PODLAB/FMOD_PODLAB_Year_Projectt/FMOD_PODLAB/Build/Desktop/Master.strings.bank
   Name: Master.strings
-  lastModified: 637517426321330202
+  lastModified: 637517485483525381
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -220,7 +220,7 @@ MonoBehaviour:
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 70
   Length: 739
 --- !u!114 &-4087222874042289252
 MonoBehaviour:
@@ -567,7 +567,7 @@ MonoBehaviour:
   - {fileID: -6639937667616358054}
   StringsBanks:
   - {fileID: -4753088208096374989}
-  stringsBankWriteTime: 637517426321330202
+  stringsBankWriteTime: 637517485483525381
   cacheVersion: 5
 --- !u!114 &90211068464660350
 MonoBehaviour:
@@ -609,11 +609,11 @@ MonoBehaviour:
   Banks:
   - {fileID: -6639937667616358054}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 100
+  MinDistance: 0
+  MaxDistance: 0
   Length: 3200
 --- !u!114 &801242838450822905
 MonoBehaviour:
@@ -704,7 +704,7 @@ MonoBehaviour:
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 70
   Length: 1775
 --- !u!114 &2346525100095215262
 MonoBehaviour:
@@ -1065,11 +1065,11 @@ MonoBehaviour:
   Banks:
   - {fileID: -6639937667616358054}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 0
+  MaxDistance: 0
   Length: 4980
 --- !u!114 &7105876016951794586
 MonoBehaviour:

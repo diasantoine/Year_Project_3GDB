@@ -6,6 +6,14 @@ using UnityEngine.UI;
 
 public class ScreamerScript : Ennemy
 {
+    [FMODUnity.EventRef]
+    public string Screamer_Mort = "";
+
+    [FMODUnity.EventRef]
+    public string Screamer_Explosion = "";
+
+    [FMODUnity.EventRef]
+    public string Screamer_Touche = "";
 
     public enum State
     {
@@ -193,6 +201,7 @@ public class ScreamerScript : Ennemy
                     if (!AnimatorConteneur.GetBool("DeathState"))
                     {
                         AnimatorConteneur.SetBool("DeathState", true);
+                        // FMODUnity.RuntimeManager.PlayOneShot(Screamer_Explosion, transform.position);
                     }
                     if (AnimatorConteneur.GetBool("Dead"))
                     {
@@ -312,6 +321,7 @@ public class ScreamerScript : Ennemy
     public void damage(float hit)
     {
         HpNow -= hit;
+        FMODUnity.RuntimeManager.PlayOneShot(Screamer_Touche, transform.position);
         healthBar.value = HpNow;
         touched = true;
         chrono = 0;
