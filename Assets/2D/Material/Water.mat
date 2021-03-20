@@ -69,7 +69,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
-    - _CloudScale: 15
+    - _CloudScale: 3
     - _CloudSpeed: 0.05
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -77,8 +77,8 @@ Material:
     - _EdgeDistance: 0.39
     - _EdgePower: 0.311
     - _ExpPower: 2
-    - _FoamDistance: 0.39
-    - _FoamPower: 0.4
+    - _FoamDistance: 1
+    - _FoamPower: 0.5
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -93,18 +93,18 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _WaveAmplitude: 1
-    - _WavePower: 2.3
-    - _WaveScale: 25
-    - _WaveSpeed: 0.68
+    - _WavePower: 2.49
+    - _WaveScale: 12
+    - _WaveSpeed: 0.25
     - _ZWrite: 1
     - __dirty: 0
     - _cloudScale: 5
     m_Colors:
     - _AcidColor: {r: 0.012080077, g: 0.14150941, b: 0, a: 0}
-    - _CloudColor: {r: 0.19705711, g: 0.4245283, b: 0.17021182, a: 0}
+    - _CloudColor: {r: 0.037590772, g: 0.3490566, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color0: {r: 0.06460939, g: 0.13207549, b: 0.016820936, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FoamColor: {r: 0.33713132, g: 0.41509432, b: 0, a: 0}
+    - _FoamColor: {r: 0.43718362, g: 0.5377358, b: 0, a: 0}
     - _WaterColor: {r: 0.109433986, g: 0.5471698, b: 0, a: 0}
-    - _WaveColor: {r: 0.17826825, g: 0.7735849, b: 0.07662869, a: 0}
+    - _WaveColor: {r: 0.046636835, g: 0.3301887, b: 0, a: 0}
