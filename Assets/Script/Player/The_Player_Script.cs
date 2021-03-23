@@ -381,5 +381,29 @@ public class The_Player_Script : MonoBehaviour
                     ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.ClosestPointOnBounds(other.transform.position));
             PercentageArmorHeat += other.GetComponent<RuantAI>().DmgArmorHeat;
         }
+
+        if (other.gameObject.CompareTag("Plaque"))
+        {
+            switch (other.gameObject.GetComponent<plaqueScript>().type)
+            {
+                case plaqueScript.Type.NORMAL:
+                    Debug.Log("Ok");
+                    break;
+                case plaqueScript.Type.HOT:
+                    Debug.Log("Chaud");
+                    break;
+                case plaqueScript.Type.COLD:
+                    Debug.Log("Froid");
+                    break;
+                case plaqueScript.Type.TOXIC:
+                    Debug.Log("POISON");
+                    break;
+                case plaqueScript.Type.PISTON:
+                    Debug.Log("Yahou");
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
