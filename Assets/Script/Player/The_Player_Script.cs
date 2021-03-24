@@ -49,6 +49,7 @@ public class The_Player_Script : MonoBehaviour
     private int xPos = 0, yPos = 0;   
     
     private bool isWalking;
+    private RaycastHit hit;
     
     
     private float Compteur = 0;
@@ -88,6 +89,7 @@ public class The_Player_Script : MonoBehaviour
     {
         CharacterMouvement();
         HeatPlayer();
+        CheckPlaque(hit);
         
     }
 
@@ -356,6 +358,52 @@ public class The_Player_Script : MonoBehaviour
         }
     }
     
+    private void CheckPlaque(RaycastHit hit)
+    {
+        if (Grounded)
+        {
+            if (Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), Vector3.down, out hit, 3f, LayerMask.GetMask("Sol", "Wall")))
+            {
+                if (hit.collider.CompareTag("sol"))
+                {
+                    GameObject plaque = hit.collider.gameObject;
+
+                    if (plaque.GetComponent<plaqueScript>())
+                    {
+                        plaqueScript pS = plaque.GetComponent<plaqueScript>();
+
+                        switch (pS.type)
+                        {
+                            case plaqueScript.Type.HOT:
+                                if (pS.activ)
+                                {
+                                    Debug.Log("Chaud");
+
+                                }
+                                break;
+                            case plaqueScript.Type.COLD:
+                                if (pS.activ)
+                                {
+                                    Debug.Log("Froid");
+
+                                }
+                                break;
+                            case plaqueScript.Type.TOXIC:
+                                if (pS.activ)
+                                {
+                                    Debug.Log("POISON");
+
+                                }
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("DeathFall"))
@@ -382,7 +430,7 @@ public class The_Player_Script : MonoBehaviour
             PercentageArmorHeat += other.GetComponent<RuantAI>().DmgArmorHeat;
         }
 
-        if (other.gameObject.CompareTag("Plaque"))
+        /*if (other.gameObject.CompareTag("Plaque"))
         {
             switch (other.gameObject.GetComponent<plaqueScript>().type)
             {
@@ -404,6 +452,6 @@ public class The_Player_Script : MonoBehaviour
                 default:
                     break;
             }
-        }
+        }*/
     }
 }

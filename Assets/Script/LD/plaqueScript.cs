@@ -5,6 +5,13 @@ using UnityEngine;
 public class plaqueScript : MonoBehaviour
 {
 
+
+    public bool activ;
+    [SerializeField] private SystemPlaque SP;
+
+    [SerializeField] private float activTime;
+    private float chrono;
+
     public enum Type
     {
         NORMAL,
@@ -62,15 +69,23 @@ public class plaqueScript : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (activ)
+        {
+            if(type == Type.COLD || type == Type.HOT)
+            {
+                if (chrono >= activTime)
+                {
+                    activ = false;
+                    SP.systemActiv = false;
+                    chrono = 0;
+                }
+                else
+                {
+                    chrono += Time.deltaTime;
+                }
+            }
+        }
     }
 }
