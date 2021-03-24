@@ -935,7 +935,6 @@
           </e>
         </e>
         <e p="Script" t="Include">
-          <e p="ClickMouse.cs" t="Include" />
           <e p="ennemy" t="Include">
             <e p="OLD" t="Include">
               <e p="ennemyAI.cs" t="Include" />
@@ -950,7 +949,11 @@
             <e p="Ennemy.cs" t="Include" />
             <e p="ennemyState.cs" t="Include" />
           </e>
-          <e p="FollowPlayer.cs" t="Include" />
+          <e p="LD" t="Include">
+            <e p="plaqueScript.cs" t="Include" />
+            <e p="SystemPlaque.cs" t="Include" />
+            <e p="tranparentWall.cs" t="Include" />
+          </e>
           <e p="NavMeshComponents" t="Include">
             <e p="Editor" t="Include">
               <e p="NavMeshComponentsGUIUtility.cs" t="Include" />
@@ -971,6 +974,7 @@
             <e p="CharacterMovement.cs" t="Include" />
             <e p="DashAvatar.cs" t="Include" />
             <e p="detectDead.cs" t="Include" />
+            <e p="FollowPlayer.cs" t="Include" />
             <e p="GroundDetect.cs" t="Include" />
             <e p="seeThrought.cs" t="Include" />
             <e p="shootDead.cs" t="Include" />
@@ -999,6 +1003,7 @@
           <e p="System" t="Include">
             <e p="CameraController.cs" t="Include" />
             <e p="CameraTarget.cs" t="Include" />
+            <e p="ClickMouse.cs" t="Include" />
             <e p="CursorChanger.cs" t="Include" />
             <e p="reticulePoint.cs" t="Include" />
             <e p="spawn.cs" t="Include" />
@@ -1015,7 +1020,6 @@
             <e p="skillSystem.cs" t="Include" />
             <e p="UIgotSkill.cs" t="Include" />
           </e>
-          <e p="tranparentWall.cs" t="Include" />
           <e p="TutoScript" t="Include">
             <e p="ActivShop.cs" t="Include" />
             <e p="damageTuto.cs" t="Include" />
@@ -1042,6 +1046,10 @@
             <e p="Serializables.cs" t="Include" />
             <e p="SpawnProjectilesScript.cs" t="Include" />
           </e>
+        </e>
+        <e p="TestLiquidCuve 1" t="Include">
+          <e p="Liquid.shader" t="Include" />
+          <e p="Wobble.cs" t="Include" />
         </e>
         <e p="Ultra Emissive Particles Shader" t="Include">
           <e p="Shaders" t="Include">
