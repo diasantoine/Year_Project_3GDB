@@ -29,6 +29,7 @@ public class UIRessource : MonoBehaviour
             }
             else if(ressource > 0)
             {
+                Debug.Log(ressource);
                 float ConteneurYScale = Mathf.Clamp(0.01f * ressource, 0, 0.93f);
                 transform.localScale = new Vector3(transform.localScale.x, ConteneurYScale, transform.localScale.z);
                 CountChanged = ressource;

@@ -9333,6 +9333,7 @@ MonoBehaviour:
     NumberOfDecreaseByFrequence_Weapon: 2
   YourPlayerChoosed: 0
   PercentageArmorHeat: 0
+  ResiCold: 5
   PercentageWeaponHeat: 0
   Grounded: 0
   OnDash: 0
@@ -10048,9 +10049,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51e75baae086c42bdc75af278e04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activ: 0
   SP: {fileID: 1694317493}
+  activ: 0
   activTime: 5
+  maxRessourceGot: 0
+  regenRessource: 0
+  ressourceGot: 0
   type: 0
 --- !u!4 &658413537454708505
 Transform:
@@ -10205,9 +10209,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51e75baae086c42bdc75af278e04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activ: 1
   SP: {fileID: 1694317493}
-  activTime: 5
+  activ: 0
+  activTime: 0
+  maxRessourceGot: 25
+  regenRessource: 5
+  ressourceGot: 0
   type: 3
 --- !u!4 &1518233225452259120
 Transform:
@@ -10472,9 +10479,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51e75baae086c42bdc75af278e04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activ: 0
   SP: {fileID: 1694317493}
-  activTime: 5
+  activ: 0
+  activTime: 10
+  maxRessourceGot: 0
+  regenRessource: 0
+  ressourceGot: 0
   type: 1
 --- !u!33 &2576784589658476131
 MeshFilter:
@@ -10551,9 +10561,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51e75baae086c42bdc75af278e04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activ: 0
   SP: {fileID: 1694317493}
+  activ: 0
   activTime: 5
+  maxRessourceGot: 0
+  regenRessource: 0
+  ressourceGot: 0
   type: 0
 --- !u!4 &2854059578311235089
 Transform:
@@ -10780,9 +10793,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51e75baae086c42bdc75af278e04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activ: 0
   SP: {fileID: 1694317493}
+  activ: 0
   activTime: 5
+  maxRessourceGot: 0
+  regenRessource: 0
+  ressourceGot: 0
   type: 0
 --- !u!4 &3354378850699827468
 Transform:
@@ -10882,9 +10898,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51e75baae086c42bdc75af278e04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activ: 0
   SP: {fileID: 1694317493}
+  activ: 0
   activTime: 5
+  maxRessourceGot: 0
+  regenRessource: 0
+  ressourceGot: 0
   type: 0
 --- !u!23 &3461901620732374757
 MeshRenderer:
@@ -10978,9 +10997,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51e75baae086c42bdc75af278e04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activ: 0
   SP: {fileID: 1694317493}
-  activTime: 5
+  activ: 0
+  activTime: 10
+  maxRessourceGot: 0
+  regenRessource: 0
+  ressourceGot: 0
   type: 2
 --- !u!4 &3828185806024652564
 Transform:
@@ -11129,9 +11151,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51e75baae086c42bdc75af278e04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activ: 0
   SP: {fileID: 1694317493}
+  activ: 0
   activTime: 5
+  maxRessourceGot: 0
+  regenRessource: 0
+  ressourceGot: 0
   type: 0
 --- !u!4 &4125912199807369013
 Transform:
@@ -11231,9 +11256,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51e75baae086c42bdc75af278e04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activ: 1
   SP: {fileID: 1694317493}
+  activ: 1
   activTime: 5
+  maxRessourceGot: 50
+  regenRessource: 5
+  ressourceGot: 0
   type: 3
 --- !u!23 &4310820164753297116
 MeshRenderer:
@@ -11327,9 +11355,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51e75baae086c42bdc75af278e04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activ: 0
   SP: {fileID: 1694317493}
-  activTime: 5
+  activ: 0
+  activTime: 10
+  maxRessourceGot: 0
+  regenRessource: 0
+  ressourceGot: 0
   type: 2
 --- !u!23 &4693160995926730745
 MeshRenderer:
@@ -11477,9 +11508,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51e75baae086c42bdc75af278e04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activ: 0
   SP: {fileID: 1694317493}
+  activ: 0
   activTime: 5
+  maxRessourceGot: 0
+  regenRessource: 0
+  ressourceGot: 0
   type: 0
 --- !u!33 &5172018483519646539
 MeshFilter:
@@ -11632,9 +11666,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51e75baae086c42bdc75af278e04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activ: 0
   SP: {fileID: 1694317493}
+  activ: 0
   activTime: 5
+  maxRessourceGot: 0
+  regenRessource: 0
+  ressourceGot: 0
   type: 0
 --- !u!1 &5721833326102126011
 GameObject:
@@ -11681,9 +11718,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51e75baae086c42bdc75af278e04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activ: 0
   SP: {fileID: 1694317493}
+  activ: 0
   activTime: 5
+  maxRessourceGot: 0
+  regenRessource: 0
+  ressourceGot: 0
   type: 0
 --- !u!23 &5744304859757698457
 MeshRenderer:
@@ -11802,9 +11842,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51e75baae086c42bdc75af278e04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activ: 0
   SP: {fileID: 1694317493}
-  activTime: 5
+  activ: 0
+  activTime: 20
+  maxRessourceGot: 0
+  regenRessource: 0
+  ressourceGot: 0
   type: 1
 --- !u!4 &6024970869479811598
 Transform:
@@ -12194,9 +12237,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51e75baae086c42bdc75af278e04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activ: 0
   SP: {fileID: 1694317493}
+  activ: 0
   activTime: 5
+  maxRessourceGot: 0
+  regenRessource: 0
+  ressourceGot: 0
   type: 0
 --- !u!23 &6976957197246344045
 MeshRenderer:
@@ -12442,9 +12488,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51e75baae086c42bdc75af278e04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activ: 0
   SP: {fileID: 1694317493}
+  activ: 0
   activTime: 5
+  maxRessourceGot: 0
+  regenRessource: 0
+  ressourceGot: 0
   type: 0
 --- !u!4 &7514357238167007354
 Transform:
@@ -12675,9 +12724,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51e75baae086c42bdc75af278e04f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activ: 0
   SP: {fileID: 1694317493}
+  activ: 0
   activTime: 5
+  maxRessourceGot: 0
+  regenRessource: 0
+  ressourceGot: 0
   type: 0
 --- !u!23 &8863473797997107628
 MeshRenderer:
