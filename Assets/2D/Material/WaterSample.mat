@@ -50,29 +50,30 @@ Material:
     m_Floats:
     - _Depth: 0.98
     - _DepthFalloff: -13
-    - _Distortion: 5
+    - _Distortion: -0.07
     - _Float0: 0.0192
     - _Float1: 0.85
     - _Float3: 0.9
     - _Foam: 1.79
-    - _FoamDepth: 1
-    - _FoamFalloff: -0.91
+    - _FoamDepth: 1.05
+    - _FoamFalloff: -2
     - _FoamPower: 4
-    - _FoamSmoothness: 0.2
+    - _FoamSmoothness: 0
     - _FoamSpecular: 0
     - _Foamfalloff: -4
     - _MaskClipValue: 0.5
-    - _NormalScale: 1
+    - _NormalScale: 0.1
     - _Smoothness: 0.9
     - _Specular: 0.1
-    - _WaterDepth: 10
-    - _WaterFalloff: -5
+    - _WaterDepth: 50
+    - _WaterFalloff: -1
     - _WaterSmoothness: 1
-    - _WaterSpecular: 0.05
+    - _WaterSpecular: -0.31
     - __dirty: 0
     m_Colors:
     - _Color0: {r: 0, g: 0.6749488, b: 0.8088235, a: 0}
     - _Color1: {r: 0, g: 0.048731543, b: 0.22794023, a: 0}
-    - _DeepColor: {r: 0.4949762, g: 1, b: 0.2971698, a: 0}
-    - _ShalowColor: {r: 0, g: 0.80882317, b: 0.8088235, a: 0}
+    - _DeepColor: {r: 0.07807495, g: 0.103773594, b: 0.052376296, a: 0}
+    - _FoamColor: {r: 0, g: 0.2924528, b: 0.025880756, a: 0}
+    - _ShalowColor: {r: 0.045611195, g: 0.3301887, b: 0.03270737, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
