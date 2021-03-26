@@ -11,6 +11,8 @@ using Random = UnityEngine.Random;
 public class The_Player_Script : MonoBehaviour
 {
 
+    public float floatTypeOfFootStep;
+
     [System.Serializable] 
     public struct YourPlayer
     {
@@ -410,10 +412,14 @@ public class The_Player_Script : MonoBehaviour
                         {
 
                             case plaqueScript.Type.NORMAL:
+                                // footStepPlayer.setParameterByName("TypeOfFootstep", 0);
+                                floatTypeOfFootStep = 0;
                                 isOnPlaque = false;
                                 TimeColdPlaque = 0;
                                 break;
                             case plaqueScript.Type.HOT:
+                                // footStepPlayer.setParameterByName("TypeOfFootstep", 1);
+                                floatTypeOfFootStep = 1;
                                 if (pS.activ)
                                 {
                                     Debug.Log("oui");
@@ -426,6 +432,7 @@ public class The_Player_Script : MonoBehaviour
                                 }
                                 break;
                             case plaqueScript.Type.COLD:
+                                floatTypeOfFootStep = 2;
                                 if (pS.activ)
                                 {
                                     TimeColdPlaque += Time.deltaTime;
@@ -447,7 +454,8 @@ public class The_Player_Script : MonoBehaviour
                                 }
                                 break;
                             case plaqueScript.Type.TOXIC:
-                                if(pS.ressourceGot >= 25 && !pS.regenUP)
+                                floatTypeOfFootStep = 3;
+                                if (pS.ressourceGot >= 25 && !pS.regenUP)
                                 {
                                     if (TimePlaque >= 1)
                                     {
@@ -545,6 +553,8 @@ public class The_Player_Script : MonoBehaviour
             PercentageArmorHeat += other.GetComponent<RuantAI>().DmgArmorHeat;
         }
 
+
+
         /*if (other.gameObject.CompareTag("Plaque"))
         {
             switch (other.gameObject.GetComponent<plaqueScript>().type)
@@ -569,4 +579,5 @@ public class The_Player_Script : MonoBehaviour
             }
         }*/
     }
+
 }

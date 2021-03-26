@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD_PODLAB/FMOD_PODLAB_Year_Projectt/FMOD_PODLAB/Build/Desktop/Master.bank
   Name: Master
-  lastModified: 637518354067809694
+  lastModified: 637523589864982934
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -179,6 +179,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-5185858396419222799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_EditorClassIdentifier: 
+  Name: TypeOfFootstep
+  Min: 0
+  Max: 4
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &-4753088208096374989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,11 +213,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD_PODLAB/FMOD_PODLAB_Year_Projectt/FMOD_PODLAB/Build/Desktop/Master.strings.bank
   Name: Master.strings
-  lastModified: 637505595623790682
+  lastModified: 637523589865310772
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1926
+    Value: 1982
   Exists: 1
 --- !u!114 &-4102427018046871299
 MonoBehaviour:
@@ -241,7 +261,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 4388725008697158907}
   MinDistance: 0
   MaxDistance: 0
   Length: 380
@@ -567,7 +588,7 @@ MonoBehaviour:
   - {fileID: -6639937667616358054}
   StringsBanks:
   - {fileID: -4753088208096374989}
-  stringsBankWriteTime: 637505595623790682
+  stringsBankWriteTime: 637523589865310772
   cacheVersion: 5
 --- !u!114 &90211068464660350
 MonoBehaviour:
@@ -638,6 +659,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 333
+--- !u!114 &885120947458272424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_EditorClassIdentifier: 
+  Name: TypeOfFootstep
+  Min: 0
+  Max: 4
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &1118112240213273811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -683,6 +724,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1385
+--- !u!114 &1398673682276266790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_EditorClassIdentifier: 
+  Name: TypeOfFootstep
+  Min: 0
+  Max: 4
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &1448392844870688712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -752,6 +813,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 13301
+--- !u!114 &2442853753383165009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_EditorClassIdentifier: 
+  Name: TypeOfFootstep
+  Min: 0
+  Max: 4
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &2491607826841136480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -934,6 +1015,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 13301
+--- !u!114 &4388725008697158907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_EditorClassIdentifier: 
+  Name: TypeOfFootstep
+  Min: 0
+  Max: 4
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &4401008735401798611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1071,6 +1172,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4980
+--- !u!114 &6320442180107108011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_EditorClassIdentifier: 
+  Name: TypeOfFootstep
+  Min: 0
+  Max: 4
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &7105876016951794586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1117,3 +1238,23 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 100
   Length: 1935
+--- !u!114 &8385101737570922114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_EditorClassIdentifier: 
+  Name: TypeOfFootstep
+  Min: 0
+  Max: 4
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0

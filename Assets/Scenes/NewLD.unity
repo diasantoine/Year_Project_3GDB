@@ -6651,6 +6651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab67181d5edc39e478423977af0ff5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TPS: {fileID: 2013154811}
   Ambiance: event:/Ambiance/Ambiance
   footStep: event:/Player/Joueur_FootStep
   Ruant_FootStep: event:/Enemy/Ruant/Ruant_FootStep
@@ -9310,6 +9311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66887cd06d34f2542b7c0be47333e773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floatTypeOfFootStep: 0
   ListOfYourPlayer:
   - vitesse: 10
     ConteneurRigibody: {fileID: 2013154809}
@@ -10055,6 +10057,7 @@ MonoBehaviour:
   maxRessourceGot: 0
   regenRessource: 0
   ressourceGot: 0
+  regenUP: 0
   type: 0
 --- !u!4 &658413537454708505
 Transform:
@@ -10215,6 +10218,7 @@ MonoBehaviour:
   maxRessourceGot: 25
   regenRessource: 5
   ressourceGot: 0
+  regenUP: 0
   type: 3
 --- !u!4 &1518233225452259120
 Transform:
@@ -10485,6 +10489,7 @@ MonoBehaviour:
   maxRessourceGot: 0
   regenRessource: 0
   ressourceGot: 0
+  regenUP: 0
   type: 1
 --- !u!33 &2576784589658476131
 MeshFilter:
@@ -10567,6 +10572,7 @@ MonoBehaviour:
   maxRessourceGot: 0
   regenRessource: 0
   ressourceGot: 0
+  regenUP: 0
   type: 0
 --- !u!4 &2854059578311235089
 Transform:
@@ -10799,6 +10805,7 @@ MonoBehaviour:
   maxRessourceGot: 0
   regenRessource: 0
   ressourceGot: 0
+  regenUP: 0
   type: 0
 --- !u!4 &3354378850699827468
 Transform:
@@ -10904,6 +10911,7 @@ MonoBehaviour:
   maxRessourceGot: 0
   regenRessource: 0
   ressourceGot: 0
+  regenUP: 0
   type: 0
 --- !u!23 &3461901620732374757
 MeshRenderer:
@@ -11003,6 +11011,7 @@ MonoBehaviour:
   maxRessourceGot: 0
   regenRessource: 0
   ressourceGot: 0
+  regenUP: 0
   type: 2
 --- !u!4 &3828185806024652564
 Transform:
@@ -11157,6 +11166,7 @@ MonoBehaviour:
   maxRessourceGot: 0
   regenRessource: 0
   ressourceGot: 0
+  regenUP: 0
   type: 0
 --- !u!4 &4125912199807369013
 Transform:
@@ -11262,6 +11272,7 @@ MonoBehaviour:
   maxRessourceGot: 50
   regenRessource: 5
   ressourceGot: 0
+  regenUP: 0
   type: 3
 --- !u!23 &4310820164753297116
 MeshRenderer:
@@ -11361,6 +11372,7 @@ MonoBehaviour:
   maxRessourceGot: 0
   regenRessource: 0
   ressourceGot: 0
+  regenUP: 0
   type: 2
 --- !u!23 &4693160995926730745
 MeshRenderer:
@@ -11514,6 +11526,7 @@ MonoBehaviour:
   maxRessourceGot: 0
   regenRessource: 0
   ressourceGot: 0
+  regenUP: 0
   type: 0
 --- !u!33 &5172018483519646539
 MeshFilter:
@@ -11672,6 +11685,7 @@ MonoBehaviour:
   maxRessourceGot: 0
   regenRessource: 0
   ressourceGot: 0
+  regenUP: 0
   type: 0
 --- !u!1 &5721833326102126011
 GameObject:
@@ -11724,6 +11738,7 @@ MonoBehaviour:
   maxRessourceGot: 0
   regenRessource: 0
   ressourceGot: 0
+  regenUP: 0
   type: 0
 --- !u!23 &5744304859757698457
 MeshRenderer:
@@ -11848,6 +11863,7 @@ MonoBehaviour:
   maxRessourceGot: 0
   regenRessource: 0
   ressourceGot: 0
+  regenUP: 0
   type: 1
 --- !u!4 &6024970869479811598
 Transform:
@@ -12243,6 +12259,7 @@ MonoBehaviour:
   maxRessourceGot: 0
   regenRessource: 0
   ressourceGot: 0
+  regenUP: 0
   type: 0
 --- !u!23 &6976957197246344045
 MeshRenderer:
@@ -12494,6 +12511,7 @@ MonoBehaviour:
   maxRessourceGot: 0
   regenRessource: 0
   ressourceGot: 0
+  regenUP: 0
   type: 0
 --- !u!4 &7514357238167007354
 Transform:
@@ -12730,6 +12748,7 @@ MonoBehaviour:
   maxRessourceGot: 0
   regenRessource: 0
   ressourceGot: 0
+  regenUP: 0
   type: 0
 --- !u!23 &8863473797997107628
 MeshRenderer:
