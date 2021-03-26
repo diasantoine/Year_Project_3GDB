@@ -25,13 +25,13 @@ public class UIRessource : MonoBehaviour
         {
             if (ressource == 0)
             {
-                Liquid.material.SetFloat("_FillAmount",1.3f);
+                Liquid.material.SetFloat("_FillAmount",1.7f);
                 //transform.localScale = new Vector3(transform.localScale.x, 0, transform.localScale.z);
                 CountChanged = ressource;
             }
             else if(ressource > 0)
             {
-                Liquid.material.SetFloat("_FillAmount",1.3f - ressource*0.01f);
+                Liquid.material.SetFloat("_FillAmount",1.7f - ressource*0.01f);
                 //float ConteneurYScale = Mathf.Clamp(0.01f * ressource, 0, 0.93f);
                 //transform.localScale = new Vector3(transform.localScale.x, ConteneurYScale, transform.localScale.z);
                 CountChanged = ressource;
