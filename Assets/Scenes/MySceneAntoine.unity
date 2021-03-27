@@ -153,8 +153,8 @@ RectTransform:
   m_Children:
   - {fileID: 310828848}
   - {fileID: 1906619502}
-  m_Father: {fileID: 2013154810}
-  m_RootOrder: 6
+  m_Father: {fileID: 327175021}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1463,6 +1463,7 @@ Transform:
   - {fileID: 946362338}
   - {fileID: 1563275370}
   - {fileID: 1493353042}
+  - {fileID: 21473471}
   - {fileID: 643341246}
   m_Father: {fileID: 2013154810}
   m_RootOrder: 5
@@ -2396,7 +2397,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2013154810}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &592384909
 Light:
@@ -3164,7 +3165,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 327175021}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &646118566
 GameObject:
@@ -4110,9 +4111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a84920ec9afd5da45bd9a0338f8470cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxWobble: 0.003
+  MaxWobble: 0.004
   WobbleSpeed: 1
-  Recovery: 1
+  Recovery: 2
+  CameraZoom: {fileID: 862862429}
 --- !u!33 &908863682
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4902,7 +4904,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 46.813004, y: -122.03, z: 0}
+  m_LocalEulerAnglesHint: {x: 46.74, y: -214.35199, z: 0}
 --- !u!20 &1170655788
 Camera:
   m_ObjectHideFlags: 0
@@ -5735,9 +5737,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListWave:
-  - NumberBasic: 4
-    NumberRuant: 0
-    NumberScreamer: 1
+  - NumberBasic: 8
+    NumberRuant: 1
+    NumberScreamer: 2
     NumberLastra: 0
     ListSpawnBasic:
     - {fileID: 1935181333}
@@ -5748,9 +5750,9 @@ MonoBehaviour:
     - {fileID: 1725154621}
     - {fileID: 596509453}
     ListSpawnLastra: []
-    CD_Spawn_Basic: 1
-    CD_Spawn_Ruant: 1
-    CD_Spawn_Screamer: 1
+    CD_Spawn_Basic: 2
+    CD_Spawn_Ruant: 5
+    CD_Spawn_Screamer: 3
     CD_Spawn_Lastra: 0
   - NumberBasic: 10
     NumberRuant: 1
@@ -8237,7 +8239,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 402d27198a5eb0c459553a9d15643be4, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: b0944cde906d33648b8b418267081b45, type: 2}
 --- !u!4 &1903751589
 Transform:
   m_ObjectHideFlags: 0
@@ -8874,7 +8876,6 @@ Transform:
   - {fileID: 646118567}
   - {fileID: 1830023600}
   - {fileID: 327175021}
-  - {fileID: 21473471}
   - {fileID: 592384908}
   m_Father: {fileID: 0}
   m_RootOrder: 9

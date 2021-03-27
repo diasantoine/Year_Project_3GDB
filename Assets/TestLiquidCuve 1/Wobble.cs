@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
  
 public class Wobble : MonoBehaviour
@@ -18,6 +19,7 @@ public class Wobble : MonoBehaviour
     float wobbleAmountToAddZ;
     float pulse;
     float time = 0.5f;
+    [SerializeField] private GameObject CameraZoom;
     
     // Use this for initialization
     void Start()
@@ -26,6 +28,19 @@ public class Wobble : MonoBehaviour
     }
     private void Update()
     {
+        if (name != "CylinderShake")
+        {
+            if (Input.mouseScrollDelta.y < 0)
+            {
+                CameraZoom.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>()
+                    .m_CameraDistance++;
+            }
+            else if(Input.mouseScrollDelta.y > 0)
+            {
+                CameraZoom.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>()
+                    .m_CameraDistance--;
+            }
+        }
         if (Time.deltaTime == 0)
         {
             
