@@ -356,6 +356,7 @@ GameObject:
   - component: {fileID: 12718550}
   - component: {fileID: 12718552}
   - component: {fileID: 12718551}
+  - component: {fileID: 12718553}
   m_Layer: 5
   m_Name: Bubbles (17)
   m_TagString: Untagged
@@ -449,23 +450,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 12718549}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -523,8 +524,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5099,6 +5100,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &12718553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12718549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 12718552}
 --- !u!1 &22699471
 GameObject:
   m_ObjectHideFlags: 0
@@ -5243,6 +5258,7 @@ GameObject:
   - component: {fileID: 55435524}
   - component: {fileID: 55435526}
   - component: {fileID: 55435525}
+  - component: {fileID: 55435527}
   m_Layer: 5
   m_Name: Bubbles (11)
   m_TagString: Untagged
@@ -5336,23 +5352,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55435523}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -5410,8 +5426,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -9986,6 +10002,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &55435527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55435523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 55435526}
 --- !u!1 &86718529
 GameObject:
   m_ObjectHideFlags: 0
@@ -11018,6 +11048,7 @@ GameObject:
   - component: {fileID: 220565317}
   - component: {fileID: 220565319}
   - component: {fileID: 220565318}
+  - component: {fileID: 220565320}
   m_Layer: 5
   m_Name: Bubbles (15)
   m_TagString: Untagged
@@ -11111,23 +11142,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 220565316}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -11185,8 +11216,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -15761,6 +15792,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &220565320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220565316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 220565319}
 --- !u!1 &230523324
 GameObject:
   m_ObjectHideFlags: 0
@@ -15806,6 +15851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab67181d5edc39e478423977af0ff5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TPS: {fileID: 0}
   Ambiance: event:/Ambiance/Ambiance
   footStep: event:/Player/Joueur_FootStep
   Ruant_FootStep: event:/Enemy/Ruant/Ruant_FootStep
@@ -16554,6 +16600,7 @@ GameObject:
   - component: {fileID: 424819826}
   - component: {fileID: 424819825}
   - component: {fileID: 424819824}
+  - component: {fileID: 424819827}
   m_Layer: 5
   m_Name: Bubbles (1)
   m_TagString: Untagged
@@ -16633,23 +16680,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424819823}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -16707,8 +16754,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -21297,6 +21344,20 @@ Transform:
   m_Father: {fileID: 609702459}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &424819827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424819823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 424819825}
 --- !u!1 &446971873
 GameObject:
   m_ObjectHideFlags: 0
@@ -21308,6 +21369,7 @@ GameObject:
   - component: {fileID: 446971876}
   - component: {fileID: 446971875}
   - component: {fileID: 446971874}
+  - component: {fileID: 446971877}
   m_Layer: 5
   m_Name: Bubbles
   m_TagString: Untagged
@@ -21387,23 +21449,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 446971873}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -21461,8 +21523,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -26051,6 +26113,20 @@ Transform:
   m_Father: {fileID: 609702459}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &446971877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446971873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 446971875}
 --- !u!1 &452059440
 GameObject:
   m_ObjectHideFlags: 0
@@ -26589,6 +26665,7 @@ GameObject:
   - component: {fileID: 511991577}
   - component: {fileID: 511991579}
   - component: {fileID: 511991578}
+  - component: {fileID: 511991580}
   m_Layer: 5
   m_Name: Bubbles (10)
   m_TagString: Untagged
@@ -26682,23 +26759,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 511991576}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -26756,8 +26833,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -31332,6 +31409,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &511991580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511991576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 511991579}
 --- !u!1 &527364323
 GameObject:
   m_ObjectHideFlags: 0
@@ -32727,6 +32818,7 @@ GameObject:
   - component: {fileID: 858175547}
   - component: {fileID: 858175549}
   - component: {fileID: 858175548}
+  - component: {fileID: 858175550}
   m_Layer: 5
   m_Name: Bubbles (9)
   m_TagString: Untagged
@@ -32820,23 +32912,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858175546}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -32894,8 +32986,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -37470,6 +37562,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &858175550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858175546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 858175549}
 --- !u!1 &865614963
 GameObject:
   m_ObjectHideFlags: 0
@@ -38278,6 +38384,7 @@ GameObject:
   - component: {fileID: 1033565957}
   - component: {fileID: 1033565959}
   - component: {fileID: 1033565958}
+  - component: {fileID: 1033565960}
   m_Layer: 5
   m_Name: Bubbles (13)
   m_TagString: Untagged
@@ -38371,23 +38478,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1033565956}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -38445,8 +38552,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -43021,6 +43128,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1033565960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033565956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 1033565959}
 --- !u!1 &1059545326
 GameObject:
   m_ObjectHideFlags: 0
@@ -43578,6 +43699,7 @@ GameObject:
   - component: {fileID: 1250421222}
   - component: {fileID: 1250421224}
   - component: {fileID: 1250421223}
+  - component: {fileID: 1250421225}
   m_Layer: 5
   m_Name: Bubbles (14)
   m_TagString: Untagged
@@ -43671,23 +43793,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250421221}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -43745,8 +43867,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -48321,6 +48443,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1250421225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250421221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 1250421224}
 --- !u!1001 &1255995462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48703,6 +48839,7 @@ GameObject:
   - component: {fileID: 1360718381}
   - component: {fileID: 1360718383}
   - component: {fileID: 1360718382}
+  - component: {fileID: 1360718384}
   m_Layer: 5
   m_Name: Bubbles (16)
   m_TagString: Untagged
@@ -48796,23 +48933,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360718380}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -48870,8 +49007,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -53446,6 +53583,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1360718384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360718380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 1360718383}
 --- !u!1 &1376428470
 GameObject:
   m_ObjectHideFlags: 0
@@ -53457,6 +53608,7 @@ GameObject:
   - component: {fileID: 1376428471}
   - component: {fileID: 1376428473}
   - component: {fileID: 1376428472}
+  - component: {fileID: 1376428474}
   m_Layer: 5
   m_Name: Bubbles (3)
   m_TagString: Untagged
@@ -53550,23 +53702,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376428470}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -53624,8 +53776,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -58200,6 +58352,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1376428474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376428470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 1376428473}
 --- !u!1 &1378676802
 GameObject:
   m_ObjectHideFlags: 0
@@ -58482,6 +58648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66887cd06d34f2542b7c0be47333e773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floatTypeOfFootStep: 0
   ListOfYourPlayer:
   - vitesse: 10
     ConteneurRigibody: {fileID: 1426728637}
@@ -58699,6 +58866,7 @@ GameObject:
   - component: {fileID: 1434339489}
   - component: {fileID: 1434339491}
   - component: {fileID: 1434339490}
+  - component: {fileID: 1434339492}
   m_Layer: 5
   m_Name: Bubbles (12)
   m_TagString: Untagged
@@ -58792,23 +58960,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434339488}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -58866,8 +59034,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -63442,6 +63610,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1434339492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434339488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 1434339491}
 --- !u!1 &1448965814
 GameObject:
   m_ObjectHideFlags: 0
@@ -63529,6 +63711,7 @@ GameObject:
   - component: {fileID: 1449708485}
   - component: {fileID: 1449708487}
   - component: {fileID: 1449708486}
+  - component: {fileID: 1449708488}
   m_Layer: 5
   m_Name: Bubbles (7)
   m_TagString: Untagged
@@ -63622,23 +63805,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449708484}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -63696,8 +63879,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -68272,6 +68455,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1449708488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449708484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 1449708487}
 --- !u!1 &1456082271
 GameObject:
   m_ObjectHideFlags: 0
@@ -69249,6 +69446,7 @@ GameObject:
   - component: {fileID: 1736790722}
   - component: {fileID: 1736790724}
   - component: {fileID: 1736790723}
+  - component: {fileID: 1736790725}
   m_Layer: 5
   m_Name: Bubbles (5)
   m_TagString: Untagged
@@ -69342,23 +69540,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1736790721}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -69416,8 +69614,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -73992,6 +74190,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1736790725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736790721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 1736790724}
 --- !u!1 &1748988417
 GameObject:
   m_ObjectHideFlags: 0
@@ -74587,6 +74799,7 @@ GameObject:
   - component: {fileID: 1841596244}
   - component: {fileID: 1841596246}
   - component: {fileID: 1841596245}
+  - component: {fileID: 1841596247}
   m_Layer: 5
   m_Name: Bubbles (6)
   m_TagString: Untagged
@@ -74680,23 +74893,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1841596243}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -74754,8 +74967,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -79330,6 +79543,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1841596247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841596243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 1841596246}
 --- !u!1 &1848101321
 GameObject:
   m_ObjectHideFlags: 3
@@ -79655,6 +79882,7 @@ GameObject:
   - component: {fileID: 1947508623}
   - component: {fileID: 1947508625}
   - component: {fileID: 1947508624}
+  - component: {fileID: 1947508626}
   m_Layer: 5
   m_Name: Bubbles (4)
   m_TagString: Untagged
@@ -79748,23 +79976,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947508622}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -79822,8 +80050,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -84398,6 +84626,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &1947508626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947508622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 1947508625}
 --- !u!1 &1998043097
 GameObject:
   m_ObjectHideFlags: 0
@@ -84607,6 +84849,7 @@ GameObject:
   - component: {fileID: 2002301387}
   - component: {fileID: 2002301389}
   - component: {fileID: 2002301388}
+  - component: {fileID: 2002301390}
   m_Layer: 5
   m_Name: Bubbles (8)
   m_TagString: Untagged
@@ -84700,23 +84943,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002301386}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -84774,8 +85017,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -89350,6 +89593,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &2002301390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002301386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 2002301389}
 --- !u!1 &2016203251
 GameObject:
   m_ObjectHideFlags: 0
@@ -89440,6 +89697,7 @@ GameObject:
   - component: {fileID: 2098097957}
   - component: {fileID: 2098097959}
   - component: {fileID: 2098097958}
+  - component: {fileID: 2098097960}
   m_Layer: 5
   m_Name: Bubbles (18)
   m_TagString: Untagged
@@ -89533,23 +89791,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2098097956}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -89607,8 +89865,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -94183,6 +94441,20 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &2098097960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098097956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 2098097959}
 --- !u!1 &2105003941
 GameObject:
   m_ObjectHideFlags: 0
@@ -94383,6 +94655,7 @@ GameObject:
   - component: {fileID: 2128050214}
   - component: {fileID: 2128050213}
   - component: {fileID: 2128050212}
+  - component: {fileID: 2128050215}
   m_Layer: 5
   m_Name: Bubbles (2)
   m_TagString: Untagged
@@ -94462,23 +94735,23 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128050211}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
-    minMaxState: 0
-    scalar: 0
-    minScalar: 0
+    minMaxState: 3
+    scalar: 0.9
+    minScalar: 0.1
     maxCurve:
       serializedVersion: 2
       m_Curve:
@@ -94536,8 +94809,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 2
+      minMaxState: 0
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -99126,6 +99399,20 @@ Transform:
   m_Father: {fileID: 609702459}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &2128050215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128050211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9879f0b28d67d524e81b5d80e56cbce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bubbling_Mud: event:/Ambiance/Eclatement_Bulle_Eau
+  ps: {fileID: 2128050213}
 --- !u!1 &2130046179
 GameObject:
   m_ObjectHideFlags: 0
