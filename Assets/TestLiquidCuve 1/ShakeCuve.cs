@@ -32,7 +32,6 @@ public class ShakeCuve : MonoBehaviour
             CuveConteneur += 0.02f;
             Liquid.material.SetFloat("_FillAmount", CuveConteneur);
             Compteur = 0;
-            SongPlayed = false;
         }
         else if(Input.mouseScrollDelta.y > 0)
         {
@@ -89,6 +88,11 @@ public class ShakeCuve : MonoBehaviour
             float MouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * Speed;
             float MouseX = Input.GetAxis("Mouse X") * Time.deltaTime * Speed;
             CuvePart.transform.Rotate(MouseY,MouseX, 0);
+            var x = CuvePart.transform.eulerAngles.x - Mathf.CeilToInt(CuvePart.transform.eulerAngles.x / 360f) * 360;
+            x = Mathf.Clamp(x, -130, -60);
+            CuvePart.transform.eulerAngles = new Vector3(x, CuvePart.transform.eulerAngles.y, CuvePart.transform.eulerAngles.z);
+            // CuvePart.transform.eulerAngles = new Vector3(Mathf.Clamp(CuvePart.transform.eulerAngles.x,-150,-30)
+            //     ,CuvePart.transform.eulerAngles.y,CuvePart.transform.eulerAngles.z);
         }
 
         if (Input.GetKeyDown(KeyCode.Y))

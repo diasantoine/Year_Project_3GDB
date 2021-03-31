@@ -1900,7 +1900,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8305e9df03dcf145b56b42eb1b247c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SonRecupCuve: event:/CuveSound/CuveSound
   Liquid: {fileID: 908863683}
+  TimeBeforeSound: 0.2
 --- !u!1 &471895511
 GameObject:
   m_ObjectHideFlags: 0
