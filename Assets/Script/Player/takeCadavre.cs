@@ -12,12 +12,14 @@ public class takeCadavre : MonoBehaviour
     [HideInInspector] public bool charge;
     [HideInInspector] public bool dash;
     [HideInInspector] public bool ShieldProtection;
+    [HideInInspector] public bool jump;
 
 
     public Transform player;
     public Transform Dash;
     public Transform bombe;
     public Transform Protection;
+    public Transform Jump;
 
 
     [SerializeField] private float threshold;
@@ -248,6 +250,27 @@ public class takeCadavre : MonoBehaviour
             else
             {
                 ShieldProtection = false;
+            }
+        }else if (this.jump)
+        {
+            if (this.Jump != null)
+            {
+                if (this.Jump.GetComponent<JumpCharged>().isCharging)
+                {
+                    this.Jump.GetComponent<JumpCharged>().Charge++;
+                    if (this.Jump.GetComponent<JumpCharged>().Charge >= this.Jump.GetComponent<JumpCharged>().ChargeMax)
+                    {
+                        this.jump = false;
+                    }
+                }
+                else
+                {
+                    this.Jump = null;
+                }
+            }
+            else
+            {
+                this.jump = false;
             }
         }
     }

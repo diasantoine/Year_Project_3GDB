@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,8 +10,6 @@ public class LaserShoot : MonoBehaviour
     [HideInInspector] public int charged;
 
     [SerializeField] private int hitDmg;
-
-    // Start is called before the first frame update
     void Start()
     {
         goGoGo = false;
@@ -28,29 +27,70 @@ public class LaserShoot : MonoBehaviour
             Destroy(transform.parent.gameObject, 0.1f);
             goGoGo = false;
         }
+       // this.GetComponent<Renderer>().enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Ennemy"))
+        if (other.gameObject.CompareTag("Mur"))
         {
-            if (other.gameObject.GetComponent<ennemyState>() != null)
+            this.goGoGo = true;
+            this.charged--;
+        }
+        else
+        {
+            if (other.gameObject.CompareTag("Ennemy"))
             {
-                other.gameObject.GetComponent<ennemyState>().damage(hitDmg);
+                if (other.gameObject.GetComponent<ennemyState>() != null)
+                {
+                    other.gameObject.GetComponent<ennemyState>().damage(hitDmg);
 
-            }
-            else if (other.gameObject.GetComponent<damageTuto>() != null)
-            {
-                other.gameObject.GetComponent<damageTuto>().damage(hitDmg);
-            }
-            else if (other.gameObject.GetComponent<RuantState>() != null)
-            {
-                other.gameObject.GetComponent<RuantState>().takeDmg(hitDmg);
-            }
+                }
+                else if (other.gameObject.GetComponent<damageTuto>() != null)
+                {
+                    other.gameObject.GetComponent<damageTuto>().damage(hitDmg);
+                }
+                else if (other.gameObject.GetComponent<RuantState>() != null)
+                {
+                    other.gameObject.GetComponent<RuantState>().takeDmg(hitDmg);
+                }
 
-            if (other.gameObject.GetComponent<ScreamerScript>() != null)
+                if (other.gameObject.GetComponent<ScreamerScript>() != null)
+                {
+                    other.gameObject.GetComponent<ScreamerScript>().damage(hitDmg);
+                }
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Mur"))
+        {
+            this.goGoGo = true;
+            this.charged--;
+        } else
+        {
+            if (other.gameObject.CompareTag("Ennemy"))
             {
-                other.gameObject.GetComponent<ScreamerScript>().damage(hitDmg);
+                if (other.gameObject.GetComponent<ennemyState>() != null)
+                {
+                    other.gameObject.GetComponent<ennemyState>().damage(hitDmg);
+
+                }
+                else if (other.gameObject.GetComponent<damageTuto>() != null)
+                {
+                    other.gameObject.GetComponent<damageTuto>().damage(hitDmg);
+                }
+                else if (other.gameObject.GetComponent<RuantState>() != null)
+                {
+                    other.gameObject.GetComponent<RuantState>().takeDmg(hitDmg);
+                }
+
+                if (other.gameObject.GetComponent<ScreamerScript>() != null)
+                {
+                    other.gameObject.GetComponent<ScreamerScript>().damage(hitDmg);
+                }
             }
         }
     }

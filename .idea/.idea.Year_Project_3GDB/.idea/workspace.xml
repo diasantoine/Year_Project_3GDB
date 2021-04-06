@@ -21,6 +21,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/UI/Pause.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/shootSkill.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/SpawnSysteme.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Weapon/LaserShoot.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/EnnemySystem/Ennemy.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/System/spawn.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/System/spawnEnnemyBasique.cs" root0="FORCE_HIGHLIGHTING" />
@@ -42,11 +43,13 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Sound Design Scripts/Data_SD.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/GroundDetect.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/ChargedShoot.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/RuantAI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/TestLiquidCuve 1/Liquid.shader" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2DB13BA0-D523-4322-8AA9-892C408FB49A/bd/80c54866/Input.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/OLD/ennemyAI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/System/reticulePoint.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/JumpCharged.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E81851A0-DC73-4A79-AFA9-F5B7273162BE/6f/c65f0335/IEnumerator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/TestLiquidCuve 1/Wobble.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/ShieldProtectionCollider.cs" root0="FORCE_HIGHLIGHTING" />
@@ -65,7 +68,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Script/shootDead.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/TirCharge.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/spawn.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/DeadProjo.cs" />
@@ -87,8 +89,6 @@
         <option value="$PROJECT_DIR$/Assets/Script/Skill/ShieldCollider.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Skill/ShieldProtectionCollider.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/detectDead.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Player/takeCadavre.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/SystemSkill/skill.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Skill/PoisonShield.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/ennemy/ennemyState.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/shootSkill.cs" />
@@ -108,12 +108,17 @@
         <option value="$PROJECT_DIR$/Assets/Script/Ennemy/SpawnSysteme.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Ennemy/OLD/ennemyAI.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Ennemy/RuantAI.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Player/The_Player_Script.cs" />
         <option value="$PROJECT_DIR$/Assets/TestLiquidCuve 1/Liquid.shader" />
         <option value="$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerScript.cs" />
         <option value="$PROJECT_DIR$/Assets/TestLiquidCuve 1/Wobble.cs" />
         <option value="$PROJECT_DIR$/Assets/TestLiquidCuve 1/ShakeCuve.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/UIRessource.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/SystemSkill/skill.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Player/takeCadavre.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Skill/JumpCharged.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Player/The_Player_Script.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Skill/ChargedShoot.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Weapon/LaserShoot.cs" />
       </list>
     </option>
   </component>
@@ -225,6 +230,7 @@
       <workItem from="1616766857313" duration="1237000" />
       <workItem from="1616785298467" duration="13057000" />
       <workItem from="1616848179350" duration="6010000" />
+      <workItem from="1617714529493" duration="12751000" />
     </task>
     <servers />
   </component>

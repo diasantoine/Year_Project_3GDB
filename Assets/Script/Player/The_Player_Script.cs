@@ -68,6 +68,8 @@ public class The_Player_Script : MonoBehaviour
     [Header("PlayerBool")]
     public bool Grounded;
     public bool OnDash;
+    public bool OnJump;
+    public bool OnJumpJustFinished;
     public bool JustFinishedDash;
     public bool JustHit;
     public bool OnShieldProtection;
@@ -77,8 +79,13 @@ public class The_Player_Script : MonoBehaviour
     
     [Header("PlayerDash")]
     public float DistanceDash;
-    public Vector3 PointOrigine;
+    public Vector3 PointOrigineDash;
     public bool Aftershock;
+
+    [Header("PlayerJump")] 
+    public float DistanceJump;
+    public Vector3 PointOrigineJump;
+    public float HighJump;
     
     void Start()
     {
@@ -177,6 +184,8 @@ public class The_Player_Script : MonoBehaviour
 
     private void CharacterMouvement()
     {
+        Player_On_Jump();// Take care of the y of the player and set the player to normal state when jump is over
+        
         DashFinishCheck(); // Check if the dash is finished, if it is set var at the normal state
        
         Player_Reaction_After_Hit(); // This function take care of the recovery of the player after a hit
@@ -232,7 +241,7 @@ public class The_Player_Script : MonoBehaviour
 
     private void Player_Deplacement()
     {
-        if ((Input.GetButton("Vertical") || Input.GetButton("Horizontal")) && Grounded && !OnDash && !JustHit)
+        if ((Input.GetButton("Vertical") || Input.GetButton("Horizontal")) && Grounded && !OnDash && !JustHit && !this.OnJump)
         {
             Vector3 ConteneurCameraPositionForward = Camera.main.transform.forward * Input.GetAxis("Vertical");
             Vector3 ConteneurCameraPositionRight = Camera.main.transform.right * Input.GetAxis("Horizontal");
@@ -264,7 +273,7 @@ public class The_Player_Script : MonoBehaviour
             ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
             ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
 
-            if (!JustHit && !OnDash && Grounded)
+            if (!JustHit && !OnDash && Grounded && !this.OnJump)
             {
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = 
                     new Vector3(0, ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.y, 0);
@@ -287,6 +296,16 @@ public class The_Player_Script : MonoBehaviour
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.useGravity = true;
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
             }
+
+            if (this.OnJump)
+            {
+                this.OnJump = false;
+                GetComponent<CapsuleCollider>().enabled = !enabled;
+                ListOfYourPlayer[YourPlayerChoosed].Avatar.layer = 9;
+                transform.tag = "Player";
+                ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.useGravity = true;
+                ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
+            }
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = Vector3.zero;
             PercentageArmorHeat = 0;
             PercentageWeaponHeat = 0;
@@ -303,12 +322,12 @@ public class The_Player_Script : MonoBehaviour
         }
         else
         {
-            if (!Grounded && !OnDash)
+            if (!Grounded && !OnDash && !this.OnJump)
             {
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.constraints 
                     = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
             }
-            else if(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.constraints != 
+            else if( !this.OnJump && ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.constraints != 
                     (RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation))
             {
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.constraints = 
@@ -321,7 +340,7 @@ public class The_Player_Script : MonoBehaviour
     {
         if (OnDash)
         {
-            float Distance = Vector3.Distance(ListOfYourPlayer[YourPlayerChoosed].Canon.transform.position, PointOrigine);
+            float Distance = Vector3.Distance(ListOfYourPlayer[YourPlayerChoosed].Canon.transform.position, this.PointOrigineDash);
             if (Distance >= DistanceDash)
             {
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.mass = 1;
@@ -353,6 +372,76 @@ public class The_Player_Script : MonoBehaviour
                 {
                     Compteur = 0;
                     JustFinishedDash = false;
+                }
+            }
+        }
+    }
+    
+    private void Player_On_Jump()
+    {
+        if (this.OnJump)
+        {
+            float Distance = Vector3.Distance(ListOfYourPlayer[YourPlayerChoosed].Canon.transform.position, this.PointOrigineJump);
+           // Debug.Log(Distance + " " + this.DistanceJump);
+            if (Distance >= this.DistanceJump)
+            {
+                ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.mass = 1;
+                ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = 
+                    ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized * 
+                    ListOfYourPlayer[YourPlayerChoosed].vitesse;
+                this.OnJumpJustFinished = true;
+                this.OnJump = false;
+                GetComponent<CapsuleCollider>().enabled = !enabled;
+                ListOfYourPlayer[YourPlayerChoosed].Avatar.layer = 9;
+                tag = "Player";
+                ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.useGravity = true;
+                ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            }
+            else
+            {
+              
+                if (Distance <= this.DistanceJump/2)
+                {
+                    float MaxHigh = 12 * (Distance / (this.DistanceJump / 2)) * Time.deltaTime;
+                    Debug.Log(MaxHigh);
+                    //this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.velocity += Vector3.up * Time.deltaTime * this.HighJump;
+                    // this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
+                    //     new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(
+                    //             this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.y,0,MaxHigh),
+                    //         this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
+                    this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
+                        new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(
+                                this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.y + MaxHigh * this.HighJump,0,12),
+                            this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
+                }
+                else if( Distance > this.DistanceJump/2)
+                {
+                    float MinHigh = ((this.DistanceJump / 2) / Distance)  * Time.deltaTime;
+                    Debug.Log(MinHigh);
+                    // this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.velocity -= Vector3.up * Time.deltaTime * this.HighJump;
+                    // this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
+                    //     new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(
+                    //             this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.y,MinHigh,12),
+                    //         this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
+                    this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
+                        new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(
+                                this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.y -  MinHigh * this.HighJump,0,12),
+                            this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
+                }
+            }
+        }
+        else
+        {
+            if (this.OnJumpJustFinished)
+            {
+                if (Compteur<=0.6f)
+                {
+                    Compteur += Time.deltaTime;
+                }
+                else
+                {
+                    Compteur = 0;
+                    this.OnJumpJustFinished = false;
                 }
             }
         }

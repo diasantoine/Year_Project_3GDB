@@ -55,7 +55,12 @@ public class skill : MonoBehaviour
                         parentTakeCadavre.ShieldProtection = true;
                         parentTakeCadavre.Protection = theProjo.transform;
                         parentTakeCadavre.SkillCharging();
-                    } 
+                    }else if (WhichWeapon == 4)
+                    {
+                        parentTakeCadavre.jump = true;
+                        parentTakeCadavre.Jump = theProjo.transform;
+                        parentTakeCadavre.SkillCharging();
+                    }
                     detectDead.ressourceInt--;
                     chrono = 0;
             }
