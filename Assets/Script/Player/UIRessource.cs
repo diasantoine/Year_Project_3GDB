@@ -59,47 +59,47 @@ public class UIRessource : MonoBehaviour
                 Compteur = 0;
             }
         }
-        if (!SongPlayed)
-        {
-            Compteur += Time.deltaTime;
-            if (Compteur >= TimeBeforeSound)
-            {
-                if (Liquid.material.GetFloat("_FillAmount")  > 1.4f)
-                {
-                    sonrecupcuve.setParameterByName("SoundChoice", 2);
-                    sonrecupcuve.start();
-                }else if (Liquid.material.GetFloat("_FillAmount") > 1.1f)
-                {
-                    sonrecupcuve.setParameterByName("SoundChoice", 3);
-                    sonrecupcuve.start();
-                }else if (Liquid.material.GetFloat("_FillAmount") > 0.8f)
-                {
-                    sonrecupcuve.setParameterByName("SoundChoice", 4);
-                    sonrecupcuve.start();
-                }else if (Liquid.material.GetFloat("_FillAmount") > 0.5f)
-                {
-                    sonrecupcuve.setParameterByName("SoundChoice", 5);
-                    sonrecupcuve.start();
-                }else if (Liquid.material.GetFloat("_FillAmount") > 0.2f)
-                {
-                    sonrecupcuve.setParameterByName("SoundChoice", 6);
-                    sonrecupcuve.start();
-                }else if (Liquid.material.GetFloat("_FillAmount") > -0.1f)
-                {
-                    sonrecupcuve.setParameterByName("SoundChoice", 7);
-                    sonrecupcuve.start();
-                }else if (Liquid.material.GetFloat("_FillAmount") > -0.4f)
-                {
-                    sonrecupcuve.setParameterByName("SoundChoice", 8);
-                    sonrecupcuve.start();
-                }else if (Liquid.material.GetFloat("_FillAmount") > -0.7f)
-                {
-                    sonrecupcuve.setParameterByName("SoundChoice", 9);
-                    sonrecupcuve.start();
-                }
-                SongPlayed = true;
-                Compteur = 0;
-            }
-        }
+        // if (!SongPlayed)
+        // {
+        //     Compteur += Time.deltaTime;
+        //     if (Compteur >= TimeBeforeSound)
+        //     {
+        //         if (Liquid.material.GetFloat("_FillAmount")  > 1.4f)
+        //         {
+        //             sonrecupcuve.setParameterByName("SoundChoice", 2);
+        //             sonrecupcuve.start();
+        //         }else if (Liquid.material.GetFloat("_FillAmount") > 1.1f)
+        //         {
+        //             sonrecupcuve.setParameterByName("SoundChoice", 3);
+        //             sonrecupcuve.start();
+        //         }else if (Liquid.material.GetFloat("_FillAmount") > 0.8f)
+        //         {
+        //             sonrecupcuve.setParameterByName("SoundChoice", 4);
+        //             sonrecupcuve.start();
+        //         }else if (Liquid.material.GetFloat("_FillAmount") > 0.5f)
+        //         {
+        //             sonrecupcuve.setParameterByName("SoundChoice", 5);
+        //             sonrecupcuve.start();
+        //         }else if (Liquid.material.GetFloat("_FillAmount") > 0.2f)
+        //         {
+        //             sonrecupcuve.setParameterByName("SoundChoice", 6);
+        //             sonrecupcuve.start();
+        //         }else if (Liquid.material.GetFloat("_FillAmount") > -0.1f)
+        //         {
+        //             sonrecupcuve.setParameterByName("SoundChoice", 7);
+        //             sonrecupcuve.start();
+        //         }else if (Liquid.material.GetFloat("_FillAmount") > -0.4f)
+        //         {
+        //             sonrecupcuve.setParameterByName("SoundChoice", 8);
+        //             sonrecupcuve.start();
+        //         }else if (Liquid.material.GetFloat("_FillAmount") > -0.7f)
+        //         {
+        //             sonrecupcuve.setParameterByName("SoundChoice", 9);
+        //             sonrecupcuve.start();
+        //         }
+        //         SongPlayed = true;
+        //         Compteur = 0;
+        //     }
+        // }
     }
 }

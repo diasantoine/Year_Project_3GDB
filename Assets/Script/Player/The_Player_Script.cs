@@ -10,7 +10,6 @@ using Random = UnityEngine.Random;
 
 public class The_Player_Script : MonoBehaviour
 {
-
     [System.Serializable] 
     public struct YourPlayer
     {
@@ -51,16 +50,21 @@ public class The_Player_Script : MonoBehaviour
     private bool isWalking;
     private RaycastHit hit;
     
+    private float slow;
     
     private float Compteur = 0;
     private float Compteur1 = 0;
     private float Compteu12 = 0;
+    private float CompteurForSlow = 0;
+    private float TimePlaque = 0;
+    private float TimeColdPlaque = 0;
     private float Compteur3 = 0;
     private float CompteurForArmorHeat = 0;
     private float CompteurForWeaponHeat = 0;
     
     [Header("PlayerStatArmorHeat")]
     public int PercentageArmorHeat;
+    [SerializeField] private float ResiCold;
     
     [Header("PlayerStatWeaponHeat")]
     public int PercentageWeaponHeat;
@@ -76,6 +80,7 @@ public class The_Player_Script : MonoBehaviour
     public bool ArmorHeated;
     public bool IsNotUsingNormalWeapon = true;
     public bool WeaponOverHeated;
+    private bool isOnPlaque;
     
     [Header("PlayerDash")]
     public float DistanceDash;
@@ -89,10 +94,13 @@ public class The_Player_Script : MonoBehaviour
 
     [Header("Other")] 
     [SerializeField] private Camera cam;
+
+    public float floatTypeOfFootStep;
     
     void Start()
     {
         //Cursor.lockState = CursorLockMode.Locked;
+        slow = 1;
     }
 
     void Update()
@@ -448,7 +456,7 @@ public class The_Player_Script : MonoBehaviour
         }
     }
     
-    private void CheckPlaque(RaycastHit hit)
+ private void CheckPlaque(RaycastHit hit)
     {
         if (Grounded)
         {
@@ -464,25 +472,67 @@ public class The_Player_Script : MonoBehaviour
 
                         switch (pS.type)
                         {
+
+                            case plaqueScript.Type.NORMAL:
+                                // footStepPlayer.setParameterByName("TypeOfFootstep", 0);
+                                floatTypeOfFootStep = 0;
+                                isOnPlaque = false;
+                                TimeColdPlaque = 0;
+                                break;
                             case plaqueScript.Type.HOT:
+                                // footStepPlayer.setParameterByName("TypeOfFootstep", 1);
+                                floatTypeOfFootStep = 1;
                                 if (pS.activ)
                                 {
-                                    Debug.Log("Chaud");
-
+                                    Debug.Log("oui");
+                                    ArmorHeatPlaque(1);
+                                }
+                                else
+                                {
+                                    isOnPlaque = false;
+                                    TimePlaque = 0;
                                 }
                                 break;
                             case plaqueScript.Type.COLD:
+                                floatTypeOfFootStep = 2;
                                 if (pS.activ)
                                 {
-                                    Debug.Log("Froid");
+                                    TimeColdPlaque += Time.deltaTime;
+                                    CompteurForSlow = 0;
 
+                                    ArmorHeatPlaque(-1);
+
+                                    if(TimeColdPlaque >= ResiCold)
+                                    {
+                                        SlowMov(true);
+                                    }
+                                    
+                                }
+                                else
+                                {
+                                    isOnPlaque = false;
+                                    TimePlaque = 0;
+                                    TimeColdPlaque = 0;
                                 }
                                 break;
                             case plaqueScript.Type.TOXIC:
-                                if (pS.activ)
+                                floatTypeOfFootStep = 3;
+                                if (pS.ressourceGot >= 25 && !pS.regenUP)
                                 {
-                                    Debug.Log("POISON");
-
+                                    if (TimePlaque >= 1)
+                                    {
+                                        detectDead.ressourceInt += 25;
+                                        pS.ressourceGot -= 25;
+                                        TimePlaque = 0;
+                                    }
+                                    else
+                                    {
+                                        TimePlaque += Time.deltaTime;
+                                    }
+                                }
+                                else
+                                {
+                                    TimePlaque = 0;
                                 }
                                 break;
                         }
@@ -490,8 +540,52 @@ public class The_Player_Script : MonoBehaviour
                 }
             }
         }
-        
     }
+ 
+ private void ArmorHeatPlaque(int One)
+ {
+     isOnPlaque = true;
+     if (TimePlaque >= 0.1f)
+     {
+         if (PercentageArmorHeat <= 100)
+         {
+             PercentageArmorHeat += One;
+
+         }
+         foreach (GameObject ArmorPart in ListOfYourPlayer[YourPlayerChoosed].ListArmorPart)
+         {
+             ArmorPart.GetComponent<SkinnedMeshRenderer>().material.SetColor("_EmissionColor",
+                 new Color(1, 1 - PercentageArmorHeat / 100f, 1 - PercentageArmorHeat / 100f));
+         }
+
+         TimePlaque = 0;
+
+     }
+     else
+     {
+         TimePlaque += Time.deltaTime;
+     }
+ }
+
+ private void SlowMov(bool Decr)
+ {
+     if (Decr)
+     {
+         if(slow >= 0.5f)
+         {
+             slow -= 0.1f * Time.deltaTime;
+
+         }
+     }
+     else
+     {
+         if(slow <= 1)
+         {
+             slow += 0.75f * Time.deltaTime;
+         }
+
+     }
+ }
 
 
     private void OnTriggerEnter(Collider other)
