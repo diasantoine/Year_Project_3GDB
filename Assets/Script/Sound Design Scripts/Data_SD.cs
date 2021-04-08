@@ -5,11 +5,14 @@ using UnityEngine;
 public class Data_SD : MonoBehaviour
 {
 
+    public The_Player_Script TPS;
+
     [FMODUnity.EventRef]
     public string Ambiance = "";
 
     [FMODUnity.EventRef]
     public string footStep = "";
+    FMOD.Studio.EventInstance footStepPlayer;
 
     [FMODUnity.EventRef]
     public string Ruant_FootStep = "";
@@ -24,18 +27,20 @@ public class Data_SD : MonoBehaviour
     void Start()
     {
         FMODUnity.RuntimeManager.PlayOneShot(Ambiance, transform.position);
+        footStepPlayer = FMODUnity.RuntimeManager.CreateInstance(footStep);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(TPS.floatTypeOfFootStep);
+        footStepPlayer.setParameterByName("TypeOfFootstep", TPS.floatTypeOfFootStep);
     }
 
 
     public void PlayFootStep()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(footStep, transform.position);
+        footStepPlayer.start();
         /// Debug.Log("test son footstep");
     }
 

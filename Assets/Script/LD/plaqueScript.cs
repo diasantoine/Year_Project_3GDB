@@ -5,12 +5,18 @@ using UnityEngine;
 public class plaqueScript : MonoBehaviour
 {
 
-
-    public bool activ;
+    //Variable for COLD & HOT
     [SerializeField] private SystemPlaque SP;
-
+    public bool activ;
     [SerializeField] private float activTime;
     private float chrono;
+
+    //Variable for TOXIC
+    [SerializeField] private int maxRessourceGot;
+    [SerializeField] private int regenRessource;
+    [HideInInspector] public int ressourceGot;
+    [HideInInspector] public bool regenUP;
+    private float chronoRess;
 
     public enum Type
     {
@@ -23,6 +29,15 @@ public class plaqueScript : MonoBehaviour
     }
 
     public Type type;
+
+    private void Start()
+    {
+        if(type == Type.TOXIC)
+        {
+            ressourceGot = maxRessourceGot;
+        }
+    }
+
 
     public void SwitchType(Type newType)
     {
@@ -45,8 +60,6 @@ public class plaqueScript : MonoBehaviour
                 break;
             case Type.PISTON:
                 break;
-            default:
-                break;
         }
     }
 
@@ -64,27 +77,74 @@ public class plaqueScript : MonoBehaviour
                 break;
             case Type.PISTON:
                 break;
-            default:
+
+        }
+    }
+
+    void OnUpdateType()
+    {
+        switch (type)
+        {
+            case Type.NORMAL:
                 break;
+            case Type.HOT:
+                isActive();
+                break;
+            case Type.COLD:
+                isActive();
+                break;
+            case Type.TOXIC:
+                if(ressourceGot <= 25)
+                {
+                    regenUP = true;
+                }
+
+                if (regenUP)
+                {
+                    if(ressourceGot >= maxRessourceGot)
+                    {
+                        regenUP = false;
+                        ressourceGot = maxRessourceGot;
+                    }
+                    else
+                    {
+                        if(chrono >= 1)
+                        {
+                            ressourceGot += regenRessource;
+                            chrono = 0;
+
+                        }
+                        else
+                        {
+                            chrono += Time.deltaTime;
+                        }
+                    }
+                }
+                break;
+            case Type.PISTON:
+                break;
+            
         }
     }
 
     private void Update()
     {
+        OnUpdateType();
+    }
+
+    private void isActive()
+    {
         if (activ)
         {
-            if(type == Type.COLD || type == Type.HOT)
+            if (chrono >= activTime)
             {
-                if (chrono >= activTime)
-                {
-                    activ = false;
-                    SP.systemActiv = false;
-                    chrono = 0;
-                }
-                else
-                {
-                    chrono += Time.deltaTime;
-                }
+                activ = false;
+                SP.systemActiv = false;
+                chrono = 0;
+            }
+            else
+            {
+                chrono += Time.deltaTime;
             }
         }
     }

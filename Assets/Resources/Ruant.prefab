@@ -1307,9 +1307,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab67181d5edc39e478423977af0ff5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TPS: {fileID: 0}
   Ambiance: 
   footStep: 
   Ruant_FootStep: event:/Enemy/Ruant/Ruant_FootStep
+  Screamer_Explosion: 
+  Screamer_FootStep: 
 --- !u!1 &3520952178670155016
 GameObject:
   m_ObjectHideFlags: 0
@@ -3124,7 +3127,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6629797300637803691, guid: 7b25580e37834794d8165ba5411a36f0, type: 3}
+  - {fileID: 2100000, guid: 0b019675a8064414b97862a02f644166, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3474,7 +3477,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6629797300637803691, guid: 7b25580e37834794d8165ba5411a36f0, type: 3}
+  - {fileID: 2100000, guid: 0b019675a8064414b97862a02f644166, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3761,7 +3764,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6629797300637803691, guid: 7b25580e37834794d8165ba5411a36f0, type: 3}
+  - {fileID: 2100000, guid: 0b019675a8064414b97862a02f644166, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4236,7 +4239,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6629797300637803691, guid: 7b25580e37834794d8165ba5411a36f0, type: 3}
+  - {fileID: 2100000, guid: 0b019675a8064414b97862a02f644166, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
