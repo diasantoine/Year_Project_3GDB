@@ -11,7 +11,7 @@ public class JumpCharged : skill
     [SerializeField] private GameObject Parent;
     [SerializeField] private GameObject Avatar;
     [SerializeField] private int PorteMaximale;
-    [SerializeField] private GameObject Canon;
+    //[SerializeField] private GameObject Canon;
     [SerializeField] private Material BRO;
     public int Charge = 0;
     private int LastCharge = 0;
@@ -45,12 +45,12 @@ public class JumpCharged : skill
             Ray MousePosition = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(MousePosition, out RaycastHit Hit,Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
             {
-                lineRenderer.SetPosition(0,Canon.transform.position);
+                lineRenderer.SetPosition(0,this.Parent.transform.position);
                 Vector3 HitPosition = Hit.point;
-                HitPosition -= Canon.transform.position;
+                HitPosition -= this.Parent.transform.position;
                 HitPosition = HitPosition.normalized;
                 HitPosition *= PorteMaximale*(Charge/ChargeMax);
-                LastPosition = Canon.transform.position + HitPosition;
+                LastPosition = this.Parent.transform.position + HitPosition;
                 lineRenderer.SetPosition(1,LastPosition);
                 lineRenderer.material = BRO;
                 lineRenderer.startWidth = 2;
@@ -64,24 +64,24 @@ public class JumpCharged : skill
         {
             if (Physics.Raycast(rayon, out RaycastHit Hit,Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
             {
-                lineRenderer.SetPosition(0, Canon.transform.position);
+                lineRenderer.SetPosition(0, this.Parent.transform.position);
                 Vector3 HitPosition = Hit.point;
-                HitPosition -= Canon.transform.position;
+                HitPosition -= this.Parent.transform.position;
                 HitPosition = HitPosition.normalized;
                 HitPosition *= PorteMaximale*(Charge/ChargeMax);
-                LastPosition = Canon.transform.position + HitPosition;
+                LastPosition = this.Parent.transform.position + HitPosition;
                 lineRenderer.SetPosition(1,LastPosition);
                 lineRenderer.material = BRO;
                 lineRenderer.startWidth = 2;
             }
-            float Distance = Vector3.Distance(LastPosition, Canon.transform.position);
-            Vector3 playerToMouse = LastPosition - Canon.transform.position; 
+            float Distance = Vector3.Distance(LastPosition, this.Parent.transform.position);
+            Vector3 playerToMouse = LastPosition - this.Parent.transform.position; 
             Debug.DrawRay(LastPosition,transform.forward, Color.black, 500f);
             playerToMouse.y = 0;
             playerToMouse = playerToMouse.normalized;
             Parent.GetComponent<The_Player_Script>().OnJump = true;
             Parent.GetComponent<The_Player_Script>().DistanceJump = Distance;
-            Parent.GetComponent<The_Player_Script>().PointOrigineJump = Canon.transform.position;
+            Parent.GetComponent<The_Player_Script>().PointOrigineJump = this.Parent.transform.position;
             Parent.GetComponent<The_Player_Script>().HighJump = this.JumpHigh;
             Parent.GetComponent<The_Player_Script>()
                 .ListOfYourPlayer[Parent.GetComponent<The_Player_Script>().YourPlayerChoosed]

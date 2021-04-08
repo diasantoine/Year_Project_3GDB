@@ -381,8 +381,9 @@ public class The_Player_Script : MonoBehaviour
     {
         if (this.OnJump)
         {
-            float Distance = Vector3.Distance(ListOfYourPlayer[YourPlayerChoosed].Canon.transform.position, this.PointOrigineJump);
-           // Debug.Log(Distance + " " + this.DistanceJump);
+            float Distance = Vector3.Distance(new Vector3(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.transform.position.x, 0, 
+                    ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.transform.position.z)  , new Vector3(this.PointOrigineJump.x, 0, this.PointOrigineJump.z));
+            //Debug.Log(Distance + " " + this.DistanceJump);
             if (Distance >= this.DistanceJump)
             {
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.mass = 1;
@@ -399,24 +400,22 @@ public class The_Player_Script : MonoBehaviour
             }
             else
             {
-              
                 if (Distance <= this.DistanceJump/2)
                 {
                     float MaxHigh = 12 * (Distance / (this.DistanceJump / 2));
-                    //Debug.Log(MaxHigh);
+                    Debug.Log(MaxHigh);
                     //this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.velocity += Vector3.up * Time.deltaTime * this.HighJump;
                     // this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
                     //     new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(
                     //             this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.y,0,MaxHigh),
                     //         this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
                     this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
-                        new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(
-                                this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.y + MaxHigh * this.HighJump,0,12),
+                        new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(MaxHigh,0,12),
                             this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
                 }
                 else if( Distance > this.DistanceJump/2)
                 {
-                    float MinHigh = 12 * ((this.DistanceJump / 2) / Distance);
+                    float MinHigh = 12 * (2 - Distance / (this.DistanceJump / 2));
                     Debug.Log(MinHigh);
                     // this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.velocity -= Vector3.up * Time.deltaTime * this.HighJump;
                     // this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
@@ -424,8 +423,7 @@ public class The_Player_Script : MonoBehaviour
                     //             this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.y,MinHigh,12),
                     //         this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
                     this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
-                        new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(
-                                this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.y -  MinHigh * this.HighJump,0,12),
+                        new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(MinHigh ,0,12),
                             this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
                 }
             }
