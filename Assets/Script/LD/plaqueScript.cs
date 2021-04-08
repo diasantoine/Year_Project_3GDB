@@ -10,6 +10,8 @@ public class plaqueScript : MonoBehaviour
     public bool activ;
     [SerializeField] private float activTime;
     private float chrono;
+    public Renderer EmiRD;
+
 
     //Variable for TOXIC
     [SerializeField] private int maxRessourceGot;
@@ -17,6 +19,8 @@ public class plaqueScript : MonoBehaviour
     [HideInInspector] public int ressourceGot;
     [HideInInspector] public bool regenUP;
     private float chronoRess;
+
+    private Color baseColor;
 
     public enum Type
     {
@@ -35,6 +39,12 @@ public class plaqueScript : MonoBehaviour
         if(type == Type.TOXIC)
         {
             ressourceGot = maxRessourceGot;
+        }
+
+        if(type == Type.COLD || type == Type.HOT)
+        {
+            baseColor = EmiRD.material.GetColor("_EmissionColor");
+            Debug.Log(baseColor);
         }
     }
 
@@ -140,6 +150,7 @@ public class plaqueScript : MonoBehaviour
             {
                 activ = false;
                 SP.systemActiv = false;
+                EmiRD.material.SetColor("_EmissionColor", baseColor);
                 chrono = 0;
             }
             else

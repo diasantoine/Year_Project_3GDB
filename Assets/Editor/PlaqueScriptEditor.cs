@@ -9,7 +9,9 @@ public class PlaqueScriptEditor : Editor
         activ_Prop,
         activTime_Prop,
         maxRessourceGot_Prop,
-        regenRessource_Prop;
+        regenRessource_Prop,
+        SP_Prop,
+        EmiRD_Prop;
 
 
     void OnEnable()
@@ -20,6 +22,10 @@ public class PlaqueScriptEditor : Editor
         activ_Prop = serializedObject.FindProperty("activ");
         regenRessource_Prop = serializedObject.FindProperty("regenRessource");
         maxRessourceGot_Prop = serializedObject.FindProperty("maxRessourceGot");
+        SP_Prop = serializedObject.FindProperty("SP");
+        EmiRD_Prop = serializedObject.FindProperty("EmiRD");
+
+
 
     }
 
@@ -36,12 +42,20 @@ public class PlaqueScriptEditor : Editor
             case plaqueScript.Type.NORMAL:
                 break;
             case plaqueScript.Type.HOT:
+                EditorGUILayout.PropertyField(SP_Prop, new GUIContent("SystemPlaque"));
                 EditorGUILayout.PropertyField(activ_Prop, new GUIContent("Activ"));
                 EditorGUILayout.PropertyField(activTime_Prop, new GUIContent("Activ Time"));
+                EditorGUILayout.PropertyField(EmiRD_Prop, new GUIContent("Emission Renderer"));
+
+
+
                 break;
             case plaqueScript.Type.COLD:
+                EditorGUILayout.PropertyField(SP_Prop, new GUIContent("SystemPlaque"));
                 EditorGUILayout.PropertyField(activ_Prop, new GUIContent("Activ"));
                 EditorGUILayout.PropertyField(activTime_Prop, new GUIContent("Activ Time"));
+                EditorGUILayout.PropertyField(EmiRD_Prop, new GUIContent("Emission Renderer"));
+
                 break;
             case plaqueScript.Type.TOXIC:
                 EditorGUILayout.PropertyField(regenRessource_Prop, new GUIContent("Regen Ressource"));

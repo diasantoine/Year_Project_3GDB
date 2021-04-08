@@ -12,6 +12,10 @@ public class SystemPlaque : MonoBehaviour
     private float chrono;
 
     [HideInInspector] public bool systemActiv;
+    [SerializeField] private float intensity;
+
+    private int randomChoose;
+    private bool plaqueChoosed;
 
     // Start is called before the first frame update
     void Start()
@@ -24,14 +28,26 @@ public class SystemPlaque : MonoBehaviour
     {
         if (!systemActiv)
         {
+
+            if(chrono >= setActivTime * 0.75f)
+            {
+                if (!plaqueChoosed)
+                {
+                    randomChoose = Random.Range(0, enablePlaques.Count);
+                    plaqueChoosed = true;
+                }                         
+
+            }
             if (chrono >= setActivTime)
             {
                 systemActiv = true;
 
-                int randomChoose = Random.Range(0, enablePlaques.Count);
-
                 plaqueScript nowPlaque = enablePlaques[randomChoose];
                 nowPlaque.activ = true;
+
+                var color = nowPlaque.EmiRD.material.GetColor("_EmissionColor");
+                nowPlaque.EmiRD.material.SetColor("_EmissionColor", color * intensity);
+
                 enablePlaques.Remove(nowPlaque);
 
                 if(disablePlaques.Count > 0)
@@ -41,6 +57,7 @@ public class SystemPlaque : MonoBehaviour
                 }
 
                 disablePlaques.Add(nowPlaque);
+                plaqueChoosed = false;
 
                 chrono = 0;
             }
@@ -48,6 +65,8 @@ public class SystemPlaque : MonoBehaviour
             {
                 chrono += Time.deltaTime;
             }
+
+           
         }
     }
 }
