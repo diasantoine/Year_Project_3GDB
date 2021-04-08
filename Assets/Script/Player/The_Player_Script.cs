@@ -402,8 +402,8 @@ public class The_Player_Script : MonoBehaviour
               
                 if (Distance <= this.DistanceJump/2)
                 {
-                    float MaxHigh = 12 * (Distance / (this.DistanceJump / 2)) * Time.deltaTime;
-                    Debug.Log(MaxHigh);
+                    float MaxHigh = 12 * (Distance / (this.DistanceJump / 2));
+                    //Debug.Log(MaxHigh);
                     //this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.velocity += Vector3.up * Time.deltaTime * this.HighJump;
                     // this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
                     //     new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(
@@ -416,7 +416,7 @@ public class The_Player_Script : MonoBehaviour
                 }
                 else if( Distance > this.DistanceJump/2)
                 {
-                    float MinHigh = ((this.DistanceJump / 2) / Distance)  * Time.deltaTime;
+                    float MinHigh = 12 * ((this.DistanceJump / 2) / Distance);
                     Debug.Log(MinHigh);
                     // this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.velocity -= Vector3.up * Time.deltaTime * this.HighJump;
                     // this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 

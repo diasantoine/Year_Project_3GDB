@@ -35,7 +35,6 @@ public class LaserShoot : MonoBehaviour
     {
         if (this.IsCharging && !this.Wall && !this.WallLaserSmooth)
         {
-            this.GetComponent<Renderer>().enabled = true;
             this.ListCollider[0].enabled = true;
             Vector3 localZ = transform.parent.localScale;
             localZ.z = charged * this.StartScale.z;
@@ -168,14 +167,12 @@ public class LaserShoot : MonoBehaviour
             transform.parent.localScale = new Vector3(transform.parent.localScale.x, transform.parent.localScale.y, localZ.z);
         }else if (this.WallLaserSmooth && other.gameObject.CompareTag("Mur"))
         {
-            Debug.Log(Vector3.Distance(transform.parent.localPosition, other.transform.position) +" " + this.DistancePlayerWall * 1.1f);
-            if (Vector3.Distance(transform.parent.localPosition, other.transform.position) >= this.DistancePlayerWall*1.1f)
+            if (Vector3.Distance(transform.parent.position, other.transform.position) < this.DistancePlayerWall*0.9f)
             {
-                Debug.Log(Vector3.Distance(transform.parent.localPosition, other.transform.position) +" " + this.DistancePlayerWall * 1.1f);
                 Vector3 localZ = transform.parent.localScale;
                 localZ.z = 0.9f * localZ.z;
                 transform.parent.localScale = new Vector3(transform.parent.localScale.x, transform.parent.localScale.y, localZ.z);
-                this.DistancePlayerWall = Vector3.Distance(transform.parent.localPosition, other.transform.position);
+                this.DistancePlayerWall = Vector3.Distance(transform.parent.position, other.transform.position);
             }
         }
     }
@@ -192,7 +189,10 @@ public class LaserShoot : MonoBehaviour
             // this.Finish = true;
             if (this.WallLaserSmooth)
             {
+                Debug.Log(this.Wall);
+                Debug.Log(this.WallLaserSmooth);
                 this.WallLaserSmooth = false;
+                this.Wall = false;
             }
             else
             {
@@ -200,10 +200,11 @@ public class LaserShoot : MonoBehaviour
                 this.Wall = false;
                 this.WallLaserSmooth = true;
                 Vector3 localZ = transform.parent.localScale;
-                localZ.z = 1.1f * localZ.z;
+                localZ.z = 1.2f * localZ.z;
                 transform.parent.localScale = new Vector3(transform.parent.localScale.x, transform.parent.localScale.y, localZ.z);
-                this.DistancePlayerWall = Vector3.Distance(transform.parent.localPosition, other.transform.position);
+                this.DistancePlayerWall = Vector3.Distance(transform.parent.position, other.transform.position);
             }
         }
+     
     }
 }
