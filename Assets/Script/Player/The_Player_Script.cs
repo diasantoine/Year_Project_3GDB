@@ -86,6 +86,9 @@ public class The_Player_Script : MonoBehaviour
     public float DistanceJump;
     public Vector3 PointOrigineJump;
     public float HighJump;
+
+    [Header("Other")] 
+    [SerializeField] private Camera cam;
     
     void Start()
     {
@@ -243,8 +246,8 @@ public class The_Player_Script : MonoBehaviour
     {
         if ((Input.GetButton("Vertical") || Input.GetButton("Horizontal")) && Grounded && !OnDash && !JustHit && !this.OnJump)
         {
-            Vector3 ConteneurCameraPositionForward = Camera.main.transform.forward * Input.GetAxis("Vertical");
-            Vector3 ConteneurCameraPositionRight = Camera.main.transform.right * Input.GetAxis("Horizontal");
+            Vector3 ConteneurCameraPositionForward = this.cam.transform.forward * Input.GetAxis("Vertical");
+            Vector3 ConteneurCameraPositionRight = this.cam.transform.right * Input.GetAxis("Horizontal");
             Vector3 Vector3_Deplacement_Player =
                 Vector3.ClampMagnitude(ConteneurCameraPositionForward + ConteneurCameraPositionRight, 1);
             if (Mathf.RoundToInt(Vector3.Dot(transform.forward, 
