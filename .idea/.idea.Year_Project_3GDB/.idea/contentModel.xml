@@ -1024,7 +1024,15 @@
             <e p="ChargedDash.cs" t="Include" />
             <e p="ChargedShoot.cs" t="Include" />
             <e p="ImpulseCharge.cs" t="Include" />
-            <e p="JumpCharged.cs" t="Include" />
+            <e p="JumpCharged" t="Include">
+              <e p="CannonController.cs" t="Include" />
+              <e p="CannonInterface.cs" t="Include" />
+              <e p="CursorJump.cs" t="Include" />
+              <e p="JumpCharged.cs" t="Include" />
+              <e p="Math3d.cs" t="Include" />
+              <e p="ProjectileArc.cs" t="Include" />
+              <e p="ProjectileMath.cs" t="Include" />
+            </e>
             <e p="PoisonShield.cs" t="Include" />
             <e p="ShieldProtection.cs" t="Include" />
             <e p="ShieldProtectionCollider.cs" t="Include" />
@@ -1083,6 +1091,7 @@
             <e p="SpawnProjectilesScript.cs" t="Include" />
           </e>
         </e>
+        <e p="StopJump.cs" t="Include" />
         <e p="TestLiquidCuve 1" t="Include">
           <e p="Liquid.shader" t="Include" />
           <e p="ShakeCuve.cs" t="Include" />

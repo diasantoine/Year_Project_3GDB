@@ -13,9 +13,11 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Script/SystemSkill/choiceSkill.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/DashAvatar.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/JumpCharged/CannonController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/FMOD/src/Runtime/wrapper/fmod_studio.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/UISkill.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/SystemSkill/buttonChoice.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/JumpCharged/JumpCharged.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/SystemSkill/changeSkill.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/TestLiquidCuve 1/ShakeCuve.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/UI/Pause.cs" root0="FORCE_HIGHLIGHTING" />
@@ -30,12 +32,14 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/Weapon/TirCharge.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/System/CameraTarget.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Shoot/scirpt/ProjectileMoveScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/JumpCharged/CannonInterface.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/CharacterMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9B956647-017D-4DC1-B8D3-D25EEF012467/10/cd73d594/Rigidbody.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/DeathScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/detectDead.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Weapon/PoisonCollider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/shootDead.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/JumpCharged/CursorJump.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Shoot/scirpt/ParticleSystemController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/takeCadavre.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/seeThrought.cs" root0="FORCE_HIGHLIGHTING" />
@@ -46,12 +50,13 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/ChargedShoot.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/RuantAI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/TestLiquidCuve 1/Liquid.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/StopJump.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2DB13BA0-D523-4322-8AA9-892C408FB49A/bd/80c54866/Input.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/OLD/ennemyAI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/System/reticulePoint.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/JumpCharged.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E81851A0-DC73-4A79-AFA9-F5B7273162BE/6f/c65f0335/IEnumerator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/TestLiquidCuve 1/Wobble.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BrokenVector/UltimateDungeonPack/Scenes/Demo/FPControls/Scripts/CharacterController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/ShieldProtectionCollider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/SystemSkill/skillSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/ChargedDash.cs" root0="FORCE_HIGHLIGHTING" />
@@ -68,11 +73,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Script/TirCharge.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/spawn.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/DeadProjo.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/CharacterMovement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/CameraTarget.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/DashAvatar.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/takeCadavre.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/ennemyState.cs" />
@@ -104,21 +104,26 @@
         <option value="$PROJECT_DIR$/Assets/Script/System/CameraTarget.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/EnnemySystem/Ennemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Skill/ChargedDash.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Player/shootDead.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Ennemy/SpawnSysteme.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Ennemy/OLD/ennemyAI.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Ennemy/RuantAI.cs" />
         <option value="$PROJECT_DIR$/Assets/TestLiquidCuve 1/Liquid.shader" />
-        <option value="$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerScript.cs" />
         <option value="$PROJECT_DIR$/Assets/TestLiquidCuve 1/Wobble.cs" />
         <option value="$PROJECT_DIR$/Assets/TestLiquidCuve 1/ShakeCuve.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/SystemSkill/skill.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/takeCadavre.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Skill/ChargedShoot.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Weapon/LaserShoot.cs" />
-        <option value="$PROJECT_DIR$/Assets/Script/Skill/JumpCharged.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/UIRessource.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Skill/JumpCharged.cs" />
+        <option value="$PROJECT_DIR$/Assets/BrokenVector/UltimateDungeonPack/Scenes/Demo/FPControls/Scripts/CharacterController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Skill/JumpCharged/CursorJump.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Skill/JumpCharged/CannonInterface.cs" />
+        <option value="$PROJECT_DIR$/Assets/StopJump.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Skill/JumpCharged/JumpCharged.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Ennemy/OLD/ennemyAI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Script/Player/The_Player_Script.cs" />
+        <option value="$PROJECT_DIR$/Assets/Script/Player/shootDead.cs" />
       </list>
     </option>
   </component>
@@ -237,6 +242,7 @@
       <workItem from="1617887160215" duration="237000" />
       <workItem from="1617887721433" duration="450000" />
       <workItem from="1617888380549" duration="1113000" />
+      <workItem from="1617893039811" duration="26558000" />
     </task>
     <servers />
   </component>

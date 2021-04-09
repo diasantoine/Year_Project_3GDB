@@ -12,7 +12,7 @@ public class ennemyAI : MonoBehaviour
     public Transform player;
 
     [SerializeField] private bool Grounded = false;
-    [SerializeField] private bool JustHit = false;
+    [SerializeField] public bool JustHit = false;
     private bool HitPlayer = false;
 
     [SerializeField] private float ImpactTirNormal = 1;
@@ -21,6 +21,8 @@ public class ennemyAI : MonoBehaviour
     private Rigidbody ConteneurRigibody;
 
     private float Cooldown = 2;
+
+    private float CompteurBeforeTryGetUp = 0.2f;
 
     private GameObject Skill;
 
@@ -180,8 +182,14 @@ public class ennemyAI : MonoBehaviour
 
                 }
 
-                if (ConteneurRigibody.velocity.magnitude < 3f )
+                if (this.CompteurBeforeTryGetUp> 0)
                 {
+                    this.CompteurBeforeTryGetUp -= Time.deltaTime;
+                }
+
+                if (ConteneurRigibody.velocity.magnitude < 3f  && this.CompteurBeforeTryGetUp <= 0)
+                {
+                    this.CompteurBeforeTryGetUp = 0.2f;
                     if (Pansement)
                     {
                         Pansement = false;

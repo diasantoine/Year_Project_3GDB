@@ -81,6 +81,7 @@ public class The_Player_Script : MonoBehaviour
     public bool IsNotUsingNormalWeapon = true;
     public bool WeaponOverHeated;
     private bool isOnPlaque;
+    private bool Once;
     
     [Header("PlayerDash")]
     public float DistanceDash;
@@ -90,8 +91,14 @@ public class The_Player_Script : MonoBehaviour
     [Header("PlayerJump")] 
     public float DistanceJump;
     public Vector3 PointOrigineJump;
-    public float HighJump;
-
+    private float HigherPosition = 0;
+    public float TimeForTheDistance;
+    public Vector3 target;
+    [SerializeField] private float initialAngle;
+    public float radiusExploBase;
+    public float ForceExplosion;
+    public float DMG;
+    
     [Header("Other")] 
     [SerializeField] private Camera cam;
 
@@ -228,7 +235,7 @@ public class The_Player_Script : MonoBehaviour
                     {
                         foreach (GameObject ArmorPart in  ListOfYourPlayer[YourPlayerChoosed].ListArmorPart)
                         {
-                            ArmorPart.GetComponent<SkinnedMeshRenderer>().material.SetColor("_EmissionColor",
+                            ArmorPart.GetComponent<Renderer>().material.SetColor("_EmissionColor",
                                     new Color(1,1 - PercentageArmorHeat/100f, 1 -PercentageArmorHeat/100f));
                         }
                         ArmorHeated = true;
@@ -281,6 +288,7 @@ public class The_Player_Script : MonoBehaviour
         }
         else
         {
+            Debug.Log(this.Grounded);
             ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
             ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
 
@@ -408,35 +416,48 @@ public class The_Player_Script : MonoBehaviour
                 tag = "Player";
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.useGravity = true;
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                this.HigherPosition = 0;
+                this.Once = false;
+                this.ImpulsionTahLesfous();
             }
             else
             {
-                if (Distance <= this.DistanceJump/2)
+                if (!this.Once)
                 {
-                    float MaxHigh = 12 * (Distance / (this.DistanceJump / 2));
-                    Debug.Log(MaxHigh);
-                    //this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.velocity += Vector3.up * Time.deltaTime * this.HighJump;
-                    // this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
-                    //     new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(
-                    //             this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.y,0,MaxHigh),
-                    //         this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
-                    this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
-                        new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(MaxHigh,0,12),
-                            this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
+                    this.Once = true;
+                    this.JumpPlayer();
                 }
-                else if( Distance > this.DistanceJump/2)
-                {
-                    float MinHigh = 12 * (2 - Distance / (this.DistanceJump / 2));
-                    Debug.Log(MinHigh);
-                    // this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.velocity -= Vector3.up * Time.deltaTime * this.HighJump;
-                    // this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
-                    //     new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(
-                    //             this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.y,MinHigh,12),
-                    //         this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
-                    this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
-                        new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(MinHigh ,0,12),
-                            this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
-                }
+        
+                // if (Distance <= this.DistanceJump/2)
+                // {
+                //     float MaxHigh = 12 * (Distance / (this.DistanceJump / 2));
+                //     Debug.Log(MaxHigh);
+                //     //this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.velocity += Vector3.up * Time.deltaTime * this.HighJump;
+                //     // this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
+                //     //     new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(
+                //     //             this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.y,0,MaxHigh),
+                //     //         this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
+                //     this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
+                //         new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(MaxHigh,0,12),
+                //             this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
+                // }
+                // else if( Distance > this.DistanceJump/2)
+                // {
+                //     if (this.HigherPosition == 0)
+                //     {
+                //         HigherPosition = this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.y;
+                //     }
+                //     float MinHigh = HigherPosition * (2 - Distance / (this.DistanceJump / 2));
+                //     Debug.Log(MinHigh);
+                //     // this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.velocity -= Vector3.up * Time.deltaTime * this.HighJump;
+                //     // this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
+                //     //     new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(
+                //     //             this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.y,MinHigh,12),
+                //     //         this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
+                //     this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
+                //         new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(MinHigh ,0,12),
+                //             this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
+                // }
             }
         }
         else
@@ -587,8 +608,79 @@ public class The_Player_Script : MonoBehaviour
      }
  }
 
+ private void JumpPlayer()
+ {
+     this.ListOfYourPlayer[this.YourPlayerChoosed].animAvatar.SetBool("Jump", true);
+     //this.ListOfYourPlayer[this.YourPlayerChoosed].animAvatar.speed = this.DistanceJump/3.292f;
+     // var rigid = this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody;
+     //
+     // Vector3 p = this.target;
+     //
+     // float gravity = Physics.gravity.magnitude;
+     // // Selected angle in radians
+     // //float angle = this.initialAngle * Mathf.Deg2Rad;
+     //
+     // // Positions of this object and the target on the same plane
+     // Vector3 planarTarget = new Vector3(p.x, 0, p.z);
+     // Vector3 planarPostion = new Vector3(this.transform.position.x, 0, this.transform.position.z);
+     //
+     // // Planar distance between objects
+     // float distance = Vector3.Distance(planarTarget, planarPostion);
+     // // Distance along the y axis between objects
+     // //float yOffset = this.transform.position.y - p.y;
+     // float yOffset = 0;
+     //
+     // float angle = Mathf.Atan(2 * 12 / distance );
+     // float norme = Mathf.Sqrt(3 * gravity / 8 * 12) * distance;
+     // Debug.Log(angle * 180 / Mathf.PI + " " + norme);
+     // Debug.DrawRay(transform.position, new Vector3( this.target.x + transform.position.x,0.5f,
+     //     this.target.z + transform.position.z), Color.blue, 10f);
+     // Vector3 V =  new Vector3(0, Mathf.Sin(angle), Mathf.Cos(angle)) * norme;
+     // float initialVelocity = (1 / Mathf.Cos(angle)) *
+     //                         2*Mathf.Sqrt((3f * gravity * Mathf.Pow(distance, 2)) / (distance * Mathf.Tan(angle) + yOffset));// 0.5f * gravity
+     //
+     // Vector3 velocity = new Vector3(0, initialVelocity * Mathf.Sin(angle), initialVelocity * Mathf.Cos(angle));
+     //
+     // // Rotate our velocity to match the direction between the two objects
+     // //float angleBetweenObjects = Vector3.Angle(Vector3.forward, planarTarget - planarPostion);
+     // float angleBetweenObjects = Vector3.Angle(Vector3.forward, planarTarget - planarPostion) * (p.x > transform.position.x ? 1 : -1);
+     // Vector3 finalVelocity = Quaternion.AngleAxis(angleBetweenObjects, Vector3.up) * velocity;
+     //
+     // // Fire!
+     // rigid.velocity = finalVelocity;
+     //
+     // // Alternative way:
+     // // rigid.AddForce(finalVelocity * rigid.mass, ForceMode.Impulse);
+ }
+ 
+ void ImpulsionTahLesfous()
+    {
+        Vector3 hitPoint = transform.position;
+        Collider[] hit = Physics.OverlapSphere(hitPoint, radiusExploBase + transform.localScale.x);
+        for (int i = 0; i < hit.Length; i++)
+        {
+           if (hit[i].gameObject.CompareTag("Ennemy"))
+           {
+                if (hit[i].GetComponent<ennemyAI>() != null)
+                {
+                    hit[i].GetComponent<ennemyAI>().ExplosionImpact(hitPoint, radiusExploBase +  transform.localScale.x, ForceExplosion);
+                    hit[i].GetComponent<ennemyState>().damage(DMG);
+                }
+                else if(hit[i].GetComponent<ScreamerScript>() != null)
+                {
+                    hit[i].GetComponent<ScreamerScript>().HpNow = 0;
+                }
+                else
+                {
+                    //rien
+                }
+                //hit[i].GetComponent<ScreamerScript>().ExplosionImpact(hitPoint, radiusExploBase + transform.localScale.x, ForceExplosion, DMG);
+                //if(poisonned) { hit[i].GetComponent<ScreamerScript>().Poisonned = true;
+           }
+        }
+    }
 
-    private void OnTriggerEnter(Collider other)
+ private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("DeathFall"))
         {
