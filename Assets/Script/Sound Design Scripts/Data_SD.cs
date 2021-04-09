@@ -33,8 +33,8 @@ public class Data_SD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(TPS.floatTypeOfFootStep);
-        //footStepPlayer.setParameterByName("TypeOfFootstep", TPS.floatTypeOfFootStep);
+        Debug.Log(TPS.floatTypeOfFootStep);
+        footStepPlayer.setParameterByName("TypeOfFootstep", TPS.floatTypeOfFootStep);
     }
 
 
