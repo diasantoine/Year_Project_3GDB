@@ -302,7 +302,7 @@ public class ScreamerScript : Ennemy
             {
                 if (hit[i].GetComponent<ennemyAI>() != null)
                 {
-                    hit[i].GetComponent<ennemyAI>().ExplosionImpact(hitPoint, radiusExploBase +  transform.localScale.x, ForceExplosion);
+                    hit[i].GetComponent<ennemyAI>().ExplosionImpact(hitPoint, radiusExploBase +  transform.localScale.x, ForceExplosion*10);
                     hit[i].GetComponent<ennemyState>().damage(DMG);
                 }
                 else if(hit[i].GetComponent<ScreamerScript>() != null)

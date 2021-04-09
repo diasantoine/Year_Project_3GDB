@@ -178,8 +178,7 @@ public class The_Player_Script : MonoBehaviour
         PercentageArmorHeat -= ListOfYourPlayer[YourPlayerChoosed].NumberOfDecreaseByFrequence_Armor;
         foreach (GameObject ArmorPart in  ListOfYourPlayer[YourPlayerChoosed].ListArmorPart)
         {
-            Debug.Log("?");
-            ArmorPart.GetComponent<SkinnedMeshRenderer>().material.SetColor("_EmissionColor",
+            ArmorPart.GetComponent<Renderer>().material.SetColor("_EmissionColor",
                 new Color(1,1 - PercentageArmorHeat/100f, 1 -PercentageArmorHeat/100f));
         }
     }
@@ -190,7 +189,7 @@ public class The_Player_Script : MonoBehaviour
         PercentageWeaponHeat -= ListOfYourPlayer[YourPlayerChoosed].NumberOfDecreaseByFrequence_Weapon;
         foreach (GameObject WeaponPart in  ListOfYourPlayer[YourPlayerChoosed].ListWeaponPart)
         {
-            WeaponPart.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor",
+            WeaponPart.GetComponent<Renderer>().material.SetColor("_EmissionColor",
                 new Color(GetComponent<The_Player_Script>().PercentageWeaponHeat/100f,0 ,0));
         }
         if (WeaponOverHeated && PercentageWeaponHeat <=0)
@@ -288,7 +287,6 @@ public class The_Player_Script : MonoBehaviour
         }
         else
         {
-            Debug.Log(this.Grounded);
             ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
             ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
 
@@ -327,16 +325,23 @@ public class The_Player_Script : MonoBehaviour
             }
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = Vector3.zero;
             PercentageArmorHeat = 0;
+            CompteurForArmorHeat = 0;
             PercentageWeaponHeat = 0;
+            this.CompteurForWeaponHeat = 0;
+            Debug.Log("MAISWTF?");
             foreach (GameObject ArmorPart in  ListOfYourPlayer[YourPlayerChoosed].ListArmorPart)
             {
-                ArmorPart.GetComponent<SkinnedMeshRenderer>().material.SetColor("_EmissionColor",
+                ArmorPart.GetComponent<Renderer>().material.SetColor("_EmissionColor",
                     new Color(1,1 - PercentageArmorHeat/100f, 1 -PercentageArmorHeat/100f));
             }
             foreach (GameObject WeaponPart in  ListOfYourPlayer[YourPlayerChoosed].ListWeaponPart)
             {
-                WeaponPart.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor",
+                WeaponPart.GetComponent<Renderer>().material.SetColor("_EmissionColor",
                     new Color(GetComponent<The_Player_Script>().PercentageWeaponHeat/100f,0 ,0));
+            }
+            if (WeaponOverHeated)
+            {
+                WeaponOverHeated = false;
             }
         }
         else
