@@ -1262,9 +1262,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab67181d5edc39e478423977af0ff5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TPS: {fileID: 0}
   Ambiance: 
   footStep: 
   Ruant_FootStep: event:/Enemy/Ruant/Ruant_FootStep
+  Screamer_Explosion: 
+  Screamer_FootStep: 
 --- !u!1 &3492012637491279765
 GameObject:
   m_ObjectHideFlags: 0
@@ -2849,6 +2852,7 @@ MonoBehaviour:
   speedRush: 10
   deceleration: 1.5
   RuantCollider: {fileID: 0}
+  DmgArmorHeat: 0
   Ruant_Collision: event:/Enemy/Ruant/Ruant_Collision
   Ruant_Cris_Mort: event:/Enemy/Ruant/Ruant_Cris_Mort
   Ruant_Cris_Dash: event:/Enemy/Ruant/Ruant_Cris_Dash

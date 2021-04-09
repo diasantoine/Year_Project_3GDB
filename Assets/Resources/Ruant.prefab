@@ -1239,9 +1239,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.83
-  m_Height: 6.21
+  m_Height: 6.93
   m_Direction: 1
-  m_Center: {x: 0, y: 3.25, z: 0}
+  m_Center: {x: 0, y: 3.1, z: 0}
 --- !u!1 &3334584385586049595
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,7 +1269,7 @@ Transform:
   m_GameObject: {fileID: 3334584385586049595}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 4.09, z: -0.26}
-  m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 6466561218523969567}
   - {fileID: 5550692308327167528}
@@ -2809,7 +2809,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5550692308483069507}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.946644, y: -0.18828917, z: 23.742687}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3324747036720549205}
@@ -2884,7 +2884,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldOfView: 30
   distanceOfView: 50
-  disToGround: 0.5
+  disToGround: 2
   RB: {fileID: 5550692308483069518}
   AnimatorConteneur: {fileID: 0}
   agent: {fileID: 5550692308483069516}
@@ -2895,8 +2895,8 @@ MonoBehaviour:
   distForRush: 25
   waitRush: 1
   stunTime: 4
-  speedRush: 22
-  deceleration: 1.5
+  speedRush: 25
+  deceleration: 1.25
   RuantCollider: {fileID: 3324747036720549206}
   DmgArmorHeat: 20
   Ruant_Collision: event:/Enemy/Ruant/Ruant_Collision
