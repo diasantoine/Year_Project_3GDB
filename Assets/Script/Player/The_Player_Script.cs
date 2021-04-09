@@ -283,7 +283,8 @@ public class The_Player_Script : MonoBehaviour
             }
 
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity =
-                Vector3_Deplacement_Player * ListOfYourPlayer[YourPlayerChoosed].vitesse;
+                Vector3_Deplacement_Player * ListOfYourPlayer[YourPlayerChoosed].vitesse * slow;
+            ListOfYourPlayer[YourPlayerChoosed].animAvatar.speed = ListOfYourPlayer[YourPlayerChoosed].vitesse * slow * 0.25f;
         }
         else
         {
@@ -501,13 +502,13 @@ public class The_Player_Script : MonoBehaviour
 
                             case plaqueScript.Type.NORMAL:
                                 // footStepPlayer.setParameterByName("TypeOfFootstep", 0);
-                                floatTypeOfFootStep = 0;
+                                //floatTypeOfFootStep = 0;
                                 isOnPlaque = false;
                                 TimeColdPlaque = 0;
                                 break;
                             case plaqueScript.Type.HOT:
                                 // footStepPlayer.setParameterByName("TypeOfFootstep", 1);
-                                floatTypeOfFootStep = 1;
+                                //floatTypeOfFootStep = 1;
                                 if (pS.activ)
                                 {
                                     Debug.Log("oui");
@@ -520,7 +521,7 @@ public class The_Player_Script : MonoBehaviour
                                 }
                                 break;
                             case plaqueScript.Type.COLD:
-                                floatTypeOfFootStep = 2;
+                                //floatTypeOfFootStep = 2;
                                 if (pS.activ)
                                 {
                                     TimeColdPlaque += Time.deltaTime;
@@ -542,7 +543,7 @@ public class The_Player_Script : MonoBehaviour
                                 }
                                 break;
                             case plaqueScript.Type.TOXIC:
-                                floatTypeOfFootStep = 3;
+                                //floatTypeOfFootStep = 3;
                                 if (pS.ressourceGot >= 25 && !pS.regenUP)
                                 {
                                     if (TimePlaque >= 1)
@@ -580,7 +581,7 @@ public class The_Player_Script : MonoBehaviour
          }
          foreach (GameObject ArmorPart in ListOfYourPlayer[YourPlayerChoosed].ListArmorPart)
          {
-             ArmorPart.GetComponent<SkinnedMeshRenderer>().material.SetColor("_EmissionColor",
+             ArmorPart.GetComponent<Renderer>().material.SetColor("_EmissionColor",
                  new Color(1, 1 - PercentageArmorHeat / 100f, 1 - PercentageArmorHeat / 100f));
          }
 
