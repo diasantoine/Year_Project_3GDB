@@ -36,6 +36,11 @@ public class ChargedShoot : skill
                     chrono += Time.deltaTime;
                 }
 
+                if (this.charge > 0)
+                {
+                    theProjo.GetComponent<LaserShoot>().IsCharging = true;
+                    theProjo.GetComponent<LaserShoot>().charged = this.charge;
+                }
             }
         }
     }
@@ -46,10 +51,11 @@ public class ChargedShoot : skill
         {
             if(theProjo.GetComponent<LaserShoot>() != null)
             {
-                theProjo.GetComponent<LaserShoot>().charged = charge;
+                theProjo.GetComponent<LaserShoot>().IsCharging = false;
+                //theProjo.GetComponent<LaserShoot>().charged = charge;
                 theProjo.GetComponent<LaserShoot>().goGoGo = true;
-                theProjo.GetComponent<MeshRenderer>().enabled = true;
-                theProjo.GetComponent<Collider>().enabled = true;
+                //theProjo.GetComponent<MeshRenderer>().enabled = true;
+                //theProjo.GetComponent<Collider>().enabled = true;
             }
 
         }

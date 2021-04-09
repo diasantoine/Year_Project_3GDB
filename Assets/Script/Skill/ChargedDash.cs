@@ -119,7 +119,7 @@ public class ChargedDash : skill
             playerToMouse = playerToMouse.normalized;
             Parent.GetComponent<The_Player_Script>().OnDash = true;
             Parent.GetComponent<The_Player_Script>().DistanceDash = Distance;
-            Parent.GetComponent<The_Player_Script>().PointOrigine = Canon.transform.position;
+            Parent.GetComponent<The_Player_Script>().PointOrigineDash = Canon.transform.position;
             Avatar.layer = 12;
             Parent.GetComponent<CapsuleCollider>().enabled = enabled;
             Destroy(Parent.GetComponent<LineRenderer>());

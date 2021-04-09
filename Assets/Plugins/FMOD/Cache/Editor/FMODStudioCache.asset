@@ -1,5 +1,47 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9199693736303634556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/CuveSound/SoundChoice
+  m_EditorClassIdentifier: 
+  Name: SoundChoice
+  Min: 0
+  Max: 10
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &-9142837162921234147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CuveSound/CuveSound 4
+  m_EditorClassIdentifier: 
+  Path: event:/CuveSound/CuveSound 4
+  guid: 5ebc0eba09de18478f84f1038a6b99f8
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 387
 --- !u!114 &-9014697298221564072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23,30 +65,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1631
---- !u!114 &-8469711832814862833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ambiance/Lights_Flicker
-  m_EditorClassIdentifier: 
-  Path: event:/Ambiance/Lights_Flicker
-  guid: e19f3ec812031648b8c2898a80ecea11
-  Banks:
-  - {fileID: -6639937667616358054}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 3.6000001
-  Length: 468
---- !u!114 &-7239993859875063601
+--- !u!114 &-8672443791928728271
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,11 +75,75 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_Name: parameter:/CuveSound/SoundChoice
   m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
+  Name: SoundChoice
   Min: 0
-  Max: 4
+  Max: 10
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-8446262241418318794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CuveSound/CuveSound 8
+  m_EditorClassIdentifier: 
+  Path: event:/CuveSound/CuveSound 8
+  guid: b81488689cdd924287c11b9ce27faf99
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 312
+--- !u!114 &-7775460583005365795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CuveSound/CuveSound 7
+  m_EditorClassIdentifier: 
+  Path: event:/CuveSound/CuveSound 7
+  guid: f6dea925cedf37459d1716e34cdcbddc
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 348
+--- !u!114 &-7406284982428796458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/CuveSound/SoundChoice
+  m_EditorClassIdentifier: 
+  Name: SoundChoice
+  Min: 0
+  Max: 10
   Default: 0
   ID:
     data1: 0
@@ -135,6 +218,50 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2600
+--- !u!114 &-6757324508870641480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/CuveSound/SoundChoice
+  m_EditorClassIdentifier: 
+  Name: SoundChoice
+  Min: 0
+  Max: 10
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-6749600332593579685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CuveSound/CuveSound
+  m_EditorClassIdentifier: 
+  Path: event:/CuveSound/CuveSound
+  guid: bb4dc357b0051744a46dd8a6518c8fdf
+  Banks:
+  - {fileID: -6639937667616358054}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -532994549910512957}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
 --- !u!114 &-6639937667616358054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,9 +276,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD_PODLAB/FMOD_PODLAB_Year_Projectt/FMOD_PODLAB/Build/Desktop/Master.bank
   Name: Master
-  lastModified: 637535034886818918
+  lastModified: 637534921349821376
   LoadResult: 0
   FileSizes: []
+  Exists: 1
+--- !u!114 &-6590483636692438981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_EditorClassIdentifier: 
+  Name: TypeOfFootstep
+  Min: 0
+  Max: 4
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
   Exists: 1
 --- !u!114 &-5815243264688127412
 MonoBehaviour:
@@ -176,46 +323,6 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 15
   Length: 54683
---- !u!114 &-5654991850284375164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
-  m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
---- !u!114 &-5652318161342286276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
-  m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
 --- !u!114 &-5523830271934929354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,7 +346,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 100
   Length: 1935
---- !u!114 &-5420027963902052410
+--- !u!114 &-5389916813566317272
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -248,20 +355,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ambiance/Eclatement_Bulle_Eau
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/CuveSound/SoundChoice
   m_EditorClassIdentifier: 
-  Path: event:/Ambiance/Eclatement_Bulle_Eau
-  guid: a28b30474df07e49868e3678d21e71d7
-  Banks:
-  - {fileID: -6639937667616358054}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 60
-  Length: 915
+  Name: SoundChoice
+  Min: 0
+  Max: 10
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &-5190969414953019947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +389,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-5185858396419222799
+--- !u!114 &-5156586790514943163
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -294,17 +398,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CuveSound/CuveSound 9
   m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
+  Path: event:/CuveSound/CuveSound 9
+  guid: 19aa1571ba145e4b879a3bdac9d209ff
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 338
 --- !u!114 &-4753088208096374989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,13 +425,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD_PODLAB/FMOD_PODLAB_Year_Projectt/FMOD_PODLAB/Build/Desktop/Master.strings.bank
   Name: Master.strings
-  lastModified: 637535034886833964
+  lastModified: 637534921350000898
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 2084
+    Value: 2138
   Exists: 1
---- !u!114 &-4369910262434108384
+--- !u!114 &-4501655213776194497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CuveSound/CuveSound 6
+  m_EditorClassIdentifier: 
+  Path: event:/CuveSound/CuveSound 6
+  guid: 7ddc803511d543439a030693e9becb52
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 408
+--- !u!114 &-4272158143167033147
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -335,11 +463,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_Name: parameter:/CuveSound/SoundChoice
   m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
+  Name: SoundChoice
   Min: 0
-  Max: 4
+  Max: 10
   Default: 0
   ID:
     data1: 0
@@ -388,7 +516,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: -765118772630036873}
+  - {fileID: -6590483636692438981}
   MinDistance: 0
   MaxDistance: 0
   Length: 380
@@ -415,26 +543,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 100
   Length: 3285
---- !u!114 &-3985541342472501567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
-  m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 1
 --- !u!114 &-3934129662978126101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,26 +566,6 @@ MonoBehaviour:
   MinDistance: 0.6
   MaxDistance: 25
   Length: 3484
---- !u!114 &-3112204106402230125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
-  m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
 --- !u!114 &-3100145808428830397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,9 +586,9 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 28834
+  MinDistance: 0
+  MaxDistance: 15
+  Length: 54683
 --- !u!114 &-2863214220385356584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,26 +612,6 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 407
---- !u!114 &-2816123020646744687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
-  m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
 --- !u!114 &-2795983627206208018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,7 +681,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 100
   Length: 3785
---- !u!114 &-2020911871593339963
+--- !u!114 &-2354154237720860196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CuveSound/CuveSound 3
+  m_EditorClassIdentifier: 
+  Path: event:/CuveSound/CuveSound 3
+  guid: 5e8b7f088e9d6545a263711cd04de761
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 433
+--- !u!114 &-1614515675244622423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -623,56 +713,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_Name: parameter:/CuveSound/SoundChoice
   m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
+  Name: SoundChoice
   Min: 0
-  Max: 4
+  Max: 10
   Default: 0
   ID:
     data1: 0
     data2: 0
-  Exists: 0
---- !u!114 &-1752038071565618827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
-  m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
---- !u!114 &-1702606079287749207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
-  m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
+  Exists: 1
 --- !u!114 &-1285600416485939621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,7 +746,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-765118772630036873
+--- !u!114 &-727923194747996809
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -706,16 +756,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_Name: 'parameter:/CuveSound/Parameter '
   m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
+  Name: 'Parameter '
   Min: 0
-  Max: 4
+  Max: 10
   Default: 0
   ID:
     data1: 0
     data2: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &-691932408803547495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,7 +858,7 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1385
---- !u!114 &-352832170796310327
+--- !u!114 &-532994549910512957
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -818,11 +868,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_Name: parameter:/CuveSound/SoundChoice
   m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
+  Name: SoundChoice
   Min: 0
-  Max: 4
+  Max: 10
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-90990430406620566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/CuveSound/SoundChoice
+  m_EditorClassIdentifier: 
+  Name: SoundChoice
+  Min: 0
+  Max: 10
   Default: 0
   ID:
     data1: 0
@@ -869,14 +939,14 @@ MonoBehaviour:
   - {fileID: -4087222874042289252}
   - {fileID: 4208132248334845852}
   - {fileID: 1118112240213273811}
-  - {fileID: -5420027963902052410}
-  - {fileID: -8469711832814862833}
+  - {fileID: -6749600332593579685}
+  - {fileID: 2323887561744891517}
   EditorParameters: []
   MasterBanks:
   - {fileID: -6639937667616358054}
   StringsBanks:
   - {fileID: -4753088208096374989}
-  stringsBankWriteTime: 637535034886833964
+  stringsBankWriteTime: 637534921350000898
   cacheVersion: 5
 --- !u!114 &90211068464660350
 MonoBehaviour:
@@ -924,6 +994,48 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 5378
+--- !u!114 &695186907454836817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 'parameter:/CuveSound/Parameter '
+  m_EditorClassIdentifier: 
+  Name: 'Parameter '
+  Min: 0
+  Max: 10
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &787027864297519267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CuveSound/CuveSound 2
+  m_EditorClassIdentifier: 
+  Path: event:/CuveSound/CuveSound 2
+  guid: 61fe8cc5012e504a893663ed71763a6d
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 645
 --- !u!114 &801242838450822905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,26 +1059,6 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 333
---- !u!114 &885120947458272424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
-  m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
 --- !u!114 &1118112240213273811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1012,26 +1104,6 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1385
---- !u!114 &1398673682276266790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
-  m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
 --- !u!114 &1448392844870688712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1055,7 +1127,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 70
   Length: 1775
---- !u!114 &1973721253045183968
+--- !u!114 &2259463443606411329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CuveSound/CuveSound 5
+  m_EditorClassIdentifier: 
+  Path: event:/CuveSound/CuveSound 5
+  guid: d2c0ad5d67d2c240b19d1b78b4550b23
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 343
+--- !u!114 &2298386072727609956
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1065,17 +1159,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_Name: 'parameter:/CuveSound/Parameter '
   m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
+  Name: 'Parameter '
   Min: 0
-  Max: 4
+  Max: 10
   Default: 0
   ID:
     data1: 0
     data2: 0
   Exists: 0
---- !u!114 &2052909227588243424
+--- !u!114 &2323887561744891517
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1084,37 +1178,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambiance/Eclatement_Bulle_Eau
   m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 1
---- !u!114 &2065205971188718846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
-  m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
+  Path: event:/Ambiance/Eclatement_Bulle_Eau
+  guid: a28b30474df07e49868e3678d21e71d7
+  Banks:
+  - {fileID: -6639937667616358054}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 60
+  Length: 915
 --- !u!114 &2346525100095215262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1161,26 +1238,6 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 13301
---- !u!114 &2442853753383165009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
-  m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
 --- !u!114 &2491607826841136480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1272,6 +1329,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1046
+--- !u!114 &2648697379925483697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/CuveSound/SoundChoice
+  m_EditorClassIdentifier: 
+  Name: SoundChoice
+  Min: 0
+  Max: 10
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &3355194235912775395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1294,26 +1371,6 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 407
---- !u!114 &3461951784244387233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
-  m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 1
 --- !u!114 &3743324231664270762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1337,26 +1394,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 100
   Length: 227
---- !u!114 &4198151438740858312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
-  m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
 --- !u!114 &4208132248334845852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1403,46 +1440,6 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 13301
---- !u!114 &4249276149977735745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
-  m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 1
---- !u!114 &4388725008697158907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
-  m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 1
 --- !u!114 &4401008735401798611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1466,6 +1463,26 @@ MonoBehaviour:
   MinDistance: 0.6
   MaxDistance: 25
   Length: 3484
+--- !u!114 &4539743157716174621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/CuveSound/SoundChoice
+  m_EditorClassIdentifier: 
+  Name: SoundChoice
+  Min: 0
+  Max: 10
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
 --- !u!114 &4711552741596368270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1489,26 +1506,6 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 407
---- !u!114 &4787439735076655442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
-  m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
 --- !u!114 &5215063967262524155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1532,7 +1529,7 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 333
---- !u!114 &5287586344873652119
+--- !u!114 &5296215904980577087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1542,11 +1539,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_Name: 'parameter:/CuveSound/Parameter '
   m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
+  Name: 'Parameter '
   Min: 0
-  Max: 4
+  Max: 10
   Default: 0
   ID:
     data1: 0
@@ -1620,7 +1617,7 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4980
---- !u!114 &6320442180107108011
+--- !u!114 &6294650137965623286
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1630,17 +1627,40 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_Name: 'parameter:/CuveSound/Parameter '
   m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
+  Name: 'Parameter '
   Min: 0
-  Max: 4
+  Max: 10
   Default: 0
   ID:
     data1: 0
     data2: 0
-  Exists: 0
---- !u!114 &7070078094470399845
+  Exists: 1
+--- !u!114 &6516368744121834126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CuveSound/CuveSound
+  m_EditorClassIdentifier: 
+  Path: event:/CuveSound/CuveSound
+  guid: bb4dc357b0051744a46dd8a6518c8fdf
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -1614515675244622423}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &6832229612888863408
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1650,16 +1670,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_Name: parameter:/CuveSound/SoundChoice
   m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
+  Name: SoundChoice
   Min: 0
-  Max: 4
+  Max: 10
   Default: 0
   ID:
     data1: 0
     data2: 0
-  Exists: 0
+  Exists: 1
 --- !u!114 &7105876016951794586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1706,7 +1726,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 100
   Length: 1935
---- !u!114 &8214416326337298553
+--- !u!114 &8679559840159804111
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1716,31 +1736,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_Name: parameter:/CuveSound/SoundChoice
   m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
+  Name: SoundChoice
   Min: 0
-  Max: 4
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
---- !u!114 &8385101737570922114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
-  m_EditorClassIdentifier: 
-  Name: TypeOfFootstep
-  Min: 0
-  Max: 4
+  Max: 10
   Default: 0
   ID:
     data1: 0
