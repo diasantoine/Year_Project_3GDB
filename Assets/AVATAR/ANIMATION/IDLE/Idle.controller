@@ -11,9 +11,9 @@ AnimatorState:
   m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
+  - {fileID: 1496082844205462780}
   - {fileID: -1838846937679726000}
   - {fileID: -5744486860387299323}
-  - {fileID: 1496082844205462780}
   m_StateMachineBehaviours:
   - {fileID: 9099923029091999080}
   m_Position: {x: 50, y: 50, z: 0}
@@ -27,7 +27,7 @@ AnimatorState:
   m_Motion: {fileID: -623603649343465320, guid: 7e4cd61d0f1b8fd4f98887a1a48e6397,
     type: 3}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: SpeedJump
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -43,20 +43,20 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2093118207393580833}
-  - {fileID: 6372470138544061316}
   - {fileID: 745582342867821290}
+  - {fileID: 6372470138544061316}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 790970459715c38468ff6475179905f7, type: 2}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: SpeedWalk
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -224,19 +224,25 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Forward
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Jump
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
+  - m_Name: SpeedWalk
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -423,22 +429,22 @@ AnimatorState:
   m_Speed: -1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: 2795986193040067013}
   - {fileID: -691947011218906645}
   - {fileID: 4968400442350190967}
+  - {fileID: 2795986193040067013}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: -623603649343465320, guid: fcbd61f01f4073b4f85dc5946b1a95dc,
     type: 3}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: SpeedWalk
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -543,5 +549,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461354ad987ace7478c52c817451d1de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedWalk: 2
+  SpeedWalk: 1
   SpeedIdle: 1

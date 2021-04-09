@@ -284,7 +284,8 @@ public class The_Player_Script : MonoBehaviour
 
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity =
                 Vector3_Deplacement_Player * ListOfYourPlayer[YourPlayerChoosed].vitesse * slow;
-            ListOfYourPlayer[YourPlayerChoosed].animAvatar.speed = ListOfYourPlayer[YourPlayerChoosed].vitesse * slow * 0.25f;
+            //ListOfYourPlayer[YourPlayerChoosed].animAvatar.speed = ListOfYourPlayer[YourPlayerChoosed].vitesse * slow * 0.25f;
+            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetFloat("SpeedWalk",ListOfYourPlayer[YourPlayerChoosed].vitesse * slow * 0.25f);
         }
         else
         {

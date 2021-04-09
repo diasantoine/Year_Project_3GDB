@@ -99,6 +99,7 @@ public class JumpCharged : skill
             Parent.tag = "Jump";
             ConteneurRigibody.useGravity = false;
             this.JumpSpeed = Distance / 3.292f*2;
+            Debug.Log(this.JumpSpeed);
             ConteneurRigibody.velocity = playerToMouse * this.JumpSpeed;
             ConteneurRigibody.mass = 250;
             Charge = 0;
