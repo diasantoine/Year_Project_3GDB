@@ -11,6 +11,10 @@ public class JumpCharged : skill
     [SerializeField] private GameObject Parent;
     [SerializeField] private GameObject Avatar;
     [SerializeField] private int PorteMaximale;
+
+    [SerializeField] private float RadiusSouffleAtterissage;
+    [SerializeField] private float ForceSouffleAtterissage;
+    
     //[SerializeField] private GameObject Canon;
     [SerializeField] private Material BRO;
     public int Charge = 0;
@@ -80,17 +84,21 @@ public class JumpCharged : skill
             playerToMouse.y = 0;
             playerToMouse = playerToMouse.normalized;
             Parent.GetComponent<The_Player_Script>().OnJump = true;
+            Parent.GetComponent<The_Player_Script>().TimeForTheDistance = Distance / this.JumpSpeed;
             Parent.GetComponent<The_Player_Script>().DistanceJump = Distance;
+            Parent.GetComponent<The_Player_Script>().target = this.LastPosition;
             Parent.GetComponent<The_Player_Script>().PointOrigineJump = this.Parent.transform.position;
-            Parent.GetComponent<The_Player_Script>().HighJump = this.JumpHigh;
             Parent.GetComponent<The_Player_Script>()
                 .ListOfYourPlayer[Parent.GetComponent<The_Player_Script>().YourPlayerChoosed]
                 .ConteneurRigibody.constraints = RigidbodyConstraints.FreezeRotation;
+            Parent.GetComponent<The_Player_Script>().radiusExploBase = this.RadiusSouffleAtterissage;
+            Parent.GetComponent<The_Player_Script>().ForceExplosion = this.ForceSouffleAtterissage;
             Avatar.layer = 12;
             Parent.GetComponent<CapsuleCollider>().enabled = enabled;
             Destroy(Parent.GetComponent<LineRenderer>());
             Parent.tag = "Jump";
             ConteneurRigibody.useGravity = false;
+            this.JumpSpeed = Distance / 3.292f*2;
             ConteneurRigibody.velocity = playerToMouse * this.JumpSpeed;
             ConteneurRigibody.mass = 250;
             Charge = 0;

@@ -46,7 +46,7 @@ public class ScreamerScript : Ennemy
     private float chronoTick;
     private bool touched;
     private float EmpoisonnementTick = 0;
-    private float HpNow = 0;
+    [HideInInspector]public float HpNow = 0;
 
     private bool HitPlayer = false;
 
@@ -302,7 +302,7 @@ public class ScreamerScript : Ennemy
             {
                 if (hit[i].GetComponent<ennemyAI>() != null)
                 {
-                    hit[i].GetComponent<ennemyAI>().ExplosionImpact(hitPoint, radiusExploBase +  transform.localScale.x, ForceExplosion/4);
+                    hit[i].GetComponent<ennemyAI>().ExplosionImpact(hitPoint, radiusExploBase +  transform.localScale.x, ForceExplosion*10);
                     hit[i].GetComponent<ennemyState>().damage(DMG);
                 }
                 else if(hit[i].GetComponent<ScreamerScript>() != null)
@@ -424,14 +424,33 @@ public class ScreamerScript : Ennemy
                 AnimatorConteneur.SetBool("Marche", false);
             }
         }
-        if (collision.transform.CompareTag("Ennemy") && collision.gameObject.GetComponent<ScreamerScript>().JustHit)
+        if (collision.transform.CompareTag("Ennemy"))// && collision.gameObject.GetComponent<ScreamerScript>().JustHit)
         {
-            JustHit = true;
-            agent.enabled = false;
-            if (Pansement)
+            if (collision.transform.GetComponent<ScreamerScript>()!=null)
             {
-                GetComponent<Rigidbody>().velocity += collision.transform.GetComponent<Rigidbody>().velocity;
+                if (collision.transform.GetComponent<ScreamerScript>().JustHit)
+                {
+                    JustHit = true;
+                    agent.enabled = false;
+                    if (Pansement)
+                    {
+                        GetComponent<Rigidbody>().velocity += collision.transform.GetComponent<Rigidbody>().velocity;
+                    }
+                }
             }
+            else if(collision.transform.GetComponent<ennemyAI>()!=null)
+            {
+                if (collision.transform.GetComponent<ennemyAI>().JustHit)
+                {
+                    JustHit = true;
+                    agent.enabled = false;
+                    if (Pansement)
+                    {
+                        GetComponent<Rigidbody>().velocity += collision.transform.GetComponent<Rigidbody>().velocity;
+                    }
+                }
+            }
+          
         }
     }
 }

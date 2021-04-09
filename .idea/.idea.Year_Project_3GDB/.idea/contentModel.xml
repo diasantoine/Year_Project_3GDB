@@ -803,6 +803,10 @@
           </e>
           <e p="Readme.txt" t="Include" />
         </e>
+        <e p="AssetSceneLight" t="Include">
+          <e p="ChangeCamSceneLight.cs" t="Include" />
+          <e p="FlickeringAnimation.cs" t="Include" />
+        </e>
         <e p="BrokenVector" t="Include">
           <e p="UltimateDungeonPack" t="Include">
             <e p="Scenes" t="Include">
@@ -820,6 +824,7 @@
             </e>
           </e>
         </e>
+        <e p="ChangeCam.cs" t="Include" />
         <e p="DeathScript.cs" t="Include" />
         <e p="Editor" t="Include">
           <e p="PlaqueScriptEditor.cs" t="Include" />
@@ -1024,7 +1029,15 @@
             <e p="ChargedDash.cs" t="Include" />
             <e p="ChargedShoot.cs" t="Include" />
             <e p="ImpulseCharge.cs" t="Include" />
-            <e p="JumpCharged.cs" t="Include" />
+            <e p="JumpCharged" t="Include">
+              <e p="CannonController.cs" t="Include" />
+              <e p="CannonInterface.cs" t="Include" />
+              <e p="CursorJump.cs" t="Include" />
+              <e p="JumpCharged.cs" t="Include" />
+              <e p="Math3d.cs" t="Include" />
+              <e p="ProjectileArc.cs" t="Include" />
+              <e p="ProjectileMath.cs" t="Include" />
+            </e>
             <e p="PoisonShield.cs" t="Include" />
             <e p="ShieldProtection.cs" t="Include" />
             <e p="ShieldProtectionCollider.cs" t="Include" />
@@ -1083,6 +1096,7 @@
             <e p="SpawnProjectilesScript.cs" t="Include" />
           </e>
         </e>
+        <e p="StopJump.cs" t="Include" />
         <e p="TestLiquidCuve 1" t="Include">
           <e p="Liquid.shader" t="Include" />
           <e p="ShakeCuve.cs" t="Include" />
