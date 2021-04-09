@@ -136,8 +136,7 @@ public class RuantAI : Ennemy
 
                 if (Grounded)
                 {
-                    Debug.Log("GROUND");
-                    //FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, transform.position); // son de collision lorsqu'il attérit apres le spawn
+                    FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, transform.position); // son de collision lorsqu'il attérit apres le spawn
                     GameObject newExplo = Instantiate(preExplo, transform.position, Quaternion.identity);
                     Destroy(newExplo, 0.2f);
                     SwitchState(State.IDLE);

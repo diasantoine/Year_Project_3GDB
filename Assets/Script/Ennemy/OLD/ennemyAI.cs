@@ -352,16 +352,13 @@ public class ennemyAI : MonoBehaviour
             }
             //ConteneurRigibody.AddForceAtPosition(collision.transform.forward.normalized * ForceTirNormal, collision.GetContact(0).point);
         }
-        if (collision.transform.CompareTag("Ennemy") && collision.gameObject.GetComponent<ennemyAI>())
+        if (collision.transform.CompareTag("Ennemy") && collision.gameObject.GetComponent<ennemyAI>().JustHit)
         {
-            if (collision.gameObject.GetComponent<ennemyAI>().JustHit)
+            JustHit = true;
+            agent.enabled = false;
+            if (Pansement)
             {
-                JustHit = true;
-                agent.enabled = false;
-                if (Pansement)
-                {
-                    GetComponent<Rigidbody>().velocity += collision.transform.GetComponent<Rigidbody>().velocity;
-                }
+                GetComponent<Rigidbody>().velocity += collision.transform.GetComponent<Rigidbody>().velocity;
             }
             //transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None; 
             // if (collision.gameObject.GetComponent<ennemyState>().Size > 2GetComponent<ennemyState>().Size)
