@@ -729,9 +729,9 @@ GameObject:
   - component: {fileID: 3785099090370134272}
   - component: {fileID: 3785099090370134278}
   - component: {fileID: 3785099090370134276}
-  - component: {fileID: 3785099090370134279}
+  - component: {fileID: -1807091030456974118}
   m_Layer: 13
-  m_Name: MonstreArbre
+  m_Name: Basic
   m_TagString: Ennemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -761,11 +761,11 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3785099090370134275}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 1.2
   m_Speed: 4
-  m_Acceleration: 8
+  m_Acceleration: 12
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -832,7 +832,7 @@ MonoBehaviour:
   Empoisonne: 0
   freqTick: 0.2
   dpsTick: 0
---- !u!114 &3785099090370134279
+--- !u!114 &-1807091030456974118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -841,18 +841,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 3785099090370134275}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7302e709e1c385b469ba4f8e171a8168, type: 3}
+  m_Script: {fileID: 11500000, guid: 813b92b1a8db6ba4a860dc62d8dacb4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fieldOfView: 90
+  distanceOfView: 100
+  disToGround: 5
+  RB: {fileID: 3785099090370134272}
+  AnimatorConteneur: {fileID: 4054988163417062154}
   agent: {fileID: 3785099090370134277}
   player: {fileID: 0}
-  Grounded: 0
-  JustHit: 0
-  ImpactTirNormal: 0.3
   DmgArmorHeat: 10
-  FieldOfView: 90
-  AnimatorConteneur: {fileID: 4054988163417062154}
-  "port\xE9e": 1.25
+  health: {fileID: 3785099090370134276}
+  ImpactTirNormal: 0.3
+  ImpactHit: 10
+  hitCD: 2
+  TimeGetUp: 0.25
+  state: 0
 --- !u!1 &3794223865445992605
 GameObject:
   m_ObjectHideFlags: 0

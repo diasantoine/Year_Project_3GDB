@@ -127,9 +127,9 @@ public class LaserShoot : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Ennemy") && !this.IsCharging)
         {
-            if (other.gameObject.GetComponent<ennemyState>() != null)
+            if (other.gameObject.GetComponent<BasicState>() != null)
             {
-                other.gameObject.GetComponent<ennemyState>().damage(hitDmg);
+                other.gameObject.GetComponent<BasicState>().damage(hitDmg);
 
             }
             else if (other.gameObject.GetComponent<damageTuto>() != null)

@@ -109,9 +109,9 @@ public class TirCharge : MonoBehaviour
 
         for (int i = 0; i < hit.Length; i++)
         {
-            if (hit[i].GetComponent<ennemyState>() != null)
+            if (hit[i].GetComponent<State>() != null)
             {
-                hit[i].GetComponent<ennemyState>().damage(dégat);
+                hit[i].GetComponent<State>().Damage(dégat);
             }
         }
 

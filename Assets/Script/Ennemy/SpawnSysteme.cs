@@ -72,7 +72,7 @@ public class SpawnSysteme : MonoBehaviour
         ParentScreamer = GameObject.Find("ParentScreamer").transform;
         ParentLastra = GameObject.Find("ParentLastra").transform;
 
-        DictionnaryEnnemy[Ennemy.Basic] = Resources.Load<GameObject>("MonstreArbre");
+        DictionnaryEnnemy[Ennemy.Basic] = Resources.Load<GameObject>("Basic");
         DictionnaryEnnemy[Ennemy.Ruant] = Resources.Load<GameObject>("Ruant");
         DictionnaryEnnemy[Ennemy.Screamer] = Resources.Load<GameObject>("Screamer");
         DictionnaryEnnemy[Ennemy.Lastra] = Resources.Load<GameObject>("EnnemiPetit");
@@ -115,7 +115,7 @@ public class SpawnSysteme : MonoBehaviour
                     yield return new WaitForSeconds(Wave.CD_Spawn_Basic);// le temps de respawn
                     RandomPosition = Random.Range(0, Wave.ListSpawnBasic.Count);
                     GameObject Trh = Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnBasic[RandomPosition].position, Quaternion.identity, ParentBasic);
-                    Trh.GetComponent<ennemyState>().spawn = GetComponent<SpawnSysteme>();                 
+                    Trh.GetComponent<BasicState>().spawn = GetComponent<SpawnSysteme>();                 
                     ListEnnemy.Add(Trh);
                     mobRestant--;
 

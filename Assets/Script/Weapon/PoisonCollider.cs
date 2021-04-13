@@ -42,8 +42,8 @@ public class PoisonCollider : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Ennemy"))
             {
-                other.gameObject.GetComponent<ennemyState>().Empoisonne = true;
-                other.gameObject.GetComponent<ennemyState>().dpsTick = dps;
+                other.gameObject.GetComponent<BasicState>().Empoisonne = true;
+                other.gameObject.GetComponent<BasicState>().dpsTick = dps;
             }
         }
     }
@@ -52,8 +52,8 @@ public class PoisonCollider : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ennemy"))
         {
-            other.gameObject.GetComponent<ennemyState>().Empoisonne = false;
-            other.gameObject.GetComponent<ennemyState>().dpsTick = 0;
+            other.gameObject.GetComponent<BasicState>().Empoisonne = false;
+            other.gameObject.GetComponent<BasicState>().dpsTick = 0;
 
 
         }

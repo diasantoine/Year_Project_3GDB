@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class ennemyState : MonoBehaviour
+public class BasicState : State
 {
 
     public Transform player;

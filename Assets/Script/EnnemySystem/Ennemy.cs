@@ -5,16 +5,21 @@ using UnityEngine.AI;
 
 public class Ennemy : MonoBehaviour
 {
-
+    [Header("Function")]
     [SerializeField] private float fieldOfView;
     [SerializeField] private float distanceOfView;
     [SerializeField] private float disToGround;
+
+    [Header("Essential")]
     [SerializeField] private protected Rigidbody RB;
     [SerializeField] private protected Animator AnimatorConteneur;
-
     public NavMeshAgent agent;
-    public ennemyState health;
     public Transform player;
+
+    [Header("System")]
+    public int DmgArmorHeat;
+    public State health;
+
 
     private protected bool JustHit;
     private protected bool Grounded;
@@ -61,6 +66,7 @@ public class Ennemy : MonoBehaviour
             if (hit.collider.CompareTag("sol") || hit.collider.CompareTag("Mur"))
             {
                 Grounded = true;
+                agent.enabled = true;
                 RB.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
                 //Debug.Log(Grounded);
             }

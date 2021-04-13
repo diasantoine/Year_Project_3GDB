@@ -73,8 +73,7 @@ public class ennemyAI : MonoBehaviour
         if(Physics.Raycast(transform.position, -Vector3.up, out hit , portée, LayerMask.GetMask("Sol", "Wall")))
         {
             if (hit.collider.CompareTag("sol") || hit.collider.CompareTag("Mur"))
-            {
-                
+            {             
                 Grounded = true;              
             }
         }
@@ -147,16 +146,6 @@ public class ennemyAI : MonoBehaviour
                 {
                     agent.SetDestination(player.position);
                     ConteneurRigibody.velocity = agent.velocity;// attention
-
-                    /*if(player.name == "Poteau")
-                    {
-                        var dir = player.position - gameObject.transform.position;
-                        Debug.Log(dir.magnitude);
-                        if (dir.magnitude < 5.2)
-                        {
-                            agent.enabled = false;
-                        }
-                    }*/
                  
 
                     if (AnimatorConteneur != null)
@@ -171,18 +160,12 @@ public class ennemyAI : MonoBehaviour
                     
                     
                 }
-                //agent.SetDestination(player.position);
 
             }
             else
             {
-                if(AnimatorConteneur != null)
-                {
-                    AnimatorConteneur.SetBool("Marche", false);
-
-                }
-
-                if (this.CompteurBeforeTryGetUp> 0)
+                
+                if (this.CompteurBeforeTryGetUp > 0)
                 {
                     this.CompteurBeforeTryGetUp -= Time.deltaTime;
                 }
@@ -262,7 +245,7 @@ public class ennemyAI : MonoBehaviour
                         AnimatorConteneur.SetBool("Taper", true);
                         AnimatorConteneur.SetBool("Marche", false);
                     }
-                    float Explosion = 10*GetComponent<ennemyState>().DMG_Percentage;
+                    float Explosion = 10*GetComponent<BasicState>().DMG_Percentage;
                    // hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                     hit.transform.GetComponent<Rigidbody>()
                         .AddForceAtPosition(transform.forward * 

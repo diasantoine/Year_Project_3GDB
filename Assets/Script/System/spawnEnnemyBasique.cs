@@ -137,9 +137,9 @@ public class spawnEnnemyBasique : MonoBehaviour
             GameObject newEnnemy = Instantiate(ennemyPre);
             newEnnemy.transform.position = spawnPoz[i].position;
             newEnnemy.transform.parent = parentEnnemy;
-            newEnnemy.GetComponent<ennemyState>().SEB = gameObject.GetComponent<spawnEnnemyBasique>();
+            newEnnemy.GetComponent<BasicState>().SEB = gameObject.GetComponent<spawnEnnemyBasique>();
             newEnnemy.GetComponent<ennemyAI>().player = player;
-            newEnnemy.GetComponent<ennemyState>().player = player;
+            newEnnemy.GetComponent<BasicState>().player = player;
 
             ennemySpawningRemaining--;
             numberEnnemy++;
@@ -151,8 +151,8 @@ public class spawnEnnemyBasique : MonoBehaviour
         GameObject newEnnemy = Instantiate(ennemyPre);
         newEnnemy.transform.parent = parentEnnemy;
         newEnnemy.transform.position = spawnPoz[i].position + new Vector3(0, 0, 0);
-        newEnnemy.GetComponent<ennemyState>().SEB = gameObject.GetComponent<spawnEnnemyBasique>();
+        newEnnemy.GetComponent<BasicState>().SEB = gameObject.GetComponent<spawnEnnemyBasique>();
         newEnnemy.GetComponent<ennemyAI>().player = player;
-        newEnnemy.GetComponent<ennemyState>().player = player;
+        newEnnemy.GetComponent<BasicState>().player = player;
     }
 }

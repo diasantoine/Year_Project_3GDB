@@ -30,7 +30,6 @@ public class ScreamerScript : Ennemy
     [SerializeField] private float ForceExplosion;
     [SerializeField] private float radiusExploBase;
     [SerializeField] private int DMG;
-    [SerializeField] private int DmgArmorHeat;
     [SerializeField] private float compteur = 2;
     [SerializeField] private float freqTick;
     [SerializeField] private int numberCadav;
@@ -303,7 +302,7 @@ public class ScreamerScript : Ennemy
                 if (hit[i].GetComponent<ennemyAI>() != null)
                 {
                     hit[i].GetComponent<ennemyAI>().ExplosionImpact(hitPoint, radiusExploBase +  transform.localScale.x, ForceExplosion*10);
-                    hit[i].GetComponent<ennemyState>().damage(DMG);
+                    hit[i].GetComponent<BasicState>().damage(DMG);
                 }
                 else if(hit[i].GetComponent<ScreamerScript>() != null)
                 {
