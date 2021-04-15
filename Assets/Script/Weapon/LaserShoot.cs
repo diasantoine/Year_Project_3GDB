@@ -129,7 +129,7 @@ public class LaserShoot : MonoBehaviour
         {
             if (other.gameObject.GetComponent<BasicState>() != null)
             {
-                other.gameObject.GetComponent<BasicState>().damage(hitDmg);
+                other.gameObject.GetComponent<BasicState>().Damage(hitDmg);
 
             }
             else if (other.gameObject.GetComponent<damageTuto>() != null)
