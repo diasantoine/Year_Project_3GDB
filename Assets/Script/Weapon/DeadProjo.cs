@@ -80,7 +80,7 @@ public class DeadProjo : MonoBehaviour
         {
             if (Empoisonnement)
             {
-                collision.gameObject.GetComponent<BasicState>().Empoisonne = true;
+                collision.gameObject.GetComponent<BasicState>().isPoisoned = true;
             }
             if (Rocket)
             {
@@ -91,7 +91,7 @@ public class DeadProjo : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot(TireTouche, transform.position);
             if (collision.gameObject.GetComponent<BasicState>() != null)
             {
-                collision.gameObject.GetComponent<BasicState>().damage(dégat);
+                collision.gameObject.GetComponent<BasicState>().Damage(dégat);
 
             }
             else if(collision.gameObject.GetComponent<damageTuto>() != null)

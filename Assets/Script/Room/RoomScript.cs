@@ -94,7 +94,7 @@ public class RoomScript : MonoBehaviour
         {
             if(!roomAcces)
             {
-                other.gameObject.GetComponent<BasicState>().damage(10);
+                other.gameObject.GetComponent<BasicState>().Damage(10);
             }
         }
     }

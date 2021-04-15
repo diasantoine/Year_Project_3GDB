@@ -245,13 +245,13 @@ public class ennemyAI : MonoBehaviour
                         AnimatorConteneur.SetBool("Taper", true);
                         AnimatorConteneur.SetBool("Marche", false);
                     }
-                    float Explosion = 10*GetComponent<BasicState>().DMG_Percentage;
+                    /*float Explosion = 10*GetComponent<BasicState>().DMG_Percentage;
                    // hit.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                     hit.transform.GetComponent<Rigidbody>()
                         .AddForceAtPosition(transform.forward * 
                                             (Explosion + (Explosion * 
                                                 hit.transform.GetComponent<The_Player_Script>().PercentageArmorHeat / 100))
-                            , hit.point, ForceMode.Impulse);
+                            , hit.point, ForceMode.Impulse);*/
                     this.HitPlayer = true;
                     player.GetComponent<The_Player_Script>().JustHit = true;
                     player.GetComponent<The_Player_Script>().PercentageArmorHeat += DmgArmorHeat;

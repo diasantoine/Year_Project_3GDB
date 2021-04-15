@@ -115,7 +115,7 @@ public class SpawnSysteme : MonoBehaviour
                     yield return new WaitForSeconds(Wave.CD_Spawn_Basic);// le temps de respawn
                     RandomPosition = Random.Range(0, Wave.ListSpawnBasic.Count);
                     GameObject Trh = Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnBasic[RandomPosition].position, Quaternion.identity, ParentBasic);
-                    Trh.GetComponent<BasicState>().spawn = GetComponent<SpawnSysteme>();                 
+                    Trh.GetComponent<State>().spawn = GetComponent<SpawnSysteme>();                 
                     ListEnnemy.Add(Trh);
                     mobRestant--;
 

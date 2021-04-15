@@ -818,18 +818,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 703c0fb19c08cbe4aa3d6b7ce16a1fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  spawn: {fileID: 0}
-  SEB: {fileID: 0}
-  preDead: {fileID: 4441296243471229557, guid: 769c49c587ad566438ec968768fbe2e7, type: 3}
+  HpMax: 10
   healthBar: {fileID: 3276467393305457480}
   healthBarSec: {fileID: 6540970307101279947}
-  hpMax: 10
-  numberCadav: 3
-  DMG_Percentage: 2
-  Size: 2
   timeBar: 0.5
-  Empoisonne: 0
+  cadavre: {fileID: 4441296243471229557, guid: 769c49c587ad566438ec968768fbe2e7, type: 3}
+  nbCadavre: 3
+  player: {fileID: 0}
+  spawn: {fileID: 0}
+  isPoisoned: 0
   freqTick: 0.2
   dpsTick: 0
 --- !u!114 &-1807091030456974118
