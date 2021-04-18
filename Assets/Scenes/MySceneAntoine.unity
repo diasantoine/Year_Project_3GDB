@@ -4675,7 +4675,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 699561319}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.952, z: -0}
+  m_LocalPosition: {x: 0, y: 4.388, z: -0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 1202172574}
@@ -9457,16 +9457,20 @@ MonoBehaviour:
   player: {fileID: 2013154810}
   DmgArmorHeat: 0
   health: {fileID: 0}
-  DistanceMaxNearPlayer: 15
-  DistanceWhereTheLastraStartToRunBackward: 13
+  DistanceMaxNearPlayer: 24
+  DistanceWhereTheLastraStartToRunBackward: 20
+  TimeBeforeHeCatchHisBreath: 4
+  RadiusMaxForHisEscape: 60
   DMG: 0
   NumberOfProjectile: 3
   TimeBeforeShoot: 3
+  TimeBetweenEachShoot: 2
+  ReloadingTime: 2
   ProjectileContainer: {fileID: 0}
   Canon: {fileID: 699561319}
   Projectile: {fileID: 1374267004960804, guid: 22d294288012ca446bf50ffb2281ba95, type: 3}
   LastraState: 1
-  radius: 15
+  radius: 24
 --- !u!195 &1591799141
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -9574,7 +9578,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591799139}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.750507, y: 1.83, z: -16.48834}
+  m_LocalPosition: {x: 17.750507, y: 1.83, z: -23.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1202172574}
