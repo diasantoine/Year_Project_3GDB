@@ -62,6 +62,7 @@ public class LastraScript : Ennemy
     // Update is called once per frame
     void Update()
     {
+        Debug.DrawLine(transform.position, this.ContainerNewPos, Color.blue);
         switch (this.LastraState)
         {
             case StateLastra.Idle:
@@ -73,9 +74,12 @@ public class LastraScript : Ennemy
                     agent.stoppingDistance = 0;
                     this.IsRunning = true;
                     this.agent.speed *= 6;
+                    this.agent.acceleration *= 3;
+                    this.agent.angularSpeed *= 2;
                     if (this.FindGoal())
                     {
                         this.agent.SetDestination(this.ContainerNewPos);
+                        agent.stoppingDistance = 1;
                         this.NewPosFind = false;
                     }
                     // Vector3 DirToPlayer = transform.position - this.player.position;
@@ -85,11 +89,13 @@ public class LastraScript : Ennemy
                 }
                 else if (this.ContainerNewPos != Vector3.zero)
                 {
-                    if (Vector3.Distance(this.ContainerNewPos, transform.position) < 0.1f)
+                    if (Vector3.Distance(this.ContainerNewPos, transform.position) < 1)
                     {
                         this.ContainerNewPos = Vector3.zero;
                         Debug.Log("arrivé");
                         this.agent.speed /= 6;
+                        this.agent.acceleration /= 3;
+                        this.agent.angularSpeed /= 2;
                         //this.agent.isStopped = true;
                         this.CatchHisBreath = true;
                     }
@@ -110,17 +116,27 @@ public class LastraScript : Ennemy
                 }
                 else
                 {
-                    if(DistanceWhereTheLastraStartToRunBackward <= Vector3.Distance(transform.position, this.player.position)  && !this.IsRunning)
+                    if (this.DistanceMaxNearPlayer+1 < Vector3.Distance(transform.position, this.player.position)  && !this.IsRunning)
                     {
                         agent.SetDestination(this.player.position);
                         agent.stoppingDistance = this.DistanceMaxNearPlayer;
                     }
-
-                    if (this.DistanceMaxNearPlayer >= Vector3.Distance(transform.position, this.player.position) && !this.IsRunning )
+                    else if(this.DistanceMaxNearPlayer+1 >= Vector3.Distance(transform.position, this.player.position))
                     {
-                        Debug.Log(this.DistanceMaxNearPlayer + " " +  Vector3.Distance(transform.position, this.player.position));
-                        this.LastraState = StateLastra.Charging;
+                        //this.LastraState = StateLastra.Charging;
                     }
+                    
+                    // if(DistanceWhereTheLastraStartToRunBackward <= Vector3.Distance(transform.position, this.player.position)  && !this.IsRunning)
+                    // {
+                    //     agent.SetDestination(this.player.position);
+                    //     agent.stoppingDistance = this.DistanceMaxNearPlayer;
+                    //  
+                    // }
+                    //
+                    // if (this.DistanceMaxNearPlayer >= Vector3.Distance(transform.position, this.player.position) && !this.IsRunning )
+                    // {
+                    //     this.LastraState = StateLastra.Charging;
+                    // }
                 }
                 break;
             case StateLastra.Charging:
@@ -217,12 +233,12 @@ public class LastraScript : Ennemy
         var offset = Random.insideUnitCircle * this.RadiusMaxForHisEscape;
         var position = this.transform.position + new Vector3 (offset.x, 0, offset.y);
         NavMeshHit hit;
-        var isValid = NavMesh.SamplePosition (position + Vector3.up, out hit, 5, NavMesh.AllAreas);
-        if (!isValid && Vector3.Distance(position, this.player.transform.position) > this.DistanceMaxNearPlayer *1.3f) 
+        var isValid = NavMesh.SamplePosition (position + Vector3.up, out hit, 5,  NavMesh.AllAreas);
+        if (!isValid || Vector3.Distance(new Vector3(hit.position.x, transform.position.y, hit.position.z), this.player.transform.position) < this.DistanceMaxNearPlayer * 1.3f)
             return false;
-
-        this.ContainerNewPos = position;
-        Debug.Log(position);
+        
+        this.ContainerNewPos = new Vector3(hit.position.x, transform.position.y, hit.position.z);
+        Debug.Log(hit.position);
         return true;
     }
 }
