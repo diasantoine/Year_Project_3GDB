@@ -20,6 +20,7 @@ public class LastraScript : Ennemy
     [SerializeField] private float DistanceMaxNearPlayer;
     [SerializeField] private float DistanceWhereTheLastraStartToRunBackward;
     [SerializeField] private float TimeBeforeHeCatchHisBreath;
+    [SerializeField] private float DivisionSpeed = 1;
     [SerializeField] private float RadiusMaxForHisEscape;
 
     [SerializeField] private float DMG;
@@ -49,7 +50,6 @@ public class LastraScript : Ennemy
     private int BreakWhile;
     private bool NewPosFind;
     private bool CatchHisBreath;
-    private bool IsRunning;
     
     // Start is called before the first frame update
     void Start()
@@ -71,11 +71,11 @@ public class LastraScript : Ennemy
                 
                 if (DistanceWhereTheLastraStartToRunBackward > Vector3.Distance(transform.position, this.player.position) && this.ContainerNewPos == Vector3.zero)
                 {
+                    this.TimeBeforeHeCatchHisBreath = this.TimeBeforeHeCatchHisBreathContainer;
+                    this.CatchHisBreath = false;
                     agent.stoppingDistance = 0;
-                    this.IsRunning = true;
-                    this.agent.speed *= 6;
-                    this.agent.acceleration *= 3;
-                    this.agent.angularSpeed *= 2;
+                    this.agent.speed *= 4/ this.DivisionSpeed;
+                    this.DivisionSpeed *= 2;
                     if (this.FindGoal())
                     {
                         this.agent.SetDestination(this.ContainerNewPos);
@@ -93,39 +93,37 @@ public class LastraScript : Ennemy
                     {
                         this.ContainerNewPos = Vector3.zero;
                         Debug.Log("arrivé");
-                        this.agent.speed /= 6;
-                        this.agent.acceleration /= 3;
-                        this.agent.angularSpeed /= 2;
+                        this.agent.speed /= 3 * this.DivisionSpeed;
                         //this.agent.isStopped = true;
                         this.CatchHisBreath = true;
                     }
                 }
 
-                if (this.CatchHisBreath)
+                if (DistanceWhereTheLastraStartToRunBackward < Vector3.Distance(transform.position, this.player.position) && this.ContainerNewPos == Vector3.zero)
                 {
-                    if (this.TimeBeforeHeCatchHisBreath <=0)
+                    if (this.CatchHisBreath)
                     {
-                        this.CatchHisBreath = false;
-                        this.IsRunning = false;
-                        this.TimeBeforeHeCatchHisBreath = this.TimeBeforeHeCatchHisBreathContainer;
+                        if (this.TimeBeforeHeCatchHisBreath <= 0)
+                        {
+                            this.CatchHisBreath = false;
+                            this.TimeBeforeHeCatchHisBreath = this.TimeBeforeHeCatchHisBreathContainer;
+                            this.DivisionSpeed = 1;
+                        }
+                        else
+                        {
+                            this.TimeBeforeHeCatchHisBreath -= Time.deltaTime;
+                        }
                     }
-                    else
-                    {
-                        this.TimeBeforeHeCatchHisBreath -= Time.deltaTime;
-                    }
-                }
-                else
-                {
-                    if (this.DistanceMaxNearPlayer+1 < Vector3.Distance(transform.position, this.player.position)  && !this.IsRunning)
+                    if (this.DistanceMaxNearPlayer + 1 < Vector3.Distance(transform.position, this.player.position))
                     {
                         agent.SetDestination(this.player.position);
                         agent.stoppingDistance = this.DistanceMaxNearPlayer;
                     }
-                    else if(this.DistanceMaxNearPlayer+1 >= Vector3.Distance(transform.position, this.player.position))
+                    else if (this.DistanceMaxNearPlayer + 1 >= Vector3.Distance(transform.position, this.player.position))
                     {
-                        //this.LastraState = StateLastra.Charging;
+                        this.LastraState = StateLastra.Charging;
                     }
-                    
+
                     // if(DistanceWhereTheLastraStartToRunBackward <= Vector3.Distance(transform.position, this.player.position)  && !this.IsRunning)
                     // {
                     //     agent.SetDestination(this.player.position);
@@ -138,6 +136,7 @@ public class LastraScript : Ennemy
                     //     this.LastraState = StateLastra.Charging;
                     // }
                 }
+
                 break;
             case StateLastra.Charging:
                 if (DistanceWhereTheLastraStartToRunBackward > Vector3.Distance(transform.position, this.player.position))
