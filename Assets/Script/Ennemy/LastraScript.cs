@@ -45,11 +45,14 @@ public class LastraScript : Ennemy
     private float TimeBetweenShootContainer;
     private float ReloadingTimeContainer;
     private float TimeBeforeHeCatchHisBreathContainer;
+    private float SpeedContainer;
+    private float TimeShootContainer;
     private int NumberOfProjectileFired;
     private Vector3 ContainerNewPos;
     private int BreakWhile;
     private bool NewPosFind;
     private bool CatchHisBreath;
+    private bool IsRunning;
     
     // Start is called before the first frame update
     void Start()
@@ -57,6 +60,8 @@ public class LastraScript : Ennemy
         this.TimeBetweenShootContainer = this.TimeBetweenEachShoot;
         this.ReloadingTimeContainer = this.ReloadingTime;
         this.TimeBeforeHeCatchHisBreathContainer = this.TimeBeforeHeCatchHisBreath;
+        this.SpeedContainer = this.agent.speed;
+        this.TimeShootContainer = this.TimeBeforeShoot;
     }
 
     // Update is called once per frame
@@ -69,17 +74,22 @@ public class LastraScript : Ennemy
                 break;
             case StateLastra.Moving:
                 
-                if (DistanceWhereTheLastraStartToRunBackward > Vector3.Distance(transform.position, this.player.position) && this.ContainerNewPos == Vector3.zero)
+                if (DistanceWhereTheLastraStartToRunBackward > Vector3.Distance(transform.position, this.player.position) && this.ContainerNewPos == Vector3.zero && !this.IsRunning)
                 {
+                    if (this.agent.speed == 0)
+                    {
+                        this.agent.speed = this.SpeedContainer;
+                    }
+                    this.IsRunning = true;
                     this.TimeBeforeHeCatchHisBreath = this.TimeBeforeHeCatchHisBreathContainer;
                     this.CatchHisBreath = false;
-                    agent.stoppingDistance = 0;
-                    this.agent.speed *= 4/ this.DivisionSpeed;
+                    agent.stoppingDistance = 0.5f;
+                    this.agent.speed *= 3/ this.DivisionSpeed;
                     this.DivisionSpeed *= 2;
                     if (this.FindGoal())
                     {
                         this.agent.SetDestination(this.ContainerNewPos);
-                        agent.stoppingDistance = 1;
+                        agent.stoppingDistance = 0;
                         this.NewPosFind = false;
                     }
                     // Vector3 DirToPlayer = transform.position - this.player.position;
@@ -87,19 +97,20 @@ public class LastraScript : Ennemy
                     // this.agent.SetDestination(newPos);
                     // this.ContainerNewPos = newPos;
                 }
-                else if (this.ContainerNewPos != Vector3.zero)
+                else if (this.ContainerNewPos != Vector3.zero && this.IsRunning)
                 {
                     if (Vector3.Distance(this.ContainerNewPos, transform.position) < 1)
                     {
                         this.ContainerNewPos = Vector3.zero;
                         Debug.Log("arrivé");
-                        this.agent.speed /= 3 * this.DivisionSpeed;
+                        this.agent.speed = this.SpeedContainer;
                         //this.agent.isStopped = true;
                         this.CatchHisBreath = true;
+                        this.IsRunning = false;
                     }
                 }
 
-                if (DistanceWhereTheLastraStartToRunBackward < Vector3.Distance(transform.position, this.player.position) && this.ContainerNewPos == Vector3.zero)
+                if (DistanceWhereTheLastraStartToRunBackward < Vector3.Distance(transform.position, this.player.position) && this.ContainerNewPos == Vector3.zero && !this.IsRunning)
                 {
                     if (this.CatchHisBreath)
                     {
@@ -114,12 +125,13 @@ public class LastraScript : Ennemy
                             this.TimeBeforeHeCatchHisBreath -= Time.deltaTime;
                         }
                     }
-                    if (this.DistanceMaxNearPlayer + 1 < Vector3.Distance(transform.position, this.player.position))
+                    if (this.DistanceMaxNearPlayer + 1 < Vector3.Distance(transform.position, this.player.position) && !this.IsRunning)
                     {
+                        this.agent.speed = this.SpeedContainer;
                         agent.SetDestination(this.player.position);
                         agent.stoppingDistance = this.DistanceMaxNearPlayer;
                     }
-                    else if (this.DistanceMaxNearPlayer + 1 >= Vector3.Distance(transform.position, this.player.position))
+                    else if (this.DistanceMaxNearPlayer + 1 >= Vector3.Distance(transform.position, this.player.position) && !this.IsRunning)
                     {
                         this.LastraState = StateLastra.Charging;
                     }
@@ -141,13 +153,18 @@ public class LastraScript : Ennemy
             case StateLastra.Charging:
                 if (DistanceWhereTheLastraStartToRunBackward > Vector3.Distance(transform.position, this.player.position))
                 {  
-                    StopCoroutine(this.FunctionTimeBeforeShoot());
                     this.LastraState = StateLastra.Moving;
+                    this.TimeBeforeShoot = this.TimeShootContainer;
                 }
-                if (!this.DoOnce)
+
+                if (this.TimeBeforeShoot <= 0)
                 {
-                    DoOnce = true;
-                    StartCoroutine(this.FunctionTimeBeforeShoot());
+                    this.LastraState = StateLastra.Shoot;
+                    this.TimeBeforeShoot = this.TimeShootContainer;
+                }
+                else
+                {
+                    this.TimeBeforeShoot -= Time.deltaTime;
                 }
                 break;
             case StateLastra.Shoot:
@@ -203,13 +220,6 @@ public class LastraScript : Ennemy
         Gizmos.DrawWireSphere(transform.position,radius);
 
     }
-
-    IEnumerator FunctionTimeBeforeShoot()
-    {
-        yield return new WaitForSeconds(TimeBeforeShoot);
-        this.LastraState = StateLastra.Shoot;
-        this.DoOnce = false;
-    }
     
     private bool FindGoal ()
     {
@@ -233,11 +243,25 @@ public class LastraScript : Ennemy
         var position = this.transform.position + new Vector3 (offset.x, 0, offset.y);
         NavMeshHit hit;
         var isValid = NavMesh.SamplePosition (position + Vector3.up, out hit, 5,  NavMesh.AllAreas);
-        if (!isValid || Vector3.Distance(new Vector3(hit.position.x, transform.position.y, hit.position.z), this.player.transform.position) < this.DistanceMaxNearPlayer * 1.3f)
+        if (!isValid || Vector3.Distance(new Vector3(hit.position.x, transform.position.y, hit.position.z), this.player.transform.position) < this.DistanceMaxNearPlayer * 1.1f || 
+            !FrontTest(new Vector3(hit.position.x, transform.position.y, hit.position.z)))
             return false;
         
         this.ContainerNewPos = new Vector3(hit.position.x, transform.position.y, hit.position.z);
-        Debug.Log(hit.position);
+        Debug.Log(this.ContainerNewPos);
         return true;
+    }
+    
+    bool FrontTest(Vector3 PositionHit)
+    {
+        Vector3 fwd = this.player.forward;
+        Vector3 vec = PositionHit - this.player.position;
+        vec = vec.normalized;
+ 
+        float ang = Mathf.Acos(Vector3.Dot(fwd, vec)) * Mathf.Rad2Deg;
+        if (ang <= 180f && ang >= 0)
+            return true;
+ 
+        return false;
     }
 }
