@@ -98,6 +98,10 @@ public class The_Player_Script : MonoBehaviour
     public float radiusExploBase;
     public float ForceExplosion;
     public float DMG;
+
+    [Header("Counter")] 
+    public bool OnCounter;
+    public bool OnWall;
     
     [Header("Other")] 
     [SerializeField] private Camera cam;
@@ -268,7 +272,7 @@ public class The_Player_Script : MonoBehaviour
 
     private void Player_Deplacement()
     {
-        if ((Input.GetButton("Vertical") || Input.GetButton("Horizontal")) && Grounded && !OnDash && !JustHit && !this.OnJump)
+        if ((Input.GetButton("Vertical") || Input.GetButton("Horizontal")) && Grounded && !OnDash && !JustHit && !this.OnJump && !this.OnCounter && !this.OnWall)
         {
             Vector3 ConteneurCameraPositionForward = this.cam.transform.forward * Input.GetAxis("Vertical");
             Vector3 ConteneurCameraPositionRight = this.cam.transform.right * Input.GetAxis("Horizontal");
