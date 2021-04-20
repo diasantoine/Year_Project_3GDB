@@ -17,6 +17,8 @@ public class SystemPlaque : MonoBehaviour
     private int randomChoose;
     private bool plaqueChoosed;
 
+    public float pulse;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,8 +47,10 @@ public class SystemPlaque : MonoBehaviour
                 plaqueScript nowPlaque = enablePlaques[randomChoose];
                 nowPlaque.activ = true;
 
+                
+
                 var color = nowPlaque.EmiRD.material.GetColor("_EmissionColor");
-                nowPlaque.EmiRD.material.SetColor("_EmissionColor", color * intensity);
+                nowPlaque.EmiRD.material.SetColor("_EmissionColor", color * intensity);  //(intensity + Mathf.Sin(Time.time) * pulse));
 
                 enablePlaques.Remove(nowPlaque);
 

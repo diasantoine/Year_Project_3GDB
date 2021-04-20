@@ -115,6 +115,16 @@ public class The_Player_Script : MonoBehaviour
         CharacterMouvement();
         HeatPlayer();
         CheckPlaque(hit);
+       
+        if(CompteurForSlow >= 0.5f)
+        {
+            SlowMov(false);
+
+        }
+        else
+        {
+            CompteurForSlow += Time.deltaTime;
+        }
         
     }
 
@@ -330,6 +340,7 @@ public class The_Player_Script : MonoBehaviour
             CompteurForArmorHeat = 0;
             PercentageWeaponHeat = 0;
             this.CompteurForWeaponHeat = 0;
+            slow = 1;
             Debug.Log("MAISWTF?");
             foreach (GameObject ArmorPart in  ListOfYourPlayer[YourPlayerChoosed].ListArmorPart)
             {
