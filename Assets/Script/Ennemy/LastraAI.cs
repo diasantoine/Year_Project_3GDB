@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class LastraScript : Ennemy
+public class LastraAI : Ennemy
 {
     enum StateLastra
     {
