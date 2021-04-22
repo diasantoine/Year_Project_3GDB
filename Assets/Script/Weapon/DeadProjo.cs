@@ -129,11 +129,12 @@ public class DeadProjo : MonoBehaviour
                     {
                         FMODUnity.RuntimeManager.PlayOneShot(Ruant_Touche_N, transform.position); // son no-degat
                     }
-                }
-
-                if (collision.gameObject.GetComponent<ScreamerScript>() != null)
+                }else if (collision.gameObject.GetComponent<LastraState>() != null)
                 {
-                    collision.gameObject.GetComponent<ScreamerScript>().damage(dégat);
+                    collision.transform.GetComponent<LastraState>().Damage(this.dégat);
+                }else if (collision.gameObject.GetComponent<ScreamerState>() != null)
+                {
+                    collision.gameObject.GetComponent<ScreamerState>().Damage(dégat);
                 }
             }
         }

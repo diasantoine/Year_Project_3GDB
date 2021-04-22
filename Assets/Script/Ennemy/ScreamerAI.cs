@@ -3,9 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
-public class ScreamerScript : Ennemy
+
+public class ScreamerAI : Ennemy
 {
+    [Header("SoundScreamer")]
     [FMODUnity.EventRef]
     public string Screamer_Mort = "";
 
@@ -24,37 +28,28 @@ public class ScreamerScript : Ennemy
 
     public State ScreamerState;
     private float SpeedConteneur;
-    public bool Poisoned;
     public SpawnSysteme spawn;
     
+    [Header("VarScreamer")]
     [SerializeField] private float ForceExplosion;
     [SerializeField] private float radiusExploBase;
     [SerializeField] private int DMG;
-    [SerializeField] private float compteur = 2;
-    [SerializeField] private float freqTick;
-    [SerializeField] private int numberCadav;
-    [SerializeField] private bool Fall = false;
-    [SerializeField] private GameObject preDead;
-    [SerializeField] private float timeBar;
-    [SerializeField] private Slider healthBar;
-    [SerializeField] private Slider healthBarSec;
-    [SerializeField] private float hpMax;
-    
-    private float dpsTick;
+    [SerializeField] private float TimeBeforeHeMove;
+
+    [Header("MoveScreamer")] 
+    [SerializeField] private int RadiusMaxForHisMove;
+
     private float chrono;
     private float chronoTick;
     private bool touched;
-    private float EmpoisonnementTick = 0;
-    [HideInInspector]public float HpNow = 0;
-
     private bool HitPlayer = false;
-
-    [SerializeField] private float ImpactTirNormal = 1;
-
     private float Cooldown = 2;
-
     private GameObject Skill;
 
+    private float TimeBeforeHeMoveContainer;
+    private int BreakWhile;
+    private bool NewPosFind;
+    private Vector3 ContainerNewPos;
 
     private bool Pansement = false;
     private bool Explosion;
@@ -68,18 +63,9 @@ public class ScreamerScript : Ennemy
         ScreamerState = State.SleepState;
         SpeedConteneur = agent.speed;
         chrono = 0;
-        HpNow = hpMax;
-
-        healthBar.maxValue = hpMax;
-        healthBar.value = healthBar.maxValue;
-
-        healthBarSec.maxValue = healthBar.maxValue;
-        healthBarSec.value = healthBar.maxValue;
-
-        //numberCadav = Random.Range(1, 4);
-
-        EmpoisonnementTick = 0;
         player = GameObject.Find("Player").transform;
+
+        this.TimeBeforeHeMoveContainer = this.TimeBeforeHeMove;
     }
 
     // Update is called once per frame
@@ -113,7 +99,6 @@ public class ScreamerScript : Ennemy
 
         if (Grounded && !JustHit)
         {
-           
             VisionCone(player);
         }
         
@@ -128,9 +113,35 @@ public class ScreamerScript : Ennemy
         switch (ScreamerState)
         {
             case State.SleepState:
-                if (agent.speed !=0)
+                if (this.TimeBeforeHeMove <= 0)
                 {
-                    agent.speed = 0;
+                    if (this.NewPosFind)
+                    {
+                        if (Vector3.Distance(transform.position, this.ContainerNewPos) < 1f)
+                        {
+                            this.TimeBeforeHeMove = this.TimeBeforeHeMoveContainer;
+                            this.NewPosFind = false;
+                            this.agent.speed = 0;
+                        }
+                    }
+                    else
+                    {
+                        if (this.FindGoal())
+                        {
+                            Debug.Log("allo");
+                            this.agent.SetDestination(this.ContainerNewPos);
+                            this.agent.speed = this.SpeedConteneur;
+                        }
+                    }
+                }
+                else
+                {
+                    if (agent.speed !=0)
+                    {
+                        agent.speed = 0;
+                    }
+
+                    this.TimeBeforeHeMove -= Time.deltaTime;
                 }
 
                 if (!AnimatorConteneur.GetBool("SleepState"))
@@ -141,7 +152,7 @@ public class ScreamerScript : Ennemy
             case State.TriggerState:
                 if (Vector3.Distance(transform.position, player.transform.position) <= 6)
                 {
-                    if (Poisoned)
+                    if (this.GetComponent<ScreamerState>().isPoisoned)
                     {
                         agent.speed = 0;
                         RB.isKinematic = true;
@@ -171,7 +182,7 @@ public class ScreamerScript : Ennemy
                 }
                 break;
             case State.dead:
-                if (Poisoned)
+                if (this.GetComponent<ScreamerState>().isPoisoned)
                 {
                     if (!AnimatorConteneur.GetBool("PoisonedDeathState"))
                     {
@@ -179,21 +190,12 @@ public class ScreamerScript : Ennemy
                     }
                     if (AnimatorConteneur.GetBool("Dead"))
                     {
-                        HpNow = 0;
+                        this.GetComponent<ScreamerState>().Damage(Mathf.Infinity);
                     }
                     else
                     {
                         Debug.Log("WaitDeath");
                     }
-                    // if (compteur >= 0)
-                    // {
-                    //     compteur -= Time.deltaTime;
-                    // }
-                    // else
-                    // {
-                    //     ImpulsionTahLesfous();
-                    //     compteur = 1;
-                    // }
                 }
                 else
                 {
@@ -204,78 +206,24 @@ public class ScreamerScript : Ennemy
                     }
                     if (AnimatorConteneur.GetBool("Dead"))
                     {
-                        HpNow = 0;
+                        this.GetComponent<ScreamerState>().Damage(Mathf.Infinity);
                     }
                     else
                     {
                     }
-                    // if (compteur >= 0)
-                    // {
-                    //     compteur -= Time.deltaTime;
-                    // }
-                    // else
-                    // {
-                    //     ImpulsionTahLesfous();
-                    //     compteur = 1;
-                    // }
                 }
                 break;
             default:
                 break;
         }
         
-        if (Poisoned)
-        {
-            if (EmpoisonnementTick >= freqTick)
-            {
-
-                damage(dpsTick);
-                //Poisoned = false;
-                EmpoisonnementTick = 0;
-            }
-            else
-            {
-                EmpoisonnementTick += Time.deltaTime;
-            }
-        }
-        HealthbarDecrease();
-
         if (transform.position.y <= -10)
         {
-           HpNow = 0;
-           Fall = true;
-        }
-        if (HpNow <= 0 && !Explosion)
-        {
-            Explosion = true;
-            float écart = -numberCadav / 2;
-
-            if (spawn.ListEnnemy.Contains(this.gameObject))
-            {
-                spawn.ListEnnemy.Remove(this.gameObject);
-            }
-
-            compteur = -1;
-
-            for (int i = 1; i <= numberCadav; i++)
-            {
-                if (Fall)
-                {
-                    Instantiate(preDead, player.position,Quaternion.identity, GameObject.Find("CadavreParent").transform);
-                    Debug.Log(detectDead.ressourceInt);
-                }
-                else
-                {
-                    Instantiate(preDead, transform.position + new Vector3(0, 0, écart * 1.25f), 
-                        Quaternion.identity, GameObject.Find("CadavreParent").transform);
-                }
-                écart++;
-            }
-            ImpulsionTahLesfous();
+            this.GetComponent<ScreamerState>().Damage(Mathf.Infinity);
         }
     }
 
-    void ImpulsionTahLesfous()
+    public void ImpulsionTahLesfous()
     {
         Destroy(gameObject);
         Vector3 hitPoint = transform.position;
@@ -304,61 +252,46 @@ public class ScreamerScript : Ennemy
                     hit[i].GetComponent<ennemyAI>().ExplosionImpact(hitPoint, radiusExploBase +  transform.localScale.x, ForceExplosion*10);
                     hit[i].GetComponent<BasicState>().Damage(DMG);
                 }
-                else if(hit[i].GetComponent<ScreamerScript>() != null)
+                else if(hit[i].GetComponent<ScreamerState>() != null)
                 {
-                    hit[i].GetComponent<ScreamerScript>().HpNow = 0;
+                    hit[i].GetComponent<ScreamerState>().Damage(Mathf.Infinity);
                 }
                 else
                 {
-                    //rien
                 }
-                //hit[i].GetComponent<ScreamerScript>().ExplosionImpact(hitPoint, radiusExploBase + transform.localScale.x, ForceExplosion, DMG);
-                //if(poisonned) { hit[i].GetComponent<ScreamerScript>().Poisonned = true;
             }
         }
     }
-    public void damage(float hit)
-    {
-        HpNow -= hit;
-        FMODUnity.RuntimeManager.PlayOneShot(Screamer_Touche, transform.position);
-        healthBar.value = HpNow;
-        touched = true;
-        chrono = 0;
-    }
     
-    public void ExplosionImpact(Vector3 position, float radius, float explosionForce, int DMG)
+    private bool FindGoal ()
     {
-
-        JustHit = true;
-        agent.enabled = false;
-        damage(DMG);
-
-        RB.freezeRotation = false;
-        RB.AddExplosionForce(explosionForce, position, radius, 5f, ForceMode.Impulse);
-    }
-    
-    void HealthbarDecrease()
-    {
-        if (touched)
+        while (!this.NewPosFind && this.BreakWhile < 15)
         {
-            if (chrono >= timeBar)
+            this.BreakWhile++;
+            if (this.FindValidPosition())
             {
-                healthBarSec.value -= 1.5f * Time.deltaTime;
-    
-                if (healthBarSec.value <= healthBar.value)
-                {
-                    chrono = 0;
-                    touched = false;
-                }
-            }
-            else
-            {
-                chrono += Time.deltaTime;
+                this.agent.destination = this.ContainerNewPos;
+                this.NewPosFind = true;
+                this.BreakWhile = 0;
+                return true;
             }
         }
-    
+        return false;
     }
     
+    private bool FindValidPosition ()
+    {
+        Vector2 offset = Random.insideUnitCircle * this.RadiusMaxForHisMove;
+        Vector3 position = this.transform.position + new Vector3 (offset.x, 0, offset.y);
+        NavMeshHit hit;
+        bool isValid = NavMesh.SamplePosition (position + Vector3.up, out hit, 5,  NavMesh.AllAreas);
+        if (!isValid)
+            return false;
+        
+        this.ContainerNewPos = new Vector3(hit.position.x, transform.position.y, hit.position.z);
+        return true;
+    }
+  
     
      private void OnTriggerEnter(Collider collision)
     {
@@ -391,9 +324,10 @@ public class ScreamerScript : Ennemy
         if (collision.gameObject.layer == 13 && collision.GetComponent<RuantAI>() != null &&
             collision.GetComponent<RuantAI>().state == RuantAI.State.RUSH)
         {
-            HpNow = 0;
+            GetComponent<ScreamerState>().Damage(Mathf.Infinity);
         }
     }
+     
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.CompareTag("sol") && !Grounded)
@@ -425,9 +359,9 @@ public class ScreamerScript : Ennemy
         }
         if (collision.transform.CompareTag("Ennemy"))// && collision.gameObject.GetComponent<ScreamerScript>().JustHit)
         {
-            if (collision.transform.GetComponent<ScreamerScript>()!=null)
+            if (collision.transform.GetComponent<ScreamerAI>()!=null)
             {
-                if (collision.transform.GetComponent<ScreamerScript>().JustHit)
+                if (collision.transform.GetComponent<ScreamerAI>().JustHit)
                 {
                     JustHit = true;
                     agent.enabled = false;

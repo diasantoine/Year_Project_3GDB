@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4222861221312482}
   - component: {fileID: 198625322165679848}
   - component: {fileID: 199469042689600660}
-  m_Layer: 10
+  m_Layer: 19
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,8 +221,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.23529412, b: 0, a: 0.49019608}
-      maxColor: {r: 1, g: 0.23511335, b: 0, a: 0.49019608}
+      minColor: {r: 1, g: 0.2955665, b: 0, a: 0.49019608}
+      maxColor: {r: 1, g: 0.23529413, b: 0, a: 0.49019608}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4827,7 +4827,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4387876685388940}
   - component: {fileID: 96790271689274504}
-  m_Layer: 10
+  m_Layer: 19
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4918,8 +4918,8 @@ TrailRenderer:
       m_RotationOrder: 0
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.31848472, g: 1, b: 0.19117647, a: 1}
-      key1: {r: 0.29989794, g: 1, b: 0.16911763, a: 0}
+      key0: {r: 1, g: 0.3814879, b: 0.19117647, a: 1}
+      key1: {r: 1, g: 0.36461937, b: 0.16911763, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -4970,7 +4970,7 @@ GameObject:
   - component: {fileID: 54777970317930892}
   - component: {fileID: -8796991331755362174}
   - component: {fileID: -3042837453260115442}
-  m_Layer: 10
+  m_Layer: 19
   m_Name: ProjectileLastra
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -5101,8 +5101,8 @@ MonoBehaviour:
   lights: 1
   trails: 1
   changeColor: 1
-  newMaxColor: {r: 0.1573993, g: 1, b: 0, a: 1}
-  newMinColor: {r: 0.005072971, g: 0.3584906, b: 0.03701602, a: 1}
+  newMaxColor: {r: 1, g: 0.23529412, b: 0, a: 1}
+  newMinColor: {r: 0.79607844, g: 0.23529412, b: 0, a: 1}
   ParticleSystems:
   - {fileID: 1374267004960804}
   - {fileID: 1264819656396196}
@@ -5299,7 +5299,7 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.28846043, g: 0.8018868, b: 0, a: 1}
+      minColor: {r: 1, g: 0.2955665, b: 0, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
@@ -9896,11 +9896,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TireTouche: event:/Enemy/TOUCHE
   Ruant_Touche_N: event:/Enemy/Ruant/Ruant_Touche_N
+  PlayerHit: 
   vitesse: 45
   "\xE9cart": 0.75
-  "port\xE9e": 0.8
+  "port\xE9e": 1.6
   LastraTir: 1
-  DMGHeat: 0
+  DMGHeat: 15
   "d\xE9gat": 1.5
   RB: {fileID: 54777970317930892}
   Empoisonnement: 0
@@ -9916,7 +9917,7 @@ GameObject:
   - component: {fileID: 4543353468141156}
   - component: {fileID: 198666345037842568}
   - component: {fileID: 199690041906878720}
-  m_Layer: 10
+  m_Layer: 19
   m_Name: Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10126,8 +10127,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.23529412, b: 0, a: 1}
-      maxColor: {r: 1, g: 0.23529412, b: 0, a: 1}
+      minColor: {r: 1, g: 0.2955665, b: 0, a: 1}
+      maxColor: {r: 1, g: 0.23529413, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14733,7 +14734,7 @@ GameObject:
   - component: {fileID: 4857230170811802}
   - component: {fileID: 198403062172229204}
   - component: {fileID: 199498631542277762}
-  m_Layer: 10
+  m_Layer: 19
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14943,8 +14944,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.23529412, b: 0, a: 1}
-      maxColor: {r: 1, g: 0.23529412, b: 0, a: 1}
+      minColor: {r: 1, g: 0.2955665, b: 0, a: 1}
+      maxColor: {r: 1, g: 0.23529413, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

@@ -141,9 +141,9 @@ public class LaserShoot : MonoBehaviour
                 other.gameObject.GetComponent<RuantState>().takeDmg(hitDmg);
             }
 
-            if (other.gameObject.GetComponent<ScreamerScript>() != null)
+            if (other.gameObject.GetComponent<ScreamerState>() != null)
             {
-                other.gameObject.GetComponent<ScreamerScript>().damage(hitDmg);
+                other.gameObject.GetComponent<ScreamerState>().Damage(hitDmg);
             }
         }
     }

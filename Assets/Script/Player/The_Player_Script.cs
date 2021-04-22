@@ -688,16 +688,14 @@ public class The_Player_Script : MonoBehaviour
                     hit[i].GetComponent<ennemyAI>().ExplosionImpact(hitPoint, radiusExploBase +  transform.localScale.x, ForceExplosion);
                     hit[i].GetComponent<BasicState>().Damage(DMG);
                 }
-                else if(hit[i].GetComponent<ScreamerScript>() != null)
+                else if(hit[i].GetComponent<ScreamerState>() != null)
                 {
-                    hit[i].GetComponent<ScreamerScript>().HpNow = 0;
+                    hit[i].GetComponent<ScreamerState>().Damage(Mathf.Infinity);
                 }
                 else
                 {
                     //rien
                 }
-                //hit[i].GetComponent<ScreamerScript>().ExplosionImpact(hitPoint, radiusExploBase + transform.localScale.x, ForceExplosion, DMG);
-                //if(poisonned) { hit[i].GetComponent<ScreamerScript>().Poisonned = true;
            }
         }
     }
