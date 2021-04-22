@@ -92,9 +92,7 @@ public class The_Player_Script : MonoBehaviour
     public float DistanceJump;
     public Vector3 PointOrigineJump;
     private float HigherPosition = 0;
-    public float TimeForTheDistance;
-    public Vector3 target;
-    [SerializeField] private float initialAngle;
+    public Vector3 SpeedJump;
     public float radiusExploBase;
     public float ForceExplosion;
     public float DMG;
@@ -425,8 +423,11 @@ public class The_Player_Script : MonoBehaviour
             float Distance = Vector3.Distance(new Vector3(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.transform.position.x, 0, 
                     ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.transform.position.z)  , new Vector3(this.PointOrigineJump.x, 0, this.PointOrigineJump.z));
             //Debug.Log(Distance + " " + this.DistanceJump);
+            Debug.Log(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity);
             if (Distance >= this.DistanceJump)
             {
+                ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.drag = 1;
+                ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.angularDrag = 0.5f;
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.mass = 1;
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = 
                     ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized * 
@@ -444,42 +445,15 @@ public class The_Player_Script : MonoBehaviour
             }
             else
             {
+                if (ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity != this.SpeedJump)
+                {
+                    ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = this.SpeedJump;
+                }
                 if (!this.Once)
                 {
                     this.Once = true;
                     this.JumpPlayer();
                 }
-        
-                // if (Distance <= this.DistanceJump/2)
-                // {
-                //     float MaxHigh = 12 * (Distance / (this.DistanceJump / 2));
-                //     Debug.Log(MaxHigh);
-                //     //this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.velocity += Vector3.up * Time.deltaTime * this.HighJump;
-                //     // this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
-                //     //     new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(
-                //     //             this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.y,0,MaxHigh),
-                //     //         this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
-                //     this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
-                //         new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(MaxHigh,0,12),
-                //             this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
-                // }
-                // else if( Distance > this.DistanceJump/2)
-                // {
-                //     if (this.HigherPosition == 0)
-                //     {
-                //         HigherPosition = this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.y;
-                //     }
-                //     float MinHigh = HigherPosition * (2 - Distance / (this.DistanceJump / 2));
-                //     Debug.Log(MinHigh);
-                //     // this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.velocity -= Vector3.up * Time.deltaTime * this.HighJump;
-                //     // this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
-                //     //     new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(
-                //     //             this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.y,MinHigh,12),
-                //     //         this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
-                //     this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position = 
-                //         new Vector3(this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.x, Mathf.Clamp(MinHigh ,0,12),
-                //             this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody.transform.position.z);
-                // }
             }
         }
         else
@@ -633,46 +607,6 @@ public class The_Player_Script : MonoBehaviour
  private void JumpPlayer()
  {
      this.ListOfYourPlayer[this.YourPlayerChoosed].animAvatar.SetBool("Jump", true);
-     //this.ListOfYourPlayer[this.YourPlayerChoosed].animAvatar.speed = this.DistanceJump/3.292f;
-     // var rigid = this.ListOfYourPlayer[this.YourPlayerChoosed].ConteneurRigibody;
-     //
-     // Vector3 p = this.target;
-     //
-     // float gravity = Physics.gravity.magnitude;
-     // // Selected angle in radians
-     // //float angle = this.initialAngle * Mathf.Deg2Rad;
-     //
-     // // Positions of this object and the target on the same plane
-     // Vector3 planarTarget = new Vector3(p.x, 0, p.z);
-     // Vector3 planarPostion = new Vector3(this.transform.position.x, 0, this.transform.position.z);
-     //
-     // // Planar distance between objects
-     // float distance = Vector3.Distance(planarTarget, planarPostion);
-     // // Distance along the y axis between objects
-     // //float yOffset = this.transform.position.y - p.y;
-     // float yOffset = 0;
-     //
-     // float angle = Mathf.Atan(2 * 12 / distance );
-     // float norme = Mathf.Sqrt(3 * gravity / 8 * 12) * distance;
-     // Debug.Log(angle * 180 / Mathf.PI + " " + norme);
-     // Debug.DrawRay(transform.position, new Vector3( this.target.x + transform.position.x,0.5f,
-     //     this.target.z + transform.position.z), Color.blue, 10f);
-     // Vector3 V =  new Vector3(0, Mathf.Sin(angle), Mathf.Cos(angle)) * norme;
-     // float initialVelocity = (1 / Mathf.Cos(angle)) *
-     //                         2*Mathf.Sqrt((3f * gravity * Mathf.Pow(distance, 2)) / (distance * Mathf.Tan(angle) + yOffset));// 0.5f * gravity
-     //
-     // Vector3 velocity = new Vector3(0, initialVelocity * Mathf.Sin(angle), initialVelocity * Mathf.Cos(angle));
-     //
-     // // Rotate our velocity to match the direction between the two objects
-     // //float angleBetweenObjects = Vector3.Angle(Vector3.forward, planarTarget - planarPostion);
-     // float angleBetweenObjects = Vector3.Angle(Vector3.forward, planarTarget - planarPostion) * (p.x > transform.position.x ? 1 : -1);
-     // Vector3 finalVelocity = Quaternion.AngleAxis(angleBetweenObjects, Vector3.up) * velocity;
-     //
-     // // Fire!
-     // rigid.velocity = finalVelocity;
-     //
-     // // Alternative way:
-     // // rigid.AddForce(finalVelocity * rigid.mass, ForceMode.Impulse);
  }
  
  void ImpulsionTahLesfous()

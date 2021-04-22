@@ -84,9 +84,8 @@ public class JumpCharged : skill
             playerToMouse.y = 0;
             playerToMouse = playerToMouse.normalized;
             Parent.GetComponent<The_Player_Script>().OnJump = true;
-            Parent.GetComponent<The_Player_Script>().TimeForTheDistance = Distance / this.JumpSpeed;
             Parent.GetComponent<The_Player_Script>().DistanceJump = Distance;
-            Parent.GetComponent<The_Player_Script>().target = this.LastPosition;
+            //Parent.GetComponent<The_Player_Script>().target = this.LastPosition;
             Parent.GetComponent<The_Player_Script>().PointOrigineJump = this.Parent.transform.position;
             Parent.GetComponent<The_Player_Script>()
                 .ListOfYourPlayer[Parent.GetComponent<The_Player_Script>().YourPlayerChoosed]
@@ -98,9 +97,12 @@ public class JumpCharged : skill
             Destroy(Parent.GetComponent<LineRenderer>());
             Parent.tag = "Jump";
             ConteneurRigibody.useGravity = false;
+            ConteneurRigibody.drag = 0;
+            ConteneurRigibody.angularDrag = 0;
             this.JumpSpeed = Distance / 3.292f*2;
             Debug.Log(this.JumpSpeed);
             ConteneurRigibody.velocity = playerToMouse * this.JumpSpeed;
+            Parent.GetComponent<The_Player_Script>().SpeedJump =  ConteneurRigibody.velocity;
             ConteneurRigibody.mass = 250;
             Charge = 0;
             isCharging = false;
