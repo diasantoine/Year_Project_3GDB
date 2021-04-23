@@ -87,6 +87,7 @@ public class RuantAI : Ennemy
                 break;
             case State.WAIT:
                 AnimatorConteneur.SetTrigger("StartRush");
+                FMODUnity.RuntimeManager.PlayOneShot(Ruant_Cris_Dash, transform.position);
                 break;
             case State.CHASE:
                 AnimatorConteneur.SetBool("isWalking", true);
@@ -97,8 +98,9 @@ public class RuantAI : Ennemy
             case State.RUSH:
                 AnimatorConteneur.SetBool("isWalking", false);
                 AnimatorConteneur.SetBool("isRushing", true);
-                FMODUnity.RuntimeManager.PlayOneShot(Ruant_Cris_Dash, transform.position); // son cris de dash du ruant
+                //FMODUnity.RuntimeManager.PlayOneShot(Ruant_Cris_Dash, transform.position); // son cris de dash du ruant
                 speedRush = speedRushIni;
+                agent.enabled = false;
                 RB.isKinematic = false;
                 break;
             case State.STUN:
@@ -234,7 +236,7 @@ public class RuantAI : Ennemy
 
             case State.DEATH:
                 //transform.Rotate(-35f * Time.deltaTime, 0, 0);
-                if(chrono >= 2.5f)
+                if(chrono >= 2.3f)
                 {
                     GetComponent<RuantState>().Die();
                     FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, transform.position); // son de collision lorsque le ruant tombe

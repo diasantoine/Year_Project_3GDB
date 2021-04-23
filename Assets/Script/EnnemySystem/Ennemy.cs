@@ -66,7 +66,7 @@ public class Ennemy : MonoBehaviour
             if (hit.collider.CompareTag("sol") || hit.collider.CompareTag("Mur"))
             {
                 Grounded = true;
-                agent.enabled = true;
+                //agent.enabled = true;
                 RB.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
                 //Debug.Log(Grounded);
             }
