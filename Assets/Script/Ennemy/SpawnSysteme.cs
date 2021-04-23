@@ -75,7 +75,7 @@ public class SpawnSysteme : MonoBehaviour
         DictionnaryEnnemy[Ennemy.Basic] = Resources.Load<GameObject>("Basic");
         DictionnaryEnnemy[Ennemy.Ruant] = Resources.Load<GameObject>("Ruant");
         DictionnaryEnnemy[Ennemy.Screamer] = Resources.Load<GameObject>("Screamer");
-        DictionnaryEnnemy[Ennemy.Lastra] = Resources.Load<GameObject>("EnnemiPetit");
+        DictionnaryEnnemy[Ennemy.Lastra] = Resources.Load<GameObject>("Lastra");
 
     }
 
@@ -150,7 +150,7 @@ public class SpawnSysteme : MonoBehaviour
                     yield return new WaitForSeconds(Wave.CD_Spawn_Screamer);
                     RandomPosition = Random.Range(0, Wave.ListSpawnScreamer.Count);
                     GameObject Scm = Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnScreamer[RandomPosition].position, Quaternion.identity, ParentScreamer);
-                    Scm.GetComponent<ScreamerScript>().spawn = GetComponent<SpawnSysteme>();
+                    Scm.GetComponent<ScreamerAI>().spawn = GetComponent<SpawnSysteme>();
                     ListEnnemy.Add(Scm);
                     mobRestant--;
 

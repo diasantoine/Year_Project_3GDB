@@ -18,7 +18,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/FMOD/src/Runtime/wrapper/fmod_studio.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/UI/Pause.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Shoot/scirpt/ParticleSystemController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/LastraScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/ShieldProtectionCollider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/ShieldProtection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Shoot/scirpt/ProjectileMoveScript.cs" root0="FORCE_HIGHLIGHTING" />
@@ -35,7 +34,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/RuantState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/SpawnSysteme.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/DeathScript.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerAI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/RuantAI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/TestLiquidCuve 1/Liquid.shader" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/OLD/ennemyAI.cs" root0="FORCE_HIGHLIGHTING" />
@@ -46,6 +45,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/Weapon/PoisonCollider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BrokenVector/UltimateDungeonPack/Scenes/Demo/FPControls/Scripts/CharacterController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/SystemSkill/choiceSkill.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/LastraAI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/SystemSkill/skill.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/The_Player_Script.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/SystemSkill/changeSkill.cs" root0="FORCE_HIGHLIGHTING" />
@@ -69,10 +69,19 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Script/Player/The_Player_Script.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Skill/Counter.cs" />
       <option value="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/Editor/Nodes/HelperFuncs/LinearToGammaNode.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Ennemy/LastraScript.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Ennemy/LastraState.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerState.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Weapon/LaserShoot.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Weapon/TirCharge.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Weapon/DeadProjo.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Ennemy/SpawnSysteme.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerAI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Ennemy/LastraAI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Skill/JumpCharged/JumpCharged.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Player/The_Player_Script.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1kdj9sKTemMYORqUbWbZfxglPOk" />
@@ -220,6 +229,9 @@
       <workItem from="1618828414036" duration="5061000" />
       <workItem from="1618844958162" duration="2362000" />
       <workItem from="1618923290039" duration="3377000" />
+      <workItem from="1619013767643" duration="2961000" />
+      <workItem from="1619094005532" duration="10075000" />
+      <workItem from="1619116763564" duration="3972000" />
     </task>
     <servers />
   </component>

@@ -127,23 +127,19 @@ public class LaserShoot : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Ennemy") && !this.IsCharging)
         {
-            if (other.gameObject.GetComponent<BasicState>() != null)
-            {
-                other.gameObject.GetComponent<BasicState>().Damage(hitDmg);
-
-            }
-            else if (other.gameObject.GetComponent<damageTuto>() != null)
+            if (other.gameObject.GetComponent<damageTuto>() != null)
             {
                 other.gameObject.GetComponent<damageTuto>().damage(hitDmg);
             }
-            else if (other.gameObject.GetComponent<RuantState>() != null)
+
+            if (other.gameObject.GetComponent<ScreamerState>() != null)
             {
-                other.gameObject.GetComponent<RuantState>().takeDmg(hitDmg);
+                other.gameObject.GetComponent<ScreamerState>().Damage(hitDmg);
             }
 
-            if (other.gameObject.GetComponent<ScreamerScript>() != null)
+            if (other.gameObject.GetComponent<State>())
             {
-                other.gameObject.GetComponent<ScreamerScript>().damage(hitDmg);
+                other.gameObject.GetComponent<State>().Damage(hitDmg);
             }
         }
     }

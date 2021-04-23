@@ -62,6 +62,11 @@ public class BasicState : State
 
     }
 
+    public override void Damage(float dmg)
+    {
+        base.Damage(dmg);
+    }
+
     private void PoisonDamage()
     {
         if (isPoisoned)

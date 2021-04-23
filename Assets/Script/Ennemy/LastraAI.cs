@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class LastraScript : Ennemy
+public class LastraAI : Ennemy
 {
     enum StateLastra
     {
@@ -13,6 +13,7 @@ public class LastraScript : Ennemy
         Charging,
         Shoot,
         Reloading,
+        Hit,
         Dead
     }
 
@@ -22,8 +23,10 @@ public class LastraScript : Ennemy
     [SerializeField] private float TimeBeforeHeCatchHisBreath;
     [SerializeField] private float DivisionSpeed = 1;
     [SerializeField] private float RadiusMaxForHisEscape;
-
-    [SerializeField] private float DMG;
+    
+    [Header("Impact")]
+    [SerializeField] private float ImpactTirNormal = 1;
+    [SerializeField] private float TimeStayHit;
 
     [SerializeField] private int NumberOfProjectile;
     [SerializeField] private float TimeBeforeShoot;
@@ -47,12 +50,15 @@ public class LastraScript : Ennemy
     private float TimeBeforeHeCatchHisBreathContainer;
     private float SpeedContainer;
     private float TimeShootContainer;
+    private float TimeStayHitContainer;
     private int NumberOfProjectileFired;
     private Vector3 ContainerNewPos;
     private int BreakWhile;
     private bool NewPosFind;
     private bool CatchHisBreath;
     private bool IsRunning;
+
+    private StateLastra ContainerLastState;
     
     // Start is called before the first frame update
     void Start()
@@ -62,6 +68,8 @@ public class LastraScript : Ennemy
         this.TimeBeforeHeCatchHisBreathContainer = this.TimeBeforeHeCatchHisBreath;
         this.SpeedContainer = this.agent.speed;
         this.TimeShootContainer = this.TimeBeforeShoot;
+        this.TimeStayHitContainer = this.TimeStayHit; 
+        player = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame
@@ -73,7 +81,7 @@ public class LastraScript : Ennemy
             case StateLastra.Idle:
                 break;
             case StateLastra.Moving:
-                
+               // Debug.Log(this.IsRunning + " " + this.ContainerNewPos + " " + Vector3.Distance(transform.position, this.player.position));
                 if (DistanceWhereTheLastraStartToRunBackward > Vector3.Distance(transform.position, this.player.position) && this.ContainerNewPos == Vector3.zero && !this.IsRunning)
                 {
                     if (this.agent.speed == 0)
@@ -107,6 +115,11 @@ public class LastraScript : Ennemy
                         //this.agent.isStopped = true;
                         this.CatchHisBreath = true;
                         this.IsRunning = false;
+                    }
+                    else
+                    {
+                        this.agent.SetDestination(this.ContainerNewPos);
+                        agent.stoppingDistance = 0;
                     }
                 }
 
@@ -156,6 +169,11 @@ public class LastraScript : Ennemy
                     this.LastraState = StateLastra.Moving;
                     this.TimeBeforeShoot = this.TimeShootContainer;
                 }
+                else if(this.DistanceMaxNearPlayer *1.4f < Vector3.Distance(transform.position, this.player.position))
+                {
+                    this.LastraState = StateLastra.Moving;
+                    this.TimeBeforeShoot = this.TimeShootContainer;
+                }
 
                 if (this.TimeBeforeShoot <= 0)
                 {
@@ -173,6 +191,11 @@ public class LastraScript : Ennemy
                     this.NumberOfProjectileFired = 0;
                     this.TimeBetweenEachShoot = this.TimeBetweenShootContainer;
                     this.LastraState = StateLastra.Moving;
+                }else if(this.DistanceMaxNearPlayer *1.4f < Vector3.Distance(transform.position, this.player.position))
+                {
+                    this.LastraState = StateLastra.Moving;
+                    this.NumberOfProjectileFired = 0;
+                    this.TimeBetweenEachShoot = this.TimeBetweenShootContainer;
                 }
                 if (this.TimeBetweenEachShoot >= 0)
                 {
@@ -183,8 +206,8 @@ public class LastraScript : Ennemy
                     this.TimeBetweenEachShoot = this.TimeBetweenShootContainer;
                     this.NumberOfProjectileFired++;
                     GameObject ContainerProjectile = Instantiate(this.Projectile, this.Canon.transform.position, Quaternion.identity);//projectilecontainer pour le parent
-                    ContainerProjectile.GetComponent<Rigidbody>().velocity = (this.player.transform.position - transform.position).normalized * 20;
-                    Destroy(ContainerProjectile, 4f);
+                   //ContainerProjectile.GetComponent<Rigidbody>().velocity = (this.player.transform.position - transform.position).normalized * 20;
+                    ContainerProjectile.GetComponent<DeadProjo>().Shoot(this.player.transform.position - transform.position);
                 }
                 if (this.NumberOfProjectileFired >= this.NumberOfProjectile)
                 {
@@ -207,6 +230,31 @@ public class LastraScript : Ennemy
                 else
                 {
                     this.ReloadingTime -= Time.deltaTime;
+                }
+                break;
+            case StateLastra.Hit:
+                if (this.JustHit)
+                {
+                    if (this.TimeStayHit <= 0)
+                    {
+                        this.JustHit = false;
+                        this.TimeStayHit = this.TimeStayHitContainer;
+                        this.LastraState = this.ContainerLastState;
+                        this.agent.enabled = true;
+                        if (RB.velocity.magnitude < 8f)
+                        {
+                            RB.isKinematic = false;
+                            JustHit = false;
+                            agent.enabled = true;
+                            RB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                            RB.freezeRotation = true;
+                            this.LastraState = this.ContainerLastState;
+                        }
+                    }
+                    else
+                    {
+                        this.TimeStayHit -= Time.deltaTime;
+                    }
                 }
                 break;
             case StateLastra.Dead:
@@ -239,10 +287,10 @@ public class LastraScript : Ennemy
     
     private bool FindValidPosition ()
     {
-        var offset = Random.insideUnitCircle * this.RadiusMaxForHisEscape;
-        var position = this.transform.position + new Vector3 (offset.x, 0, offset.y);
+        Vector2 offset = Random.insideUnitCircle * this.RadiusMaxForHisEscape;
+        Vector3 position = this.transform.position + new Vector3 (offset.x, 0, offset.y);
         NavMeshHit hit;
-        var isValid = NavMesh.SamplePosition (position + Vector3.up, out hit, 5,  NavMesh.AllAreas);
+        bool isValid = NavMesh.SamplePosition (position + Vector3.up, out hit, 5,  NavMesh.AllAreas);
         if (!isValid || Vector3.Distance(new Vector3(hit.position.x, transform.position.y, hit.position.z), this.player.transform.position) < this.DistanceMaxNearPlayer * 1.1f || 
             !FrontTest(new Vector3(hit.position.x, transform.position.y, hit.position.z)))
             return false;
@@ -263,5 +311,41 @@ public class LastraScript : Ennemy
             return true;
  
         return false;
+    }
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("Projectile"))
+        {
+            if (collision.transform.GetComponent<DeadProjo>().Empoisonnement)
+            {
+                JustHit = true;
+                agent.enabled = false;
+                RB.velocity *= ImpactTirNormal;
+                this.ContainerLastState = this.LastraState;
+                this.RB.isKinematic = true;
+                this.LastraState = StateLastra.Hit;
+
+            }
+            else
+            {
+                JustHit = true;
+                agent.enabled = false;
+                RB.velocity *= ImpactTirNormal;
+                this.ContainerLastState = this.LastraState;
+                this.LastraState = StateLastra.Hit;
+                this.RB.isKinematic = true;
+                //SwitchState(State.DUMB);
+            }
+            if (AnimatorConteneur != null)
+            {
+                AnimatorConteneur.SetBool("Hit", true);
+            }
+        }
+
+        if (collision.transform.CompareTag("Mur") && this.JustHit)
+        {
+            this.GetComponent<LastraState>().Damage(Mathf.Infinity);
+        }
     }
 }

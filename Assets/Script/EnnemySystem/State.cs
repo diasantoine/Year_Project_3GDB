@@ -22,6 +22,7 @@ public class State : MonoBehaviour
     [Header("Essential")]
     public Transform player;
     public SpawnSysteme spawn;
+    public bool isWeak;
 
 
     private protected void OnStartAll()
@@ -38,7 +39,7 @@ public class State : MonoBehaviour
         healthBarSec.value = healthBar.maxValue;
     }
 
-    public void Damage(float dmg)
+    public virtual void Damage(float dmg)
     {
         HpNow -= dmg;
         healthBar.value = HpNow;
