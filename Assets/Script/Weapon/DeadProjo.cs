@@ -109,32 +109,25 @@ public class DeadProjo : MonoBehaviour
                     // faire une mini explosion qui peut toucher d'autre ennemie
                 }
           
-                FMODUnity.RuntimeManager.PlayOneShot(TireTouche, transform.position);
-                if (collision.gameObject.GetComponent<BasicState>() != null)
-                {
-                    collision.gameObject.GetComponent<BasicState>().Damage(dégat);
-
-                }
-                else if(collision.gameObject.GetComponent<damageTuto>() != null)
+                FMODUnity.RuntimeManager.PlayOneShot(TireTouche, transform.position);               
+                if(collision.gameObject.GetComponent<damageTuto>() != null)
                 {
                     collision.gameObject.GetComponent<damageTuto>().damage(dégat);
                 }
-                else if (collision.gameObject.GetComponent<RuantState>() != null)
+                
+                if (collision.gameObject.GetComponent<State>())
                 {
-                    if (collision.gameObject.GetComponent<RuantState>().isWeak)
+                    if (collision.gameObject.GetComponent<State>().isWeak)
                     {
-                        collision.gameObject.GetComponent<RuantState>().takeDmg(dégat);
+                        collision.gameObject.GetComponent<State>().Damage(dégat);
                     }
                     else
                     {
-                        FMODUnity.RuntimeManager.PlayOneShot(Ruant_Touche_N, transform.position); // son no-degat
+                        if (collision.gameObject.GetComponent<RuantState>())
+                        {
+                            FMODUnity.RuntimeManager.PlayOneShot(Ruant_Touche_N, transform.position);
+                        }
                     }
-                }else if (collision.gameObject.GetComponent<LastraState>() != null)
-                {
-                    collision.transform.GetComponent<LastraState>().Damage(this.dégat);
-                }else if (collision.gameObject.GetComponent<ScreamerState>() != null)
-                {
-                    collision.gameObject.GetComponent<ScreamerState>().Damage(dégat);
                 }
             }
         }
