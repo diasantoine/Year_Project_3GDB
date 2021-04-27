@@ -161,6 +161,12 @@ public class RuantAI : Ennemy
                 }
                 else
                 {
+                    var distance = player.position - transform.position;
+                    distance.y = 0;
+
+                    Quaternion newRotation = Quaternion.LookRotation(distance);
+                    RB.MoveRotation(newRotation);
+
                     chrono += Time.deltaTime;
                     //transform.LookAt(player);
                 }

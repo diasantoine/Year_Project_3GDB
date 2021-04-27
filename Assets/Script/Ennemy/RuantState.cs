@@ -23,6 +23,7 @@ public class RuantState : State
     void Update()
     {
         Weakling();
+        HealthbarDecrease();
 
         if(HpNow <= 0)
         {
@@ -108,5 +109,27 @@ public class RuantState : State
         {
             isWeak = false;
         }
+    }
+
+    void HealthbarDecrease()
+    {
+        if (touched)
+        {
+            if (chronoBar >= timeBar)
+            {
+                healthBarSec.value -= 1.5f * Time.deltaTime;
+
+                if (healthBarSec.value <= healthBar.value)
+                {
+                    chronoBar = 0;
+                    touched = false;
+                }
+            }
+            else
+            {
+                chronoBar += Time.deltaTime;
+            }
+        }
+
     }
 }
