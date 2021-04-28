@@ -40,6 +40,10 @@ public class LastraAI : Ennemy
     [SerializeField] private GameObject Projectile;
 
     [SerializeField] private StateLastra LastraState;
+
+    [SerializeField] private List<GameObject> ListPartIntensityDuringShoot;
+
+    [SerializeField] private float GestionPowerIntensityChargingShoot;
     
     [Header("Debug")]
     [SerializeField] private float radius=3f;
@@ -51,12 +55,13 @@ public class LastraAI : Ennemy
     private float SpeedContainer;
     private float TimeShootContainer;
     private float TimeStayHitContainer;
+    private Color Intensity = Color.clear;
     private int NumberOfProjectileFired;
     private Vector3 ContainerNewPos;
     private int BreakWhile;
     private bool NewPosFind;
     private bool CatchHisBreath;
-    private bool IsRunning;
+    [SerializeField] private bool IsRunning;
 
     private StateLastra ContainerLastState;
     
@@ -82,8 +87,16 @@ public class LastraAI : Ennemy
                 break;
             case StateLastra.Moving:
                // Debug.Log(this.IsRunning + " " + this.ContainerNewPos + " " + Vector3.Distance(transform.position, this.player.position));
-                if (DistanceWhereTheLastraStartToRunBackward > Vector3.Distance(transform.position, this.player.position) && this.ContainerNewPos == Vector3.zero && !this.IsRunning)
+                if (DistanceWhereTheLastraStartToRunBackward > Vector3.Distance(transform.position, this.player.position) && this.ContainerNewPos == Vector3.zero)
                 {
+                    if ( !this.AnimatorConteneur.GetBool("IsRunning"))
+                    {
+                        this.AnimatorConteneur.SetBool("IsRunning", true);
+                    }
+                    if (this.AnimatorConteneur.GetBool("IsMoving"))
+                    {
+                        this.AnimatorConteneur.SetBool("IsMoving", false);
+                    }
                     if (this.agent.speed == 0)
                     {
                         this.agent.speed = this.SpeedContainer;
@@ -99,11 +112,12 @@ public class LastraAI : Ennemy
                         this.agent.SetDestination(this.ContainerNewPos);
                         agent.stoppingDistance = 0;
                         this.NewPosFind = false;
+                        this.agent.isStopped = false;
                     }
-                    // Vector3 DirToPlayer = transform.position - this.player.position;
-                    // Vector3 newPos = transform.position + DirToPlayer;
-                    // this.agent.SetDestination(newPos);
-                    // this.ContainerNewPos = newPos;
+                    else
+                    {
+                        this.agent.isStopped = true;
+                    }
                 }
                 else if (this.ContainerNewPos != Vector3.zero && this.IsRunning)
                 {
@@ -112,9 +126,11 @@ public class LastraAI : Ennemy
                         this.ContainerNewPos = Vector3.zero;
                         Debug.Log("arrivé");
                         this.agent.speed = this.SpeedContainer;
-                        //this.agent.isStopped = true;
+                        this.agent.isStopped = true;
                         this.CatchHisBreath = true;
                         this.IsRunning = false;
+                        this.AnimatorConteneur.SetBool("IsRunning", false);
+                        this.AnimatorConteneur.SetBool("IsMoving", true);
                     }
                     else
                     {
@@ -125,6 +141,15 @@ public class LastraAI : Ennemy
 
                 if (DistanceWhereTheLastraStartToRunBackward < Vector3.Distance(transform.position, this.player.position) && this.ContainerNewPos == Vector3.zero && !this.IsRunning)
                 {
+                    this.agent.isStopped = false;
+                    if (!this.AnimatorConteneur.GetBool("IsMoving"))
+                    {
+                        this.AnimatorConteneur.SetBool("IsMoving",true);
+                    }
+                    if (this.AnimatorConteneur.GetBool("IsRunning"))
+                    {
+                        this.AnimatorConteneur.SetBool("IsRunning", false);
+                    }
                     if (this.CatchHisBreath)
                     {
                         if (this.TimeBeforeHeCatchHisBreath <= 0)
@@ -147,19 +172,10 @@ public class LastraAI : Ennemy
                     else if (this.DistanceMaxNearPlayer + 1 >= Vector3.Distance(transform.position, this.player.position) && !this.IsRunning)
                     {
                         this.LastraState = StateLastra.Charging;
+                        this.AnimatorConteneur.SetBool("IsMoving",false);
+                        this.AnimatorConteneur.SetBool("IsCharging",true);
+                        this.agent.isStopped = true;
                     }
-
-                    // if(DistanceWhereTheLastraStartToRunBackward <= Vector3.Distance(transform.position, this.player.position)  && !this.IsRunning)
-                    // {
-                    //     agent.SetDestination(this.player.position);
-                    //     agent.stoppingDistance = this.DistanceMaxNearPlayer;
-                    //  
-                    // }
-                    //
-                    // if (this.DistanceMaxNearPlayer >= Vector3.Distance(transform.position, this.player.position) && !this.IsRunning )
-                    // {
-                    //     this.LastraState = StateLastra.Charging;
-                    // }
                 }
 
                 break;
@@ -168,21 +184,43 @@ public class LastraAI : Ennemy
                 {  
                     this.LastraState = StateLastra.Moving;
                     this.TimeBeforeShoot = this.TimeShootContainer;
+                    this.AnimatorConteneur.SetBool("IsRunning",true);
+                    this.AnimatorConteneur.SetBool("IsCharging",false);
+                    this.Intensity = Color.clear;
+                    foreach (GameObject PartIntensityDuringShoot in this.ListPartIntensityDuringShoot)
+                    {
+                        PartIntensityDuringShoot.GetComponent<Renderer>().material.SetColor("_EmissionColor", this.Intensity);
+                    }
                 }
                 else if(this.DistanceMaxNearPlayer *1.4f < Vector3.Distance(transform.position, this.player.position))
                 {
                     this.LastraState = StateLastra.Moving;
                     this.TimeBeforeShoot = this.TimeShootContainer;
+                    this.AnimatorConteneur.SetBool("IsMoving",true);
+                    this.AnimatorConteneur.SetBool("IsCharging",false);
+                    this.Intensity = Color.clear;
+                    foreach (GameObject PartIntensityDuringShoot in this.ListPartIntensityDuringShoot)
+                    {
+                        PartIntensityDuringShoot.GetComponent<Renderer>().material.SetColor("_EmissionColor", this.Intensity);
+                    }
                 }
 
                 if (this.TimeBeforeShoot <= 0)
                 {
                     this.LastraState = StateLastra.Shoot;
                     this.TimeBeforeShoot = this.TimeShootContainer;
+                    this.AnimatorConteneur.SetBool("IsCharging",false);
+                    this.AnimatorConteneur.SetBool("Fire",true);
                 }
                 else
                 {
                     this.TimeBeforeShoot -= Time.deltaTime;
+                    foreach (GameObject PartIntensityDuringShoot in this.ListPartIntensityDuringShoot)
+                    {
+                        Color ContainerColor = PartIntensityDuringShoot.GetComponent<Renderer>().material.color;
+                        this.Intensity += ContainerColor * Time.deltaTime/this.GestionPowerIntensityChargingShoot;
+                        PartIntensityDuringShoot.GetComponent<Renderer>().material.SetColor("_EmissionColor", this.Intensity);
+                    }
                 }
                 break;
             case StateLastra.Shoot:
@@ -191,11 +229,25 @@ public class LastraAI : Ennemy
                     this.NumberOfProjectileFired = 0;
                     this.TimeBetweenEachShoot = this.TimeBetweenShootContainer;
                     this.LastraState = StateLastra.Moving;
+                    this.AnimatorConteneur.SetBool("IsRunning",true);
+                    this.AnimatorConteneur.SetBool("IsCharging",false);
+                    this.Intensity = Color.clear;
+                    foreach (GameObject PartIntensityDuringShoot in this.ListPartIntensityDuringShoot)
+                    {
+                        PartIntensityDuringShoot.GetComponent<Renderer>().material.SetColor("_EmissionColor", this.Intensity);
+                    }
                 }else if(this.DistanceMaxNearPlayer *1.4f < Vector3.Distance(transform.position, this.player.position))
                 {
                     this.LastraState = StateLastra.Moving;
                     this.NumberOfProjectileFired = 0;
                     this.TimeBetweenEachShoot = this.TimeBetweenShootContainer;
+                    this.AnimatorConteneur.SetBool("IsMoving",true);
+                    this.AnimatorConteneur.SetBool("Fire",false);
+                     this.Intensity = Color.clear;
+                    foreach (GameObject PartIntensityDuringShoot in this.ListPartIntensityDuringShoot)
+                    {
+                        PartIntensityDuringShoot.GetComponent<Renderer>().material.SetColor("_EmissionColor", this.Intensity);
+                    }
                 }
                 if (this.TimeBetweenEachShoot >= 0)
                 {
@@ -214,6 +266,9 @@ public class LastraAI : Ennemy
                     this.NumberOfProjectileFired = 0;
                     this.TimeBetweenEachShoot = this.TimeBetweenShootContainer;
                     this.LastraState = StateLastra.Reloading;
+                    this.AnimatorConteneur.SetBool("IsReloading",true);
+                    this.AnimatorConteneur.SetBool("Fire",false);
+                    this.Intensity = Color.clear;
                 }
                 break;
             case StateLastra.Reloading:
@@ -221,11 +276,15 @@ public class LastraAI : Ennemy
                 {  
                     this.ReloadingTime = this.ReloadingTimeContainer;
                     this.LastraState = StateLastra.Moving;
+                    this.AnimatorConteneur.SetBool("IsRunning",true);
+                    this.AnimatorConteneur.SetBool("IsReloading",false);
                 }
                 if (this.ReloadingTime < 0)
                 {
                     this.ReloadingTime = this.ReloadingTimeContainer;
                     this.LastraState = StateLastra.Shoot;
+                    this.AnimatorConteneur.SetBool("IsReloading",false);
+                    this.AnimatorConteneur.SetBool("Fire",true);
                 }
                 else
                 {
@@ -235,6 +294,12 @@ public class LastraAI : Ennemy
             case StateLastra.Hit:
                 if (this.JustHit)
                 {
+                    this.AnimatorConteneur.SetBool("IsRunning",false);
+                    this.AnimatorConteneur.SetBool("IsReloading",false);
+                    this.AnimatorConteneur.SetBool("IsCharging",false);
+                    this.AnimatorConteneur.SetBool("Fire",false);
+                    this.AnimatorConteneur.SetBool("IsMoving",false);
+                    this.AnimatorConteneur.SetBool("Hit",true);
                     if (this.TimeStayHit <= 0)
                     {
                         this.JustHit = false;
@@ -248,6 +313,35 @@ public class LastraAI : Ennemy
                             agent.enabled = true;
                             RB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                             RB.freezeRotation = true;
+                            switch (ContainerLastState)
+                            {
+                                case StateLastra.Idle:
+                                    break;
+                                case StateLastra.Moving:
+                                    if (this.IsRunning)
+                                    {
+                                        this.AnimatorConteneur.SetBool("IsRunning",true);
+                                        this.AnimatorConteneur.SetBool("Hit",false);
+                                    }
+                                    else
+                                    {
+                                        this.AnimatorConteneur.SetBool("IsMoving",true);
+                                        this.AnimatorConteneur.SetBool("Hit",false);
+                                    }
+                                    break;
+                                case StateLastra.Charging:
+                                    this.AnimatorConteneur.SetBool("IsCharging",true);
+                                    this.AnimatorConteneur.SetBool("Hit",false);
+                                    break;
+                                case StateLastra.Shoot:
+                                    this.AnimatorConteneur.SetBool("Fire",true);
+                                    this.AnimatorConteneur.SetBool("Hit",false);
+                                    break;
+                                case StateLastra.Reloading:
+                                    this.AnimatorConteneur.SetBool("IsReloading",true);
+                                    this.AnimatorConteneur.SetBool("Hit",false);
+                                    break;
+                            }
                             this.LastraState = this.ContainerLastState;
                         }
                     }
@@ -282,6 +376,7 @@ public class LastraAI : Ennemy
                 return true;
             }
         }
+        this.BreakWhile = 0;
         return false;
     }
     
@@ -290,7 +385,8 @@ public class LastraAI : Ennemy
         Vector2 offset = Random.insideUnitCircle * this.RadiusMaxForHisEscape;
         Vector3 position = this.transform.position + new Vector3 (offset.x, 0, offset.y);
         NavMeshHit hit;
-        bool isValid = NavMesh.SamplePosition (position + Vector3.up, out hit, 5,  NavMesh.AllAreas);
+        bool isValid = NavMesh.SamplePosition (position + Vector3.up, out hit, 10,  NavMesh.AllAreas);
+        Debug.Log(isValid + " " + FrontTest(new Vector3(hit.position.x, transform.position.y, hit.position.z)));
         if (!isValid || Vector3.Distance(new Vector3(hit.position.x, transform.position.y, hit.position.z), this.player.transform.position) < this.DistanceMaxNearPlayer * 1.1f || 
             !FrontTest(new Vector3(hit.position.x, transform.position.y, hit.position.z)))
             return false;
@@ -342,7 +438,6 @@ public class LastraAI : Ennemy
                 AnimatorConteneur.SetBool("Hit", true);
             }
         }
-
         if (collision.transform.CompareTag("Mur") && this.JustHit)
         {
             this.GetComponent<LastraState>().Damage(Mathf.Infinity);
