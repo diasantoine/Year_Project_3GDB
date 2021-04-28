@@ -76,6 +76,7 @@ public class RuantAI : Ennemy
         switch (state)
         {
             case State.IDLE:
+                AnimatorConteneur.SetBool("isFreining", false);
                 AnimatorConteneur.SetBool("isRushing", false);
                 if (Grounded)
                 {  
@@ -127,10 +128,10 @@ public class RuantAI : Ennemy
         {
             case State.IDLE:
 
-                if(chrono >= 0.5f)
+                if(chrono >= 1f)
                 {
-                    SwitchState(State.CHASE);
                     chrono = 0;
+                    SwitchState(State.CHASE);
                 }
                 else
                 {
@@ -161,6 +162,12 @@ public class RuantAI : Ennemy
                 }
                 else
                 {
+                    var distance = player.position - transform.position;
+                    distance.y = 0;
+
+                    Quaternion newRotation = Quaternion.LookRotation(distance);
+                    RB.MoveRotation(newRotation);
+
                     chrono += Time.deltaTime;
                     //transform.LookAt(player);
                 }
@@ -187,9 +194,12 @@ public class RuantAI : Ennemy
                     else
                     {
                         RB.drag = deceleration;
+                        Debug.Log(RB.velocity.magnitude);
+                        AnimatorConteneur.SetFloat("Velocity", Mathf.Clamp(RB.velocity.magnitude, 6, 12) / 10);
 
-                        if(RB.velocity.magnitude < 1)
+                        if(RB.velocity.magnitude < 3)
                         {
+                            AnimatorConteneur.SetBool("isFreining", false);
                             SwitchState(State.IDLE);
                         }
                     }
@@ -277,6 +287,7 @@ public class RuantAI : Ennemy
             case State.RUSH:
                 DashFini();
                 RB.drag = 0;
+                AnimatorConteneur.SetFloat("Velocity", 1f);
                 break;
             case State.STUN:
                 AnimatorConteneur.SetBool("isRushing", false);
@@ -295,6 +306,8 @@ public class RuantAI : Ennemy
         tag = "Ennemy";
         RB.useGravity = true;
         RB.mass = 100;
+        AnimatorConteneur.SetBool("isFreining", true);
+        AnimatorConteneur.SetBool("isRushing", false);
     }
 
     private void DashRuant()
