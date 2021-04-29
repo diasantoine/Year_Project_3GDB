@@ -2659,6 +2659,7 @@ MonoBehaviour:
   deadList: []
   tailleTake: {x: 0.1, y: 0.1, z: 0.1}
   parent: {fileID: 1891794936}
+  SonRecolte: 
 --- !u!135 &323867589
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3018,6 +3019,7 @@ MonoBehaviour:
   deadList: []
   tailleTake: {x: 0.1, y: 0.1, z: 0.1}
   parent: {fileID: 905213807}
+  SonRecolte: event:/Player/RecolteRessource
 --- !u!135 &404942442
 SphereCollider:
   m_ObjectHideFlags: 0

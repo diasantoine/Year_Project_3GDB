@@ -14,6 +14,9 @@ public class detectDead : MonoBehaviour
 
     [SerializeField] private Transform parent;
 
+    [FMODUnity.EventRef]
+    public string SonRecolte = "";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +47,7 @@ public class detectDead : MonoBehaviour
             {
                 //deadList.Add(other.gameObject);
                 Destroy(other.gameObject);
+                FMODUnity.RuntimeManager.PlayOneShot(SonRecolte, transform.position);
                 ressourceInt++;
                 // other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 // other.gameObject.GetComponent<takeCadavre>().gotcha = true;
