@@ -341,7 +341,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: -7133754059227131013}
+  - {fileID: 3323021177972655962}
   MinDistance: 0
   MaxDistance: 0
   Length: 0
@@ -359,7 +359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD_PODLAB/FMOD_PODLAB_Year_Projectt/FMOD_PODLAB/Build/Desktop/Master.bank
   Name: Master
-  lastModified: 637548003109534755
+  lastModified: 637546175018982093
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -588,7 +588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD_PODLAB/FMOD_PODLAB_Year_Projectt/FMOD_PODLAB/Build/Desktop/Master.strings.bank
   Name: Master.strings
-  lastModified: 637548003109544710
+  lastModified: 637546175019602575
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -699,7 +699,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: -5653839007816222852}
+  - {fileID: 9159899359462952734}
   MinDistance: 0
   MaxDistance: 0
   Length: 380
@@ -1290,7 +1290,7 @@ MonoBehaviour:
   - {fileID: -6639937667616358054}
   StringsBanks:
   - {fileID: -4753088208096374989}
-  stringsBankWriteTime: 637548003109544710
+  stringsBankWriteTime: 637546175019602575
   cacheVersion: 5
 --- !u!114 &90211068464660350
 MonoBehaviour:
@@ -1808,6 +1808,26 @@ MonoBehaviour:
   Name: TypeOfFootstep
   Min: 0
   Max: 4
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &3323021177972655962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/CuveSound/SoundChoice
+  m_EditorClassIdentifier: 
+  Name: SoundChoice
+  Min: 0
+  Max: 10
   Default: 0
   ID:
     data1: 0
@@ -2470,6 +2490,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &9159899359462952734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_EditorClassIdentifier: 
+  Name: TypeOfFootstep
+  Min: 0
+  Max: 4
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &9178787130570398340
 MonoBehaviour:
   m_ObjectHideFlags: 0
