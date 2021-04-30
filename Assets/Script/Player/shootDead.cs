@@ -201,7 +201,7 @@ public class shootDead : MonoBehaviour
                         }
                     }
                 }
-                FMODUnity.RuntimeManager.PlayOneShot(TireSon, transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot(TireSon, "", 0, transform.position);
             }
             else
             {

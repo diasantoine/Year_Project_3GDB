@@ -46,14 +46,14 @@ public class FlickeringAnimation : MonoBehaviour
     void Eteind()
     {
         Debug.Log("ETEIND");
-        FMODUnity.RuntimeManager.PlayOneShot(SonLightEteind, transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot(SonLightEteind, "", 0, transform.position);
         sonLightAmbiance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
     void Allume()
     {
         Debug.Log("ALLUME");
-        FMODUnity.RuntimeManager.PlayOneShot(SonLightAllume, transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot(SonLightAllume, "", 0, transform.position);
         sonLightAmbiance.start();
     }
 }

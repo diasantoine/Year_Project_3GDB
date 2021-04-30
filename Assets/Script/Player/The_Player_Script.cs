@@ -492,20 +492,21 @@ public class The_Player_Script : MonoBehaviour
 
                             case plaqueScript.Type.NORMAL:
                                 // footStepPlayer.setParameterByName("TypeOfFootstep", 0);
-                                //floatTypeOfFootStep = 0;
+                                floatTypeOfFootStep = 0;
                                 isOnPlaque = false;
                                 TimeColdPlaque = 0;
                                 break;
                             case plaqueScript.Type.HOT:
                                 // footStepPlayer.setParameterByName("TypeOfFootstep", 1);
-                                //floatTypeOfFootStep = 1;
                                 if (pS.activ)
                                 {
+                                    floatTypeOfFootStep = 1;
                                     Debug.Log("oui");
                                     ArmorHeatPlaque(1);
                                 }
                                 else
                                 {
+                                    floatTypeOfFootStep = 0;
                                     isOnPlaque = false;
                                     TimePlaque = 0;
                                 }

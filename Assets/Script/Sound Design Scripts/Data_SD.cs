@@ -26,7 +26,7 @@ public class Data_SD : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(Ambiance, transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot(Ambiance, "", 0, transform.position);
         footStepPlayer = FMODUnity.RuntimeManager.CreateInstance(footStep);
     }
 
@@ -34,32 +34,34 @@ public class Data_SD : MonoBehaviour
     void Update()
     {
         //Debug.Log(TPS.floatTypeOfFootStep);
-        //footStepPlayer.setParameterByName("TypeOfFootstep", TPS.floatTypeOfFootStep);
+        footStepPlayer.setParameterByName("TypeOfFootstep", TPS.floatTypeOfFootStep);
     }
 
 
     public void PlayFootStep()
     {
-        footStepPlayer.start();
+        // footStepPlayer.start();
+        FMODUnity.RuntimeManager.PlayOneShot(footStep, "TypeOfFootstep", TPS.floatTypeOfFootStep, transform.position);
+        // FMODUnity.RuntimeManager.PlayOneShot(footStep, transform.position);
         /// Debug.Log("test son footstep");
     }
 
 
     public void PlayFootStepRuant()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(Ruant_FootStep, transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot(Ruant_FootStep, "", 0, transform.position);
         /// Debug.Log("test son footstep");
     }
 
     public void PlayScreamerExplosion()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(Screamer_Explosion, transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot(Screamer_Explosion, "", 0, transform.position);
         /// Debug.Log("test son footstep");
     }
 
     public void PlayFootStepScreamer()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(Screamer_FootStep, transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot(Screamer_FootStep, "", 0, transform.position);
         /// Debug.Log("test son footstep");
     }
 }

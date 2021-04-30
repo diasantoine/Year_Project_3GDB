@@ -15,7 +15,7 @@ public class SoundBubble : MonoBehaviour
         if(ps.time >= ps.main.duration - 0.005f)
         {
             Debug.Log("test");
-            FMODUnity.RuntimeManager.PlayOneShot(Bubbling_Mud, transform.position);
+            FMODUnity.RuntimeManager.PlayOneShot(Bubbling_Mud, "", 0, transform.position);
         }
     }
 }

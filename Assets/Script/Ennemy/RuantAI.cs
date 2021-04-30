@@ -88,7 +88,7 @@ public class RuantAI : Ennemy
                 break;
             case State.WAIT:
                 AnimatorConteneur.SetTrigger("StartRush");
-                FMODUnity.RuntimeManager.PlayOneShot(Ruant_Cris_Dash, transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot(Ruant_Cris_Dash, "", 0, transform.position);
                 break;
             case State.CHASE:
                 AnimatorConteneur.SetBool("isWalking", true);
@@ -111,7 +111,7 @@ public class RuantAI : Ennemy
                 break;
             case State.DEATH:
                 AnimatorConteneur.SetTrigger("Death");
-                FMODUnity.RuntimeManager.PlayOneShot(Ruant_Cris_Mort, transform.position); // son cris de mort du ruant
+                FMODUnity.RuntimeManager.PlayOneShot(Ruant_Cris_Mort, "", 0, transform.position); // son cris de mort du ruant
                 chrono = 0;
                 agent.enabled = false;
                 RB.constraints = RigidbodyConstraints.None;
@@ -249,7 +249,7 @@ public class RuantAI : Ennemy
                 if(chrono >= 2.3f)
                 {
                     GetComponent<RuantState>().Die();
-                    FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, transform.position); // son de collision lorsque le ruant tombe
+                    FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, "", 0, transform.position); // son de collision lorsque le ruant tombe
                     GameObject exploFee = Instantiate(preExplo, transform.position, Quaternion.identity);
                     Destroy(exploFee, 0.25f);
                 }
@@ -336,7 +336,7 @@ public class RuantAI : Ennemy
         {
             if(state == State.RUSH)
             {
-                FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, transform.position); // son de collision lorsque le ruant tape un mur
+                FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, "", 0, transform.position); // son de collision lorsque le ruant tape un mur
                 RB.velocity = Vector3.zero;
                 SwitchState(State.STUN);
                 RB.isKinematic = true;
@@ -348,7 +348,7 @@ public class RuantAI : Ennemy
         {
             if(collision.collider.name == "Ruant(Clone)")
             {
-                FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, "", 0, transform.position);
                 RB.velocity = Vector3.zero;
                 SwitchState(State.STUN);
                 RB.isKinematic = true;
