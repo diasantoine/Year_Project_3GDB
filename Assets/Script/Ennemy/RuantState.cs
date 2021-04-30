@@ -78,7 +78,7 @@ public class RuantState : State
     public override void Damage(float dmg)
     {
         base.Damage(dmg);
-        FMODUnity.RuntimeManager.PlayOneShot(Ruant_Touche_O, transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot(Ruant_Touche_O, "", 0, transform.position);
     }
 
     private void OnTriggerEnter(Collider other)

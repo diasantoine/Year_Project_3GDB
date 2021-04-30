@@ -55,7 +55,7 @@ public class ImpulseCharge : skill
                 theProjo.GetComponent<Rigidbody>().isKinematic = false;
                 theProjo.transform.parent = null;
                 theProjo.GetComponent<TirCharge>().Shoot(playerToMouse);
-                FMODUnity.RuntimeManager.PlayOneShot(TirCharge_Tir, transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot(TirCharge_Tir, "", 0, transform.position);
             }
         }
         else

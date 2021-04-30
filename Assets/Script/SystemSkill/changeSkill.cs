@@ -72,7 +72,7 @@ public class changeSkill : MonoBehaviour
         {
             onUI = true;
             RoundUI.SetActive(true);
-            FMODUnity.RuntimeManager.PlayOneShot(ChangeUI);
+            FMODUnity.RuntimeManager.PlayOneShot(ChangeUI, "", 0);
             gameObject.GetComponent<Pause>().StopGame();
         }
         else

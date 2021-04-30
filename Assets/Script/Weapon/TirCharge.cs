@@ -54,7 +54,7 @@ public class TirCharge : MonoBehaviour
         {
             //ExplosionTahLesFous(other);
             ImpulsionTahLesfous(other);
-            FMODUnity.RuntimeManager.PlayOneShot(TirCharge_Impact, transform.position);
+            FMODUnity.RuntimeManager.PlayOneShot(TirCharge_Impact, "", 0, transform.position);
         }
 
     }

@@ -115,7 +115,7 @@ public class DeadProjo : MonoBehaviour
                     // faire une mini explosion qui peut toucher d'autre ennemie
                 }
           
-                FMODUnity.RuntimeManager.PlayOneShot(TireTouche, transform.position);               
+                FMODUnity.RuntimeManager.PlayOneShot(TireTouche, "", 0, transform.position);               
                 if(collision.gameObject.GetComponent<damageTuto>() != null)
                 {
                     collision.gameObject.GetComponent<damageTuto>().damage(dégat);
@@ -131,7 +131,7 @@ public class DeadProjo : MonoBehaviour
                     {
                         if (collision.gameObject.GetComponent<RuantState>())
                         {
-                            FMODUnity.RuntimeManager.PlayOneShot(Ruant_Touche_N, transform.position);
+                            FMODUnity.RuntimeManager.PlayOneShot(Ruant_Touche_N, "", 0, transform.position);
                         }
                     }
                 }

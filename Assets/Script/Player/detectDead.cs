@@ -47,7 +47,7 @@ public class detectDead : MonoBehaviour
             {
                 //deadList.Add(other.gameObject);
                 Destroy(other.gameObject);
-                FMODUnity.RuntimeManager.PlayOneShot(SonRecolte, transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot(SonRecolte, "", 0, transform.position);
                 ressourceInt++;
                 // other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 // other.gameObject.GetComponent<takeCadavre>().gotcha = true;
