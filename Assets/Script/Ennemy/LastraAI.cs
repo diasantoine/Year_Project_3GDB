@@ -65,6 +65,8 @@ public class LastraAI : Ennemy
 
     private StateLastra ContainerLastState;
     
+    [HideInInspector] public SpawnSysteme spawn;
+
     // Start is called before the first frame update
     void Start()
     {

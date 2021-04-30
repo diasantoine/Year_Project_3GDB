@@ -5526,6 +5526,7 @@ MonoBehaviour:
   GestionPowerIntensityChargingShoot: 3
   radius: 24
   IsRunning: 0
+  spawn: {fileID: 0}
 --- !u!54 &1219517803
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6291,6 +6292,10 @@ MonoBehaviour:
     CD_Spawn_Ruant: 2
     CD_Spawn_Screamer: 1
     CD_Spawn_Lastra: 0
+    MaxBasic: 0
+    MaxRuant: 0
+    MaxScreamer: 0
+    MaxLastra: 0
   - NumberBasic: 10
     NumberRuant: 1
     NumberScreamer: 1
@@ -6308,6 +6313,10 @@ MonoBehaviour:
     CD_Spawn_Ruant: 10
     CD_Spawn_Screamer: 5
     CD_Spawn_Lastra: 0
+    MaxBasic: 0
+    MaxRuant: 0
+    MaxScreamer: 0
+    MaxLastra: 0
   - NumberBasic: 15
     NumberRuant: 2
     NumberScreamer: 1
@@ -6325,6 +6334,10 @@ MonoBehaviour:
     CD_Spawn_Ruant: 15
     CD_Spawn_Screamer: 10
     CD_Spawn_Lastra: 0
+    MaxBasic: 0
+    MaxRuant: 0
+    MaxScreamer: 0
+    MaxLastra: 0
   - NumberBasic: 30
     NumberRuant: 2
     NumberScreamer: 1
@@ -6342,6 +6355,10 @@ MonoBehaviour:
     CD_Spawn_Ruant: 5
     CD_Spawn_Screamer: 5
     CD_Spawn_Lastra: 0
+    MaxBasic: 0
+    MaxRuant: 0
+    MaxScreamer: 0
+    MaxLastra: 0
   - NumberBasic: 20
     NumberRuant: 3
     NumberScreamer: 2
@@ -6359,6 +6376,14 @@ MonoBehaviour:
     CD_Spawn_Ruant: 15
     CD_Spawn_Screamer: 5
     CD_Spawn_Lastra: 0
+    MaxBasic: 0
+    MaxRuant: 0
+    MaxScreamer: 0
+    MaxLastra: 0
+  ListMaxBasic: []
+  ListMaxRuant: []
+  ListMaxScreamer: []
+  ListMaxLastra: []
   IndexWave: 0
   ListEnnemy: []
   mobRestant: 0
