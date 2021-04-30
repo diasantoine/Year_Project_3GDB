@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 450904}
   - component: {fileID: 13576440}
   - component: {fileID: 5479992}
-  - component: {fileID: 11464288}
   - component: {fileID: -2731590364755258047}
   m_Layer: 10
   m_Name: Kanal_Laser_Green
@@ -63,23 +62,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &11464288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 128572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acd27932048c3254597a02078fa2cb26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  impactParticle: {fileID: 108204, guid: a895033e3fd07214d80b3e159c61873f, type: 3}
-  projectileParticle: {fileID: 178126, guid: cb75f5e3b464c96489c217523ce98a16, type: 3}
-  muzzleParticle: {fileID: 138568, guid: 09a92a023de770c4ab1b2e669d6c660b, type: 3}
-  colliderRadius: 0.1
-  collideOffset: 0.1
 --- !u!114 &-2731590364755258047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,6 +85,9 @@ MonoBehaviour:
   "d\xE9gat": 1.5
   intensityShake: 1.5
   timeShake: 0.15
+  impactParticle: {fileID: 108204, guid: a895033e3fd07214d80b3e159c61873f, type: 3}
+  projectileParticle: {fileID: 178126, guid: cb75f5e3b464c96489c217523ce98a16, type: 3}
+  muzzleParticle: {fileID: 138568, guid: 09a92a023de770c4ab1b2e669d6c660b, type: 3}
   RB: {fileID: 5479992}
   Empoisonnement: 0
   Rocket: 0
