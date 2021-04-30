@@ -29,12 +29,18 @@ public class DeadProjo : MonoBehaviour
     [Header("DMG")]
     [SerializeField] private float dégat;
 
+    [Header("Shake")]
+    [SerializeField] private float intensityShake;
+    [SerializeField] private float timeShake;
+
     private Vector3 moveDirection;
 
     [SerializeField] private Rigidbody RB;
 
     public bool Empoisonnement = false;
     public bool Rocket = false;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -131,6 +137,8 @@ public class DeadProjo : MonoBehaviour
                 }
             }
         }
+
+        CameraShake.Instance.Shake(intensityShake, timeShake);
         Destroy(gameObject);
     }
 

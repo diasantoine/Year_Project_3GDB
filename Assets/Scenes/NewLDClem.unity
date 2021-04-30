@@ -2839,7 +2839,7 @@ MonoBehaviour:
   "preProjoCharg\xE9": {fileID: 0}
   canon: {fileID: 1484262292}
   canonCharge: {fileID: 0}
-  freqTir: 0.2
+  freqTir: 0.15
   NombreDeProjectile: 1
 --- !u!114 &777907384
 MonoBehaviour:
@@ -2939,7 +2939,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 777907379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.9, y: 2.19, z: 0}
+  m_LocalPosition: {x: 28.05, y: 2.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7782978160508663368}
@@ -3244,6 +3244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 862862431}
   - component: {fileID: 862862430}
+  - component: {fileID: 862862432}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -3301,6 +3302,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 46.800003, y: -214.35199, z: 0}
+--- !u!114 &862862432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862862429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a8fd4e050e2f6e41b1cc24fecb9a62d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &879375930
 GameObject:
   m_ObjectHideFlags: 0
