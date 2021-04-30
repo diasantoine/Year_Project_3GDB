@@ -3,49 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RuantState : MonoBehaviour
+public class RuantState : State
 {
 
-    [SerializeField] private Slider healthBar;
-    [SerializeField] private Slider healthBarSec;
-    [SerializeField] private float timeBar;
-    private float chrono;
-    private bool touched;
-
-    public Transform player;
-    [SerializeField] private GameObject preRessource;
-
-    [SerializeField] private float HpMax;
-    [SerializeField] private int nbRes;
-    private float hpNow;
-
-    private bool Fall;
-    public bool isWeak;
-
-    [HideInInspector] public spawnEnnemyBasique SEB;
-
+    [Header("Speciality")]
     [SerializeField] private float weakPoint;
+    [SerializeField] private Renderer rd;
 
+    [FMODUnity.EventRef]
+    public string Ruant_Touche_O = "";
 
     // Start is called before the first frame update
     void Start()
     {
-        hpNow = HpMax;
-        healthBar.maxValue = HpMax;
-        healthBar.value = healthBar.maxValue;
-
-        healthBarSec.maxValue = healthBar.maxValue;
-        healthBarSec.value = healthBar.maxValue;
-
-        chrono = 0;
+        OnStartAll();
     }
 
     // Update is called once per frame
     void Update()
     {
         Weakling();
+        HealthbarDecrease();
 
-        if(hpNow <= 0)
+        if(HpNow <= 0)
         {
             if (!Fall)
             {
@@ -69,69 +49,45 @@ public class RuantState : MonoBehaviour
 
     public void Die()
     {
-        float écart = -nbRes / 2;
+        if (spawn.ListEnnemy.Contains(this.gameObject))
+        {
+            spawn.ListEnnemy.Remove(this.gameObject);
+        }
+
+        float écart = -nbCadavre / 2;
 
 
-        for (int i = 1; i <= nbRes; i++)
+        for (int i = 1; i <= nbCadavre; i++)
         {
             if (Fall)
             {
-                Instantiate(preRessource, player.position, Quaternion.identity, GameObject.Find("CadavreParent").transform);
+                Instantiate(cadavre, player.position, Quaternion.identity, GameObject.Find("CadavreParent").transform);
             }
             else
             {
-                Instantiate(preRessource, transform.position + new Vector3(0, 0, écart * 1.25f),
+                Instantiate(cadavre, transform.position + new Vector3(0, 0, écart * 1.25f),
                     Quaternion.identity, GameObject.Find("CadavreParent").transform);
             }
             écart++;
         }
 
-        if (SEB != null)
-        {
-            SEB.numberEnnemy--;
-
-        }
         Destroy(gameObject);
     }
 
+
+    public override void Damage(float dmg)
+    {
+        base.Damage(dmg);
+        FMODUnity.RuntimeManager.PlayOneShot(Ruant_Touche_O, "", 0, transform.position);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("DeathFall"))
         {
-            hpNow = 0;
             Fall = true;
+            HpNow = 0;
         }
-    }
-
-    public void takeDmg(float damage)
-    {
-        hpNow -= damage;
-        healthBar.value = hpNow;
-        touched = true;
-        chrono = 0;
-    }
-
-    void HealthbarDecrease()
-    {
-        if (touched)
-        {
-            if (chrono >= timeBar)
-            {
-                healthBarSec.value -= 1.5f * Time.deltaTime;
-
-                if (healthBarSec.value <= healthBar.value)
-                {
-                    chrono = 0;
-                    touched = false;
-                }
-            }
-            else
-            {
-                chrono += Time.deltaTime;
-            }
-        }
-
     }
 
     private void Weakling()
@@ -153,5 +109,27 @@ public class RuantState : MonoBehaviour
         {
             isWeak = false;
         }
+    }
+
+    void HealthbarDecrease()
+    {
+        if (touched)
+        {
+            if (chronoBar >= timeBar)
+            {
+                healthBarSec.value -= 1.5f * Time.deltaTime;
+
+                if (healthBarSec.value <= healthBar.value)
+                {
+                    chronoBar = 0;
+                    touched = false;
+                }
+            }
+            else
+            {
+                chronoBar += Time.deltaTime;
+            }
+        }
+
     }
 }

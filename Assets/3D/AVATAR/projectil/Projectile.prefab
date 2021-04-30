@@ -9894,14 +9894,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d7341bc971ffe48aec31b119d2e604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TireTouche: event:/TOUCHE
-  vitesse: 45
+  TireTouche: event:/Enemy/TOUCHE
+  Ruant_Touche_N: event:/Enemy/Ruant/Ruant_Touche_N
+  PlayerHit: 
+  vitesse: 65
   "\xE9cart": 0.75
+  "port\xE9e": 0.8
+  LastraTir: 0
+  DMGHeat: 0
   "d\xE9gat": 1.5
+  intensityShake: 1.5
+  timeShake: 0.15
   RB: {fileID: 54777970317930892}
   Empoisonnement: 0
   Rocket: 0
-  "port\xE9e": 0.8
 --- !u!1 &1831172876973338
 GameObject:
   m_ObjectHideFlags: 0

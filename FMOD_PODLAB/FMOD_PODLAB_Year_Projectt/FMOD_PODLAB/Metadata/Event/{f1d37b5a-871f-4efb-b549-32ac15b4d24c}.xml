@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{f1d37b5a-871f-4efb-b549-32ac15b4d24c}">
+		<property name="color">
+			<value>Purple</value>
+		</property>
 		<property name="name">
 			<value>3D Action</value>
 		</property>
@@ -8,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<relationship name="folder">
-			<destination>{256e3730-29a1-476c-83e1-5cff90871cd4}</destination>
+			<destination>{f2cd8395-6bc7-4672-98e4-3532d98f5088}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{0ad402ad-f9c8-488a-b933-3008d33a00ed}</destination>

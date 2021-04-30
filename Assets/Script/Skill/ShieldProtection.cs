@@ -37,12 +37,12 @@ public class ShieldProtection : skill
                 }
             }
         }
-        else if(Parent.GetComponent<CharacterMovement>().OnShieldProtection)
+        else if(Parent.GetComponent<The_Player_Script>().OnShieldProtection)
         {
             isCharging = false;
             Tick = 1;
             BulleProtectrice.SetActive(false);
-            Parent.GetComponent<CharacterMovement>().OnShieldProtection = false;
+            Parent.GetComponent<The_Player_Script>().OnShieldProtection = false;
         }
     }
 
@@ -53,18 +53,20 @@ public class ShieldProtection : skill
             isCharging = false;
             Tick = 1;
             BulleProtectrice.SetActive(false);
-            Parent.GetComponent<CharacterMovement>().OnShieldProtection = false;
-            Parent.GetComponent<CharacterMovement>().ConteneurRigibody.mass = 1;
+            Parent.GetComponent<The_Player_Script>().OnShieldProtection = false;
+            Parent.GetComponent<The_Player_Script>().ListOfYourPlayer[
+                Parent.GetComponent<The_Player_Script>().YourPlayerChoosed].ConteneurRigibody.mass = 1;
             TirDisabel.enabled = true;
         }
         else if(detectDead.ressourceInt>0)
         {
             isCharging = true;
             BulleProtectrice.SetActive(true);
-            Parent.GetComponent<CharacterMovement>().OnShieldProtection = true;
-            Parent.GetComponent<CharacterMovement>().ConteneurRigibody.mass = 250;
+            Parent.GetComponent<The_Player_Script>().OnShieldProtection = true;
+            Parent.GetComponent<The_Player_Script>().ListOfYourPlayer[
+                    Parent.GetComponent<The_Player_Script>().YourPlayerChoosed].ConteneurRigibody.mass = 250;
             TirDisabel.enabled = false;
-            conteneur = gameObject;
+            theProjo = gameObject;
         }
     }
 }

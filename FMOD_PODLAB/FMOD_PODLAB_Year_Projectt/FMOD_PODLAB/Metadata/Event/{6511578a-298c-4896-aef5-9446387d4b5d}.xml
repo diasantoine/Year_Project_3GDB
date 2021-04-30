@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{6511578a-298c-4896-aef5-9446387d4b5d}">
+		<property name="color">
+			<value>Green</value>
+		</property>
 		<property name="name">
 			<value>TirCharge_Charge</value>
 		</property>
@@ -8,7 +11,7 @@
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{256e3730-29a1-476c-83e1-5cff90871cd4}</destination>
+			<destination>{486d2ea2-2f9f-4f68-ad38-dfa0c552e5cb}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{0cff9ebd-6259-46ed-9cb0-b99efd0d321e}</destination>
@@ -53,7 +56,7 @@
 			<destination>{595d75a7-0954-4b6b-a580-6f8e406b230e}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{ce18a284-edce-4217-9809-8b6cffb657d3}</destination>
+			<destination>{5430a354-c259-46dd-93e9-33fcd76f0d34}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{d3c1a10e-aebf-469a-bc1e-491989f3367d}" />
@@ -136,6 +139,7 @@
 	<object class="MixerBusEffectChain" id="{f594ff20-a2bf-4c63-8b57-136ea27e7bdf}">
 		<relationship name="effects">
 			<destination>{6f6bce5e-28a7-4a83-b4b9-77af15aa86ca}</destination>
+			<destination>{fc4654e0-f3e1-4712-a593-b87ce2952979}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{b21da93e-8cf3-4c0e-978b-4df25b875263}" />
@@ -175,6 +179,17 @@
 	</object>
 	<object class="MixerBusPanner" id="{671604e9-556e-4d22-842b-2436f736afa1}" />
 	<object class="MixerBusFader" id="{6f6bce5e-28a7-4a83-b4b9-77af15aa86ca}" />
+	<object class="MixerSend" id="{fc4654e0-f3e1-4712-a593-b87ce2952979}">
+		<property name="level">
+			<value>0</value>
+		</property>
+		<property name="inputFormat">
+			<value>1</value>
+		</property>
+		<relationship name="mixerReturn">
+			<destination>{194445f9-247b-463a-8bf7-c910c5555ae8}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{f202cab3-8af3-4653-9f77-b8086e27ab3c}" />
 	<object class="ChorusEffect" id="{d0f1286f-776f-44da-b64b-b9020b6d8feb}">
 		<property name="rate">

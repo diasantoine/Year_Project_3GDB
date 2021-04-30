@@ -54,7 +54,7 @@ public class TirCharge : MonoBehaviour
         {
             //ExplosionTahLesFous(other);
             ImpulsionTahLesfous(other);
-            FMODUnity.RuntimeManager.PlayOneShot(TirCharge_Impact, transform.position);
+            FMODUnity.RuntimeManager.PlayOneShot(TirCharge_Impact, "", 0, transform.position);
         }
 
     }
@@ -88,6 +88,10 @@ public class TirCharge : MonoBehaviour
             {
                 hit[i].GetComponent<ennemyAI>().ExplosionImpact(hitPoint, radiusExploBase + transform.localScale.x, ExploForce);
             }
+            else if (hit[i].GetComponent<ScreamerState>() != null)
+            {
+                hit[i].GetComponent<ScreamerState>().Damage(20);
+            }
         }
 
         Destroy(newExplo, 0.2f);
@@ -105,9 +109,9 @@ public class TirCharge : MonoBehaviour
 
         for (int i = 0; i < hit.Length; i++)
         {
-            if (hit[i].GetComponent<ennemyState>() != null)
+            if (hit[i].GetComponent<State>() != null)
             {
-                hit[i].GetComponent<ennemyState>().damage(dégat);
+                hit[i].GetComponent<State>().Damage(dégat);
             }
         }
 

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{6cb8c7f9-a4a5-4876-b7a7-331a0dd8d9de}">
+		<property name="color">
+			<value>Yellow</value>
+		</property>
 		<property name="name">
 			<value>TIRE_SHOTGUN</value>
 		</property>
@@ -8,7 +11,7 @@
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{256e3730-29a1-476c-83e1-5cff90871cd4}</destination>
+			<destination>{486d2ea2-2f9f-4f68-ad38-dfa0c552e5cb}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{f75aa6f5-307f-41cd-89af-4bfcfb0d4e15}</destination>
@@ -56,7 +59,7 @@
 			<destination>{f4432177-b2fb-43c2-bd1d-8f76266b83c7}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{ce18a284-edce-4217-9809-8b6cffb657d3}</destination>
+			<destination>{6af9f9b7-1468-4097-972d-398a52523596}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{922f812b-606a-4c39-854d-e7a97914de32}" />
@@ -237,6 +240,7 @@
 		<relationship name="effects">
 			<destination>{47e1827e-33df-49a4-8dab-ce9410862ba0}</destination>
 			<destination>{69e8afdd-5f80-45bd-b37e-f8079528dd88}</destination>
+			<destination>{1cb888e6-f683-41ad-a611-105a2ba1334c}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{4308b0cc-69b3-46dd-8145-f9bc659d9bcc}" />
@@ -370,6 +374,17 @@
 		<property name="wetLevel">
 			<value>-5.5</value>
 		</property>
+	</object>
+	<object class="MixerSend" id="{1cb888e6-f683-41ad-a611-105a2ba1334c}">
+		<property name="level">
+			<value>0</value>
+		</property>
+		<property name="inputFormat">
+			<value>1</value>
+		</property>
+		<relationship name="mixerReturn">
+			<destination>{194445f9-247b-463a-8bf7-c910c5555ae8}</destination>
+		</relationship>
 	</object>
 	<object class="LowpassSimpleEffect" id="{df057099-7826-43c3-81cb-7e5628a853f7}">
 		<property name="cutoff">

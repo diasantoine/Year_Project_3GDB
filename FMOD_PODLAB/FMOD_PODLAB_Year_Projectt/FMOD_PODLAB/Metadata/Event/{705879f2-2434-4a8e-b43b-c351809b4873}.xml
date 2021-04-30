@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{705879f2-2434-4a8e-b43b-c351809b4873}">
+		<property name="color">
+			<value>Yellow</value>
+		</property>
 		<property name="name">
 			<value>TOUCHE</value>
 		</property>
@@ -8,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<relationship name="folder">
-			<destination>{256e3730-29a1-476c-83e1-5cff90871cd4}</destination>
+			<destination>{344a0ed0-df58-474c-baff-a5cbc2add234}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{147c4c6e-a999-4805-9877-417bf149735c}</destination>

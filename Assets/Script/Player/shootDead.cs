@@ -45,8 +45,11 @@ public class shootDead : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Ray rayon = cam.ScreenPointToRay(Input.mousePosition);
-        TirNormal(rayon);
+        if (!Pause.isPause)
+        {
+            Ray rayon = cam.ScreenPointToRay(Input.mousePosition);
+            TirNormal(rayon);
+        }
 
 
         /*if (Input.GetMouseButtonDown(0) && onShoot == false)
@@ -147,13 +150,21 @@ public class shootDead : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
+                GetComponent<The_Player_Script>().IsNotUsingNormalWeapon = false;
+                GetComponent<The_Player_Script>().PercentageWeaponHeat += 1;
+                foreach (GameObject WeaponPart in  
+                    GetComponent<The_Player_Script>().ListOfYourPlayer[
+                        GetComponent<The_Player_Script>().YourPlayerChoosed].ListWeaponPart)
+                {
+                    WeaponPart.GetComponent<Renderer>().material.SetColor("_EmissionColor",
+                        new Color(GetComponent<The_Player_Script>().PercentageWeaponHeat/100f,0 ,0));
+                }
                 RaycastHit floorHit;
                 chrono = 0;
                 for (int i = 0; i < NombreDeProjectile; i++)
                 {
                     if (Physics.Raycast(rayon, out floorHit, Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
                     {
-                        Debug.Log(floorHit.transform.name);
                         if (i != 0)
                         {
                             if (i%2 == 0)
@@ -190,7 +201,11 @@ public class shootDead : MonoBehaviour
                         }
                     }
                 }
-                FMODUnity.RuntimeManager.PlayOneShot(TireSon, transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot(TireSon, "", 0, transform.position);
+            }
+            else
+            {
+                GetComponent<The_Player_Script>().IsNotUsingNormalWeapon = true;
             }
         }
         else

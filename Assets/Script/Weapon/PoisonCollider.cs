@@ -6,10 +6,10 @@ using UnityEngine;
 public class PoisonCollider : MonoBehaviour
 {
 
-    [SerializeField] private float FreqTick;
+    [SerializeField] private ParticleSystem cloud;
 
-    [SerializeField] private float freqRessource;
-    public float timer;
+    [SerializeField] private float freqDie;
+    private float timer;
 
     [SerializeField] private float dps;
 
@@ -22,18 +22,15 @@ public class PoisonCollider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(detectDead.ressourceInt >= 0)
+        if(timer >= freqDie)
         {
-            if (timer >= freqRessource)
-            {
-                detectDead.ressourceInt--;
-                timer = 0;
-            }
-            else
-            {
-                timer += Time.deltaTime;
-            }
-           
+            cloud.Stop();
+            GetComponent<Collider>().enabled = false;
+            Destroy(gameObject, 2.5f);
+        }
+        else
+        {
+            timer += Time.deltaTime;
         }
         
     }
@@ -45,8 +42,8 @@ public class PoisonCollider : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Ennemy"))
             {
-                other.gameObject.GetComponent<ennemyState>().Empoisonne = true;
-                other.gameObject.GetComponent<ennemyState>().dpsTick = dps;
+                other.gameObject.GetComponent<BasicState>().isPoisoned = true;
+                other.gameObject.GetComponent<BasicState>().dpsTick = dps;
             }
         }
     }
@@ -55,8 +52,8 @@ public class PoisonCollider : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ennemy"))
         {
-            other.gameObject.GetComponent<ennemyState>().Empoisonne = false;
-            other.gameObject.GetComponent<ennemyState>().dpsTick = 0;
+            other.gameObject.GetComponent<BasicState>().isPoisoned = false;
+            other.gameObject.GetComponent<BasicState>().dpsTick = 0;
 
 
         }

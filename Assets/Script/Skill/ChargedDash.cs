@@ -54,11 +54,7 @@ public class ChargedDash : skill
 
     public override void UsingSkill()
     {
-        // if (!Parent.GetComponent<CharacterMovement>().JustHit)
-        // {
-        //     
-        // }
-        conteneur = gameObject;
+        theProjo = gameObject;
         isCharging = true;
     }
 
@@ -85,44 +81,14 @@ public class ChargedDash : skill
             {
                 lineRenderer.SetPosition(0,Canon.transform.position);
                 Vector3 HitPosition = Hit.point;
-                //HitPosition.y = Parent.transform.position.y;
                 HitPosition -= Canon.transform.position;
                 HitPosition = HitPosition.normalized;
-                //StockLastPosition = (HitPosition * PorteMaximale) + Canon.transform.position;
                 HitPosition *= PorteMaximale*(Charge/ChargeMax);
                 LastPosition = Canon.transform.position + HitPosition;
                 lineRenderer.SetPosition(1,LastPosition);
-                //lineRenderer.startColor = Color.cyan;
                 lineRenderer.material = BRO;
                 lineRenderer.startWidth = 2;
-                //LastPosition = HitPosition;
-                //StartCoroutine(LineDraw());
             }
-
-                // float t = 0;
-                // float time = 0.2f;
-                // Vector3 orig = lineRenderer.GetPosition(0);
-                // Vector3 orig2 = lineRenderer.GetPosition(1);
-                // lineRenderer.SetPosition(1, orig);
-                // Vector3 newpos;
-                // for (; t < time; t += Time.deltaTime)
-                // {
-                //     newpos = Vector3.Lerp(orig, orig2, t / time);
-                //     lineRenderer.SetPosition(1, newpos);
-                // }
-                // lineRenderer.SetPosition(1, orig2);
-                
-                // if (Pourcentage<1)
-                // {
-                //     Mathf.Clamp(Pourcentage += Time.deltaTime,0,1);
-                //     StockLastPosition = new Vector3(LastPosition.x*Pourcentage, LastPosition.y*Pourcentage, LastPosition.z*Pourcentage);
-                //     lineRenderer.SetPosition(1,StockLastPosition);
-                // }
-                // else
-                // {
-                //     StockLastPosition = new Vector3(LastPosition.x, LastPosition.y, LastPosition.z);
-                //     lineRenderer.SetPosition(1,StockLastPosition);
-                // }
         }
     }
 
@@ -132,75 +98,38 @@ public class ChargedDash : skill
         {
             if (AfterShock)
             {
-                Parent.GetComponent<CharacterMovement>().Aftershock = AfterShock;
+                Parent.GetComponent<The_Player_Script>().Aftershock = AfterShock;
             }
             if (Physics.Raycast(rayon, out RaycastHit Hit,Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
             {
                 lineRenderer.SetPosition(0, Canon.transform.position);
                 Vector3 HitPosition = Hit.point;
-                //HitPosition.y = Parent.transform.position.y;
                 HitPosition -= Canon.transform.position;
                 HitPosition = HitPosition.normalized;
                 HitPosition *= PorteMaximale*(Charge/ChargeMax);
                 LastPosition = Canon.transform.position + HitPosition;
                 lineRenderer.SetPosition(1,LastPosition);
-                //lineRenderer.startColor = Color.cyan;
                 lineRenderer.material = BRO;
                 lineRenderer.startWidth = 2;
             }
             float Distance = Vector3.Distance(LastPosition, Canon.transform.position);
-            Vector3 playerToMouse = LastPosition - Canon.transform.position; //transform.parent.parent.position;
+            Vector3 playerToMouse = LastPosition - Canon.transform.position; 
             Debug.DrawRay(LastPosition,transform.forward, Color.black, 500f);
             playerToMouse.y = 0;
             playerToMouse = playerToMouse.normalized;
-            //playerToMouse *= (Charge / ChargeMax);
-            Parent.GetComponent<CharacterMovement>().OnDash = true;
-            Parent.GetComponent<CharacterMovement>().HitPosition = LastPosition;
-            Parent.GetComponent<CharacterMovement>().DistanceDash = Distance;
-            Parent.GetComponent<CharacterMovement>().PointOrigine = Canon.transform.position;
+            Parent.GetComponent<The_Player_Script>().OnDash = true;
+            Parent.GetComponent<The_Player_Script>().DistanceDash = Distance;
+            Parent.GetComponent<The_Player_Script>().PointOrigineDash = Canon.transform.position;
             Avatar.layer = 12;
             Parent.GetComponent<CapsuleCollider>().enabled = enabled;
             Destroy(Parent.GetComponent<LineRenderer>());
             Parent.tag = "Dash";
             ConteneurRigibody.useGravity = false;
-           // ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             ConteneurRigibody.velocity = playerToMouse * DashSpeed;
             ConteneurRigibody.mass = 250;
             Charge = 0;
             isCharging = false;
         }
-
-
-        // if (Physics.Raycast(rayon, out RaycastHit hit,Mathf.Infinity,LayerMask.GetMask("Sol")))
-        // {
-        //     if (hit.transform.tag != "Collider")
-        //     {
-        //         //RemoveDeadList();
-        //         //HitPosition = hit.point;
-        //         HitPosition.x = transform.position.x + (hit.point.x - transform.position.x)*(Charge/ChargeMax); 
-        //         HitPosition.z = transform.position.z + (hit.point.z - transform.position.z)*(Charge/ChargeMax);
-        //         // HitPosition.x *= (Charge / ChargeMax);
-        //         // HitPosition.z *= (Charge / ChargeMax);
-        //         Vector3 playerToMouse = HitPosition - transform.parent.parent.position;
-        //         playerToMouse.y = 0;
-        //         playerToMouse = playerToMouse.normalized;
-        //         //playerToMouse *= (Charge / ChargeMax);
-        //         Parent.GetComponent<CharacterMovement>().OnDash = true;
-        //         Parent.GetComponent<CharacterMovement>().HitPosition = HitPosition;
-        //         Avatar.layer = 12;
-        //         Parent.GetComponent<CapsuleCollider>().enabled = enabled;
-        //         Parent.tag = "Player";
-        //         ConteneurRigibody.useGravity = false;
-        //         ConteneurRigibody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-        //         //Vector3 Dir = (hit.transform.position - transform.parent.position).normalized;
-        //         ConteneurRigibody.velocity = playerToMouse*DashSpeed;
-        //         Debug.Log("    ?");
-        //         // ConteneurRigibody.velocity *= (Charge / ChargeMax);
-        //         //ConteneurRigibody.AddForce(playerToMouse*DashSpeed, ForceMode.Impulse);
-        //     }
-        //     Charge = 0;
-        //     isCharging = false;
-        // }
     }
 
     public void DashUpgrade(string TypeUpgrade)

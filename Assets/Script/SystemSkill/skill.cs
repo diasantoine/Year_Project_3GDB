@@ -14,12 +14,12 @@ public class skill : MonoBehaviour
 
     public bool isCharging;
 
-    [HideInInspector] public GameObject conteneur;
+    [HideInInspector] public GameObject theProjo;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -42,20 +42,25 @@ public class skill : MonoBehaviour
                     if (WhichWeapon == 0)
                     {
                         parentTakeCadavre.charge = true;
-                        parentTakeCadavre.bombe = conteneur.transform;
+                        parentTakeCadavre.bombe = theProjo.transform;
                         parentTakeCadavre.SkillCharging();
                     }
                     else if (WhichWeapon == 1)
                     {
                         parentTakeCadavre.dash = true;
-                        parentTakeCadavre.Dash = conteneur.transform;
+                        parentTakeCadavre.Dash = theProjo.transform;
                         parentTakeCadavre.SkillCharging();
                     }else if (WhichWeapon == 3)
                     {
                         parentTakeCadavre.ShieldProtection = true;
-                        parentTakeCadavre.Protection = conteneur.transform;
+                        parentTakeCadavre.Protection = theProjo.transform;
                         parentTakeCadavre.SkillCharging();
-                    } 
+                    }else if (WhichWeapon == 4)
+                    {
+                        parentTakeCadavre.jump = true;
+                        parentTakeCadavre.Jump = theProjo.transform;
+                        parentTakeCadavre.SkillCharging();
+                    }
                     detectDead.ressourceInt--;
                     chrono = 0;
             }

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{2f44ceff-0e39-456e-84d3-e9d1c15d226f}">
+		<property name="color">
+			<value>Green</value>
+		</property>
 		<property name="name">
 			<value>PoisonShield</value>
 		</property>
@@ -8,7 +11,7 @@
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{256e3730-29a1-476c-83e1-5cff90871cd4}</destination>
+			<destination>{486d2ea2-2f9f-4f68-ad38-dfa0c552e5cb}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{cb0ec777-4e23-42f7-8955-977a40bcd72e}</destination>
@@ -53,7 +56,7 @@
 			<destination>{d9397986-8e1d-44e4-bd65-8cbff2a396e3}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{ce18a284-edce-4217-9809-8b6cffb657d3}</destination>
+			<destination>{6af9f9b7-1468-4097-972d-398a52523596}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{b601ef67-12d1-47f8-a7d9-eaef6291fec2}" />
@@ -169,7 +172,7 @@
 	<object class="MixerBusEffectChain" id="{0e0b0965-37f6-4b9f-815a-1ca39c864ec1}">
 		<relationship name="effects">
 			<destination>{efbffb2e-3ee4-4497-9619-20d1b6875935}</destination>
-			<destination>{4636286e-c7e9-4353-aef9-8ed8bc48625b}</destination>
+			<destination>{93d8cd12-394c-4068-b80b-140f64dbe417}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{39323f6f-ba50-425c-92d1-4ab3c64e88b0}" />
@@ -189,25 +192,16 @@
 	</object>
 	<object class="MixerBusPanner" id="{221d73a0-a8d1-454f-bbe4-4ca8e2bb1456}" />
 	<object class="MixerBusFader" id="{efbffb2e-3ee4-4497-9619-20d1b6875935}" />
-	<object class="SFXReverbEffect" id="{4636286e-c7e9-4353-aef9-8ed8bc48625b}">
-		<property name="earlyDelay">
-			<value>7</value>
+	<object class="MixerSend" id="{93d8cd12-394c-4068-b80b-140f64dbe417}">
+		<property name="level">
+			<value>0</value>
 		</property>
-		<property name="lateDelay">
-			<value>11</value>
+		<property name="inputFormat">
+			<value>1</value>
 		</property>
-		<property name="HFDecayRatio">
-			<value>59</value>
-		</property>
-		<property name="highCut">
-			<value>7800</value>
-		</property>
-		<property name="earlyLateMix">
-			<value>87</value>
-		</property>
-		<property name="wetLevel">
-			<value>-5.5</value>
-		</property>
+		<relationship name="mixerReturn">
+			<destination>{194445f9-247b-463a-8bf7-c910c5555ae8}</destination>
+		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{2daa7505-6990-431a-bf31-11837641377f}" />
 </objects>
