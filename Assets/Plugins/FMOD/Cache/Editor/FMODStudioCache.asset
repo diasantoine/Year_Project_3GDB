@@ -461,7 +461,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 8735841199394720171}
+  - {fileID: -4569190955413568902}
   MinDistance: 0
   MaxDistance: 0
   Length: 0
@@ -499,7 +499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD_PODLAB/FMOD_PODLAB_Year_Projectt/FMOD_PODLAB/Build/Desktop/Master.bank
   Name: Master
-  lastModified: 637553784547575922
+  lastModified: 637553794862178200
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -768,7 +768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD_PODLAB/FMOD_PODLAB_Year_Projectt/FMOD_PODLAB/Build/Desktop/Master.strings.bank
   Name: Master.strings
-  lastModified: 637553784547615824
+  lastModified: 637553794862188318
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -795,6 +795,26 @@ MonoBehaviour:
     data2: 0
   Exists: 1
 --- !u!114 &-4616344110599960855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/CuveSound/SoundChoice
+  m_EditorClassIdentifier: 
+  Name: SoundChoice
+  Min: 0
+  Max: 10
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-4569190955413568902
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -899,7 +919,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: -994032291193616858}
+  - {fileID: -3736810125560717487}
   MinDistance: 0
   MaxDistance: 0
   Length: 380
@@ -949,6 +969,26 @@ MonoBehaviour:
   MinDistance: 0.6
   MaxDistance: 25
   Length: 3484
+--- !u!114 &-3736810125560717487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_EditorClassIdentifier: 
+  Name: TypeOfFootstep
+  Min: 0
+  Max: 4
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-3716636779842847963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1631,7 +1671,7 @@ MonoBehaviour:
   - {fileID: -6639937667616358054}
   StringsBanks:
   - {fileID: -4753088208096374989}
-  stringsBankWriteTime: 637553784547615824
+  stringsBankWriteTime: 637553794862188318
   cacheVersion: 5
 --- !u!114 &90211068464660350
 MonoBehaviour:
