@@ -52,6 +52,10 @@ public class RuantState : State
         if (spawn.ListEnnemy.Contains(this.gameObject))
         {
             spawn.ListEnnemy.Remove(this.gameObject);
+            if (this.spawn.ListMaxRuant.Contains(this.gameObject))
+            {
+                this.spawn.ListMaxRuant.Remove(this.gameObject);
+            }
         }
 
         float écart = -nbCadavre / 2;

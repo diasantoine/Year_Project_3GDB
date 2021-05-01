@@ -58,6 +58,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/detectDead.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/SystemSkill/skillSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/UIRessource.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/ShootLastra.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/EnnemySystem/Ennemy.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/Avatar_overheated.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/GroundDetect.cs" root0="FORCE_HIGHLIGHTING" />
@@ -72,16 +73,19 @@
       <option value="$PROJECT_DIR$/Assets/Script/Skill/Counter.cs" />
       <option value="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/Editor/Nodes/HelperFuncs/LinearToGammaNode.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Ennemy/LastraScript.cs" />
-      <option value="$PROJECT_DIR$/Assets/Script/Ennemy/LastraState.cs" />
-      <option value="$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerState.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Weapon/LaserShoot.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Weapon/TirCharge.cs" />
-      <option value="$PROJECT_DIR$/Assets/Script/Weapon/DeadProjo.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerAI.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Skill/JumpCharged/JumpCharged.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Player/The_Player_Script.cs" />
-      <option value="$PROJECT_DIR$/Assets/Script/Ennemy/LastraAI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerState.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Ennemy/LastraState.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Ennemy/RuantState.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Ennemy/BasicState.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Ennemy/SpawnSysteme.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Weapon/DeadProjo.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Ennemy/LastraAI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Ennemy/ShootLastra.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1kdj9sKTemMYORqUbWbZfxglPOk" />
@@ -235,6 +239,7 @@
       <workItem from="1619612332990" duration="8548000" />
       <workItem from="1619699394972" duration="421000" />
       <workItem from="1619791471709" duration="5771000" />
+      <workItem from="1619861353927" duration="3083000" />
     </task>
     <servers />
   </component>

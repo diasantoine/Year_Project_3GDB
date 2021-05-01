@@ -65,6 +65,18 @@ public class SpawnSysteme : MonoBehaviour
     [HideInInspector] public List<GameObject> ListMaxScreamer;
     [HideInInspector] public List<GameObject> ListMaxLastra;
 
+    private int NumberOfBasicThisWawe = 0;
+    private int NumberOfRuantThisWawe = 0;
+    private int NumberOfScreamerThisWawe = 0;
+    private int NumberOfLastraThisWawe = 0;
+
+    private int NumberOfBasicNotSpawned;
+    private int NumberOfRuantNotSpawned;
+    private int NumberOfScreamerNotSpawned;
+    private int NumberOfLastraNotSpawned;
+
+
+
     private int RandomPosition = 0;
 
     [Header("WaveIndex")]
@@ -93,20 +105,35 @@ public class SpawnSysteme : MonoBehaviour
         NextWave();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            this.NextWave();
+        }
+    }
+
     public void NextWave()
     {
         if(ListWave.Count > IndexWave)
         {
             if (this.mobRestant != 0)
             {
-                
+                this.mobRestant += ListWave[IndexWave].NumberRuant + ListWave[IndexWave].NumberScreamer + ListWave[IndexWave].NumberBasic + ListWave[IndexWave].NumberLastra;
+                this.NumberOfBasicThisWawe = this.ListWave[this.IndexWave].NumberBasic + this.NumberOfBasicNotSpawned;
+                this.NumberOfRuantThisWawe = this.ListWave[this.IndexWave].NumberRuant + this.NumberOfRuantNotSpawned;
+                this.NumberOfScreamerThisWawe = this.ListWave[this.IndexWave].NumberScreamer + this.NumberOfScreamerNotSpawned;
+                this.NumberOfLastraThisWawe = this.ListWave[this.IndexWave].NumberLastra + this.NumberOfLastraNotSpawned;
+                Debug.Log(this.mobRestant + " " + this.NumberOfBasicThisWawe +" " + this.NumberOfBasicNotSpawned);
             }
             else
             {
-                
+                mobRestant = ListWave[IndexWave].NumberRuant + ListWave[IndexWave].NumberScreamer + ListWave[IndexWave].NumberBasic + ListWave[IndexWave].NumberLastra;
+                this.NumberOfBasicThisWawe = this.ListWave[this.IndexWave].NumberBasic;
+                this.NumberOfRuantThisWawe = this.ListWave[this.IndexWave].NumberRuant;
+                this.NumberOfScreamerThisWawe = this.ListWave[this.IndexWave].NumberScreamer;
+                this.NumberOfLastraThisWawe = this.ListWave[this.IndexWave].NumberLastra;
             }
-            mobRestant = ListWave[IndexWave].NumberRuant + ListWave[IndexWave].NumberScreamer + ListWave[IndexWave].NumberBasic + ListWave[IndexWave].NumberLastra;
-
             foreach (Ennemy Ennemy_Type in Enum.GetValues(typeof(Ennemy)))
             {
                 StartCoroutine(SpawnEnnemy(Ennemy_Type));
@@ -126,7 +153,7 @@ public class SpawnSysteme : MonoBehaviour
         switch (EnnemySelectioned)
         {
         case Ennemy.Basic:
-                for (int i = 0; i < Wave.NumberBasic; i++)
+                for (int i = 0; i < this.NumberOfBasicThisWawe; i++)
                 {
                     yield return new WaitUntil(() => this.ListMaxBasic.Count < Wave.MaxBasic);
                     yield return new WaitForSeconds(Wave.CD_Spawn_Basic);// le temps de respawn
@@ -136,10 +163,11 @@ public class SpawnSysteme : MonoBehaviour
                     ListEnnemy.Add(Trh);
                     this.ListMaxBasic.Add(Trh);
                     mobRestant--;
+                    this.NumberOfBasicNotSpawned = Wave.NumberBasic - i - 1;
                 }
                 break;
             case Ennemy.Ruant:
-                for (int i = 0; i < Wave.NumberRuant; i++)
+                for (int i = 0; i < this.NumberOfRuantThisWawe; i++)
                 {
                     yield return new WaitUntil(() => this.ListMaxRuant.Count < Wave.MaxRuant);
                     yield return new WaitForSeconds(Wave.CD_Spawn_Ruant);
@@ -149,22 +177,11 @@ public class SpawnSysteme : MonoBehaviour
                     ListEnnemy.Add(Rut);
                     this.ListMaxRuant.Add(Rut);
                     mobRestant--;
-
+                    this.NumberOfRuantNotSpawned = Wave.NumberRuant - i - 1;
                 }
-                // if (Wave.CD_Spawn_Ruant > 0)
-                // {
-                //     Wave.CD_Spawn_Ruant -= Time.deltaTime;
-                // }
-                // else
-                // {
-                //     RandomPosition = Random.Range(0, Wave.ListSpawnRuant.Count);
-                //     Wave.CD_Spawn_Ruant = CD_Spawn_Stock_Ruant;
-                //     Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnRuant[RandomPosition].position,
-                //         Quaternion.identity, ParentRuant);
-                // }
                 break;
             case Ennemy.Screamer:
-                for (int i = 0; i < Wave.NumberScreamer; i++)
+                for (int i = 0; i < this.NumberOfScreamerThisWawe; i++)
                 {
                     yield return new WaitUntil(() => this.ListMaxScreamer.Count < Wave.MaxScreamer);
                     yield return new WaitForSeconds(Wave.CD_Spawn_Screamer);
@@ -174,11 +191,11 @@ public class SpawnSysteme : MonoBehaviour
                     ListEnnemy.Add(Scm);
                     this.ListMaxScreamer.Add(Scm);
                     mobRestant--;
-
+                    this.NumberOfScreamerNotSpawned = Wave.NumberScreamer - i - 1;
                 }
                 break;
             case Ennemy.Lastra:
-                for (int i = 0; i < Wave.NumberLastra; i++)
+                for (int i = 0; i < this.NumberOfLastraThisWawe; i++)
                 {
                     yield return new WaitUntil(() => this.ListMaxLastra.Count < Wave.MaxLastra);
                     yield return new WaitForSeconds(Wave.CD_Spawn_Lastra);
@@ -188,7 +205,7 @@ public class SpawnSysteme : MonoBehaviour
                     ListEnnemy.Add(Lst);
                     this.ListMaxLastra.Add(Lst);
                     mobRestant--;
-
+                    this.NumberOfLastraNotSpawned = Wave.NumberLastra - i - 1;// car on commence à 0, ce qui veut dire que même quand il y a plus de lastra a spawn ça ferait 1 ce calcul sans le -1
                 }
                 break;
             default:

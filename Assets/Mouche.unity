@@ -5322,7 +5322,7 @@ RectTransform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5396,7 +5396,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5458,7 +5458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1219517801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6274,8 +6274,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListWave:
-  - NumberBasic: 2
-    NumberRuant: 1
+  - NumberBasic: 6
+    NumberRuant: 0
     NumberScreamer: 0
     NumberLastra: 0
     ListSpawnBasic:
@@ -6292,7 +6292,7 @@ MonoBehaviour:
     CD_Spawn_Ruant: 2
     CD_Spawn_Screamer: 1
     CD_Spawn_Lastra: 0
-    MaxBasic: 0
+    MaxBasic: 4
     MaxRuant: 0
     MaxScreamer: 0
     MaxLastra: 0

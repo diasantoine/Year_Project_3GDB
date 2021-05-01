@@ -37,6 +37,10 @@ public class LastraState : State
                 if (spawn.ListEnnemy.Contains(this.gameObject))
                 {
                     spawn.ListEnnemy.Remove(this.gameObject);
+                    if (this.spawn.ListMaxLastra.Contains(this.gameObject))
+                    {
+                        this.spawn.ListMaxLastra.Remove(this.gameObject);
+                    }
                 }
 
                 if (Fall)
