@@ -119,6 +119,10 @@ public class SpawnSysteme : MonoBehaviour
         {
             if (this.mobRestant != 0)
             {
+                foreach (Ennemy Ennemy_Type in Enum.GetValues(typeof(Ennemy)))
+                {
+                    this.StopCoroutine(SpawnEnnemy(Ennemy_Type));
+                }
                 this.mobRestant += ListWave[IndexWave].NumberRuant + ListWave[IndexWave].NumberScreamer + ListWave[IndexWave].NumberBasic + ListWave[IndexWave].NumberLastra;
                 this.NumberOfBasicThisWawe = this.ListWave[this.IndexWave].NumberBasic + this.NumberOfBasicNotSpawned;
                 this.NumberOfRuantThisWawe = this.ListWave[this.IndexWave].NumberRuant + this.NumberOfRuantNotSpawned;
