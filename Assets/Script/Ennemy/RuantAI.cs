@@ -163,11 +163,16 @@ public class RuantAI : Ennemy
                 }
                 else
                 {
-                    var distance = player.position - transform.position;
-                    distance.y = 0;
+                    if(chrono < waitRush * 0.625f)
+                    {
+                        var distance = player.position - transform.position;
+                        distance.y = 0;
 
-                    Quaternion newRotation = Quaternion.LookRotation(distance);
-                    RB.MoveRotation(newRotation);
+                        Quaternion newRotation = Quaternion.LookRotation(distance);
+                        RB.MoveRotation(newRotation);
+
+                        rushPlace = player.position;
+                    };
 
                     chrono += Time.deltaTime;
                     //transform.LookAt(player);
@@ -247,11 +252,12 @@ public class RuantAI : Ennemy
 
             case State.DEATH:
                 //transform.Rotate(-35f * Time.deltaTime, 0, 0);
-                if(chrono >= 2.3f)
+                if(chrono >= 1.7f)
                 {
                     GetComponent<RuantState>().Die();
                     FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, "", 0, transform.position); // son de collision lorsque le ruant tombe
                     GameObject exploFee = Instantiate(preExplo, transform.position, Quaternion.identity);
+                    CameraShake.Instance.Shake(5, 0.5f);
                     Destroy(exploFee, 0.25f);
                 }
                 else
@@ -277,7 +283,6 @@ public class RuantAI : Ennemy
                 break;
 
             case State.WAIT:
-                rushPlace = player.position;
                 chrono = 0;
                 isRushing = true;
                 break;

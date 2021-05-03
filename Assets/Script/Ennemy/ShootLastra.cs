@@ -48,6 +48,8 @@ public class ShootLastra : MonoBehaviour
                 collision.transform.position, ForceMode.Impulse);
             collision.transform.GetComponent<The_Player_Script>().JustHit = true;
             collision.transform.GetComponent<The_Player_Script>().PercentageArmorHeat += this.DMGHeat;
+            CameraShake.Instance.Shake(1.5f, 0.2f);
+
         }
         Destroy(gameObject);
     }

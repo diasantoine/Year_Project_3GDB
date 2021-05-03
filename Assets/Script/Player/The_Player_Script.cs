@@ -396,6 +396,7 @@ public class The_Player_Script : MonoBehaviour
                 if (Aftershock)
                 {
                     //explosion
+                    
                 }
             }
         }
@@ -442,6 +443,8 @@ public class The_Player_Script : MonoBehaviour
                 this.HigherPosition = 0;
                 this.Once = false;
                 this.ImpulsionTahLesfous();
+                CameraShake.Instance.Shake(3, 0.5f);
+
             }
             else
             {
@@ -649,6 +652,7 @@ public class The_Player_Script : MonoBehaviour
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.freezeRotation = false;
             Vector3 dir = transform.position;
             dir = (dir - other.transform.position).normalized;
+            CameraShake.Instance.Shake(10, 1f);
             //dir = (dir + collision.GetComponent<Rigidbody>().velocity) / 2;
             dir.y = 0;
             float RegulationForce = 250;

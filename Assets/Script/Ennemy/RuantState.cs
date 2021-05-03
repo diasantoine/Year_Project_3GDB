@@ -121,7 +121,7 @@ public class RuantState : State
         {
             if (chronoBar >= timeBar)
             {
-                healthBarSec.value -= 1.5f * Time.deltaTime;
+                healthBarSec.value -= 3f * Time.deltaTime;
 
                 if (healthBarSec.value <= healthBar.value)
                 {

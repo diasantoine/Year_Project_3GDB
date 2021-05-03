@@ -43,12 +43,34 @@ public class CameraShake : MonoBehaviour
     {
         CinemachineBasicMultiChannelPerlin perlin = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
-
+        if (!ShakingOrNot(intensity))
+        {
+            Debug.Log("dontshake");
+            return;
+        }
         perlin.m_AmplitudeGain = intensity;
 
         startingIntensity = intensity;
         shakeTimerTotal = time;
         shakeTimer = time;
+
+    }
+
+    private bool ShakingOrNot(float newIntensity)
+    {
+        CinemachineBasicMultiChannelPerlin perlin = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        var nowIntensity = perlin.m_AmplitudeGain;
+
+        if(newIntensity >= nowIntensity)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+
     }
 
 
