@@ -148,6 +148,7 @@ public class RuantAI : Ennemy
                     //FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, transform.position); // son de collision lorsqu'il attérit apres le spawn
                     GameObject newExplo = Instantiate(preExplo, transform.position, Quaternion.identity);
                     Destroy(newExplo, 0.2f);
+                    CameraShake.Instance.Shake(5, 0.5f);
                     SwitchState(State.IDLE);
                     
                 }
@@ -340,6 +341,7 @@ public class RuantAI : Ennemy
                 RB.velocity = Vector3.zero;
                 SwitchState(State.STUN);
                 RB.isKinematic = true;
+                CameraShake.Instance.Shake(5, 0.3f);
 
             }
         }
@@ -352,8 +354,12 @@ public class RuantAI : Ennemy
                 RB.velocity = Vector3.zero;
                 SwitchState(State.STUN);
                 RB.isKinematic = true;
+                CameraShake.Instance.Shake(5, 0.3f);
+
 
             }
         }
+
+
     }
 }
