@@ -65,6 +65,8 @@ public class LastraAI : Ennemy
 
     private StateLastra ContainerLastState;
     
+    [HideInInspector] public SpawnSysteme spawn;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -259,7 +261,7 @@ public class LastraAI : Ennemy
                     this.NumberOfProjectileFired++;
                     GameObject ContainerProjectile = Instantiate(this.Projectile, this.Canon.transform.position, Quaternion.identity);//projectilecontainer pour le parent
                    //ContainerProjectile.GetComponent<Rigidbody>().velocity = (this.player.transform.position - transform.position).normalized * 20;
-                    ContainerProjectile.GetComponent<DeadProjo>().Shoot(this.player.transform.position - transform.position);
+                    ContainerProjectile.GetComponent<ShootLastra>().Shoot(this.player.transform.position - transform.position);
                 }
                 if (this.NumberOfProjectileFired >= this.NumberOfProjectile)
                 {

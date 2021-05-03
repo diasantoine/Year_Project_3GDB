@@ -5322,7 +5322,7 @@ RectTransform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5396,7 +5396,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5458,7 +5458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1219517801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5526,6 +5526,7 @@ MonoBehaviour:
   GestionPowerIntensityChargingShoot: 3
   radius: 24
   IsRunning: 0
+  spawn: {fileID: 0}
 --- !u!54 &1219517803
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6273,8 +6274,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListWave:
-  - NumberBasic: 2
-    NumberRuant: 1
+  - NumberBasic: 6
+    NumberRuant: 0
     NumberScreamer: 0
     NumberLastra: 0
     ListSpawnBasic:
@@ -6291,6 +6292,10 @@ MonoBehaviour:
     CD_Spawn_Ruant: 2
     CD_Spawn_Screamer: 1
     CD_Spawn_Lastra: 0
+    MaxBasic: 4
+    MaxRuant: 0
+    MaxScreamer: 0
+    MaxLastra: 0
   - NumberBasic: 10
     NumberRuant: 1
     NumberScreamer: 1
@@ -6308,6 +6313,10 @@ MonoBehaviour:
     CD_Spawn_Ruant: 10
     CD_Spawn_Screamer: 5
     CD_Spawn_Lastra: 0
+    MaxBasic: 0
+    MaxRuant: 0
+    MaxScreamer: 0
+    MaxLastra: 0
   - NumberBasic: 15
     NumberRuant: 2
     NumberScreamer: 1
@@ -6325,6 +6334,10 @@ MonoBehaviour:
     CD_Spawn_Ruant: 15
     CD_Spawn_Screamer: 10
     CD_Spawn_Lastra: 0
+    MaxBasic: 0
+    MaxRuant: 0
+    MaxScreamer: 0
+    MaxLastra: 0
   - NumberBasic: 30
     NumberRuant: 2
     NumberScreamer: 1
@@ -6342,6 +6355,10 @@ MonoBehaviour:
     CD_Spawn_Ruant: 5
     CD_Spawn_Screamer: 5
     CD_Spawn_Lastra: 0
+    MaxBasic: 0
+    MaxRuant: 0
+    MaxScreamer: 0
+    MaxLastra: 0
   - NumberBasic: 20
     NumberRuant: 3
     NumberScreamer: 2
@@ -6359,6 +6376,14 @@ MonoBehaviour:
     CD_Spawn_Ruant: 15
     CD_Spawn_Screamer: 5
     CD_Spawn_Lastra: 0
+    MaxBasic: 0
+    MaxRuant: 0
+    MaxScreamer: 0
+    MaxLastra: 0
+  ListMaxBasic: []
+  ListMaxRuant: []
+  ListMaxScreamer: []
+  ListMaxLastra: []
   IndexWave: 0
   ListEnnemy: []
   mobRestant: 0
