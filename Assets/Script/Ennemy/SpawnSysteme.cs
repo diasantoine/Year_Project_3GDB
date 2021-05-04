@@ -111,6 +111,8 @@ public class SpawnSysteme : MonoBehaviour
         {
             this.NextWave();
         }
+
+        
     }
 
     public void NextWave()
@@ -146,7 +148,9 @@ public class SpawnSysteme : MonoBehaviour
         }
         else
         {
+            Debug.Log("Fin d'arene");
             gameObject.GetComponent<WaveSystem>().ArenaEnd = true;
+
         }
     }
     // Update is called once per frame
