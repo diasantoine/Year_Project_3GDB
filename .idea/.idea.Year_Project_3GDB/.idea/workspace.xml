@@ -30,22 +30,19 @@
     <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/JumpCharged/CannonInterface.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/JumpCharged/JumpCharged.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/JumpCharged/CannonController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/TestLiquidCuve 1/Wobble.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/RuantState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/SpawnSysteme.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/DeathScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerAI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/RuantAI.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/TestLiquidCuve 1/Liquid.shader" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/OLD/ennemyAI.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/TestLiquidCuve 1/ShakeCuve.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Weapon/LaserShoot.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Weapon/TirCharge.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Weapon/DeadProjo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Weapon/PoisonCollider.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BrokenVector/UltimateDungeonPack/Scenes/Demo/FPControls/Scripts/CharacterController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/SystemSkill/choiceSkill.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Ennemy/LastraAI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Skill/ColliderFeedbackJump.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/SystemSkill/skill.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Player/The_Player_Script.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/SystemSkill/changeSkill.cs" root0="FORCE_HIGHLIGHTING" />
@@ -70,14 +67,11 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Script/Skill/Counter.cs" />
       <option value="$PROJECT_DIR$/Assets/AmplifyShaderEditor/Plugins/Editor/Nodes/HelperFuncs/LinearToGammaNode.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Ennemy/LastraScript.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Weapon/LaserShoot.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Weapon/TirCharge.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerAI.cs" />
-      <option value="$PROJECT_DIR$/Assets/Script/Skill/JumpCharged/JumpCharged.cs" />
-      <option value="$PROJECT_DIR$/Assets/Script/Player/The_Player_Script.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Ennemy/ScreamerState.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Ennemy/LastraState.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Ennemy/RuantState.cs" />
@@ -85,7 +79,15 @@
       <option value="$PROJECT_DIR$/Assets/Script/Weapon/DeadProjo.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Ennemy/LastraAI.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Ennemy/ShootLastra.cs" />
+      <option value="$PROJECT_DIR$/Assets/StopJump.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/LD/plaqueScript.cs" />
       <option value="$PROJECT_DIR$/Assets/Script/Ennemy/SpawnSysteme.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Ennemy/BasicAI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Player/The_Player_Script.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/SystemSkill/skill.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Skill/Counter.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Skill/ColliderFeedbackJump.cs" />
+      <option value="$PROJECT_DIR$/Assets/Script/Skill/JumpCharged/JumpCharged.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1kdj9sKTemMYORqUbWbZfxglPOk" />
@@ -241,6 +243,7 @@
       <workItem from="1619791471709" duration="5771000" />
       <workItem from="1619861353927" duration="3083000" />
       <workItem from="1619864971440" duration="318000" />
+      <workItem from="1620220651327" duration="11773000" />
     </task>
     <servers />
   </component>

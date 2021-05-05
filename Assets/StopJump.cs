@@ -43,7 +43,7 @@ public class StopJump : StateMachineBehaviour
         {
             if (animator.GetBool("Backward"))
             {
-                animator.speed = -this.SpeedWalk;
+                animator.speed = this.SpeedWalk;
             }
             else
             {

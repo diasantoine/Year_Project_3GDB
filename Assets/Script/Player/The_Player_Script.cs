@@ -185,7 +185,7 @@ public class The_Player_Script : MonoBehaviour
 
     IEnumerator DecreaseArmorHeat()
     {
-        Debug.Log("the fuck?");
+        //Debug.Log("the fuck?");
         yield return new WaitForSeconds(ListOfYourPlayer[YourPlayerChoosed].FrequenceDecreaseArmorHeat);
         PercentageArmorHeat -= ListOfYourPlayer[YourPlayerChoosed].NumberOfDecreaseByFrequence_Armor;
         foreach (GameObject ArmorPart in  ListOfYourPlayer[YourPlayerChoosed].ListArmorPart)
@@ -424,7 +424,7 @@ public class The_Player_Script : MonoBehaviour
             float Distance = Vector3.Distance(new Vector3(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.transform.position.x, 0, 
                     ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.transform.position.z)  , new Vector3(this.PointOrigineJump.x, 0, this.PointOrigineJump.z));
             //Debug.Log(Distance + " " + this.DistanceJump);
-            Debug.Log(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity);
+            //Debug.Log(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity);
             if (Distance >= this.DistanceJump)
             {
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.drag = 1;
@@ -504,7 +504,7 @@ public class The_Player_Script : MonoBehaviour
                                 if (pS.activ)
                                 {
                                     floatTypeOfFootStep = 1;
-                                    Debug.Log("oui");
+                                    //Debug.Log("oui");
                                     ArmorHeatPlaque(1);
                                 }
                                 else
@@ -621,9 +621,9 @@ public class The_Player_Script : MonoBehaviour
         {
            if (hit[i].gameObject.CompareTag("Ennemy"))
            {
-                if (hit[i].GetComponent<ennemyAI>() != null)
+                if (hit[i].GetComponent<BasicAI>() != null)
                 {
-                    hit[i].GetComponent<ennemyAI>().ExplosionImpact(hitPoint, radiusExploBase +  transform.localScale.x, ForceExplosion);
+                    hit[i].GetComponent<BasicAI>().ExplosionImpact(hitPoint, radiusExploBase +  transform.localScale.x, ForceExplosion);
                     hit[i].GetComponent<BasicState>().Damage(DMG);
                 }
                 else if(hit[i].GetComponent<ScreamerState>() != null)

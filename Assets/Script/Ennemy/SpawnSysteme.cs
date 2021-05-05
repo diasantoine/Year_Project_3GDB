@@ -130,7 +130,7 @@ public class SpawnSysteme : MonoBehaviour
                 this.NumberOfRuantThisWawe = this.ListWave[this.IndexWave].NumberRuant + this.NumberOfRuantNotSpawned;
                 this.NumberOfScreamerThisWawe = this.ListWave[this.IndexWave].NumberScreamer + this.NumberOfScreamerNotSpawned;
                 this.NumberOfLastraThisWawe = this.ListWave[this.IndexWave].NumberLastra + this.NumberOfLastraNotSpawned;
-                Debug.Log(this.mobRestant + " " + this.NumberOfBasicThisWawe +" " + this.NumberOfBasicNotSpawned);
+                //Debug.Log(this.mobRestant + " " + this.NumberOfBasicThisWawe +" " + this.NumberOfBasicNotSpawned);
             }
             else
             {

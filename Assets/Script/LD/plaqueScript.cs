@@ -44,7 +44,7 @@ public class plaqueScript : MonoBehaviour
         if(type == Type.COLD || type == Type.HOT)
         {
             baseColor = EmiRD.material.GetColor("_EmissionColor");
-            Debug.Log(baseColor);
+            //Debug.Log(baseColor);
         }
     }
 

@@ -86,7 +86,7 @@ public class BasicAI : Ennemy
                 {
                     //DebugStart();
                     SwitchState(State.CHASE);
-                    Debug.Log("Start");
+                   // Debug.Log("Start");
 
                 }
                 break;
@@ -240,7 +240,7 @@ public class BasicAI : Ennemy
                 {
                     agent.destination = player.position;
                     RB.velocity = agent.velocity;
-                    Debug.Log("Marche");
+                    //Debug.Log("Marche");
 
                     if (AnimatorConteneur != null)
                     {
@@ -260,38 +260,40 @@ public class BasicAI : Ennemy
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 9)
-        {
-            if (other.transform.GetComponent<The_Player_Script>().OnDash && !JustHit)
-            {
-                //Debug.Log(transform.position - collision.transform.position);
-
-                JustHit = true;
-                agent.enabled = false;
-                RB.freezeRotation = false;
-                Vector3 dir = transform.position;
-                dir = (dir - other.transform.position).normalized;
-                //dir = (dir + collision.GetComponent<Rigidbody>().velocity) / 2;
-                dir.y = 0;
-                float RegulationForce = 3;
-                Transform ConteneurDashScript = null;
-                foreach (Transform Child in skill.transform)
-                {
-                    if (Child.name == "DashCharge")
-                    {
-                        ConteneurDashScript = Child;
-                    }
-                }
-                //ConteneurRigibody.constraints = RigidbodyConstraints.None;
-                RB.AddForceAtPosition(dir * ConteneurDashScript.GetComponent<ChargedDash>().DashSpeed * other.GetComponent<Rigidbody>().velocity.magnitude
-                                                             * RegulationForce,
-                    RB.ClosestPointOnBounds(other.transform.position));
-                Pansement = true;
-
-                SwitchState(State.DUMB);
-            }
-        }
-        else if (other.gameObject.layer == 13 && other.GetComponent<RuantAI>() != null && other.GetComponent<RuantAI>().state == RuantAI.State.RUSH)
+        // if (other.gameObject.layer == 9)
+        // {
+        //     Debug.Log(other.name);
+        //     if (other.transform.GetComponent<The_Player_Script>().OnDash && !JustHit)
+        //     {
+        //         //Debug.Log(transform.position - collision.transform.position);
+        //
+        //         JustHit = true;
+        //         agent.enabled = false;
+        //         RB.freezeRotation = false;
+        //         Vector3 dir = transform.position;
+        //         dir = (dir - other.transform.position).normalized;
+        //         //dir = (dir + collision.GetComponent<Rigidbody>().velocity) / 2;
+        //         dir.y = 0;
+        //         float RegulationForce = 3;
+        //         Transform ConteneurDashScript = null;
+        //         foreach (Transform Child in skill.transform)
+        //         {
+        //             if (Child.name == "DashCharge")
+        //             {
+        //                 ConteneurDashScript = Child;
+        //             }
+        //         }
+        //         //ConteneurRigibody.constraints = RigidbodyConstraints.None;
+        //         RB.AddForceAtPosition(dir * ConteneurDashScript.GetComponent<ChargedDash>().DashSpeed * other.GetComponent<Rigidbody>().velocity.magnitude
+        //                                                      * RegulationForce,
+        //             RB.ClosestPointOnBounds(other.transform.position));
+        //         Pansement = true;
+        //
+        //         SwitchState(State.DUMB);
+        //     }
+        // }
+        // else 
+        if (other.gameObject.layer == 13 && other.GetComponent<RuantAI>() != null && other.GetComponent<RuantAI>().state == RuantAI.State.RUSH)
         {
             JustHit = true;
             agent.enabled = false;

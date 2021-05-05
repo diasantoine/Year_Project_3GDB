@@ -24,11 +24,6 @@ public class Counter : skill
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            this.isCharging = true;
-            Debug.Log(" ?");
-        }
         if (this.StanceOrWall)
         {
             if (this.isCharging)
@@ -62,7 +57,6 @@ public class Counter : skill
                 this.Wall.SetActive(false);
             }
         }
-       
     }
 
     IEnumerator TimeOfTheCounterStanceStance()
@@ -83,17 +77,13 @@ public class Counter : skill
 
     public override void UsingSkill()
     {
-        if (this.ressource.deadList.Count >= 10)
+        if ( detectDead.ressourceInt >= 10 && !this.PlayerScriptContainer.OnWall && !this.PlayerScriptContainer.OnCounter)
         {
             this.isCharging = true;
-            //this.ressource.deadList.re
-        }
-        else
-        {
-            
+            detectDead.ressourceInt -= 10;
         }
     }
-    
+
     //basic if(Player.this.GetComponent<The_Player_Script>().OnCounter)
     //{
     // Basic.Rigibody.velocity = - l'attaque destiné au joueur ou faut faire le player.transform.position - transform.position dans l'autre sens
