@@ -103,7 +103,7 @@
 	<object class="MixerBusPanner" id="{ed72a611-64b9-41ce-9b7b-2fee0a71ab7e}" />
 	<object class="MultiSound" id="{1f145ef9-1fc2-490a-9c16-00bb5694ec9d}">
 		<property name="length">
-			<value>0.62281894038403529</value>
+			<value>1.01</value>
 		</property>
 		<relationship name="fadeOutCurve">
 			<destination>{231be4ac-4136-4cb6-832d-855285e90624}</destination>
@@ -186,7 +186,7 @@
 	</object>
 	<object class="AutomationPoint" id="{ec3e6428-6f30-4b5b-a2f0-a6fb4b7ff2c8}">
 		<property name="position">
-			<value>0</value>
+			<value>0.38718105961596472</value>
 		</property>
 		<property name="value">
 			<value>1</value>
@@ -197,7 +197,7 @@
 	</object>
 	<object class="AutomationPoint" id="{571802f6-6ea4-4071-9eb9-8dbe58b32fec}">
 		<property name="position">
-			<value>0.62281894038403529</value>
+			<value>1.01</value>
 		</property>
 		<property name="value">
 			<value>0</value>
@@ -205,6 +205,9 @@
 	</object>
 	<object class="MixerBusFader" id="{37a8465a-1623-4d48-8134-84b42caa5364}" />
 	<object class="ThreeEQEffect" id="{5e93a98d-9ce4-47d4-aad0-23cd475f3d42}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<property name="midGain">
 			<value>-12</value>
 		</property>
