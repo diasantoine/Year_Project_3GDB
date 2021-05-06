@@ -45,7 +45,7 @@ public class shootDead : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Pause.isPause && !this.GetComponent<The_Player_Script>().OnJump)
+        if (!Pause.isPause && !this.GetComponent<The_Player_Script>().OnJump && !this.GetComponent<The_Player_Script>().OnCounter)
         {
             Ray rayon = cam.ScreenPointToRay(Input.mousePosition);
             TirNormal(rayon);

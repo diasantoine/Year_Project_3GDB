@@ -44,16 +44,16 @@ public class Counter : skill
             if (this.isCharging)
             {
                 Debug.Log("a");
-                if (!this.PlayerScriptContainer.OnWall)
+                if (!this.PlayerScriptContainer.OnCounter)
                 {
-                    PlayerScriptContainer.OnWall = true;
+                    PlayerScriptContainer.OnCounter = true;
                     this.Wall.SetActive(true);
                     StartCoroutine(this.TimeOfTheCounterStanceWall());
                 }
             }
-            else if (this.PlayerScriptContainer.OnWall)
+            else if (this.PlayerScriptContainer.OnCounter)
             {
-                PlayerScriptContainer.OnWall = false;
+                PlayerScriptContainer.OnCounter = false;
                 this.Wall.SetActive(false);
             }
         }
@@ -70,17 +70,21 @@ public class Counter : skill
     {
         yield return new WaitForSeconds(this.DurationOfTheCounterWall);
         this.isCharging = false;
-        PlayerScriptContainer.OnWall = false;
+        PlayerScriptContainer.OnCounter = false;
         this.Wall.SetActive(false);
     }
 
 
     public override void UsingSkill()
     {
-        if ( detectDead.ressourceInt >= 10 && !this.PlayerScriptContainer.OnWall && !this.PlayerScriptContainer.OnCounter)
+        if ( detectDead.ressourceInt >= 10 && !this.PlayerScriptContainer.OnCounter && !this.isCharging)
         {
             this.isCharging = true;
             detectDead.ressourceInt -= 10;
         }
+    }
+
+    public override void ChargingSkill(int WhichWeapon)
+    {
     }
 }

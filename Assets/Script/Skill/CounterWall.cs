@@ -24,14 +24,12 @@ public class CounterWall : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision other)
+    public void ProjectileHit(GameObject Projectile, GameObject Lastra)
     {
-        if (other.transform.CompareTag("Projectile") && other.transform.GetComponent<ShootLastra>() != null)
-        {
-            Debug.Log("?");
-            GameObject Stock = Instantiate(this.Projectile, other.transform.position, Quaternion.identity);
-            Stock.GetComponent<DeadProjo>().RB.velocity = -transform.GetComponent<ShootLastra>().RB.velocity;
-            Destroy(other.gameObject);
-        }
+        GameObject Stock = Instantiate(this.Projectile, Projectile.transform.position, Quaternion.identity);
+        //Stock.GetComponent<DeadProjo>().RB.velocity = -Projectile.GetComponent<ShootLastra>().RB.velocity;
+        Stock.GetComponent<DeadProjo>().vitesse *= 2;
+        Stock.GetComponent<DeadProjo>().Shoot( Lastra.transform.position - Stock.transform.position);
+        Destroy(Projectile.gameObject);
     }
 }

@@ -100,7 +100,6 @@ public class The_Player_Script : MonoBehaviour
 
     [Header("Counter")] 
     public bool OnCounter;
-    public bool OnWall;
     
     [Header("Other")] 
     [SerializeField] private Camera cam;
@@ -271,7 +270,7 @@ public class The_Player_Script : MonoBehaviour
 
     private void Player_Deplacement()
     {
-        if ((Input.GetButton("Vertical") || Input.GetButton("Horizontal")) && Grounded && !OnDash && !JustHit && !this.OnJump && !this.OnCounter && !this.OnWall)
+        if ((Input.GetButton("Vertical") || Input.GetButton("Horizontal")) && Grounded && !OnDash && !JustHit && !this.OnJump && !this.OnCounter)
         {
             Vector3 ConteneurCameraPositionForward = this.cam.transform.forward * Input.GetAxis("Vertical");
             Vector3 ConteneurCameraPositionRight = this.cam.transform.right * Input.GetAxis("Horizontal");

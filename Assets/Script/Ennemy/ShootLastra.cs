@@ -24,6 +24,8 @@ public class ShootLastra : MonoBehaviour
 
     private Vector3 moveDirection;
 
+    [HideInInspector] public GameObject LastraWhoFired;
+
 
     void Start()
     {
@@ -56,6 +58,14 @@ public class ShootLastra : MonoBehaviour
             CameraShake.Instance.Shake(1.5f, 0.2f);
 
         }
-        Destroy(gameObject);
+
+        if (collision.collider.transform.CompareTag("CounterWall"))
+        {
+            collision.collider.transform.GetComponent<CounterWall>().ProjectileHit(gameObject, this.LastraWhoFired);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
