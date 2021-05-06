@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{87130b73-bb37-4394-8acd-1bb49655b2ff}">
 		<property name="color">
-			<value>Yellow</value>
+			<value>Green</value>
 		</property>
 		<property name="name">
 			<value>Basic_FootStep</value>
@@ -57,7 +57,7 @@
 			<destination>{8ce88b3e-b947-42d1-a478-1343eea096a1}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{ce18a284-edce-4217-9809-8b6cffb657d3}</destination>
+			<destination>{7e9b4fc8-5abe-42d4-8b69-9f48cddb43bf}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{6e73411d-684d-4a12-ae6e-d271a2028119}" />
@@ -117,7 +117,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{91ee38b0-66da-49c0-b4d1-667c94f92ac0}">
 		<property name="volume">
-			<value>-18.5</value>
+			<value>-14.5</value>
 		</property>
 		<property name="name">
 			<value>Audio 1</value>

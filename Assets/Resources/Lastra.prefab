@@ -1267,8 +1267,9 @@ GameObject:
   - component: {fileID: 3018691057585754908}
   - component: {fileID: 3018691057585754909}
   - component: {fileID: 3018691057585754910}
+  - component: {fileID: 6648051587893195914}
   m_Layer: 13
-  m_Name: 'Lastra '
+  m_Name: Lastra
   m_TagString: Ennemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1390,6 +1391,7 @@ MonoBehaviour:
   player: {fileID: 0}
   DmgArmorHeat: 15
   health: {fileID: 3018691057585754910}
+  Lastra_Tir: event:/Enemy/Lastra/Lastra_Tire
   DistanceMaxNearPlayer: 24
   DistanceWhereTheLastraStartToRunBackward: 20
   TimeBeforeHeCatchHisBreath: 4
@@ -1434,9 +1436,33 @@ MonoBehaviour:
   player: {fileID: 0}
   spawn: {fileID: 0}
   isWeak: 1
+  Lastra_Touche: event:/Enemy/Lastra/Lastra_Touche
   freqTick: 0.2
   isPoisoned: 0
   dpsTick: 0
+--- !u!114 &6648051587893195914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3018691057585754911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/Enemy/Lastra/Lastra_Deplacement
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 100
 --- !u!1 &3018691057593776231
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class BasicState : State
 {
-  
+
+    [FMODUnity.EventRef]
+    public string Basic_Touche = "";
+
     [Header("Poison")]
     [SerializeField] private float freqTick;
     [HideInInspector] public bool isPoisoned;
@@ -69,6 +72,10 @@ public class BasicState : State
     public override void Damage(float dmg)
     {
         base.Damage(dmg);
+        if (!isPoisoned)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(Basic_Touche, "", 0, transform.position);
+        }
     }
 
     private void PoisonDamage()

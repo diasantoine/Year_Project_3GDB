@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="MixerGroup" id="{df26e21a-927a-4a64-b533-dba6d27d59c9}">
+		<property name="volume">
+			<value>-8</value>
+		</property>
+		<property name="name">
+			<value>Lastra</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{7623efb3-945c-41b5-a388-6b88244d8f9c}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{36fcb143-8251-4080-8cd6-04dd71d6f5b2}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{ce18a284-edce-4217-9809-8b6cffb657d3}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{7623efb3-945c-41b5-a388-6b88244d8f9c}">
+		<relationship name="effects">
+			<destination>{6fa33a87-3c4f-4e0d-9cd9-190d36808182}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{36fcb143-8251-4080-8cd6-04dd71d6f5b2}" />
+	<object class="MixerBusFader" id="{6fa33a87-3c4f-4e0d-9cd9-190d36808182}" />
+</objects>

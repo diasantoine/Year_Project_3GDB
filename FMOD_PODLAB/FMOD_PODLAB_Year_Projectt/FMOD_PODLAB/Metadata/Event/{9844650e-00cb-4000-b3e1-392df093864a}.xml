@@ -65,9 +65,6 @@
 		<property name="isPersistent">
 			<value>true</value>
 		</property>
-		<property name="maxVoices">
-			<value>5</value>
-		</property>
 		<property name="dopplerEnabled">
 			<value>true</value>
 		</property>
@@ -122,6 +119,12 @@
 	</object>
 	<object class="MixerBusPanner" id="{1e7ee508-6f20-484f-9cea-8dc4b71241c8}" />
 	<object class="MultiSound" id="{2bcadb54-cb36-4f38-983d-68bc4706f9a8}">
+		<property name="triggerProbabilityEnabled">
+			<value>true</value>
+		</property>
+		<property name="triggerProbability">
+			<value>50</value>
+		</property>
 		<property name="length">
 			<value>1.615124716553288</value>
 		</property>
@@ -146,11 +149,8 @@
 		</relationship>
 	</object>
 	<object class="MultiSound" id="{3ce65663-9ed6-408f-b923-3795e6b4238e}">
-		<property name="start">
-			<value>0.15000000000000002</value>
-		</property>
 		<property name="length">
-			<value>1.1772335600907029</value>
+			<value>1.327233560090703</value>
 		</property>
 		<relationship name="fadeOutCurve">
 			<destination>{da04c89c-4f8a-470a-9d3f-41d6969f5814}</destination>
@@ -334,7 +334,7 @@
 	<object class="MixerBusFader" id="{b04e6231-d99a-430d-a1db-c87ca6b407b8}" />
 	<object class="AutomationPoint" id="{1e2948ef-3811-44dc-89eb-b29d5a3bb9ae}">
 		<property name="position">
-			<value>0.31000000000000022</value>
+			<value>0.31000000000000061</value>
 		</property>
 		<property name="value">
 			<value>1</value>
@@ -345,7 +345,7 @@
 	</object>
 	<object class="AutomationPoint" id="{8efc5c9d-e376-47c1-9b52-75da48430006}">
 		<property name="position">
-			<value>1.327233560090703</value>
+			<value>1.3272335600907033</value>
 		</property>
 		<property name="value">
 			<value>0</value>
