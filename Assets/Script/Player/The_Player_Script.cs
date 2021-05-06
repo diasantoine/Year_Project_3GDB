@@ -96,6 +96,7 @@ public class The_Player_Script : MonoBehaviour
     public float radiusExploBase;
     public float ForceExplosion;
     public float DMG;
+    private bool HitAWall;
 
     [Header("Counter")] 
     public bool OnCounter;
@@ -276,24 +277,46 @@ public class The_Player_Script : MonoBehaviour
             Vector3 ConteneurCameraPositionRight = this.cam.transform.right * Input.GetAxis("Horizontal");
             Vector3 Vector3_Deplacement_Player =
                 Vector3.ClampMagnitude(ConteneurCameraPositionForward + ConteneurCameraPositionRight, 1);
+            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("IsMoving", true);
+            Debug.Log(Mathf.RoundToInt(Vector3.Dot(transform.forward, 
+                ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized)));
             if (Mathf.RoundToInt(Vector3.Dot(transform.forward, 
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized)) == 1)
             {
                 ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", true);
                 ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
+                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", false);
+                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Right", false);
             }
             else if (Mathf.RoundToInt(Vector3.Dot(transform.forward, 
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized)) == -1)
             {
-                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", true);
+                Debug.Log(Vector3.Angle(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized, transform.right));
                 ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
+                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", true);
+                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", false);
+                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Right", false);
             }
             else
             {
-                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", true);
-                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
+                if (transform.InverseTransformDirection(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity).x > 0)
+                {
+                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
+                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
+                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", true);
+                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Right", false);
+                }
+                else
+                {
+                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
+                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
+                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", false);
+                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Right", true);
+                }
+                //Debug.Log (ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", true);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
             }
-
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity =
                 Vector3_Deplacement_Player * ListOfYourPlayer[YourPlayerChoosed].vitesse * slow;
             //ListOfYourPlayer[YourPlayerChoosed].animAvatar.speed = ListOfYourPlayer[YourPlayerChoosed].vitesse * slow * 0.25f;
@@ -301,9 +324,12 @@ public class The_Player_Script : MonoBehaviour
         }
         else
         {
+            Debug.Log("Pardon?");
+            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("IsMoving", false);
             ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
             ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
-
+            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", false);
+            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Right", false);
             if (!JustHit && !OnDash && Grounded && !this.OnJump)
             {
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = 
@@ -663,6 +689,11 @@ public class The_Player_Script : MonoBehaviour
                                        * RegulationForce + (other.GetComponent<Rigidbody>().velocity.magnitude * RegulationForce * PercentageArmorHeat/100)),
                     ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.ClosestPointOnBounds(other.transform.position));
             PercentageArmorHeat += other.GetComponent<RuantAI>().DmgArmorHeat;
+        }
+
+        if (this.OnJump && other.CompareTag("Mur"))
+        {
+            this.HitAWall = true;
         }
 
         /*if (other.gameObject.CompareTag("Plaque"))

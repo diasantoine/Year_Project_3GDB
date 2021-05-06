@@ -5,9 +5,6 @@ using UnityEngine;
 public class ColliderFeedbackJump : MonoBehaviour
 {
     [SerializeField] private GameObject Circle;
-
-    [SerializeField] private GameObject Canon;
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -16,7 +13,6 @@ public class ColliderFeedbackJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(transform.position.x, this.Canon.transform.localPosition.y, transform.position.z);
-        
+       transform.localScale = new Vector3(this.Circle.transform.localScale.x * 12, this.Circle.transform.localScale.y * 7.7f, 0);
     }
 }

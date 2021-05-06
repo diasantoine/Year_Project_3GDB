@@ -51,7 +51,7 @@ public class JumpCharged : skill
                 }
             }
 
-            this.CercleFeedback.transform.localScale = new Vector3(this.PorteMaximale / (this.ListPalier.Count - this.IndexWinner),this.PorteMaximale / (this.ListPalier.Count - this.IndexWinner),this.PorteMaximale / (this.ListPalier.Count - this.IndexWinner));
+            this.CercleFeedback.transform.localScale = new Vector3(this.PorteMaximale / 5.880002f / (this.ListPalier.Count - this.IndexWinner),this.PorteMaximale/ 5.880002f / (this.ListPalier.Count - this.IndexWinner),this.PorteMaximale/ 5.880002f / (this.ListPalier.Count - this.IndexWinner));
             // if (Charge<ChargeMax && detectDead.ressourceInt > 0)
             // {
             //     base.ChargingSkill(WhichWeapon);
@@ -85,10 +85,15 @@ public class JumpCharged : skill
     {
         if (isCharging)
         {
+            if (this.CercleFeedback.activeSelf)
+            {
+                this.CercleFeedback.SetActive(false);
+            }
             if (Physics.Raycast(rayon, out RaycastHit Hit,Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
             {
-                if (Hit.transform.CompareTag("CircleFeedback"))
+                if ( new Vector3(Hit.point.x - this.Parent.transform.position.x, 0, Hit.point.z - this.Parent.transform.position.z).magnitude <= this.PorteMaximale)
                 {
+                    //Debug.Log(Hit.point + " "+ this.Parent.transform.position);
                     // lineRenderer.SetPosition(0, this.Parent.transform.position);
                     // Vector3 HitPosition = Hit.point;
                     // HitPosition -= this.Parent.transform.position;
@@ -109,6 +114,8 @@ public class JumpCharged : skill
                     HitPosition = HitPosition.normalized;
                     HitPosition = this.Parent.transform.position + HitPosition * this.PorteMaximale;
                     LastPosition = HitPosition;
+                    this.LastPosition.y = 0;
+                    Debug.Log(this.LastPosition.magnitude);
                 }
             }
             foreach (int PalierRessources in this.ListPalier)
@@ -146,7 +153,8 @@ public class JumpCharged : skill
             //this.JumpSpeed = Distance / 3.800f*2;
             //Debug.Log(this.JumpSpeed);
             //ConteneurRigibody.velocity = playerToMouse * this.JumpSpeed;
-            ConteneurRigibody.velocity = this.LastPosition / 3.800f*2;
+            Debug.Log(this.LastPosition.magnitude);
+            ConteneurRigibody.velocity = this.LastPosition.normalized * this.LastPosition.magnitude / 3.800f*2;
             Parent.GetComponent<The_Player_Script>().SpeedJump =  ConteneurRigibody.velocity;
             ConteneurRigibody.mass = 250;
             Charge = 0;
