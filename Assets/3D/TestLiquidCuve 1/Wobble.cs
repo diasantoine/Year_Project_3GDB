@@ -28,7 +28,7 @@ public class Wobble : MonoBehaviour
     }
     private void Update()
     {
-        if (name != "CylinderShake")
+        if (name != "CylinderShake" && false)
         {
             if (Input.mouseScrollDelta.y < 0)
             {

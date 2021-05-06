@@ -103,13 +103,18 @@ public class The_Player_Script : MonoBehaviour
     
     [Header("Other")] 
     [SerializeField] private Camera cam;
+    [SerializeField] private float disToGround;
+    [SerializeField] private float TimerBeforeGrounded;
 
     public float floatTypeOfFootStep;
+
+    private float ContainerTimeBeforeGrounded;
     
     void Start()
     {
         //Cursor.lockState = CursorLockMode.Locked;
         slow = 1;
+        this.ContainerTimeBeforeGrounded = this.TimerBeforeGrounded;
     }
 
     void Update()
@@ -213,6 +218,8 @@ public class The_Player_Script : MonoBehaviour
 
     private void CharacterMouvement()
     {
+        Ground();// Teste s'il est ground
+
         Player_On_Jump();// Take care of the y of the player and set the player to normal state when jump is over
         
         DashFinishCheck(); // Check if the dash is finished, if it is set var at the normal state
@@ -222,6 +229,7 @@ public class The_Player_Script : MonoBehaviour
         PlayerFall(); // Used when the player fall out of the arena
 
         Player_Deplacement(); // Player deplacement 
+
     }
 
     private void Player_Reaction_After_Hit()
@@ -277,40 +285,44 @@ public class The_Player_Script : MonoBehaviour
             Vector3 Vector3_Deplacement_Player =
                 Vector3.ClampMagnitude(ConteneurCameraPositionForward + ConteneurCameraPositionRight, 1);
             ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("IsMoving", true);
-            Debug.Log(Mathf.RoundToInt(Vector3.Dot(transform.forward, 
-                ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized)));
+            // Debug.Log(Mathf.RoundToInt(Vector3.Dot(transform.forward, 
+            //     ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized)));
             if (Mathf.RoundToInt(Vector3.Dot(transform.forward, 
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized)) == 1)
             {
-                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", true);
-                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
-                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", false);
-                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Right", false);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", true);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", false);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Right", false);
+                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetFloat("Mouvement", 1);
             }
             else if (Mathf.RoundToInt(Vector3.Dot(transform.forward, 
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized)) == -1)
             {
                 //Debug.Log(Vector3.Angle(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized, transform.right));
-                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
-                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", true);
-                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", false);
-                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Right", false);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", true);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", false);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Right", false);
+                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetFloat("Mouvement", -1);
             }
             else
             {
                 if (transform.InverseTransformDirection(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity).x > 0)
                 {
-                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
-                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
-                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", true);
-                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Right", false);
+                    // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
+                    // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
+                    // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", true);
+                    // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Right", false);
+                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetFloat("Mouvement", 0.5f);
                 }
                 else
                 {
-                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
-                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
-                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", false);
-                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Right", true);
+                    // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
+                    // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
+                    // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", false);
+                    // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Right", true);
+                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetFloat("Mouvement", -0.5f);
                 }
                 //Debug.Log (ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized);
                 // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", true);
@@ -319,16 +331,13 @@ public class The_Player_Script : MonoBehaviour
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity =
                 Vector3_Deplacement_Player * ListOfYourPlayer[YourPlayerChoosed].vitesse * slow;
             //ListOfYourPlayer[YourPlayerChoosed].animAvatar.speed = ListOfYourPlayer[YourPlayerChoosed].vitesse * slow * 0.25f;
-            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetFloat("SpeedWalk",ListOfYourPlayer[YourPlayerChoosed].vitesse * slow * 0.25f);
+//            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetFloat("SpeedWalk",ListOfYourPlayer[YourPlayerChoosed].vitesse * slow * 0.25f);
         }
         else
         {
-            //Debug.Log("Pardon?");
+            Debug.Log(this.Grounded);
             ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("IsMoving", false);
-            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
-            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
-            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", false);
-            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Right", false);
+            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetFloat("Mouvement", 0);
             if (!JustHit && !OnDash && Grounded && !this.OnJump)
             {
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = 
@@ -662,6 +671,31 @@ public class The_Player_Script : MonoBehaviour
            }
         }
     }
+ 
+ public void Ground()
+ {
+     //Debug.DrawRay(transform.position, -Vector3.up,Color.yellow, 5000f);
+     if (Physics.Raycast(transform.position, -Vector3.up, out RaycastHit hit, disToGround, LayerMask.GetMask("Sol", "Wall")))
+     {
+         if (hit.collider.transform.CompareTag("sol") || hit.collider.transform.CompareTag("Ennemy")  || hit.collider.transform.CompareTag("Mur") && !Grounded)
+         {
+            if (this.TimerBeforeGrounded <= 0)
+            {
+                this.Grounded = true;
+                this.TimerBeforeGrounded = this.ContainerTimeBeforeGrounded;
+            }
+            else
+            {
+                this.TimerBeforeGrounded -= Time.deltaTime;
+            }
+         }
+     }
+     else
+     {
+         Grounded = false;
+         this.TimerBeforeGrounded = this.ContainerTimeBeforeGrounded;
+     }
+ }
 
  private void OnTriggerEnter(Collider other)
     {
