@@ -567,10 +567,30 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: -256750234912637955}
+  - {fileID: -4614445019627213206}
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &-6740096973731306246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Joueur_FootStep/TypeOfFootstep
+  m_EditorClassIdentifier: 
+  Name: TypeOfFootstep
+  Min: 0
+  Max: 4
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-6651693670162517551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,7 +625,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD_PODLAB/FMOD_PODLAB_Year_Projectt/FMOD_PODLAB/Build/Desktop/Master.bank
   Name: Master
-  lastModified: 637559466420565003
+  lastModified: 637559477446223175
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -957,7 +977,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: FMOD_PODLAB/FMOD_PODLAB_Year_Projectt/FMOD_PODLAB/Build/Desktop/Master.strings.bank
   Name: Master.strings
-  lastModified: 637559466420997509
+  lastModified: 637559477446233149
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -984,6 +1004,26 @@ MonoBehaviour:
     data2: 0
   Exists: 1
 --- !u!114 &-4616344110599960855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/CuveSound/SoundChoice
+  m_EditorClassIdentifier: 
+  Name: SoundChoice
+  Min: 0
+  Max: 10
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-4614445019627213206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1128,7 +1168,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: -2154599061078978681}
+  - {fileID: -6740096973731306246}
   MinDistance: 0
   MaxDistance: 0
   Length: 380
@@ -2075,7 +2115,7 @@ MonoBehaviour:
   - {fileID: -6639937667616358054}
   StringsBanks:
   - {fileID: -4753088208096374989}
-  stringsBankWriteTime: 637559466420997509
+  stringsBankWriteTime: 637559477446233149
   cacheVersion: 5
 --- !u!114 &12973501569912725
 MonoBehaviour:
