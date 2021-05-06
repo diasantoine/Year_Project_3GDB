@@ -6,29 +6,54 @@ using UnityEngine;
 public class GroundDetect : MonoBehaviour
 {
     [SerializeField] private GameObject Parent;
+    [SerializeField] private float disToGround;
 
-    private void OnTriggerEnter(Collider other)
+    private RaycastHit hit;
+
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if ((other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy"))  || other.transform.CompareTag("Mur") 
+    //         && !Parent.GetComponent<The_Player_Script>().Grounded)
+    //     {
+    //         Parent.GetComponent<The_Player_Script>().Grounded = true;
+    //     }
+    // }
+    //
+    // private void OnTriggerStay(Collider other)
+    // {
+    //     if ((other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy"))  || other.transform.CompareTag("Mur") 
+    //         && !Parent.GetComponent<The_Player_Script>().Grounded)
+    //     {
+    //         Parent.GetComponent<The_Player_Script>().Grounded = true;
+    //     }
+    // }
+    //
+    // private void OnTriggerExit(Collider other)
+    // {
+    //     if ((other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy"))  || other.transform.CompareTag("Mur") 
+    //         && !Parent.GetComponent<The_Player_Script>().Grounded)
+    //     {
+    //         Parent.GetComponent<The_Player_Script>().Grounded = false;
+    //     }
+    // }
+
+    private void Update()
     {
-        if ((other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy"))  || other.transform.CompareTag("Mur") 
-            && !Parent.GetComponent<The_Player_Script>().Grounded)
-        {
-            Parent.GetComponent<The_Player_Script>().Grounded = true;
-        }
-    }
-    
-    private void OnTriggerStay(Collider other)
-    {
-        if ((other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy"))  || other.transform.CompareTag("Mur") 
-            && !Parent.GetComponent<The_Player_Script>().Grounded)
-        {
-            Parent.GetComponent<The_Player_Script>().Grounded = true;
-        }
+        Ground(this.hit);
     }
 
-    private void OnTriggerExit(Collider other)
+
+    public void Ground(RaycastHit hit)
     {
-        if ((other.transform.CompareTag("sol") || other.transform.CompareTag("Ennemy"))  || other.transform.CompareTag("Mur") 
-            && !Parent.GetComponent<The_Player_Script>().Grounded)
+        Debug.DrawRay(transform.position, -Vector3.up,Color.yellow, 5000f);
+        if (Physics.Raycast(this.Parent.transform.position, -Vector3.up, out hit, disToGround, LayerMask.GetMask("Sol", "Wall")))
+        {
+            if (hit.collider.transform.CompareTag("sol") || hit.collider.transform.CompareTag("Ennemy")  || hit.collider.transform.CompareTag("Mur") && !Parent.GetComponent<The_Player_Script>().Grounded)
+            {
+                Parent.GetComponent<The_Player_Script>().Grounded = true;
+            }
+        }
+        else
         {
             Parent.GetComponent<The_Player_Script>().Grounded = false;
         }

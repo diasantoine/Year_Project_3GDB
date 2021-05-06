@@ -39,6 +39,11 @@ public class SpawnSysteme : MonoBehaviour
         public float CD_Spawn_Screamer;
         public float CD_Spawn_Lastra;
 
+        [Header("EnnemyMaxNumber")] 
+        public int MaxBasic;
+        public int MaxRuant;
+        public int MaxScreamer;
+        public int MaxLastra;
     }
     
     [SerializeField] private List<WaveStruct> ListWave = new List<WaveStruct>();
@@ -54,6 +59,23 @@ public class SpawnSysteme : MonoBehaviour
     private float CD_Spawn_Stock_Ruant;
     private float CD_Spawn_Stock_Screamer;
     private float CD_Spawn_Stock_Lastra;
+    
+    [HideInInspector] public List<GameObject> ListMaxBasic;
+    [HideInInspector] public List<GameObject> ListMaxRuant;
+    [HideInInspector] public List<GameObject> ListMaxScreamer;
+    [HideInInspector] public List<GameObject> ListMaxLastra;
+
+    private int NumberOfBasicThisWawe = 0;
+    private int NumberOfRuantThisWawe = 0;
+    private int NumberOfScreamerThisWawe = 0;
+    private int NumberOfLastraThisWawe = 0;
+
+    private int NumberOfBasicNotSpawned;
+    private int NumberOfRuantNotSpawned;
+    private int NumberOfScreamerNotSpawned;
+    private int NumberOfLastraNotSpawned;
+
+
 
     private int RandomPosition = 0;
 
@@ -76,7 +98,6 @@ public class SpawnSysteme : MonoBehaviour
         DictionnaryEnnemy[Ennemy.Ruant] = Resources.Load<GameObject>("Ruant");
         DictionnaryEnnemy[Ennemy.Screamer] = Resources.Load<GameObject>("Screamer");
         DictionnaryEnnemy[Ennemy.Lastra] = Resources.Load<GameObject>("Lastra");
-
     }
 
     void Start()
@@ -84,12 +105,41 @@ public class SpawnSysteme : MonoBehaviour
         NextWave();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            this.NextWave();
+        }
+
+        
+    }
+
     public void NextWave()
     {
         if(ListWave.Count > IndexWave)
         {
-            mobRestant = ListWave[IndexWave].NumberRuant + ListWave[IndexWave].NumberScreamer + ListWave[IndexWave].NumberBasic + ListWave[IndexWave].NumberLastra;
-
+            if (this.mobRestant != 0)
+            {
+                foreach (Ennemy Ennemy_Type in Enum.GetValues(typeof(Ennemy)))
+                {
+                    this.StopCoroutine(SpawnEnnemy(Ennemy_Type));
+                }
+                this.mobRestant += ListWave[IndexWave].NumberRuant + ListWave[IndexWave].NumberScreamer + ListWave[IndexWave].NumberBasic + ListWave[IndexWave].NumberLastra;
+                this.NumberOfBasicThisWawe = this.ListWave[this.IndexWave].NumberBasic + this.NumberOfBasicNotSpawned;
+                this.NumberOfRuantThisWawe = this.ListWave[this.IndexWave].NumberRuant + this.NumberOfRuantNotSpawned;
+                this.NumberOfScreamerThisWawe = this.ListWave[this.IndexWave].NumberScreamer + this.NumberOfScreamerNotSpawned;
+                this.NumberOfLastraThisWawe = this.ListWave[this.IndexWave].NumberLastra + this.NumberOfLastraNotSpawned;
+                //Debug.Log(this.mobRestant + " " + this.NumberOfBasicThisWawe +" " + this.NumberOfBasicNotSpawned);
+            }
+            else
+            {
+                mobRestant = ListWave[IndexWave].NumberRuant + ListWave[IndexWave].NumberScreamer + ListWave[IndexWave].NumberBasic + ListWave[IndexWave].NumberLastra;
+                this.NumberOfBasicThisWawe = this.ListWave[this.IndexWave].NumberBasic;
+                this.NumberOfRuantThisWawe = this.ListWave[this.IndexWave].NumberRuant;
+                this.NumberOfScreamerThisWawe = this.ListWave[this.IndexWave].NumberScreamer;
+                this.NumberOfLastraThisWawe = this.ListWave[this.IndexWave].NumberLastra;
+            }
             foreach (Ennemy Ennemy_Type in Enum.GetValues(typeof(Ennemy)))
             {
                 StartCoroutine(SpawnEnnemy(Ennemy_Type));
@@ -98,10 +148,11 @@ public class SpawnSysteme : MonoBehaviour
         }
         else
         {
+            Debug.Log("Fin d'arene");
             gameObject.GetComponent<WaveSystem>().ArenaEnd = true;
+
         }
     }
-
     // Update is called once per frame
 
     IEnumerator SpawnEnnemy(Ennemy EnnemySelectioned)
@@ -109,62 +160,60 @@ public class SpawnSysteme : MonoBehaviour
         WaveStruct Wave = ListWave[IndexWave];
         switch (EnnemySelectioned)
         {
-            case Ennemy.Basic:
-                for (int i = 0; i < Wave.NumberBasic; i++)
+        case Ennemy.Basic:
+                for (int i = 0; i < this.NumberOfBasicThisWawe; i++)
                 {
+                    yield return new WaitUntil(() => this.ListMaxBasic.Count < Wave.MaxBasic);
                     yield return new WaitForSeconds(Wave.CD_Spawn_Basic);// le temps de respawn
                     RandomPosition = Random.Range(0, Wave.ListSpawnBasic.Count);
                     GameObject Trh = Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnBasic[RandomPosition].position, Quaternion.identity, ParentBasic);
                     Trh.GetComponent<State>().spawn = GetComponent<SpawnSysteme>();                 
                     ListEnnemy.Add(Trh);
+                    this.ListMaxBasic.Add(Trh);
                     mobRestant--;
-
+                    this.NumberOfBasicNotSpawned = Wave.NumberBasic - i - 1;
                 }
                 break;
             case Ennemy.Ruant:
-                for (int i = 0; i < Wave.NumberRuant; i++)
+                for (int i = 0; i < this.NumberOfRuantThisWawe; i++)
                 {
+                    yield return new WaitUntil(() => this.ListMaxRuant.Count < Wave.MaxRuant);
                     yield return new WaitForSeconds(Wave.CD_Spawn_Ruant);
                     RandomPosition = Random.Range(0, Wave.ListSpawnRuant.Count);
                     GameObject Rut = Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnRuant[RandomPosition].position, Quaternion.identity, ParentRuant);
                     Rut.GetComponent<RuantState>().spawn = GetComponent<SpawnSysteme>();
                     ListEnnemy.Add(Rut);
+                    this.ListMaxRuant.Add(Rut);
                     mobRestant--;
-
+                    this.NumberOfRuantNotSpawned = Wave.NumberRuant - i - 1;
                 }
-                // if (Wave.CD_Spawn_Ruant > 0)
-                // {
-                //     Wave.CD_Spawn_Ruant -= Time.deltaTime;
-                // }
-                // else
-                // {
-                //     RandomPosition = Random.Range(0, Wave.ListSpawnRuant.Count);
-                //     Wave.CD_Spawn_Ruant = CD_Spawn_Stock_Ruant;
-                //     Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnRuant[RandomPosition].position,
-                //         Quaternion.identity, ParentRuant);
-                // }
                 break;
             case Ennemy.Screamer:
-                for (int i = 0; i < Wave.NumberScreamer; i++)
+                for (int i = 0; i < this.NumberOfScreamerThisWawe; i++)
                 {
+                    yield return new WaitUntil(() => this.ListMaxScreamer.Count < Wave.MaxScreamer);
                     yield return new WaitForSeconds(Wave.CD_Spawn_Screamer);
                     RandomPosition = Random.Range(0, Wave.ListSpawnScreamer.Count);
                     GameObject Scm = Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnScreamer[RandomPosition].position, Quaternion.identity, ParentScreamer);
                     Scm.GetComponent<ScreamerAI>().spawn = GetComponent<SpawnSysteme>();
                     ListEnnemy.Add(Scm);
+                    this.ListMaxScreamer.Add(Scm);
                     mobRestant--;
-
+                    this.NumberOfScreamerNotSpawned = Wave.NumberScreamer - i - 1;
                 }
                 break;
             case Ennemy.Lastra:
-                for (int i = 0; i < Wave.NumberLastra; i++)
+                for (int i = 0; i < this.NumberOfLastraThisWawe; i++)
                 {
+                    yield return new WaitUntil(() => this.ListMaxLastra.Count < Wave.MaxLastra);
                     yield return new WaitForSeconds(Wave.CD_Spawn_Lastra);
                     RandomPosition = Random.Range(0, Wave.ListSpawnLastra.Count);
-                    ListEnnemy.Add(Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnLastra[RandomPosition].position,
-                        Quaternion.identity, ParentLastra));
+                    GameObject Lst = Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnLastra[RandomPosition].position, Quaternion.identity, ParentLastra);
+                    Lst.GetComponent<LastraAI>().spawn = this.GetComponent<SpawnSysteme>();
+                    ListEnnemy.Add(Lst);
+                    this.ListMaxLastra.Add(Lst);
                     mobRestant--;
-
+                    this.NumberOfLastraNotSpawned = Wave.NumberLastra - i - 1;// car on commence à 0, ce qui veut dire que même quand il y a plus de lastra a spawn ça ferait 1 ce calcul sans le -1
                 }
                 break;
             default:

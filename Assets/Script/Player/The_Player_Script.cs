@@ -96,20 +96,25 @@ public class The_Player_Script : MonoBehaviour
     public float radiusExploBase;
     public float ForceExplosion;
     public float DMG;
+    private bool HitAWall;
 
     [Header("Counter")] 
     public bool OnCounter;
-    public bool OnWall;
     
     [Header("Other")] 
     [SerializeField] private Camera cam;
+    [SerializeField] private float disToGround;
+    [SerializeField] private float TimerBeforeGrounded;
 
     public float floatTypeOfFootStep;
+
+    private float ContainerTimeBeforeGrounded;
     
     void Start()
     {
         //Cursor.lockState = CursorLockMode.Locked;
         slow = 1;
+        this.ContainerTimeBeforeGrounded = this.TimerBeforeGrounded;
     }
 
     void Update()
@@ -185,7 +190,7 @@ public class The_Player_Script : MonoBehaviour
 
     IEnumerator DecreaseArmorHeat()
     {
-        Debug.Log("the fuck?");
+        //Debug.Log("the fuck?");
         yield return new WaitForSeconds(ListOfYourPlayer[YourPlayerChoosed].FrequenceDecreaseArmorHeat);
         PercentageArmorHeat -= ListOfYourPlayer[YourPlayerChoosed].NumberOfDecreaseByFrequence_Armor;
         foreach (GameObject ArmorPart in  ListOfYourPlayer[YourPlayerChoosed].ListArmorPart)
@@ -213,6 +218,8 @@ public class The_Player_Script : MonoBehaviour
 
     private void CharacterMouvement()
     {
+        Ground();// Teste s'il est ground
+
         Player_On_Jump();// Take care of the y of the player and set the player to normal state when jump is over
         
         DashFinishCheck(); // Check if the dash is finished, if it is set var at the normal state
@@ -222,6 +229,7 @@ public class The_Player_Script : MonoBehaviour
         PlayerFall(); // Used when the player fall out of the arena
 
         Player_Deplacement(); // Player deplacement 
+
     }
 
     private void Player_Reaction_After_Hit()
@@ -270,40 +278,66 @@ public class The_Player_Script : MonoBehaviour
 
     private void Player_Deplacement()
     {
-        if ((Input.GetButton("Vertical") || Input.GetButton("Horizontal")) && Grounded && !OnDash && !JustHit && !this.OnJump && !this.OnCounter && !this.OnWall)
+        if ((Input.GetButton("Vertical") || Input.GetButton("Horizontal")) && Grounded && !OnDash && !JustHit && !this.OnJump && !this.OnCounter)
         {
             Vector3 ConteneurCameraPositionForward = this.cam.transform.forward * Input.GetAxis("Vertical");
             Vector3 ConteneurCameraPositionRight = this.cam.transform.right * Input.GetAxis("Horizontal");
             Vector3 Vector3_Deplacement_Player =
                 Vector3.ClampMagnitude(ConteneurCameraPositionForward + ConteneurCameraPositionRight, 1);
+            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("IsMoving", true);
+            // Debug.Log(Mathf.RoundToInt(Vector3.Dot(transform.forward, 
+            //     ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized)));
             if (Mathf.RoundToInt(Vector3.Dot(transform.forward, 
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized)) == 1)
             {
-                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", true);
-                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", true);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", false);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Right", false);
+                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetFloat("Mouvement", 1);
             }
             else if (Mathf.RoundToInt(Vector3.Dot(transform.forward, 
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized)) == -1)
             {
-                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", true);
-                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
+                //Debug.Log(Vector3.Angle(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized, transform.right));
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", true);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", false);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Right", false);
+                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetFloat("Mouvement", -1);
             }
             else
             {
-                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", true);
-                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
+                if (transform.InverseTransformDirection(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity).x > 0)
+                {
+                    // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
+                    // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
+                    // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", true);
+                    // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Right", false);
+                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetFloat("Mouvement", 0.5f);
+                }
+                else
+                {
+                    // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
+                    // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
+                    // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", false);
+                    // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Right", true);
+                    ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetFloat("Mouvement", -0.5f);
+                }
+                //Debug.Log (ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", true);
+                // ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
             }
-
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity =
                 Vector3_Deplacement_Player * ListOfYourPlayer[YourPlayerChoosed].vitesse * slow;
             //ListOfYourPlayer[YourPlayerChoosed].animAvatar.speed = ListOfYourPlayer[YourPlayerChoosed].vitesse * slow * 0.25f;
-            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetFloat("SpeedWalk",ListOfYourPlayer[YourPlayerChoosed].vitesse * slow * 0.25f);
+//            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetFloat("SpeedWalk",ListOfYourPlayer[YourPlayerChoosed].vitesse * slow * 0.25f);
         }
         else
         {
-            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
-            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);
-
+            Debug.Log(this.Grounded);
+            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("IsMoving", false);
+            ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetFloat("Mouvement", 0);
             if (!JustHit && !OnDash && Grounded && !this.OnJump)
             {
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = 
@@ -396,6 +430,7 @@ public class The_Player_Script : MonoBehaviour
                 if (Aftershock)
                 {
                     //explosion
+                    
                 }
             }
         }
@@ -423,7 +458,7 @@ public class The_Player_Script : MonoBehaviour
             float Distance = Vector3.Distance(new Vector3(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.transform.position.x, 0, 
                     ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.transform.position.z)  , new Vector3(this.PointOrigineJump.x, 0, this.PointOrigineJump.z));
             //Debug.Log(Distance + " " + this.DistanceJump);
-            Debug.Log(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity);
+            //Debug.Log(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity);
             if (Distance >= this.DistanceJump)
             {
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.drag = 1;
@@ -442,6 +477,8 @@ public class The_Player_Script : MonoBehaviour
                 this.HigherPosition = 0;
                 this.Once = false;
                 this.ImpulsionTahLesfous();
+                CameraShake.Instance.Shake(3, 0.5f);
+
             }
             else
             {
@@ -501,7 +538,7 @@ public class The_Player_Script : MonoBehaviour
                                 if (pS.activ)
                                 {
                                     floatTypeOfFootStep = 1;
-                                    Debug.Log("oui");
+                                    //Debug.Log("oui");
                                     ArmorHeatPlaque(1);
                                 }
                                 else
@@ -618,9 +655,9 @@ public class The_Player_Script : MonoBehaviour
         {
            if (hit[i].gameObject.CompareTag("Ennemy"))
            {
-                if (hit[i].GetComponent<ennemyAI>() != null)
+                if (hit[i].GetComponent<BasicAI>() != null)
                 {
-                    hit[i].GetComponent<ennemyAI>().ExplosionImpact(hitPoint, radiusExploBase +  transform.localScale.x, ForceExplosion);
+                    hit[i].GetComponent<BasicAI>().ExplosionImpact(hitPoint, radiusExploBase +  transform.localScale.x, ForceExplosion);
                     hit[i].GetComponent<BasicState>().Damage(DMG);
                 }
                 else if(hit[i].GetComponent<ScreamerState>() != null)
@@ -634,6 +671,31 @@ public class The_Player_Script : MonoBehaviour
            }
         }
     }
+ 
+ public void Ground()
+ {
+     //Debug.DrawRay(transform.position, -Vector3.up,Color.yellow, 5000f);
+     if (Physics.Raycast(transform.position, -Vector3.up, out RaycastHit hit, disToGround, LayerMask.GetMask("Sol", "Wall")))
+     {
+         if (hit.collider.transform.CompareTag("sol") || hit.collider.transform.CompareTag("Ennemy")  || hit.collider.transform.CompareTag("Mur") && !Grounded)
+         {
+            if (this.TimerBeforeGrounded <= 0)
+            {
+                this.Grounded = true;
+                this.TimerBeforeGrounded = this.ContainerTimeBeforeGrounded;
+            }
+            else
+            {
+                this.TimerBeforeGrounded -= Time.deltaTime;
+            }
+         }
+     }
+     else
+     {
+         Grounded = false;
+         this.TimerBeforeGrounded = this.ContainerTimeBeforeGrounded;
+     }
+ }
 
  private void OnTriggerEnter(Collider other)
     {
@@ -649,6 +711,7 @@ public class The_Player_Script : MonoBehaviour
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.freezeRotation = false;
             Vector3 dir = transform.position;
             dir = (dir - other.transform.position).normalized;
+            CameraShake.Instance.Shake(10, 1f);
             //dir = (dir + collision.GetComponent<Rigidbody>().velocity) / 2;
             dir.y = 0;
             float RegulationForce = 250;
@@ -659,6 +722,11 @@ public class The_Player_Script : MonoBehaviour
                                        * RegulationForce + (other.GetComponent<Rigidbody>().velocity.magnitude * RegulationForce * PercentageArmorHeat/100)),
                     ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.ClosestPointOnBounds(other.transform.position));
             PercentageArmorHeat += other.GetComponent<RuantAI>().DmgArmorHeat;
+        }
+
+        if (this.OnJump && other.CompareTag("Mur"))
+        {
+            this.HitAWall = true;
         }
 
         /*if (other.gameObject.CompareTag("Plaque"))

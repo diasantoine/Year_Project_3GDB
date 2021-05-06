@@ -52,6 +52,10 @@ public class RuantState : State
         if (spawn.ListEnnemy.Contains(this.gameObject))
         {
             spawn.ListEnnemy.Remove(this.gameObject);
+            if (this.spawn.ListMaxRuant.Contains(this.gameObject))
+            {
+                this.spawn.ListMaxRuant.Remove(this.gameObject);
+            }
         }
 
         float écart = -nbCadavre / 2;
@@ -117,7 +121,7 @@ public class RuantState : State
         {
             if (chronoBar >= timeBar)
             {
-                healthBarSec.value -= 1.5f * Time.deltaTime;
+                healthBarSec.value -= 3f * Time.deltaTime;
 
                 if (healthBarSec.value <= healthBar.value)
                 {

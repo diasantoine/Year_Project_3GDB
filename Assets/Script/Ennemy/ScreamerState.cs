@@ -34,13 +34,16 @@ public class ScreamerState : State
         if (HpNow <= 0)
         {
             float écart = -nbCadavre / 2;
-
             this.GetComponent<ScreamerAI>().ImpulsionTahLesfous();
             for (int i = 1; i <= nbCadavre; i++)
             {
                 if (spawn.ListEnnemy.Contains(this.gameObject))
                 {
                     spawn.ListEnnemy.Remove(this.gameObject);
+                    if (this.spawn.ListMaxScreamer.Contains(this.gameObject))
+                    {
+                        this.spawn.ListMaxScreamer.Remove(this.gameObject);
+                    }
                 }
 
                 if (Fall)

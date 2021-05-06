@@ -44,6 +44,10 @@ public class BasicState : State
                 if (spawn.ListEnnemy.Contains(this.gameObject))
                 {
                     spawn.ListEnnemy.Remove(this.gameObject);
+                    if (this.spawn.ListMaxBasic.Contains(this.gameObject))
+                    {
+                        this.spawn.ListMaxBasic.Remove(this.gameObject);
+                    }
                 }
 
                 if (Fall)
