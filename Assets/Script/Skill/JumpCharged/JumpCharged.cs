@@ -115,7 +115,7 @@ public class JumpCharged : skill
                     HitPosition = this.Parent.transform.position + HitPosition * this.PorteMaximale;
                     LastPosition = HitPosition;
                     this.LastPosition.y = 0;
-                    Debug.Log(this.LastPosition.magnitude);
+                    Debug.DrawRay(LastPosition,transform.forward, Color.red, 500f);
                 }
             }
             foreach (int PalierRessources in this.ListPalier)
@@ -130,7 +130,7 @@ public class JumpCharged : skill
             //float Distance = this.LastPosition.magnitude;
             //Vector3 playerToMouse = LastPosition - this.Parent.transform.position; 
             //Vector3 playerToMouse = LastPosition;
-            Debug.DrawRay(LastPosition,transform.forward, Color.black, 500f);
+            //Debug.DrawRay(LastPosition,transform.forward, Color.black, 500f);
             //playerToMouse.y = 0;
            // playerToMouse = playerToMouse.normalized;
             Parent.GetComponent<The_Player_Script>().OnJump = true;

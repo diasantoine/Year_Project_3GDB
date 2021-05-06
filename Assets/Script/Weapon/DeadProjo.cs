@@ -35,7 +35,7 @@ public class DeadProjo : MonoBehaviour
 
     private Vector3 moveDirection;
 
-    [SerializeField] private Rigidbody RB;
+    [SerializeField] public Rigidbody RB;
 
     public bool Empoisonnement = false;
     public bool Rocket = false;

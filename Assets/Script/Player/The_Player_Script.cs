@@ -291,7 +291,7 @@ public class The_Player_Script : MonoBehaviour
             else if (Mathf.RoundToInt(Vector3.Dot(transform.forward, 
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized)) == -1)
             {
-                Debug.Log(Vector3.Angle(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized, transform.right));
+                //Debug.Log(Vector3.Angle(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized, transform.right));
                 ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
                 ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", true);
                 ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Left", false);
@@ -324,7 +324,7 @@ public class The_Player_Script : MonoBehaviour
         }
         else
         {
-            Debug.Log("Pardon?");
+            //Debug.Log("Pardon?");
             ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("IsMoving", false);
             ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Forward", false);
             ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Backward", false);

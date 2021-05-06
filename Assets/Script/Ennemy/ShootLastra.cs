@@ -14,8 +14,8 @@ public class ShootLastra : MonoBehaviour
     [Header("VarProjectile")]
     [SerializeField] public float vitesse;
     [SerializeField] private float écart;
-    [SerializeField] private float portée;
-    [SerializeField] private Rigidbody RB;
+    [SerializeField] public float portée;
+    [SerializeField] public Rigidbody RB;
     
     [Header("DMG")]
     [SerializeField] private float dégat;
@@ -27,7 +27,12 @@ public class ShootLastra : MonoBehaviour
 
     void Start()
     {
-        Destroy(gameObject, portée);
+        Invoke("DestroyMe", this.portée);
+    }
+
+    public void DestroyMe()
+    {
+        Destroy(gameObject);
     }
     
     public void Shoot(Vector3 dir)

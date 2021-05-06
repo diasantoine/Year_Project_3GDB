@@ -83,9 +83,4 @@ public class Counter : skill
             detectDead.ressourceInt -= 10;
         }
     }
-
-    //basic if(Player.this.GetComponent<The_Player_Script>().OnCounter)
-    //{
-    // Basic.Rigibody.velocity = - l'attaque destiné au joueur ou faut faire le player.transform.position - transform.position dans l'autre sens
-    //Bool pousse les autres ennemies
 }

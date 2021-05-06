@@ -213,7 +213,6 @@ public class BasicAI : Ennemy
 
             if (dis < 5f)
             {
-
                 if (AnimatorConteneur != null)
                 {
                     AnimatorConteneur.SetBool("Taper", true);                   
@@ -228,7 +227,6 @@ public class BasicAI : Ennemy
         }
 
     }
-
     private void MoveAtPlayer()
     {
         if (agent.isOnNavMesh && Grounded)

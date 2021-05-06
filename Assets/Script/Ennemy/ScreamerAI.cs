@@ -64,7 +64,6 @@ public class ScreamerAI : Ennemy
         SpeedConteneur = agent.speed;
         chrono = 0;
         player = GameObject.Find("Player").transform;
-
         this.TimeBeforeHeMoveContainer = this.TimeBeforeHeMove;
     }
 

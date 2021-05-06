@@ -77,12 +77,21 @@ public class LastraAI : Ennemy
         this.TimeShootContainer = this.TimeBeforeShoot;
         this.TimeStayHitContainer = this.TimeStayHit; 
         player = GameObject.Find("Player").transform;
+        if (!this.agent.enabled)
+        {
+            this.agent.enabled = true;
+        }
+        this.LastraState = StateLastra.Moving;
     }
 
     // Update is called once per frame
     void Update()
     {
         Debug.DrawLine(transform.position, this.ContainerNewPos, Color.blue);
+        if (!this.agent.enabled)
+        {
+            this.agent.enabled = true;
+        }
         switch (this.LastraState)
         {
             case StateLastra.Idle:
