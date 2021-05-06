@@ -4,11 +4,12 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: BeamDark_ES1
   m_Shader: {fileID: 4800000, guid: cba1b43d7be1cf74b9f70ac3708b85fc, type: 3}
-  m_ShaderKeywords: _EMISSION
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _EMISSION
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

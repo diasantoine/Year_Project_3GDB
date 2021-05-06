@@ -168,7 +168,7 @@ public class JumpCharged : skill
             //Debug.Log(this.JumpSpeed);
             //ConteneurRigibody.velocity = playerToMouse * this.JumpSpeed;
             Debug.Log(this.LastPosition.magnitude);
-            ConteneurRigibody.velocity = this.LastPosition / 3.700f*2;
+            ConteneurRigibody.velocity = this.LastPosition / 2.500f;
             Parent.GetComponent<The_Player_Script>().SpeedJump =  ConteneurRigibody.velocity;
             ConteneurRigibody.mass = 250;
             Charge = 0;

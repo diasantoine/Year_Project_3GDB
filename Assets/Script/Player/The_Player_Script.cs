@@ -478,7 +478,7 @@ public class The_Player_Script : MonoBehaviour
                 this.Once = false;
                 this.ImpulsionTahLesfous();
                 CameraShake.Instance.Shake(3, 0.5f);
-
+                ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Jump", false);
             }
             else
             {
