@@ -2,15 +2,14 @@
 [LOG] Manager::init                            : maxchannels = 256 studioflags = 00000006 flags 00000000 extradriverdata 0000000000000000.
 [LOG] SystemI::init                            : Initialize version=20105 (112138), maxchannels=256, flags=0x00020000
 [LOG] SystemI::setOutputInternal               : Setting output to 'FMOD WASAPI Output'
-[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=8, nSamplesPerSec=44100, nAvgBytesPerSec=1411200, nBlockAlign=32, wBitsPerSample=32, cbSize=22.
-[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEXTENSIBLE): wValidBitsPerSample=32, dwChannelMask=0x0000063F, SubFormat=00000003-0000-0010-8000-00AA00389B71.
+[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=2, nSamplesPerSec=44100, nAvgBytesPerSec=352800, nBlockAlign=8, wBitsPerSample=32, cbSize=22.
+[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEXTENSIBLE): wValidBitsPerSample=32, dwChannelMask=0x00000003, SubFormat=00000003-0000-0010-8000-00AA00389B71.
 [LOG] OutputWASAPI::init                       : Output buffer size: 3760 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [WRN] SystemI::init                            : Output requires a sample rate of 44100Hz, resampling will occur.
-[LOG] DownMix::init                            : dspbuffersize: 1024  rate: 48000. output speaker mode: 7, input speaker mode 3
-[LOG] DownMix::init                            : done.
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 0000023A7F04F1D8 isAsync 0 updatePeriod 0.02
+[WRN] OutputWASAPI::mixerThread                : Starvation detected in WASAPI output buffer!
+[LOG] AsyncManager::init                       : manager 00000230345FC4E8 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -19,104 +18,8 @@
 [LOG] Manager::init                            : done.
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] SoundI::release                          :  (0000023A7EE558B8)
-[LOG] SoundI::release                          :     MvtRobot_01 (0000023A14BE48E8)
-[LOG] SoundI::release                          :  (0000023A7EE5EE38)
-[LOG] SoundI::release                          :     MvtMetal_01 (0000023A14BE81C8)
-[LOG] SoundI::release                          :  (0000023A7EE5F9B8)
-[LOG] SoundI::release                          :     MvtMetal_02 (0000023A7E0B9CD8)
-[LOG] SoundI::release                          :  (0000023A7EE600E8)
-[LOG] SoundI::release                          :     MvtMetal_03 (0000023A14BE7CE8)
-[LOG] SoundI::release                          :  (0000023A7EE5FC98)
-[LOG] SoundI::release                          :     MvtMetal_04 (0000023A7DBAB538)
-[LOG] SoundI::release                          :  (0000023A7EE62928)
-[LOG] SoundI::release                          :     FootStepOn_Fire_Long_01 (0000023A14BE96E8)
-[LOG] SoundI::release                          :  (0000023A7EE54D38)
-[LOG] SoundI::release                          :     FootStepOn_Fire_Long_02 (0000023A14BE9F08)
-[LOG] SoundI::release                          :  (0000023A7EE55468)
-[LOG] SoundI::release                          :     FootStepOn_Fire_Long_03 (0000023A14BE5108)
-[LOG] SoundI::release                          :  (0000023A7EE58B08)
-[LOG] SoundI::release                          :     FootStepOn_Fire_Short_01 (0000023A14BE9BC8)
-[LOG] SoundI::release                          :  (0000023A7EE53ED8)
-[LOG] SoundI::release                          :     FootStepOn_Fire_Short_02 (0000023A14BE8D28)
-[LOG] SoundI::release                          :  (0000023A7EE60538)
-[LOG] SoundI::release                          :     FootStepOn_Fire_Short_03 (0000023A14BE4748)
-[LOG] SoundI::release                          :  (0000023A7EE576E8)
-[LOG] SoundI::release                          :     Ambiance_MultipleWaterDrips_03 (0000023A14BE9888)
-[LOG] SoundI::release                          :  (0000023A7EE62A98)
-[LOG] SoundI::release                          :     Ambiance_MultipleWaterDrips_04 (0000023A14BE40C8)
-[LOG] SoundI::release                          : Ambiance_HumFond_02 (0000023A0B9585C8)
-[LOG] SoundI::release                          :     Ambiance_HumFond_02 (0000023A14BE55E8)
-[LOG] SoundI::release                          :     Ambiance_HumFond_02 (0000023A08E7B4C8)
-[LOG] SoundI::release                          : Ambiance_EauFond_02 (0000023A0B7E9158)
-[LOG] SoundI::release                          :     Ambiance_EauFond_02 (0000023A14BE4408)
-[LOG] SoundI::release                          :     Ambiance_EauFond_02 (0000023A12796778)
-[LOG] SoundI::release                          : Ambiance_HumFond_01 (0000023A08B25678)
-[LOG] SoundI::release                          :     Ambiance_HumFond_01 (0000023A14BE5448)
-[LOG] SoundI::release                          :     Ambiance_HumFond_01 (0000023A123E2168)
-[LOG] SoundI::release                          : Ambiance_EauFond_01 (0000023A0D577678)
-[LOG] SoundI::release                          :     Ambiance_EauFond_01 (0000023A7E0B68D8)
-[LOG] SoundI::release                          :     Ambiance_EauFond_01 (0000023A7EC2D228)
-[LOG] SoundI::release                          :  (0000023A7EE5F848)
-[LOG] SoundI::release                          :     Ambiance_MultipleWaterDrips_05 (0000023A7E0B7778)
-[LOG] SoundI::release                          :  (0000023A7EE541B8)
-[LOG] SoundI::release                          :     Ambiance_MultipleWaterDrips_06 (0000023A14BE5AC8)
-[LOG] SoundI::release                          :  (0000023A7EE5F568)
-[LOG] SoundI::release                          :     Ambiance_MultipleWaterDrips_07 (0000023A7DBA6DB8)
-[LOG] SoundI::release                          :  (0000023A7EE53638)
-[LOG] SoundI::release                          :     Gas_Continue_03 (0000023A14BE4DC8)
-[LOG] SoundI::release                          :  (0000023A7EE5EB58)
-[LOG] SoundI::release                          :     Gas_Continue_01 (0000023A14BE7E88)
-[LOG] SoundI::release                          :  (0000023A7EE62C08)
-[LOG] SoundI::release                          :     Ambiance_Souris_01 (0000023A14BE8EC8)
-[LOG] SoundI::release                          :  (0000023A7EE60AF8)
-[LOG] SoundI::release                          :     Ambiance_Souris_02 (0000023A14BE7808)
-[LOG] SoundI::release                          :  (0000023A7EE55FE8)
-[LOG] SoundI::release                          :     Ambiance_Souris_03 (0000023A14BE7B48)
-[LOG] SoundI::release                          :  (0000023A7EE5EFA8)
-[LOG] SoundI::release                          :     Ambiance_Souris_04 (0000023A14BE6968)
-[LOG] SoundI::release                          :  (0000023A7EE57298)
-[LOG] SoundI::release                          :     Ambiance_Souris_05 (0000023A14BE8848)
-[LOG] SoundI::release                          :  (0000023A7EE5E878)
-[LOG] SoundI::release                          :     Ambiance_Souris_06 (0000023A14BE8508)
-[LOG] SoundI::release                          :  (0000023A7EE57B38)
-[LOG] SoundI::release                          :     Ambiance_Souris_07 (0000023A14BE7668)
-[LOG] SoundI::release                          :  (0000023A7EE537A8)
-[LOG] SoundI::release                          :     Ambiance_Souris_08 (0000023A14BE3BE8)
-[LOG] SoundI::release                          :  (0000023A7EE610B8)
-[LOG] SoundI::release                          :     Ambiance_Souris_09 (0000023A14BE62E8)
-[LOG] SoundI::release                          :  (0000023A7EE54328)
-[LOG] SoundI::release                          :     Ambiance_Souris_10 (0000023A14BE38A8)
-[LOG] SoundI::release                          :  (0000023A7EE5FB28)
-[LOG] SoundI::release                          :     Ambiance_Souris_11 (0000023A7DBABD58)
-[LOG] SoundI::release                          :  (0000023A7EE548E8)
-[LOG] SoundI::release                          :     CuveSound-003 (0000023A14BE9068)
-[LOG] SoundI::release                          :  (0000023A7EE56CD8)
-[LOG] SoundI::release                          :     CuveSound-002 (0000023A14BE52A8)
-[LOG] SoundI::release                          :  (0000023A7EE603C8)
-[LOG] SoundI::release                          :     CuveSound-001 (0000023A14BE79A8)
-[LOG] SoundI::release                          :  (0000023A7EE617E8)
-[LOG] SoundI::release                          :     CuveSound-008 (00000239C8C13058)
-[LOG] SoundI::release                          :  (0000023A7EE579C8)
-[LOG] SoundI::release                          :     CuveSound-004 (0000023A14BE89E8)
-[LOG] SoundI::release                          :  (0000023A7EE58268)
-[LOG] SoundI::release                          :     CuveSound-009 (0000023A14BE4F68)
-[LOG] SoundI::release                          :  (0000023A7EE53BF8)
-[LOG] SoundI::release                          :     CuveSound-005 (0000023A14BE4A88)
-[LOG] SoundI::release                          :  (0000023A7EE5FE08)
-[LOG] SoundI::release                          :     CuveSound-007 (00000239C8C12EB8)
-[LOG] SoundI::release                          :  (0000023A7EE62088)
-[LOG] SoundI::release                          :     CuveSound-006 (0000023A129909B8)
-[LOG] Thread::callback                         : FMOD Studio update thread finished.
-[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
-[LOG] LiveUpdate::release                      : 
-[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
-[LOG] Thread::callback                         : FMOD stream thread finished.
-[LOG] Thread::callback                         : FMOD mixer thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] SystemI::close                           : Closed.
+[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 3
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
@@ -124,5 +27,3 @@
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] SystemI::close                           : Closed.
-[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
-[LOG] Thread::callback                         : FMOD file thread finished.
