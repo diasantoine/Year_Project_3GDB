@@ -9895,13 +9895,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TireTouche: event:/Enemy/TOUCHE
-  PlayerHit: 
+  PlayerHit: event:/Enemy/Lastra/Lastra_Projectile_Touche
   vitesse: 45
   "\xE9cart": 0.75
   "port\xE9e": 3
   RB: {fileID: 54777970317930892}
   "d\xE9gat": 2
   DMGHeat: 10
+  LastraWhoFired: {fileID: 0}
 --- !u!1 &1831172876973338
 GameObject:
   m_ObjectHideFlags: 0

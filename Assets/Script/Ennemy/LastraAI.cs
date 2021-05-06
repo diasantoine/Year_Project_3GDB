@@ -6,6 +6,9 @@ using UnityEngine.AI;
 
 public class LastraAI : Ennemy
 {
+    [FMODUnity.EventRef]
+    public string Lastra_Tir = "";
+
     enum StateLastra
     {
         Idle,
@@ -270,6 +273,7 @@ public class LastraAI : Ennemy
                     this.NumberOfProjectileFired++;
                     GameObject ContainerProjectile = Instantiate(this.Projectile, this.Canon.transform.position, Quaternion.identity);//projectilecontainer pour le parent
                    //ContainerProjectile.GetComponent<Rigidbody>().velocity = (this.player.transform.position - transform.position).normalized * 20;
+                    FMODUnity.RuntimeManager.PlayOneShot(Lastra_Tir, "", 0, transform.position); // SON
                     ContainerProjectile.GetComponent<ShootLastra>().LastraWhoFired = gameObject;
                     ContainerProjectile.GetComponent<ShootLastra>().Shoot(this.player.transform.position - transform.position);
                 }

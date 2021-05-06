@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{38f66072-4440-4668-b5e4-36d2b58de788}">
 		<property name="color">
-			<value>Yellow</value>
+			<value>Green</value>
 		</property>
 		<property name="name">
 			<value>Lastra_Deplacement</value>
@@ -108,6 +108,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{f3112a24-d79c-4206-b825-a8299c404b86}">
+		<property name="volume">
+			<value>-5.5</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{a6ece577-32ea-4bce-8cd6-e2986f80bc77}</destination>
 		</relationship>
@@ -134,7 +137,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{048f8242-a308-4530-90d1-4a7fe513315c}">
 		<property name="volume">
-			<value>-10</value>
+			<value>-16.5</value>
 		</property>
 		<property name="name">
 			<value>Audio 1</value>
@@ -292,7 +295,7 @@
 	<object class="MixerBusFader" id="{51649f0f-ef22-41bd-8ad7-31c66fb37e34}" />
 	<object class="SpatialiserEffect" id="{e505b9f3-58c5-4adf-b2dd-87581a9f569b}">
 		<property name="maximumDistance">
-			<value>100</value>
+			<value>50</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{66be118e-88aa-4955-b2be-bf35a2d625be}" />

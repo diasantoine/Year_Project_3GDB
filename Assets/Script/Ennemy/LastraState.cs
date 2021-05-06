@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class LastraState : State
 {
-    
+
+    [FMODUnity.EventRef]
+    public string Lastra_Touche = "";
+
     [Header("Poison")]
     [SerializeField] private float freqTick;
     [HideInInspector] public bool isPoisoned;
@@ -57,7 +60,16 @@ public class LastraState : State
             }
         }
     }
-    
+
+    public override void Damage(float dmg)
+    {
+        base.Damage(dmg);
+        if (!isPoisoned)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(Lastra_Touche, "", 0, transform.position);
+        }
+    }
+
     private void PoisonDamage()
     {
         if (isPoisoned)
