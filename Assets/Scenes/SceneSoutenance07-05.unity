@@ -120,7 +120,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: a3d1a5e1935e27a41ae3b437609839dc, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 94533eacabe6a9f42ad914f214893dab, type: 2}
 --- !u!1 &17803231
 GameObject:
   m_ObjectHideFlags: 0
@@ -3341,7 +3341,7 @@ MonoBehaviour:
   ListOfYourPlayer:
   - vitesse: 8
     ConteneurRigibody: {fileID: 497796875}
-    SpawnPositionPlayer: {fileID: 0}
+    SpawnPositionPlayer: {fileID: 1152712082}
     Avatar: {fileID: 507935197}
     Canon: {fileID: 1407204935}
     animAvatar: {fileID: 507935201}
@@ -3363,6 +3363,7 @@ MonoBehaviour:
   YourPlayerChoosed: 0
   PercentageArmorHeat: 0
   ResiCold: 3
+  FeedbackHitGround: {fileID: 0}
   PercentageWeaponHeat: 0
   Grounded: 0
   OnDash: 0
@@ -3383,6 +3384,8 @@ MonoBehaviour:
   radiusExploBase: 0
   ForceExplosion: 0
   DMG: 0
+  ParticuleAtterissageGameobject: {fileID: 126184, guid: cab33341e16d3e94cb595dd8726cfdf5,
+    type: 3}
   OnCounter: 0
   cam: {fileID: 1170655788}
   disToGround: 0.5
@@ -4583,6 +4586,7 @@ MonoBehaviour:
   YourPlayerChoosed: 0
   PercentageArmorHeat: 0
   ResiCold: 3
+  FeedbackHitGround: {fileID: 0}
   PercentageWeaponHeat: 0
   Grounded: 0
   OnDash: 0
@@ -4603,6 +4607,7 @@ MonoBehaviour:
   radiusExploBase: 0
   ForceExplosion: 0
   DMG: 0
+  ParticuleAtterissageGameobject: {fileID: 0}
   OnCounter: 0
   cam: {fileID: 1170655788}
   disToGround: 0
@@ -4671,7 +4676,7 @@ MonoBehaviour:
   - {fileID: 962345286}
   - {fileID: 1632231768}
   - {fileID: 1752591158}
-  - {fileID: 998976213}
+  - {fileID: 0}
   - {fileID: 926340531}
   changing: {fileID: 1695043473}
   skillA: {fileID: 962345286}
@@ -4703,7 +4708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab67181d5edc39e478423977af0ff5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TPS: {fileID: 777907384}
+  TPS: {fileID: 0}
   Ambiance: event:/Ambiance/Ambiance
   footStep: event:/Player/Joueur_FootStep
   Ruant_FootStep: event:/Enemy/Ruant/Ruant_FootStep
@@ -5724,6 +5729,7 @@ MonoBehaviour:
   YourPlayerChoosed: 0
   PercentageArmorHeat: 0
   ResiCold: 3
+  FeedbackHitGround: {fileID: 0}
   PercentageWeaponHeat: 0
   Grounded: 0
   OnDash: 0
@@ -5744,6 +5750,7 @@ MonoBehaviour:
   radiusExploBase: 0
   ForceExplosion: 0
   DMG: 0
+  ParticuleAtterissageGameobject: {fileID: 0}
   OnCounter: 0
   cam: {fileID: 1170655788}
   disToGround: 0
@@ -7271,6 +7278,7 @@ Transform:
   - {fileID: 565291360}
   - {fileID: 1725154621}
   - {fileID: 596509453}
+  - {fileID: 1870208747}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10143,14 +10151,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371606786}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b641887eea19df441823b99390371332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ListWave:
   - NumberBasic: 2
-    NumberRuant: 0
+    NumberRuant: 3
     NumberScreamer: 0
     NumberLastra: 0
     ListSpawnBasic:
@@ -12094,6 +12102,100 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1615417499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1615417503}
+  - component: {fileID: 1615417502}
+  - component: {fileID: 1615417501}
+  - component: {fileID: 1615417500}
+  m_Layer: 11
+  m_Name: LastraNavMesh
+  m_TagString: sol
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 3
+  m_StaticEditorFlags: 8
+  m_IsActive: 0
+--- !u!64 &1615417500
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615417499}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1615417501
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615417499}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1615417502
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615417499}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1615417503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615417499}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 6, z: -1.2}
+  m_LocalScale: {x: 13.52237, y: 13.52237, z: 13.52237}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1632231766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13973,6 +14075,36 @@ Transform:
   - {fileID: 7413719007944939956}
   m_Father: {fileID: 6645618197513464607}
   m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1870208746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1870208747}
+  m_Layer: 0
+  m_Name: SpawnLastra
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1870208747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870208746}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11.347656, y: 10.549999, z: -5.1835938}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 977884914}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1871864795
 GameObject:

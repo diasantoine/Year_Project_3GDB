@@ -65,6 +65,7 @@ public class The_Player_Script : MonoBehaviour
     [Header("PlayerStatArmorHeat")]
     public int PercentageArmorHeat;
     [SerializeField] private float ResiCold;
+    [SerializeField] private GameObject FeedbackHitGround;
     
     [Header("PlayerStatWeaponHeat")]
     public int PercentageWeaponHeat;
@@ -97,6 +98,7 @@ public class The_Player_Script : MonoBehaviour
     public float ForceExplosion;
     public float DMG;
     private bool HitAWall;
+    [SerializeField] private GameObject ParticuleAtterissageGameobject;
 
     [Header("Counter")] 
     public bool OnCounter;
@@ -109,6 +111,8 @@ public class The_Player_Script : MonoBehaviour
     public float floatTypeOfFootStep;
 
     private float ContainerTimeBeforeGrounded;
+
+    private GameObject ContainerFeedbackGround;
     
     void Start()
     {
@@ -252,6 +256,8 @@ public class The_Player_Script : MonoBehaviour
                 {
                     if (!ArmorHeated)
                     {
+                        ContainerFeedbackGround = Instantiate(this.FeedbackHitGround, transform.position, Quaternion.Euler(-90,0,0));
+                        ContainerFeedbackGround.transform.parent = transform;
                         foreach (GameObject ArmorPart in  ListOfYourPlayer[YourPlayerChoosed].ListArmorPart)
                         {
                             ArmorPart.GetComponent<Renderer>().material.SetColor("_EmissionColor",
@@ -265,7 +271,7 @@ public class The_Player_Script : MonoBehaviour
                     }
                     else
                     {
-                        
+                        Destroy(ContainerFeedbackGround);
                         JustHit = false;
                         ArmorHeated = false;
                         Compteu12 = 0;
@@ -450,7 +456,7 @@ public class The_Player_Script : MonoBehaviour
             }
         }
     }
-    
+
     private void Player_On_Jump()
     {
         if (this.OnJump)
@@ -479,6 +485,9 @@ public class The_Player_Script : MonoBehaviour
                 this.ImpulsionTahLesfous();
                 CameraShake.Instance.Shake(3, 0.5f);
                 ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Jump", false);
+                GameObject ContainerParticule = Instantiate(this.ParticuleAtterissageGameobject, transform.position, Quaternion.Euler(-90,0,0));
+                ContainerParticule.transform.parent = transform;
+                Destroy(ContainerParticule,ContainerParticule.GetComponent<ParticleSystem>().main.duration);
             }
             else
             {

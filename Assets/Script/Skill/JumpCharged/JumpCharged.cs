@@ -30,8 +30,11 @@ public class JumpCharged : skill
     
     public override void UsingSkill()
     {
-        theProjo = gameObject;
-        this.isCharging = true;
+        if (detectDead.ressourceInt >= this.ListPalier[0] && !this.isCharging && !this.Parent.GetComponent<The_Player_Script>().OnJump)
+        {
+            theProjo = gameObject;
+            this.isCharging = true;
+        }
     }
 
     public override void ChargingSkill(int WhichWeapon)
@@ -50,7 +53,7 @@ public class JumpCharged : skill
                     this.IndexWinner = this.ListPalier.IndexOf(PalierRessources);
                 }
             }
-
+            Debug.Log(this.IndexWinner);
             this.CercleFeedback.transform.localScale = new Vector3(this.PorteMaximale / 5.880002f / (this.ListPalier.Count - this.IndexWinner),this.PorteMaximale/ 5.880002f / (this.ListPalier.Count - this.IndexWinner),this.PorteMaximale/ 5.880002f / (this.ListPalier.Count - this.IndexWinner));
             // if (Charge<ChargeMax && detectDead.ressourceInt > 0)
             // {
@@ -91,7 +94,7 @@ public class JumpCharged : skill
             }
             if (Physics.Raycast(rayon, out RaycastHit Hit,Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
             {
-                if ( new Vector3(Hit.point.x - this.Parent.transform.position.x, 0, Hit.point.z - this.Parent.transform.position.z).magnitude <= this.PorteMaximale)
+                if ( new Vector3(Hit.point.x - this.Parent.transform.position.x, 0, Hit.point.z - this.Parent.transform.position.z).magnitude <= this.PorteMaximale / (this.ListPalier.Count - this.IndexWinner))
                 {
                     //Debug.Log(Hit.point + " "+ this.Parent.transform.position);
                     // lineRenderer.SetPosition(0, this.Parent.transform.position);
@@ -126,7 +129,7 @@ public class JumpCharged : skill
                     Vector3 HitPosition = Hit.point - this.Parent.transform.position;
                     HitPosition.y = 0;
                     HitPosition = HitPosition.normalized;
-                    HitPosition = HitPosition * this.PorteMaximale;
+                    HitPosition = HitPosition * (this.PorteMaximale / (this.ListPalier.Count - this.IndexWinner));
                     LastPosition = HitPosition;
                     //this.LastPosition.y = 0;
                     Debug.DrawRay(this.Parent.transform.position,this.LastPosition, Color.red, 500f);
@@ -134,11 +137,13 @@ public class JumpCharged : skill
             }
             foreach (int PalierRessources in this.ListPalier)
             {
-                if (Vector3.Distance(this.LastPosition, this.CercleFeedback.transform.position) <= PalierRessources )
+                if (this.LastPosition.magnitude >= this.PorteMaximale /  (this.ListPalier.Count - this.ListPalier.IndexOf(PalierRessources)))
                 {
                     this.NumberOfRessourcesUsed = PalierRessources;
+                    Debug.Log("touché");
                 }
             }
+            Debug.Log(this.NumberOfRessourcesUsed);
             detectDead.ressourceInt -= this.NumberOfRessourcesUsed;
             //float Distance = Vector3.Distance(LastPosition, this.Parent.transform.position);
             //float Distance = this.LastPosition.magnitude;
@@ -168,7 +173,7 @@ public class JumpCharged : skill
             //Debug.Log(this.JumpSpeed);
             //ConteneurRigibody.velocity = playerToMouse * this.JumpSpeed;
             Debug.Log(this.LastPosition.magnitude);
-            ConteneurRigibody.velocity = this.LastPosition / 2.500f;
+            ConteneurRigibody.velocity =( this.LastPosition / 2.500f) * 2;
             Parent.GetComponent<The_Player_Script>().SpeedJump =  ConteneurRigibody.velocity;
             ConteneurRigibody.mass = 250;
             Charge = 0;

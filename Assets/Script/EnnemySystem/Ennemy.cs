@@ -32,9 +32,11 @@ public class Ennemy : MonoBehaviour
             && Vector3.Distance(transform.position, player.transform.position) < distanceOfView 
             && player.GetComponent<The_Player_Script>().Grounded)
         {
+            Debug.Log(player.transform.position);
             // Detect if player is within the field of view
             if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Player", "Wall")))
             {
+                Debug.DrawRay(transform.position, rayDirection, Color.blue);
                 if (hit.collider.CompareTag("Mur"))
                 {
                     SeeThePlayer = false;
@@ -44,12 +46,8 @@ public class Ennemy : MonoBehaviour
                 {
                     SeeThePlayer = true;
                     Debug.DrawRay(new Vector3(transform.position.x, 1, transform.position.z), player.position - transform.position, Color.blue);
-
-
                 }
-
             }
-
         }
         else
         {
