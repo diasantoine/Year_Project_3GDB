@@ -106,6 +106,14 @@ public class ScreamerAI : Ennemy
             if (SeeThePlayer)
             {
                 ScreamerState = State.TriggerState;
+                if (AnimatorConteneur.GetBool("Wander"))
+                {
+                    AnimatorConteneur.SetBool("Wander", false);
+                }
+                if (AnimatorConteneur.GetBool("SleepState"))
+                {
+                    AnimatorConteneur.SetBool("SleepState", false);
+                }
             }
         }
 
@@ -121,6 +129,14 @@ public class ScreamerAI : Ennemy
                             this.TimeBeforeHeMove = this.TimeBeforeHeMoveContainer;
                             this.NewPosFind = false;
                             this.agent.speed = 0;
+                            if (AnimatorConteneur.GetBool("Wander"))
+                            {
+                                AnimatorConteneur.SetBool("Wander", false);
+                            }
+                            if (!AnimatorConteneur.GetBool("SleepState"))
+                            {
+                                AnimatorConteneur.SetBool("SleepState", true);
+                            }
                         }
                     }
                     else
@@ -130,6 +146,10 @@ public class ScreamerAI : Ennemy
                             Debug.Log("allo");
                             this.agent.SetDestination(this.ContainerNewPos);
                             this.agent.speed = this.SpeedConteneur;
+                            if (!AnimatorConteneur.GetBool("Wander"))
+                            {
+                                AnimatorConteneur.SetBool("Wander", true);
+                            }
                         }
                     }
                 }

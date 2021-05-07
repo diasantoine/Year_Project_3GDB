@@ -10157,10 +10157,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListWave:
-  - NumberBasic: 2
-    NumberRuant: 3
-    NumberScreamer: 0
-    NumberLastra: 2
+  - NumberBasic: 0
+    NumberRuant: 0
+    NumberScreamer: 1
+    NumberLastra: 0
     ListSpawnBasic:
     - {fileID: 1935181333}
     - {fileID: 277494445}
@@ -10178,7 +10178,7 @@ MonoBehaviour:
     CD_Spawn_Lastra: 0
     MaxBasic: 5
     MaxRuant: 1
-    MaxScreamer: 0
+    MaxScreamer: 1
     MaxLastra: 1
   - NumberBasic: 2
     NumberRuant: 0
