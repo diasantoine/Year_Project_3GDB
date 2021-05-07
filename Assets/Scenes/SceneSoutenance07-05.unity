@@ -3363,7 +3363,7 @@ MonoBehaviour:
   YourPlayerChoosed: 0
   PercentageArmorHeat: 0
   ResiCold: 3
-  FeedbackHitGround: {fileID: 0}
+  FeedbackHitGround: {fileID: 193686, guid: ede42a52a2caa594dbc67cd13f591f5a, type: 3}
   PercentageWeaponHeat: 0
   Grounded: 0
   OnDash: 0
@@ -10160,7 +10160,7 @@ MonoBehaviour:
   - NumberBasic: 2
     NumberRuant: 3
     NumberScreamer: 0
-    NumberLastra: 0
+    NumberLastra: 2
     ListSpawnBasic:
     - {fileID: 1935181333}
     - {fileID: 277494445}
@@ -10170,7 +10170,8 @@ MonoBehaviour:
     ListSpawnScreamer:
     - {fileID: 1725154621}
     - {fileID: 596509453}
-    ListSpawnLastra: []
+    ListSpawnLastra:
+    - {fileID: 1870208747}
     CD_Spawn_Basic: 3
     CD_Spawn_Ruant: 2
     CD_Spawn_Screamer: 1
@@ -10178,7 +10179,7 @@ MonoBehaviour:
     MaxBasic: 5
     MaxRuant: 1
     MaxScreamer: 0
-    MaxLastra: 0
+    MaxLastra: 1
   - NumberBasic: 2
     NumberRuant: 0
     NumberScreamer: 0

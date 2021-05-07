@@ -34,7 +34,7 @@ public class Ennemy : MonoBehaviour
         {
             Debug.Log(player.transform.position);
             // Detect if player is within the field of view
-            if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Player", "Wall")))
+            if (Physics.Raycast(transform.position + new Vector3(0,2,0), rayDirection, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Player", "Wall")))
             {
                 Debug.DrawRay(transform.position, rayDirection, Color.blue);
                 if (hit.collider.CompareTag("Mur"))
