@@ -107,6 +107,7 @@ public class The_Player_Script : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private float disToGround;
     [SerializeField] private float TimerBeforeGrounded;
+    [SerializeField] private GameObject particleJump;
 
     public float floatTypeOfFootStep;
 
@@ -461,6 +462,7 @@ public class The_Player_Script : MonoBehaviour
     {
         if (this.OnJump)
         {
+            particleJump.SetActive(true);
             float Distance = Vector3.Distance(new Vector3(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.transform.position.x, 0, 
                     ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.transform.position.z)  , new Vector3(this.PointOrigineJump.x, 0, this.PointOrigineJump.z));
             //Debug.Log(Distance + " " + this.DistanceJump);
@@ -474,7 +476,7 @@ public class The_Player_Script : MonoBehaviour
                     ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity.normalized * 
                     ListOfYourPlayer[YourPlayerChoosed].vitesse;
                 this.OnJumpJustFinished = true;
-                this.OnJump = false;
+                this.OnJump = false;              
                 GetComponent<CapsuleCollider>().enabled = !enabled;
                 ListOfYourPlayer[YourPlayerChoosed].Avatar.layer = 9;
                 tag = "Player";
@@ -561,6 +563,7 @@ public class The_Player_Script : MonoBehaviour
                                 //floatTypeOfFootStep = 2;
                                 if (pS.activ)
                                 {
+                                    floatTypeOfFootStep = 2;
                                     TimeColdPlaque += Time.deltaTime;
                                     CompteurForSlow = 0;
 
@@ -585,6 +588,7 @@ public class The_Player_Script : MonoBehaviour
                                 {
                                     if (TimePlaque >= 1)
                                     {
+                                        floatTypeOfFootStep = 3;
                                         detectDead.ressourceInt += 25;
                                         pS.ressourceGot -= 25;
                                         TimePlaque = 0;
@@ -691,6 +695,7 @@ public class The_Player_Script : MonoBehaviour
             if (this.TimerBeforeGrounded <= 0)
             {
                 this.Grounded = true;
+                particleJump.SetActive(false);
                 this.TimerBeforeGrounded = this.ContainerTimeBeforeGrounded;
             }
             else

@@ -107,7 +107,7 @@ public class SpawnSysteme : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.N))
         {
             this.NextWave();
         }

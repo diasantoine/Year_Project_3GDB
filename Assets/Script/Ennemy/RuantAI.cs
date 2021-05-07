@@ -10,6 +10,7 @@ public class RuantAI : Ennemy
     [SerializeField] private float distForRush;
     [SerializeField] private float waitRush;
     [SerializeField] private float stunTime;
+    [SerializeField] private GameObject stunParticle;
     [SerializeField] private float speedRush;
     [SerializeField] private float stunEcart;
     [SerializeField] private float deceleration;
@@ -106,6 +107,7 @@ public class RuantAI : Ennemy
                 break;
             case State.STUN:
                 AnimatorConteneur.SetTrigger("HitWall");
+                stunParticle.SetActive(true);
                 SeeThePlayer = false;
                 chrono = 0;
                 break;
@@ -296,6 +298,7 @@ public class RuantAI : Ennemy
                 AnimatorConteneur.SetFloat("Velocity", 1f);
                 break;
             case State.STUN:
+                stunParticle.SetActive(false);
                 AnimatorConteneur.SetBool("isRushing", false);
                 break;
             case State.DEATH:
