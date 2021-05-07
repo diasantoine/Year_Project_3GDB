@@ -181,7 +181,7 @@ public class SpawnSysteme : MonoBehaviour
                     yield return new WaitForSeconds(Wave.CD_Spawn_Ruant);
                     RandomPosition = Random.Range(0, Wave.ListSpawnRuant.Count);
                     GameObject Rut = Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnRuant[RandomPosition].position, Quaternion.identity, ParentRuant);
-                    Rut.GetComponent<RuantState>().spawn = GetComponent<SpawnSysteme>();
+                    Rut.GetComponent<State>().spawn = GetComponent<SpawnSysteme>();
                     ListEnnemy.Add(Rut);
                     this.ListMaxRuant.Add(Rut);
                     mobRestant--;
@@ -195,7 +195,7 @@ public class SpawnSysteme : MonoBehaviour
                     yield return new WaitForSeconds(Wave.CD_Spawn_Screamer);
                     RandomPosition = Random.Range(0, Wave.ListSpawnScreamer.Count);
                     GameObject Scm = Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnScreamer[RandomPosition].position, Quaternion.identity, ParentScreamer);
-                    Scm.GetComponent<ScreamerAI>().spawn = GetComponent<SpawnSysteme>();
+                    Scm.GetComponent<State>().spawn = GetComponent<SpawnSysteme>();
                     ListEnnemy.Add(Scm);
                     this.ListMaxScreamer.Add(Scm);
                     mobRestant--;
@@ -209,7 +209,7 @@ public class SpawnSysteme : MonoBehaviour
                     yield return new WaitForSeconds(Wave.CD_Spawn_Lastra);
                     RandomPosition = Random.Range(0, Wave.ListSpawnLastra.Count);
                     GameObject Lst = Instantiate(DictionnaryEnnemy[EnnemySelectioned], Wave.ListSpawnLastra[RandomPosition].position, Quaternion.identity, ParentLastra);
-                    Lst.GetComponent<LastraAI>().spawn = this.GetComponent<SpawnSysteme>();
+                    Lst.GetComponent<State>().spawn = this.GetComponent<SpawnSysteme>();
                     ListEnnemy.Add(Lst);
                     this.ListMaxLastra.Add(Lst);
                     mobRestant--;
