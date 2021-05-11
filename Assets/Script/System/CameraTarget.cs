@@ -22,29 +22,33 @@ public class CameraTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Ray camRay = cam.ScreenPointToRay((Input.mousePosition));
-
-        RaycastHit FloorHit;
-
-        if (Physics.Raycast(camRay,out FloorHit,Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
+        if (!Pause.isPause)
         {
-            Vector3 playerToMouse = FloorHit.point - transform.position;
+            Ray camRay = cam.ScreenPointToRay((Input.mousePosition));
 
-            playerToMouse.y = 0;
-            
-            Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
-            
-            player.GetComponent<The_Player_Script>().ListOfYourPlayer[player.GetComponent<The_Player_Script>().
-            YourPlayerChoosed].ConteneurRigibody.MoveRotation(newRotation);
-            
-            Vector3 mousePos = FloorHit.point;
-            Vector3 targetPos = (player.position + mousePos) / 2f;
+            RaycastHit FloorHit;
 
-            targetPos.x = Mathf.Clamp(targetPos.x, -threshold + player.position.x, threshold + player.position.x);
-            targetPos.z = Mathf.Clamp(targetPos.z, -threshold + player.position.z, threshold + player.position.z);
-            targetPos.y = 0;
+            if (Physics.Raycast(camRay, out FloorHit, Mathf.Infinity, LayerMask.GetMask("ClicMouse")))
+            {
+                Vector3 playerToMouse = FloorHit.point - transform.position;
 
-            transform.position = targetPos;
+                playerToMouse.y = 0;
+
+                Quaternion newRotation = Quaternion.LookRotation(playerToMouse);
+
+                player.GetComponent<The_Player_Script>().ListOfYourPlayer[player.GetComponent<The_Player_Script>().
+                YourPlayerChoosed].ConteneurRigibody.MoveRotation(newRotation);
+
+                Vector3 mousePos = FloorHit.point;
+                Vector3 targetPos = (player.position + mousePos) / 2f;
+
+                targetPos.x = Mathf.Clamp(targetPos.x, -threshold + player.position.x, threshold + player.position.x);
+                targetPos.z = Mathf.Clamp(targetPos.z, -threshold + player.position.z, threshold + player.position.z);
+                targetPos.y = 0;
+
+                transform.position = targetPos;
+            }
         }
+
     }
 }

@@ -5,15 +5,13 @@ using UnityEngine;
 public class Pause : MonoBehaviour
 {
 
-    public static bool isPause = false;
+    public static bool isPause;
 
-    
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
-        
+        isPause = false;
     }
+
 
     public void StopGame()
     {
