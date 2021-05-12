@@ -10076,14 +10076,15 @@ MonoBehaviour:
   health: {fileID: 3170520116324826615}
   preExplo: {fileID: 7329697235198686324, guid: 0b795bf1b3989604eb781f8378f60898,
     type: 3}
+  stunParticle: {fileID: 3055577839944648952}
+  RuantCollider: {fileID: 3170520115599938962}
   distForRush: 25
   waitRush: 3.25
   stunTime: 4
-  stunParticle: {fileID: 3055577839944648952}
   speedRush: 35
   stunEcart: 5
   deceleration: 0.5
-  RuantCollider: {fileID: 3170520115599938962}
+  PorteMinimale: 6
   Ruant_Collision: event:/Enemy/Ruant/Ruant_Collision
   Ruant_Cris_Mort: event:/Enemy/Ruant/Ruant_Cris_Mort
   Ruant_Cris_Dash: event:/Enemy/Ruant/Ruant_Cris_Dash

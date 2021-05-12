@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class RuantAI : Ennemy
 {
-
+    [Header("ParamenterRuant")]
     [SerializeField] private GameObject preExplo;
+    [SerializeField] private GameObject stunParticle;
+    [SerializeField] private GameObject RuantCollider;
 
+    [Header("VarRuant")]
     [SerializeField] private float distForRush;
     [SerializeField] private float waitRush;
     [SerializeField] private float stunTime;
-    [SerializeField] private GameObject stunParticle;
     [SerializeField] private float speedRush;
     [SerializeField] private float stunEcart;
     [SerializeField] private float deceleration;
-    [SerializeField] private GameObject RuantCollider;
+    [SerializeField] private float PorteMinimale;
+    [SerializeField] private int ForceExplosion;
+    [SerializeField] private int radiusExploBase;
     
     private float chrono;
     private float speedRushIni;
+
+    private bool PorteMinaleOk;
+    private bool DistanceRemainOk;
+    private Vector3 LastPosition;
 
     private bool isRushing;
     private RaycastHit hit;
@@ -62,6 +70,7 @@ public class RuantAI : Ennemy
         state = State.SPAWN;
         speedRushIni = speedRush;
         player = GameObject.Find("Player").transform;
+        this.LastPosition = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -146,7 +155,6 @@ public class RuantAI : Ennemy
 
                 if (Grounded)
                 {
-                    Debug.Log("GROUND");
                     //FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, transform.position); // son de collision lorsqu'il attérit apres le spawn
                     GameObject newExplo = Instantiate(preExplo, transform.position, Quaternion.identity);
                     Destroy(newExplo, 0.2f);
@@ -197,12 +205,15 @@ public class RuantAI : Ennemy
                 {
                     if (isRushing)
                     {
+                        if (this.LastPosition == Vector3.zero)
+                        {
+                            this.LastPosition = transform.position;
+                        }
                         DashRuant();
                     }
                     else
                     {
                         RB.drag = deceleration;
-                        Debug.Log(RB.velocity.magnitude);
                         AnimatorConteneur.SetFloat("Velocity", Mathf.Clamp(RB.velocity.magnitude, 6, 12) / 10);
 
                         if(RB.velocity.magnitude < 3)
@@ -322,21 +333,78 @@ public class RuantAI : Ennemy
     private void DashRuant()
     {
         Vector3 place = rushPlace - transform.position;
+        Vector3 Direction = this.rushPlace - this.LastPosition;
         //Vector3 Direction = (player.transform.position - transform.position).normalized;
         RuantCollider.layer = 12;
         GetComponent<CapsuleCollider>().enabled = enabled;
         tag = "Dash";
         RB.useGravity = false;
         RB.mass = 250;
-
-        if (place.magnitude < 0.5f)
+        //Debug.Log(place.magnitude);
+        if (Vector3.Distance(this.LastPosition, new Vector3(transform.position.x, this.LastPosition.y, transform.position.z)) >= Direction.magnitude)
+        {
+            this.DistanceRemainOk = true;
+        }
+        // if (place.magnitude < 1  && !this.DistanceRemainOk)
+        // {
+        //     this.DistanceRemainOk = true;
+        // }
+        if (this.PorteMinimale <= Vector3.Distance(transform.position, LastPosition) && !this.PorteMinaleOk)
+        {
+            this.PorteMinaleOk = true;
+        }
+        
+        //RB.velocity = Direction.normalized * speedRush;
+        RB.velocity = place.normalized * speedRush;
+        
+        if (this.DistanceRemainOk && this.PorteMinaleOk)
         {
             isRushing = false;
+            //this.RB.velocity = place.normalized * this.speedRush; // 1.467
+            //this.RB.velocity = new Vector3(this.rushPlace.x *1.2f, 0, this.rushPlace.z *1.2f) / 1.467f;
+            Debug.Log(this.RB.velocity.magnitude);
             DashFini();
-
+            this.LastPosition = Vector3.zero;
+            //this.RB.isKinematic = true;
+            this.DistanceRemainOk = false;
+            this.PorteMinaleOk = false;
         }
-        RB.velocity = place.normalized * speedRush;
+    }
+    
+     public void ImpulsionTahLesfous()
+    {
+        Vector3 hitPoint = transform.position;
+        Collider[] hit = Physics.OverlapSphere(hitPoint, radiusExploBase + transform.localScale.x);
+        for (int i = 0; i < hit.Length; i++)
+        {
+            if (hit[i].gameObject.CompareTag("Player"))
+            {
+                float ForceExplosionWithArmorHeat = ForceExplosion + ForceExplosion * player.GetComponent<The_Player_Script>().PercentageArmorHeat / 100;
+                
+                player.GetComponent<The_Player_Script>().JustHit = true; 
+                player.GetComponent<The_Player_Script>().ListOfYourPlayer[player.GetComponent<The_Player_Script>().YourPlayerChoosed].ConteneurRigibody.velocity = Vector3.zero;
+                
+                player.GetComponent<The_Player_Script>().ListOfYourPlayer[player.GetComponent<The_Player_Script>().YourPlayerChoosed].
+                    ConteneurRigibody.angularVelocity = Vector3.zero;
+                
+                player.GetComponent<The_Player_Script>().ListOfYourPlayer[player.GetComponent<The_Player_Script>().YourPlayerChoosed].ConteneurRigibody.
+                    AddForce(ForceExplosionWithArmorHeat*(player.transform.position - transform.position).normalized,ForceMode.Impulse);
 
+                player.GetComponent<The_Player_Script>().PercentageArmorHeat += DmgArmorHeat;
+            }
+            else if (hit[i].gameObject.CompareTag("Ennemy"))
+            {
+                if (hit[i].GetComponent<ennemyAI>() != null)
+                {
+                    hit[i].GetComponent<ennemyAI>().ExplosionImpact(hitPoint, radiusExploBase +  transform.localScale.x, ForceExplosion*10);
+                }
+                else if(hit[i].GetComponent<ScreamerState>() != null)
+                {
+                    hit[i].GetComponent<ScreamerState>().Damage(Mathf.Infinity);
+                }
+               
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

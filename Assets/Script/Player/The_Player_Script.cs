@@ -342,7 +342,6 @@ public class The_Player_Script : MonoBehaviour
         }
         else
         {
-            Debug.Log(this.Grounded);
             ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("IsMoving", false);
             ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetFloat("Mouvement", 0);
             if (!JustHit && !OnDash && Grounded && !this.OnJump)
