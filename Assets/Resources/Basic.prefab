@@ -853,9 +853,11 @@ MonoBehaviour:
   DmgArmorHeat: 10
   health: {fileID: 3785099090370134276}
   ImpactTirNormal: 0.3
-  ImpactHit: 10
+  ImpactHit: 20
+  DistanceForBasicForPunch: 5
   hitCD: 2
   TimeGetUp: 0.25
+  InPunch: 0
   state: 0
 --- !u!1 &3794223865445992605
 GameObject:

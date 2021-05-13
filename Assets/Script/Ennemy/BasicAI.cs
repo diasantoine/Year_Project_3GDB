@@ -8,6 +8,7 @@ public class BasicAI : Ennemy
     [Header("Impact")]
     [SerializeField] private float ImpactTirNormal = 1;
     [SerializeField] private float ImpactHit;
+    [SerializeField] private float DistanceForBasicForPunch;
 
     private bool hitPlayer;
 
@@ -18,11 +19,13 @@ public class BasicAI : Ennemy
     private float chronoGetUp;
 
 
+
     private RaycastHit hit;
     private float debugChronoStart;
     private bool startNav;
     private GameObject skill;
     private bool Pansement = false;
+    [HideInInspector] public bool InPunch;
 
     public enum State
     {
@@ -96,7 +99,7 @@ public class BasicAI : Ennemy
 
                 if (!hitPlayer)
                 {
-                    PatateDansLeJoueur();
+                    this.PunchInRange();
 
                 }
                 else
@@ -205,26 +208,30 @@ public class BasicAI : Ennemy
         }
     }
 
-    public void PatateDansLeJoueur()
+    private void PunchInRange()
     {
         if (SeeThePlayer)
         {
             float dis = Vector3.Distance(player.position, new Vector3(transform.position.x, 1, transform.position.z));
-            if (dis < 5f)
+            if (dis < DistanceForBasicForPunch)//5
             {
                 if (AnimatorConteneur != null)
                 {
-                    AnimatorConteneur.SetBool("Taper", true);                   
+                    AnimatorConteneur.SetBool("Taper", true);
+                    this.InPunch = true;
                 }
-
-                player.GetComponent<Rigidbody>().AddForceAtPosition(transform.forward * (ImpactHit + (ImpactHit * player.GetComponent<The_Player_Script>().PercentageArmorHeat / 100)),
-                    player.position, ForceMode.Impulse);
-                hitPlayer = true;
-                player.GetComponent<The_Player_Script>().JustHit = true;
-                player.GetComponent<The_Player_Script>().PercentageArmorHeat += DmgArmorHeat;
             }
         }
+    }
 
+    public void PatateDansLeJoueur()
+    {
+        player.GetComponent<Rigidbody>().AddForceAtPosition(transform.forward * (ImpactHit + (ImpactHit * player.GetComponent<The_Player_Script>().PercentageArmorHeat / 100)),
+            player.position, ForceMode.Impulse);
+        hitPlayer = true;
+        player.GetComponent<The_Player_Script>().JustHit = true;
+        player.GetComponent<The_Player_Script>().PercentageArmorHeat += DmgArmorHeat;
+        this.InPunch = false;
     }
     private void MoveAtPlayer()
     {

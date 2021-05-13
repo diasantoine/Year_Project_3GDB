@@ -20,7 +20,7 @@ public class PunchBasic : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.transform.CompareTag("Player"))
+        if (other.transform.CompareTag("Player") && this.ContainerBasicAI.InPunch)
         {
             if (!other.transform.GetComponent<The_Player_Script>().JustHit)
             {
