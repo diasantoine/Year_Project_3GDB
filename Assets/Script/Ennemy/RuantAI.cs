@@ -23,9 +23,10 @@ public class RuantAI : Ennemy
     private float chrono;
     private float speedRushIni;
 
-    private bool PorteMinaleOk;
     private bool DistanceRemainOk;
     private Vector3 LastPosition;
+
+    private float TimeBeforeHitGround;
 
     private bool isRushing;
     private RaycastHit hit;
@@ -49,6 +50,7 @@ public class RuantAI : Ennemy
         CHASE,
         RUSH,
         STUN,
+        HitGround,
         DEATH,
 
     };
@@ -119,6 +121,12 @@ public class RuantAI : Ennemy
                 stunParticle.SetActive(true);
                 SeeThePlayer = false;
                 chrono = 0;
+                break;
+            case State.HitGround:
+                this.RB.isKinematic = true;
+                AnimatorConteneur.SetBool("isWalking", false);
+                AnimatorConteneur.SetBool("isRushing", false);
+                AnimatorConteneur.SetBool("IsHittingGround", true);
                 break;
             case State.DEATH:
                 AnimatorConteneur.SetTrigger("Death");
@@ -263,6 +271,24 @@ public class RuantAI : Ennemy
                 }
                 break;
 
+            case State.HitGround:
+                if (this.AnimatorConteneur.GetBool("IsHittingGround"))
+                {
+                    if (this.TimeBeforeHitGround >= this.AnimatorConteneur.GetCurrentAnimatorStateInfo(0).length)
+                    {
+                        this.TimeBeforeHitGround = 0;
+                        this.ImpulsionTahLesfous();
+                    }
+                    else
+                    {
+                        this.TimeBeforeHitGround += Time.deltaTime;
+                    }
+                }
+                else
+                {
+                    this.AnimatorConteneur.SetBool("IsHittingGround",true);
+                }
+                break;
             case State.DEATH:
                 //transform.Rotate(-35f * Time.deltaTime, 0, 0);
                 if(chrono >= 1.7f)
@@ -332,7 +358,7 @@ public class RuantAI : Ennemy
 
     private void DashRuant()
     {
-        Vector3 place = rushPlace - transform.position;
+        //Vector3 place = rushPlace - transform.position;
         Vector3 Direction = this.rushPlace - this.LastPosition;
         //Vector3 Direction = (player.transform.position - transform.position).normalized;
         RuantCollider.layer = 12;
@@ -340,34 +366,20 @@ public class RuantAI : Ennemy
         tag = "Dash";
         RB.useGravity = false;
         RB.mass = 250;
-        //Debug.Log(place.magnitude);
-        if (Vector3.Distance(this.LastPosition, new Vector3(transform.position.x, this.LastPosition.y, transform.position.z)) >= Direction.magnitude)
+        float Magnitude = Mathf.Clamp(Direction.magnitude, this.PorteMinimale, Direction.magnitude);
+        if (Vector3.Distance(this.LastPosition, new Vector3(transform.position.x, this.LastPosition.y, transform.position.z)) >= Magnitude)
         {
             this.DistanceRemainOk = true;
         }
-        // if (place.magnitude < 1  && !this.DistanceRemainOk)
-        // {
-        //     this.DistanceRemainOk = true;
-        // }
-        if (this.PorteMinimale <= Vector3.Distance(transform.position, LastPosition) && !this.PorteMinaleOk)
+        RB.velocity = Direction.normalized * speedRush;
+        if (this.DistanceRemainOk)
         {
-            this.PorteMinaleOk = true;
-        }
-        
-        //RB.velocity = Direction.normalized * speedRush;
-        RB.velocity = place.normalized * speedRush;
-        
-        if (this.DistanceRemainOk && this.PorteMinaleOk)
-        {
+            Debug.Log("arrivé");
             isRushing = false;
-            //this.RB.velocity = place.normalized * this.speedRush; // 1.467
-            //this.RB.velocity = new Vector3(this.rushPlace.x *1.2f, 0, this.rushPlace.z *1.2f) / 1.467f;
             Debug.Log(this.RB.velocity.magnitude);
             DashFini();
             this.LastPosition = Vector3.zero;
-            //this.RB.isKinematic = true;
             this.DistanceRemainOk = false;
-            this.PorteMinaleOk = false;
         }
     }
     
@@ -405,6 +417,7 @@ public class RuantAI : Ennemy
                
             }
         }
+        this.state = State.IDLE;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -431,8 +444,6 @@ public class RuantAI : Ennemy
                 SwitchState(State.STUN);
                 RB.isKinematic = true;
                 CameraShake.Instance.Shake(5, 0.3f);
-
-
             }
         }
 

@@ -205,12 +205,11 @@ public class BasicAI : Ennemy
         }
     }
 
-    private void PatateDansLeJoueur()
+    public void PatateDansLeJoueur()
     {
         if (SeeThePlayer)
         {
             float dis = Vector3.Distance(player.position, new Vector3(transform.position.x, 1, transform.position.z));
-
             if (dis < 5f)
             {
                 if (AnimatorConteneur != null)

@@ -102,6 +102,9 @@ public class The_Player_Script : MonoBehaviour
 
     [Header("Counter")] 
     public bool OnCounter;
+
+    [Header("HitByRuant")] 
+    [SerializeField] private float RegulationForce;
     
     [Header("Other")] 
     [SerializeField] private Camera cam;
@@ -727,16 +730,13 @@ public class The_Player_Script : MonoBehaviour
             CameraShake.Instance.Shake(10, 1f);
             //dir = (dir + collision.GetComponent<Rigidbody>().velocity) / 2;
             dir.y = 0;
-            float RegulationForce = 250;
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = Vector3.zero;
             Debug.Log(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity);
-            ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.
-                AddForceAtPosition(dir * (other.GetComponent<Rigidbody>().velocity.magnitude 
-                                       * RegulationForce + (other.GetComponent<Rigidbody>().velocity.magnitude * RegulationForce * PercentageArmorHeat/100)),
-                    ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.ClosestPointOnBounds(other.transform.position));
+            ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.AddForceAtPosition(dir * (other.GetComponent<Rigidbody>().velocity.magnitude 
+                    * RegulationForce + (other.GetComponent<Rigidbody>().velocity.magnitude * RegulationForce * PercentageArmorHeat/100)), 
+                ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.ClosestPointOnBounds(other.transform.position)); 
             PercentageArmorHeat += other.GetComponent<RuantAI>().DmgArmorHeat;
         }
-
         if (this.OnJump && other.CompareTag("Mur"))
         {
             this.HitAWall = true;

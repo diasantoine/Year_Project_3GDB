@@ -10083,8 +10083,10 @@ MonoBehaviour:
   stunTime: 4
   speedRush: 35
   stunEcart: 5
-  deceleration: 0.5
-  PorteMinimale: 6
+  deceleration: 2
+  PorteMinimale: 10
+  ForceExplosion: 0
+  radiusExploBase: 0
   Ruant_Collision: event:/Enemy/Ruant/Ruant_Collision
   Ruant_Cris_Mort: event:/Enemy/Ruant/Ruant_Cris_Mort
   Ruant_Cris_Dash: event:/Enemy/Ruant/Ruant_Cris_Dash
