@@ -12,20 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6050e2d5de785ce4d931e4dbdbf2d755, type: 3}
   m_Name: ChromaticAberration
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
   spectralLut:
     overrideState: 1
-    value: {fileID: 0}
+    value: {fileID: 2800000, guid: d886c0cb73a19514a8be80f38031dd73, type: 3}
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0
+    value: 0.33
   fastMode:
     overrideState: 1
-    value: 0
+    value: 1
 --- !u!114 &-5500381552269063119
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -47,19 +47,19 @@ MonoBehaviour:
     value: 0
   color:
     overrideState: 1
-    value: {r: 0.09450787, g: 0.6226415, b: 0, a: 1}
+    value: {r: 0, g: 0, b: 0, a: 1}
   center:
     overrideState: 1
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.48
+    value: 0.67
   smoothness:
     overrideState: 1
-    value: 0.16
+    value: 1
   roundness:
     overrideState: 1
-    value: 0.85
+    value: 0
   rounded:
     overrideState: 1
     value: 0
@@ -184,7 +184,7 @@ MonoBehaviour:
     value: 0
   saturation:
     overrideState: 0
-    value: 0
+    value: -100
   brightness:
     overrideState: 0
     value: 0
@@ -1450,6 +1450,9 @@ MonoBehaviour:
   - {fileID: 7323599380279095507}
   - {fileID: -3313631722055141351}
   - {fileID: 310674026005546210}
+  - {fileID: 7578862420454346229}
+  - {fileID: 6366706602489978991}
+  - {fileID: 6911287193520344634}
 --- !u!114 &310674026005546210
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1518,13 +1521,84 @@ MonoBehaviour:
     value: 3.46
   aperture:
     overrideState: 1
-    value: 6
+    value: 18.7
   focalLength:
     overrideState: 1
     value: 50
   kernelSize:
     overrideState: 1
     value: 1
+--- !u!114 &6366706602489978991
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b77c5407dc277943b591ade9e6b18c5, type: 3}
+  m_Name: LensDistortion
+  m_EditorClassIdentifier: 
+  active: 0
+  enabled:
+    overrideState: 1
+    value: 1
+  intensity:
+    overrideState: 1
+    value: 0
+  intensityX:
+    overrideState: 0
+    value: 1
+  intensityY:
+    overrideState: 0
+    value: 1
+  centerX:
+    overrideState: 1
+    value: 0
+  centerY:
+    overrideState: 0
+    value: 0
+  scale:
+    overrideState: 1
+    value: 1
+--- !u!114 &6911287193520344634
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a34fa72bd4185749832024e9c8010bf, type: 3}
+  m_Name: ScreenSpaceReflections
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  preset:
+    overrideState: 1
+    value: 5
+  maximumIterationCount:
+    overrideState: 0
+    value: 16
+  resolution:
+    overrideState: 0
+    value: 0
+  thickness:
+    overrideState: 0
+    value: 8
+  maximumMarchDistance:
+    overrideState: 1
+    value: 100
+  distanceFade:
+    overrideState: 1
+    value: 0.5
+  vignette:
+    overrideState: 1
+    value: 0.5
 --- !u!114 &7323599380279095507
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1543,10 +1617,10 @@ MonoBehaviour:
     value: 1
   filtering:
     overrideState: 1
-    value: {x: 54, y: 99}
+    value: {x: 54.000027, y: 99}
   minLuminance:
     overrideState: 1
-    value: -9
+    value: -5
   maxLuminance:
     overrideState: 1
     value: 9
@@ -1562,3 +1636,31 @@ MonoBehaviour:
   speedDown:
     overrideState: 1
     value: 1
+--- !u!114 &7578862420454346229
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d65e486e4de6e5448a8fbb43dc8756a0, type: 3}
+  m_Name: Grain
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  colored:
+    overrideState: 1
+    value: 1
+  intensity:
+    overrideState: 1
+    value: 0.33
+  size:
+    overrideState: 1
+    value: 3
+  lumContrib:
+    overrideState: 1
+    value: 0.8
