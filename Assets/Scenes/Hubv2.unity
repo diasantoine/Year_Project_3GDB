@@ -2913,7 +2913,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538660473}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 27.6, z: 0}
+  m_LocalPosition: {x: 0, y: 14.8, z: -30.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3133,7 +3133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: eed081188e889814c88ad524673ebcde, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 66bbf2758d41a4d458004fa2680ca731, type: 2}
   isGlobal: 1
   blendDistance: 0
   weight: 1
@@ -27513,7 +27513,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 057634ef8ce221a4681c7d684fe50f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneManager: {fileID: 893682581}
   button: {fileID: 1031997359}
+  exitSpawn: {fileID: 0}
+  function: Quit
 --- !u!1 &1528321749
 GameObject:
   m_ObjectHideFlags: 0
@@ -30269,7 +30272,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 057634ef8ce221a4681c7d684fe50f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneManager: {fileID: 893682581}
   button: {fileID: 2076505094}
+  exitSpawn: {fileID: 0}
+  function: Play
 --- !u!1001 &1982419640
 PrefabInstance:
   m_ObjectHideFlags: 0
