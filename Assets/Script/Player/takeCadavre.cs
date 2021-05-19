@@ -237,7 +237,7 @@ public class takeCadavre : MonoBehaviour
             {
                 if (Protection.GetComponent<ShieldProtection>().isCharging)
                 {
-                    if (detectDead.ressourceInt == 0)
+                    if (detectDead.ressourceFloat == 0)
                     {
                         ShieldProtection = false;
                     }

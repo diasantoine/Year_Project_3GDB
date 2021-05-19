@@ -32,11 +32,11 @@ public class PoisonShield : skill
     {
         if (isActive)
         {
-            if (detectDead.ressourceInt > 0)
+            if (detectDead.ressourceFloat > 0)
             {
                 if (timer >= freqRessource)
                 {
-                    detectDead.ressourceInt--;                   
+                    detectDead.ressourceFloat--;                   
                     timer = 0;
                 }
                 else
@@ -66,7 +66,7 @@ public class PoisonShield : skill
 
      public override void UsingSkill()
      {
-        if(detectDead.ressourceInt > 0)
+        if(detectDead.ressourceFloat > 0)
         {
             if (isActive)
             {

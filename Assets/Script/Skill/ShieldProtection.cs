@@ -25,7 +25,7 @@ public class ShieldProtection : skill
             }
             else
             {
-                if (detectDead.ressourceInt <= 0)
+                if (detectDead.ressourceFloat <= 0)
                 {
                     Tick = 0;
                     isCharging = false;
@@ -58,7 +58,7 @@ public class ShieldProtection : skill
                 Parent.GetComponent<The_Player_Script>().YourPlayerChoosed].ConteneurRigibody.mass = 1;
             TirDisabel.enabled = true;
         }
-        else if(detectDead.ressourceInt>0)
+        else if(detectDead.ressourceFloat>0)
         {
             isCharging = true;
             BulleProtectrice.SetActive(true);

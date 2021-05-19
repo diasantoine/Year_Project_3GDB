@@ -10,7 +10,7 @@ public class UIRessource : MonoBehaviour
     [SerializeField] private string SonRecupCuve;
     private FMOD.Studio.EventInstance sonrecupcuve;
     
-    private int CountChanged;
+    private float CountChanged;
     private Vector3 ConteneurScale;
     [SerializeField] private Renderer Liquid;
     [SerializeField] private float TimeBeforeSound = 0.3f;
@@ -20,7 +20,7 @@ public class UIRessource : MonoBehaviour
     private float RessourceLastCheck = 0;
     void Start()
     {
-        CountChanged = detectDead.ressourceInt;
+        CountChanged = detectDead.ressourceFloat;
         ConteneurScale = transform.localScale;
         ValueBaseCuveLiquide = 1.7f;
         sonrecupcuve = FMODUnity.RuntimeManager.CreateInstance(SonRecupCuve);
@@ -30,7 +30,7 @@ public class UIRessource : MonoBehaviour
     void Update()
     {
 
-        int ressource = detectDead.ressourceInt;
+        float ressource = detectDead.ressourceFloat;
 
         if (ressource != CountChanged)
         {

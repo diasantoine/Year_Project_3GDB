@@ -4798,9 +4798,8 @@ GameObject:
   - component: {fileID: 19908996}
   - component: {fileID: 8216826}
   - component: {fileID: 10875930}
-  - component: {fileID: 11402096}
   m_Layer: 0
-  m_Name: NovaGreen
+  m_Name: impact_jump_VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9680,20 +9679,6 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &11402096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 126184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f54e17d705a2894d88787e24190ebfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  life: 0.3
-  killAfterLife: 1
 --- !u!1 &149638
 GameObject:
   m_ObjectHideFlags: 0
@@ -23797,7 +23782,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ea696a4cf4fe1924796b308e4791aaf7, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
