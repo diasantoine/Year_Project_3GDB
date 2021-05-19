@@ -2725,6 +2725,7 @@ MonoBehaviour:
   ParticuleAtterissageGameobject: {fileID: 126184, guid: cab33341e16d3e94cb595dd8726cfdf5,
     type: 3}
   OnCounter: 0
+  RegulationForce: 0
   cam: {fileID: 1170655788}
   disToGround: 0.5
   TimerBeforeGrounded: 0
@@ -4303,8 +4304,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 9ebcbeda6e9529645bdc64a7789c9827, type: 3}
-  - {fileID: 7298850273470916194, guid: 9ebcbeda6e9529645bdc64a7789c9827, type: 3}
+  - {fileID: 2100000, guid: a00c551ef0272f1448e6b0de774e827d, type: 2}
+  - {fileID: 2100000, guid: 8f2a11c9c1af4ab4fbb12356f91cd0de, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26596,10 +26597,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListWave:
-  - NumberBasic: 4
-    NumberRuant: 1
+  - NumberBasic: 0
+    NumberRuant: 0
     NumberScreamer: 0
-    NumberLastra: 0
+    NumberLastra: 1
     ListSpawnBasic:
     - {fileID: 1935181333}
     - {fileID: 277494445}

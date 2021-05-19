@@ -1392,8 +1392,8 @@ MonoBehaviour:
   DmgArmorHeat: 15
   health: {fileID: 3018691057585754910}
   Lastra_Tir: event:/Enemy/Lastra/Lastra_Tire
-  DistanceMaxNearPlayer: 24
-  DistanceWhereTheLastraStartToRunBackward: 20
+  DistanceMaxNearPlayer: 34
+  DistanceWhereTheLastraStartToRunBackward: 26
   TimeBeforeHeCatchHisBreath: 4
   DivisionSpeed: 1
   RadiusMaxForHisEscape: 100
@@ -1412,7 +1412,7 @@ MonoBehaviour:
   - {fileID: 3018691055928695484}
   - {fileID: 3018691057465021356}
   GestionPowerIntensityChargingShoot: 3
-  radius: 24
+  radius: 34
   IsRunning: 0
   spawn: {fileID: 0}
 --- !u!114 &3018691057585754910

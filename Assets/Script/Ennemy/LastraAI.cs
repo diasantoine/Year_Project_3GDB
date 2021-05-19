@@ -95,104 +95,122 @@ public class LastraAI : Ennemy
         {
             this.agent.enabled = true;
         }
+        VisionCone(this.player);
         switch (this.LastraState)
         {
             case StateLastra.Idle:
                 break;
             case StateLastra.Moving:
                // Debug.Log(this.IsRunning + " " + this.ContainerNewPos + " " + Vector3.Distance(transform.position, this.player.position));
-                if (DistanceWhereTheLastraStartToRunBackward > Vector3.Distance(transform.position, this.player.position) && this.ContainerNewPos == Vector3.zero)
-                {
-                    if ( !this.AnimatorConteneur.GetBool("IsRunning"))
+               if (!this.SeeThePlayer && !this.AnimatorConteneur.GetBool("IsRunning"))
+               {
+                   this.agent.speed = this.SpeedContainer;
+                   this.agent.isStopped = false;
+                   agent.SetDestination(this.player.position);
+                   agent.stoppingDistance = 0;
+                   if (!this.AnimatorConteneur.GetBool("IsMoving"))
+                   {
+                       this.AnimatorConteneur.SetBool("IsMoving", true);
+                   }
+                   if (this.AnimatorConteneur.GetBool("IsRunning"))
+                   {
+                       this.AnimatorConteneur.SetBool("IsRunning", false);
+                   }
+               }
+               else
+               {
+                    if (DistanceWhereTheLastraStartToRunBackward > Vector3.Distance(transform.position, this.player.position) && this.ContainerNewPos == Vector3.zero) 
                     {
-                        this.AnimatorConteneur.SetBool("IsRunning", true);
-                    }
-                    if (this.AnimatorConteneur.GetBool("IsMoving"))
-                    {
-                        this.AnimatorConteneur.SetBool("IsMoving", false);
-                    }
-                    if (this.agent.speed == 0)
-                    {
-                        this.agent.speed = this.SpeedContainer;
-                    }
-                    this.IsRunning = true;
-                    this.TimeBeforeHeCatchHisBreath = this.TimeBeforeHeCatchHisBreathContainer;
-                    this.CatchHisBreath = false;
-                    agent.stoppingDistance = 0.5f;
-                    this.agent.speed *= 3/ this.DivisionSpeed;
-                    this.DivisionSpeed *= 2;
-                    if (this.FindGoal())
-                    {
-                        this.agent.SetDestination(this.ContainerNewPos);
-                        agent.stoppingDistance = 0;
-                        this.NewPosFind = false;
-                        this.agent.isStopped = false;
-                    }
-                    else
-                    {
-                        this.agent.isStopped = true;
-                    }
-                }
-                else if (this.ContainerNewPos != Vector3.zero && this.IsRunning)
-                {
-                    if (Vector3.Distance(this.ContainerNewPos, transform.position) < 1)
-                    {
-                        this.ContainerNewPos = Vector3.zero;
-                        Debug.Log("arrivé");
-                        this.agent.speed = this.SpeedContainer;
-                        this.agent.isStopped = true;
-                        this.CatchHisBreath = true;
-                        this.IsRunning = false;
-                        this.AnimatorConteneur.SetBool("IsRunning", false);
-                        this.AnimatorConteneur.SetBool("IsMoving", true);
-                    }
-                    else
-                    {
-                        this.agent.SetDestination(this.ContainerNewPos);
-                        agent.stoppingDistance = 0;
-                    }
-                }
-
-                if (DistanceWhereTheLastraStartToRunBackward < Vector3.Distance(transform.position, this.player.position) && this.ContainerNewPos == Vector3.zero && !this.IsRunning)
-                {
-                    this.agent.isStopped = false;
-                    if (!this.AnimatorConteneur.GetBool("IsMoving"))
-                    {
-                        this.AnimatorConteneur.SetBool("IsMoving",true);
-                    }
-                    if (this.AnimatorConteneur.GetBool("IsRunning"))
-                    {
-                        this.AnimatorConteneur.SetBool("IsRunning", false);
-                    }
-                    if (this.CatchHisBreath)
-                    {
-                        if (this.TimeBeforeHeCatchHisBreath <= 0)
+                        if ( !this.AnimatorConteneur.GetBool("IsRunning"))
                         {
-                            this.CatchHisBreath = false;
-                            this.TimeBeforeHeCatchHisBreath = this.TimeBeforeHeCatchHisBreathContainer;
-                            this.DivisionSpeed = 1;
+                            this.AnimatorConteneur.SetBool("IsRunning", true);
+                        }
+                        if (this.AnimatorConteneur.GetBool("IsMoving"))
+                        {
+                            this.AnimatorConteneur.SetBool("IsMoving", false);
+                        }
+                        if (this.agent.speed == 0)
+                        {
+                            this.agent.speed = this.SpeedContainer;
+                        }
+                        this.IsRunning = true;
+                        this.TimeBeforeHeCatchHisBreath = this.TimeBeforeHeCatchHisBreathContainer;
+                        this.CatchHisBreath = false;
+                        agent.stoppingDistance = 0.5f;
+                        this.agent.speed *= 3/ this.DivisionSpeed;
+                        this.DivisionSpeed *= 2;
+                        if (this.FindGoal())
+                        {
+                            this.agent.SetDestination(this.ContainerNewPos);
+                            agent.stoppingDistance = 0;
+                            this.NewPosFind = false;
+                            this.agent.isStopped = false;
                         }
                         else
                         {
-                            this.TimeBeforeHeCatchHisBreath -= Time.deltaTime;
+                            this.agent.isStopped = true;
                         }
                     }
-                    if (this.DistanceMaxNearPlayer + 1 < Vector3.Distance(transform.position, this.player.position) && !this.IsRunning)
+                    else if (this.ContainerNewPos != Vector3.zero && this.IsRunning)
                     {
-                        this.agent.speed = this.SpeedContainer;
-                        agent.SetDestination(this.player.position);
-                        agent.stoppingDistance = this.DistanceMaxNearPlayer;
+                        if (Vector3.Distance(this.ContainerNewPos, transform.position) < 1)
+                        {
+                            this.ContainerNewPos = Vector3.zero;
+                            Debug.Log("arrivé");
+                            this.agent.speed = this.SpeedContainer;
+                            this.agent.isStopped = true;
+                            this.CatchHisBreath = true;
+                            this.IsRunning = false;
+                            this.AnimatorConteneur.SetBool("IsRunning", false);
+                            this.AnimatorConteneur.SetBool("IsMoving", true);
+                        }
+                        else
+                        {
+                            this.agent.SetDestination(this.ContainerNewPos);
+                            agent.stoppingDistance = 0;
+                        }
                     }
-                    else if (this.DistanceMaxNearPlayer + 1 >= Vector3.Distance(transform.position, this.player.position) && !this.IsRunning)
-                    {
-                        this.LastraState = StateLastra.Charging;
-                        this.AnimatorConteneur.SetBool("IsMoving",false);
-                        this.AnimatorConteneur.SetBool("IsCharging",true);
-                        this.agent.isStopped = true;
-                    }
-                }
 
-                break;
+                    if (DistanceWhereTheLastraStartToRunBackward < Vector3.Distance(transform.position, this.player.position) && this.ContainerNewPos == Vector3.zero && !this.IsRunning)
+                    {
+                        this.agent.isStopped = false;
+                        if (!this.AnimatorConteneur.GetBool("IsMoving"))
+                        {
+                            this.AnimatorConteneur.SetBool("IsMoving",true);
+                        }
+                        if (this.AnimatorConteneur.GetBool("IsRunning"))
+                        {
+                            this.AnimatorConteneur.SetBool("IsRunning", false);
+                        }
+                        if (this.CatchHisBreath)
+                        {
+                            if (this.TimeBeforeHeCatchHisBreath <= 0)
+                            {
+                                this.CatchHisBreath = false;
+                                this.TimeBeforeHeCatchHisBreath = this.TimeBeforeHeCatchHisBreathContainer;
+                                this.DivisionSpeed = 1;
+                            }
+                            else
+                            {
+                                this.TimeBeforeHeCatchHisBreath -= Time.deltaTime;
+                            }
+                        }
+                        if (this.DistanceMaxNearPlayer + 1 < Vector3.Distance(transform.position, this.player.position) && !this.IsRunning)
+                        {
+                            this.agent.speed = this.SpeedContainer;
+                            agent.SetDestination(this.player.position);
+                            agent.stoppingDistance = this.DistanceMaxNearPlayer;
+                        }
+                        else if (this.DistanceMaxNearPlayer + 1 >= Vector3.Distance(transform.position, this.player.position) && !this.IsRunning)
+                        {
+                            this.LastraState = StateLastra.Charging;
+                            this.AnimatorConteneur.SetBool("IsMoving",false);
+                            this.AnimatorConteneur.SetBool("IsCharging",true);
+                            this.agent.isStopped = true;
+                        } 
+                    } 
+               }
+               break;
             case StateLastra.Charging:
                 if (DistanceWhereTheLastraStartToRunBackward > Vector3.Distance(transform.position, this.player.position))
                 {  
@@ -238,6 +256,19 @@ public class LastraAI : Ennemy
                 }
                 break;
             case StateLastra.Shoot:
+                if (!this.SeeThePlayer)
+                {
+                    this.NumberOfProjectileFired = 0;
+                    this.TimeBetweenEachShoot = this.TimeBetweenShootContainer;
+                    this.LastraState = StateLastra.Moving;
+                    this.AnimatorConteneur.SetBool("IsMoving", true);
+                    this.AnimatorConteneur.SetBool("IsCharging",false);
+                    this.Intensity = Color.clear;
+                    foreach (GameObject PartIntensityDuringShoot in this.ListPartIntensityDuringShoot)
+                    {
+                        PartIntensityDuringShoot.GetComponent<Renderer>().material.SetColor("_EmissionColor", this.Intensity);
+                    }
+                }
                 if (DistanceWhereTheLastraStartToRunBackward > Vector3.Distance(transform.position, this.player.position))
                 {  
                     this.NumberOfProjectileFired = 0;
@@ -414,14 +445,17 @@ public class LastraAI : Ennemy
     
     bool FrontTest(Vector3 PositionHit)
     {
-        Vector3 fwd = this.player.forward;
-        Vector3 vec = PositionHit - this.player.position;
-        vec = vec.normalized;
- 
-        float ang = Mathf.Acos(Vector3.Dot(fwd, vec)) * Mathf.Rad2Deg;
-        if (ang <= 180f && ang >= 0)
+        // Vector3 fwd = this.player.forward;
+        // Vector3 vec = PositionHit - this.player.position;
+        // vec = vec.normalized;
+        //
+        // float ang = Mathf.Acos(Vector3.Dot(fwd, vec)) * Mathf.Rad2Deg;
+        // if (ang <= 180f && ang >= 0) 
+        float angel = Vector3.Angle(transform.position - this.player.transform.position, PositionHit - this.player.transform.position);
+        Debug.Log(Mathf.Abs(angel));
+        if (Mathf.Abs(angel) >= 0  && Mathf.Abs(angel) <= 90)
             return true;
- 
+
         return false;
     }
     
@@ -432,21 +466,21 @@ public class LastraAI : Ennemy
             if (collision.transform.GetComponent<DeadProjo>().Empoisonnement)
             {
                 JustHit = true;
-                agent.enabled = false;
-                RB.velocity *= ImpactTirNormal;
-                this.ContainerLastState = this.LastraState;
-                this.RB.isKinematic = true;
-                this.LastraState = StateLastra.Hit;
+                // agent.enabled = false;
+                // RB.velocity *= ImpactTirNormal;
+                // this.ContainerLastState = this.LastraState;
+                // this.RB.isKinematic = true;
+                // this.LastraState = StateLastra.Hit;
 
             }
             else
             {
                 JustHit = true;
-                agent.enabled = false;
-                RB.velocity *= ImpactTirNormal;
-                this.ContainerLastState = this.LastraState;
-                this.LastraState = StateLastra.Hit;
-                this.RB.isKinematic = true;
+                //agent.enabled = false;
+                //RB.velocity *= ImpactTirNormal;
+                //this.ContainerLastState = this.LastraState;
+                //this.LastraState = StateLastra.Hit;
+                //this.RB.isKinematic = true;
                 //SwitchState(State.DUMB);
             }
             if (AnimatorConteneur != null)
