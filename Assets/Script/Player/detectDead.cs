@@ -20,10 +20,7 @@ public class detectDead : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(SceneManager.GetActiveScene().name == "LDSoutenance 1")
-        {
-            ressourceInt = 25;
-        }
+        ressourceInt = 0;
     }
 
     // Update is called once per frame
@@ -43,29 +40,16 @@ public class detectDead : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Dead"))
         {
-            if(other.gameObject != deadList.Contains(other.gameObject) && !other.gameObject.GetComponent<takeCadavre>().charge)
+            if(ressourceInt <= 100 - 1)
             {
-                //deadList.Add(other.gameObject);
                 Destroy(other.gameObject);
                 FMODUnity.RuntimeManager.PlayOneShot(SonRecolte, "", 0, transform.position);
+                ressourceInt = Mathf.Clamp(ressourceInt, 0, 100 - 1);
                 ressourceInt++;
-                // other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                // other.gameObject.GetComponent<takeCadavre>().gotcha = true;
-                // other.gameObject.GetComponent<takeCadavre>().player = parent;
-                // other.gameObject.GetComponent<takeCadavre>().deadD = gameObject.GetComponent<detectDead>();
-                // other.gameObject.transform.localScale = tailleTake;
-                // ressourceInt++;
             }
         }
     }
 
-    /*private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Dead"))
-        {
-            deadList.Remove(other.gameObject);
-        }
-    }*/
 
     
 

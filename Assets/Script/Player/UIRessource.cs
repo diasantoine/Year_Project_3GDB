@@ -39,7 +39,7 @@ public class UIRessource : MonoBehaviour
                 Liquid.material.SetFloat("_FillAmount", ValueBaseCuveLiquide);
                 //transform.localScale = new Vector3(transform.localScale.x, 0, transform.localScale.z);
                 CountChanged = ressource;
-                Compteur = 0;
+                
             }
             else if(ressource > 0)
             {
@@ -56,7 +56,7 @@ public class UIRessource : MonoBehaviour
                 //float ConteneurYScale = Mathf.Clamp(0.01f * ressource, 0, 0.93f);
                 //transform.localScale = new Vector3(transform.localScale.x, ConteneurYScale, transform.localScale.z);
                 CountChanged = ressource;
-                Compteur = 0;
+                
             }
         }
         // if (!SongPlayed)

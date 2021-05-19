@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4229814276499755676}
   - component: {fileID: 1945441756715477027}
   - component: {fileID: 5197975004099961107}
-  - component: {fileID: 63786397811605675}
+  - component: {fileID: 9108174455193325093}
   m_Layer: 8
   m_Name: Ressource
   m_TagString: Dead
@@ -112,34 +112,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &63786397811605675
+--- !u!114 &9108174455193325093
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4441296243471229557}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac5e159d725323a49b7961d9aba0dd89, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a84dcf8df17e984f9997b85f40448e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gotcha: 0
-  isMunitions: 0
-  charge: 0
-  dash: 0
-  ShieldProtection: 0
-  jump: 0
-  player: {fileID: 0}
-  Dash: {fileID: 0}
-  bombe: {fileID: 0}
-  Protection: {fileID: 0}
-  Jump: {fileID: 0}
-  threshold: 1.5
-  vitesse: 10
-  radiusGave: 0.1
-  DmgShield: 1
-  deadD: {fileID: 0}
+  timeDeath: 20
 --- !u!1001 &4654829003041509827
 PrefabInstance:
   m_ObjectHideFlags: 0
