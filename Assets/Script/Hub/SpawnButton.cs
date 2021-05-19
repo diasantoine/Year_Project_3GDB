@@ -5,12 +5,18 @@ using UnityEngine;
 public class SpawnButton : MonoBehaviour
 {
 
+    [SerializeField] private SceneThing sceneManager;
     [SerializeField] private GameObject button;
+    [SerializeField] private Transform exitSpawn;
     private bool pause;
+    private Transform player;
+
+    public string function;
 
     private void Awake()
     {
         pause = false;
+        player = GameObject.Find("Player").transform;
     }
 
     private void Update()
@@ -35,8 +41,9 @@ public class SpawnButton : MonoBehaviour
         }
         else
         {
-            button.SetActive(false);   
+            button.SetActive(false);         
             Pause.isPause = false;
+            player.transform.position = exitSpawn.position;
             pause = false;
         }
     }
@@ -45,7 +52,15 @@ public class SpawnButton : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            spawnPause();
+            switch (function)
+            {
+                case "Quit":
+                    sceneManager.QuitGame();
+                    break;
+                case "Play":
+                    sceneManager.LoadLevel(1);
+                    break;
+            }           
         }
     }
 }
