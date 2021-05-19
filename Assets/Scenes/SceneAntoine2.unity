@@ -2559,9 +2559,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadList: []
-  tailleTake: {x: 0.1, y: 0.1, z: 0.1}
-  parent: {fileID: 905213807}
   SonRecolte: event:/Player/RecolteRessource
+  maxRessource: 0
+  uiRessource: {fileID: 0}
 --- !u!135 &404942442
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4662,9 +4662,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadList: []
-  tailleTake: {x: 0.1, y: 0.1, z: 0.1}
-  parent: {fileID: 1352280449}
   SonRecolte: event:/Player/RecolteRessource
+  maxRessource: 0
+  uiRessource: {fileID: 0}
 --- !u!135 &731854444
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5342,6 +5342,7 @@ MonoBehaviour:
   YourPlayerChoosed: 0
   PercentageArmorHeat: 0
   ResiCold: 3
+  FeedbackHitGround: {fileID: 0}
   PercentageWeaponHeat: 0
   Grounded: 0
   OnDash: 0
@@ -5362,10 +5363,14 @@ MonoBehaviour:
   radiusExploBase: 0
   ForceExplosion: 0
   DMG: 0
+  ParticuleAtterissageGameobject: {fileID: 0}
   OnCounter: 0
+  RegulationForce: 0
   cam: {fileID: 1170655788}
   disToGround: 0
   TimerBeforeGrounded: 0
+  particleJump: {fileID: 0}
+  aiguilleHeat: {fileID: 0}
   floatTypeOfFootStep: 0
 --- !u!136 &777907385
 CapsuleCollider:
@@ -6223,6 +6228,7 @@ MonoBehaviour:
   YourPlayerChoosed: 0
   PercentageArmorHeat: 0
   ResiCold: 3
+  FeedbackHitGround: {fileID: 0}
   PercentageWeaponHeat: 0
   Grounded: 0
   OnDash: 0
@@ -6243,10 +6249,14 @@ MonoBehaviour:
   radiusExploBase: 0
   ForceExplosion: 0
   DMG: 0
+  ParticuleAtterissageGameobject: {fileID: 0}
   OnCounter: 0
+  RegulationForce: 0
   cam: {fileID: 1170655788}
   disToGround: 0.5
   TimerBeforeGrounded: 0
+  particleJump: {fileID: 0}
+  aiguilleHeat: {fileID: 0}
   floatTypeOfFootStep: 0
 --- !u!136 &843139553
 CapsuleCollider:
