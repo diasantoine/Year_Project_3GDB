@@ -155,8 +155,8 @@ public class CharacterMovement : MonoBehaviour
                 animAvatar.SetBool("Backward", false);
 
             }
-            ConteneurRigibody.velocity = Vector3_Deplacement_Player * (vitesse / Mathf.Clamp(detectDead.ressourceInt / clamp, 1, 1.75f));
-            animAvatar.speed = (vitesse / Mathf.Clamp(detectDead.ressourceInt / clamp, 1, 1.75f)) * 1/vitesse;
+            ConteneurRigibody.velocity = Vector3_Deplacement_Player * (vitesse / Mathf.Clamp(detectDead.ressourceFloat / clamp, 1, 1.75f));
+            animAvatar.speed = (vitesse / Mathf.Clamp(detectDead.ressourceFloat / clamp, 1, 1.75f)) * 1/vitesse;
             // Debug.DrawRay(transform.position, ConteneurRigibody.velocity.normalized*20, Color.red);
             //RigibodyAvatar.AddForce(Vector3_Deplacement_Player * Speed_Player);
         }

@@ -87,12 +87,10 @@ public class WaveSystem : MonoBehaviour
         {
             if (chrono >= timeAfterWave)
             {
-
                 chrono = 0;
                 chronoWave = timeWave;
                 spawn.NextWave();
                 finish = false;
-
 
                 if (chronoWave >= 10)
                 {

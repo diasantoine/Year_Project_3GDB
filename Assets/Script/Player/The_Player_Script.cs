@@ -32,9 +32,7 @@ public class The_Player_Script : MonoBehaviour
         public float CompteurBeforeDecreaseHeatWeapon;
         public float FrequenceDecreaseWeaponHeat;
         public int NumberOfDecreaseByFrequence_Weapon;
-        
-      
-
+       
     }
     [Header("ChooseYourPlayer")]
     public List<YourPlayer> ListOfYourPlayer = new List<YourPlayer>();
@@ -51,7 +49,8 @@ public class The_Player_Script : MonoBehaviour
     private RaycastHit hit;
     
     private float slow;
-    
+    private float zAiguille;
+
     private float Compteur = 0;
     private float Compteur1 = 0;
     private float Compteu12 = 0;
@@ -61,6 +60,7 @@ public class The_Player_Script : MonoBehaviour
     private float Compteur3 = 0;
     private float CompteurForArmorHeat = 0;
     private float CompteurForWeaponHeat = 0;
+    private float lerpTime;
     
     [Header("PlayerStatArmorHeat")]
     public int PercentageArmorHeat;
@@ -111,6 +111,7 @@ public class The_Player_Script : MonoBehaviour
     [SerializeField] private float disToGround;
     [SerializeField] private float TimerBeforeGrounded;
     [SerializeField] private GameObject particleJump;
+    [SerializeField] private GameObject aiguilleHeat;
 
     public float floatTypeOfFootStep;
 
@@ -127,6 +128,14 @@ public class The_Player_Script : MonoBehaviour
 
     void Update()
     {
+
+
+        if (PercentageArmorHeat < 0)
+            PercentageArmorHeat = 0;
+
+        lerpTime = 3f * Time.deltaTime;
+
+        updateAiguilleHeat();
         CharacterMouvement();
         HeatPlayer();
         CheckPlaque(hit);
@@ -151,12 +160,16 @@ public class The_Player_Script : MonoBehaviour
 
     private void HeatArmor()
     {
-        if (!JustHit && PercentageArmorHeat >0)
+        if (!JustHit && PercentageArmorHeat > 0)
         {
             if (CompteurForArmorHeat >= ListOfYourPlayer[YourPlayerChoosed].CompteurBeforeDecreaseHeatArmor)
             {
                 CompteurForArmorHeat = 0;
-                StartCoroutine(DecreaseArmorHeat());
+                if (!isOnPlaque)
+                {
+                    StartCoroutine(DecreaseArmorHeat());
+
+                }
             }
             else
             {
@@ -175,7 +188,7 @@ public class The_Player_Script : MonoBehaviour
     
     private void HeatWeapon()
     {
-        if ((IsNotUsingNormalWeapon || WeaponOverHeated) && PercentageWeaponHeat >0)
+        if ((IsNotUsingNormalWeapon || WeaponOverHeated) && PercentageWeaponHeat > 0)
         {
             if (CompteurForWeaponHeat >= ListOfYourPlayer[YourPlayerChoosed].CompteurBeforeDecreaseHeatWeapon)
             {
@@ -591,7 +604,7 @@ public class The_Player_Script : MonoBehaviour
                                     if (TimePlaque >= 1)
                                     {
                                         floatTypeOfFootStep = 3;
-                                        detectDead.ressourceInt += 25;
+                                        detectDead.ressourceFloat += 25;
                                         pS.ressourceGot -= 25;
                                         TimePlaque = 0;
                                     }
@@ -617,7 +630,7 @@ public class The_Player_Script : MonoBehaviour
      isOnPlaque = true;
      if (TimePlaque >= 0.1f)
      {
-         if (PercentageArmorHeat <= 100)
+         if (PercentageArmorHeat <= 100 && PercentageArmorHeat >= 0)
          {
              PercentageArmorHeat += One;
 
@@ -656,6 +669,13 @@ public class The_Player_Script : MonoBehaviour
 
      }
  }
+
+    private void updateAiguilleHeat()
+    {
+        zAiguille = Mathf.Lerp(zAiguille, PercentageArmorHeat * -1.47f , lerpTime);
+        aiguilleHeat.transform.eulerAngles = new Vector3(0, 0, zAiguille);
+
+    }
 
  private void JumpPlayer()
  {

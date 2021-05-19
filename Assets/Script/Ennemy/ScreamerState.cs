@@ -49,7 +49,7 @@ public class ScreamerState : State
                 if (Fall)
                 {
                     Instantiate(cadavre, player.position, Quaternion.identity, GameObject.Find("CadavreParent").transform);
-                    Debug.Log(detectDead.ressourceInt);
+                    Debug.Log(detectDead.ressourceFloat);
                 }
                 else
                 {

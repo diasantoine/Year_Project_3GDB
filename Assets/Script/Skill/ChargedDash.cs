@@ -62,7 +62,7 @@ public class ChargedDash : skill
     {
         if (isCharging)
         {
-            if (Charge<ChargeMax && detectDead.ressourceInt > 0)
+            if (Charge<ChargeMax && detectDead.ressourceFloat > 0)
             {
                 base.ChargingSkill(WhichWeapon);
             }

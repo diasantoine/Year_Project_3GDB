@@ -35,7 +35,7 @@ public class skill : MonoBehaviour
     
     public virtual void ChargingSkill(int WhichWeapon)
     {
-        if (detectDead.ressourceInt > 0)
+        if (detectDead.ressourceFloat > 0)
         {
             if (chrono >= freqCharge)
             {
@@ -61,7 +61,7 @@ public class skill : MonoBehaviour
                         parentTakeCadavre.Jump = theProjo.transform;
                         parentTakeCadavre.SkillCharging();
                     }
-                    detectDead.ressourceInt--;
+                    detectDead.ressourceFloat--;
                     chrono = 0;
             }
             else

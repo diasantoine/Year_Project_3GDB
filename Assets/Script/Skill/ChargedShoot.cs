@@ -23,12 +23,12 @@ public class ChargedShoot : skill
     {
         if (theProjo != null)
         {
-            if (isCharging && charge <= chargeMax && detectDead.ressourceInt > 0)
+            if (isCharging && charge <= chargeMax && detectDead.ressourceFloat > 0)
             {
                 if(chrono >= freqCharge)
                 {
                     charge++;
-                    detectDead.ressourceInt--;
+                    detectDead.ressourceFloat--;
                     chrono = 0;
                 }
                 else

@@ -38,7 +38,7 @@ public class PoisonCollider : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(detectDead.ressourceInt > 0)
+        if(detectDead.ressourceFloat > 0)
         {
             if (other.gameObject.CompareTag("Ennemy"))
             {
