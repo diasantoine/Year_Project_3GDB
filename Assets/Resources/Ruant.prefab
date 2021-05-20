@@ -10084,7 +10084,9 @@ MonoBehaviour:
   deceleration: 2
   PorteMinimale: 10
   ForceExplosion: 125
-  radiusExploBase: 0
+  radiusExploBase: 10
+  DistanceWhereRuantStomp: 10
+  ForcePercussion: 125
   Ruant_Collision: event:/Enemy/Ruant/Ruant_Collision
   Ruant_Cris_Mort: event:/Enemy/Ruant/Ruant_Cris_Mort
   Ruant_Cris_Dash: event:/Enemy/Ruant/Ruant_Cris_Dash
