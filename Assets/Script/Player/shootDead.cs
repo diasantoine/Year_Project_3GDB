@@ -148,7 +148,7 @@ public class shootDead : MonoBehaviour
     {
         if (chrono >= freqTir)
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && !GetComponent<The_Player_Script>().WeaponOverHeated)
             {
                 GetComponent<The_Player_Script>().IsNotUsingNormalWeapon = false;
                 GetComponent<The_Player_Script>().PercentageWeaponHeat += 1;
@@ -157,7 +157,7 @@ public class shootDead : MonoBehaviour
                         GetComponent<The_Player_Script>().YourPlayerChoosed].ListWeaponPart)
                 {
                     WeaponPart.GetComponent<Renderer>().material.SetColor("_EmissionColor",
-                        new Color(GetComponent<The_Player_Script>().PercentageWeaponHeat/100f,0 ,0));
+                        new Color(GetComponent<The_Player_Script>().PercentageWeaponHeat/100f,0 , 0));
                 }
                 RaycastHit floorHit;
                 chrono = 0;
