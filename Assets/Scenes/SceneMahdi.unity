@@ -3141,6 +3141,7 @@ MonoBehaviour:
     CompteurBeforeDecreaseHeatWeapon: 2
     FrequenceDecreaseWeaponHeat: 2
     NumberOfDecreaseByFrequence_Weapon: 10
+    MaxWeaponHeat: 0
   YourPlayerChoosed: 0
   PercentageArmorHeat: 0
   ResiCold: 3
@@ -3168,7 +3169,6 @@ MonoBehaviour:
   ParticuleAtterissageGameobject: {fileID: 126184, guid: cab33341e16d3e94cb595dd8726cfdf5,
     type: 3}
   OnCounter: 0
-  RegulationForce: 0
   cam: {fileID: 1170655788}
   disToGround: 0.25
   TimerBeforeGrounded: 0
