@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 public class changeSkill : MonoBehaviour
 {
 
-
     [FMODUnity.EventRef]
     public string ChangeUI = "";
 
@@ -21,9 +20,9 @@ public class changeSkill : MonoBehaviour
 
     private bool onUI;
 
-    [SerializeField] private RectTransform placementA;
-    [SerializeField] private RectTransform placementR;
-    [SerializeField] private RectTransform placementE;
+    [SerializeField] private RectTransform placement1;
+    [SerializeField] private RectTransform placement2;
+    [SerializeField] private RectTransform placement3;
 
     [SerializeField] private float scaleUI;
 
@@ -56,9 +55,9 @@ public class changeSkill : MonoBehaviour
                         result.gameObject.GetComponent<Animator>().SetTrigger("Touched");
                     }
 
-                    KeyDown(KeyCode.A, result.gameObject);
-                    KeyDown(KeyCode.R, result.gameObject);
-                    KeyDown(KeyCode.E, result.gameObject);
+                    KeyDown(KeyCode.Mouse1, result.gameObject);
+                    KeyDown(KeyCode.LeftShift, result.gameObject);
+                    KeyDown(KeyCode.Space, result.gameObject);
                 }
             }
         }
@@ -81,7 +80,6 @@ public class changeSkill : MonoBehaviour
             RoundUI.SetActive(false);
             gameObject.GetComponent<Pause>().StopGame();
 
-
         }
     }
 
@@ -93,79 +91,82 @@ public class changeSkill : MonoBehaviour
 
             switch (bind)
             {
-                case KeyCode.A:
-                    system.skillA = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
+                case KeyCode.Mouse1:
+                    system.skill1 = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
 
-                    if(system.skillE == UI.gameObject.GetComponent<UIgotSkill>().skillGot)
+                    if(system.skill2 == UI.gameObject.GetComponent<UIgotSkill>().skillGot)
                     {
-                        system.skillE = null;
-                        Destroy(placementE.GetChild(0).gameObject);
+                        system.skill2 = null;
+                        Destroy(placement3.GetChild(0).gameObject);
 
                     }
-                    else if(system.skillR == UI.gameObject.GetComponent<UIgotSkill>().skillGot)
+                    else if(system.skill3 == UI.gameObject.GetComponent<UIgotSkill>().skillGot)
                     {
-                        system.skillR = null;
-                        Destroy(placementR.GetChild(0).gameObject);
+                        system.skill3 = null;
+                        Destroy(placement2.GetChild(0).gameObject);
 
                     }
 
 
-                    if (placementA.childCount > 0)
+                    if (placement1.childCount > 0)
                     {
-                        Destroy(placementA.GetChild(0).gameObject);
+                        Destroy(placement1.GetChild(0).gameObject);
                     }
 
-                    FB = Instantiate(UI.gameObject.GetComponent<UIgotSkill>().UIFeedBack, placementA.position, Quaternion.identity, placementA);
+                    FB = Instantiate(UI.gameObject.GetComponent<UIgotSkill>().UIFeedBack, placement1.position, Quaternion.identity, placement1);
+                    FB.GetComponent<OnUISkill>().skillGot = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
                     FB.transform.localScale = new Vector3(scaleUI, scaleUI, scaleUI);
                     break;
-                case KeyCode.R:
-                    system.skillR = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
+                case KeyCode.LeftShift:
+                    system.skill3 = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
 
-                    if (system.skillE == UI.gameObject.GetComponent<UIgotSkill>().skillGot)
+                    if (system.skill2 == UI.gameObject.GetComponent<UIgotSkill>().skillGot)
                     {
-                        system.skillE = null;
-                        Destroy(placementE.GetChild(0).gameObject);
+                        system.skill2 = null;
+                        Destroy(placement3.GetChild(0).gameObject);
 
                     }
-                    else if (system.skillA == UI.gameObject.GetComponent<UIgotSkill>().skillGot)
+                    else if (system.skill1 == UI.gameObject.GetComponent<UIgotSkill>().skillGot)
                     {
-                        system.skillA = null;
-                        Destroy(placementA.GetChild(0).gameObject);
+                        system.skill1 = null;
+                        Destroy(placement1.GetChild(0).gameObject);
 
                     }
 
 
-                    if (placementR.childCount > 0)
+                    if (placement2.childCount > 0)
                     {
-                        Destroy(placementR.GetChild(0).gameObject);
+                        Destroy(placement2.GetChild(0).gameObject);
                     }
 
-                    FB = Instantiate(UI.gameObject.GetComponent<UIgotSkill>().UIFeedBack, placementR.position, Quaternion.identity, placementR);
+                    FB = Instantiate(UI.gameObject.GetComponent<UIgotSkill>().UIFeedBack, placement2.position, Quaternion.identity, placement2);
+                    FB.GetComponent<OnUISkill>().skillGot = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
                     FB.transform.localScale = new Vector3(scaleUI, scaleUI, scaleUI);
                     break;
-                case KeyCode.E:
-                    system.skillE = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
+                case KeyCode.Space:
+                    system.skill2 = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
 
-                    if (system.skillR == UI.gameObject.GetComponent<UIgotSkill>().skillGot)
+                    if (system.skill3 == UI.gameObject.GetComponent<UIgotSkill>().skillGot)
                     {
-                        system.skillR = null;
-                        Destroy(placementR.GetChild(0).gameObject);
+                        system.skill3 = null;
+                        Destroy(placement2.GetChild(0).gameObject);
 
                     }
-                    else if (system.skillA == UI.gameObject.GetComponent<UIgotSkill>().skillGot)
+                    else if (system.skill1 == UI.gameObject.GetComponent<UIgotSkill>().skillGot)
                     {
-                        system.skillA = null;
-                        Destroy(placementA.GetChild(0).gameObject);
+                        system.skill1 = null;
+                        Destroy(placement1.GetChild(0).gameObject);
 
                     }
 
 
-                    if (placementE.childCount > 0)
+                    if (placement3.childCount > 0)
                     {
-                        Destroy(placementE.GetChild(0).gameObject);
+                        Destroy(placement3.GetChild(0).gameObject);
                     }
 
-                    FB = Instantiate(UI.gameObject.GetComponent<UIgotSkill>().UIFeedBack, placementE.position, Quaternion.identity, placementE);
+                    FB = Instantiate(UI.gameObject.GetComponent<UIgotSkill>().UIFeedBack, placement3.position, Quaternion.identity, placement3);
+                    FB.GetComponent<OnUISkill>().skillGot = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
                     FB.transform.localScale = new Vector3(scaleUI, scaleUI, scaleUI);
                     break;
             }

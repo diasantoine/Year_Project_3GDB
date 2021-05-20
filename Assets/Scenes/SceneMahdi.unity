@@ -2151,7 +2151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 288379266}
   m_Layer: 5
-  m_Name: ImageE
+  m_Name: Image2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2322,6 +2322,22 @@ PrefabInstance:
       propertyPath: canon
       value: 
       objectReference: {fileID: 1407204936}
+    - target: {fileID: 8887563716050356840, guid: e66a79645f9902c4ab9268d508187561,
+        type: 3}
+      propertyPath: canUseRessource
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8887563716050356840, guid: e66a79645f9902c4ab9268d508187561,
+        type: 3}
+      propertyPath: chargeMax
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8887563716050356840, guid: e66a79645f9902c4ab9268d508187561,
+        type: 3}
+      propertyPath: preShoot
+      value: 
+      objectReference: {fileID: 1706405093425029665, guid: ac22cfd6695fc2344ba747d2f2c78aab,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e66a79645f9902c4ab9268d508187561, type: 3}
 --- !u!4 &368603643 stripped
@@ -3069,9 +3085,9 @@ MonoBehaviour:
   - {fileID: 1805171425}
   - {fileID: 1171165375}
   changing: {fileID: 1695043473}
-  skillA: {fileID: 368603644}
-  skillR: {fileID: 0}
-  skillE: {fileID: 1805171425}
+  skill1: {fileID: 368603644}
+  skill3: {fileID: 1805171425}
+  skill2: {fileID: 0}
 --- !u!114 &497796872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3152,6 +3168,7 @@ MonoBehaviour:
   ParticuleAtterissageGameobject: {fileID: 126184, guid: cab33341e16d3e94cb595dd8726cfdf5,
     type: 3}
   OnCounter: 0
+  RegulationForce: 0
   cam: {fileID: 1170655788}
   disToGround: 0.25
   TimerBeforeGrounded: 0
@@ -3402,7 +3419,7 @@ RectTransform:
   m_GameObject: {fileID: 510486587}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 1109515224}
   - {fileID: 1158986181}
@@ -3415,7 +3432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7, y: -407.5}
+  m_AnchoredPosition: {x: -7, y: -441.2}
   m_SizeDelta: {x: 1225, y: 264.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &510486589
@@ -5153,7 +5170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 792660198}
   m_Layer: 5
-  m_Name: SkillR
+  m_Name: Skill3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24258,7 +24275,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 862862429}
   m_LocalRotation: {x: -0.11728052, y: -0.8768248, z: 0.3794365, w: -0.2710194}
-  m_LocalPosition: {x: -19.313602, y: 36.448463, z: 28.257645}
+  m_LocalPosition: {x: -23.176323, y: 43.738155, z: 33.909172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1647612268}
@@ -25503,7 +25520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1021770229}
   m_Layer: 5
-  m_Name: ImageR
+  m_Name: Image3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26227,7 +26244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1109515224}
   m_Layer: 5
-  m_Name: SkillA
+  m_Name: Skill1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26583,7 +26600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1158986181}
   m_Layer: 5
-  m_Name: SkillE
+  m_Name: Skill2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26636,7 +26653,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170655786}
   m_LocalRotation: {x: -0.11728052, y: -0.8768248, z: 0.3794365, w: -0.2710194}
-  m_LocalPosition: {x: -19.313602, y: 36.448463, z: 28.257645}
+  m_LocalPosition: {x: -23.176323, y: 43.738155, z: 33.909172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -26875,12 +26892,18 @@ PrefabInstance:
       propertyPath: DurationOfTheCounterWall
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6298735906710218773, guid: 427f29f78bc2a3d48aca16c411c0ae17,
+        type: 3}
+      propertyPath: canUseRessource
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6298735906710218775, guid: 427f29f78bc2a3d48aca16c411c0ae17,
         type: 3}
       propertyPath: m_Name
       value: CounterSkill
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8018024055988793849, guid: 427f29f78bc2a3d48aca16c411c0ae17, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 427f29f78bc2a3d48aca16c411c0ae17, type: 3}
 --- !u!114 &1171165375 stripped
 MonoBehaviour:
@@ -27769,7 +27792,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1371606787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30207,7 +30230,7 @@ MonoBehaviour:
   m_ZDamping: 2
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_CameraDistance: 50
+  m_CameraDistance: 60
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
@@ -30842,9 +30865,9 @@ MonoBehaviour:
   RoundUI: {fileID: 1413022841}
   system: {fileID: 497796871}
   eve: {fileID: 1732215619}
-  placementA: {fileID: 1824378154}
-  placementR: {fileID: 1021770229}
-  placementE: {fileID: 288379266}
+  placement1: {fileID: 1824378154}
+  placement2: {fileID: 288379266}
+  placement3: {fileID: 1021770229}
   scaleUI: 0.1469245
 --- !u!114 &1695043474
 MonoBehaviour:
@@ -31519,12 +31542,18 @@ PrefabInstance:
       propertyPath: ListPalier.Array.data[4]
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5770150579049802268, guid: 4bee1ceeb0eccdd4196843683ab4d4ff,
+        type: 3}
+      propertyPath: canUseRessource
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5770150579049802269, guid: 4bee1ceeb0eccdd4196843683ab4d4ff,
         type: 3}
       propertyPath: m_Name
       value: JumpCharge
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4480559196220589404, guid: 4bee1ceeb0eccdd4196843683ab4d4ff, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4bee1ceeb0eccdd4196843683ab4d4ff, type: 3}
 --- !u!4 &1805171424 stripped
 Transform:
@@ -31554,7 +31583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1824378154}
   m_Layer: 5
-  m_Name: ImageA
+  m_Name: Image1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32285,7 +32314,13 @@ PrefabInstance:
       propertyPath: freqRessource
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 992651095280887801, guid: 9ac032004c958154688dcc6295208091,
+        type: 3}
+      propertyPath: canUseRessource
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4908858472558675581, guid: 9ac032004c958154688dcc6295208091, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9ac032004c958154688dcc6295208091, type: 3}
 --- !u!4 &1982419641 stripped
 Transform:
@@ -32426,6 +32461,11 @@ PrefabInstance:
       propertyPath: TirCharge_Tir
       value: event:/Player/TirCharge_Tir
       objectReference: {fileID: 0}
+    - target: {fileID: 1925898319563361555, guid: 834556059aba45f45a6b9d55611ed96e,
+        type: 3}
+      propertyPath: canUseRessource
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6923046105467757287, guid: 834556059aba45f45a6b9d55611ed96e,
         type: 3}
       propertyPath: m_Name
@@ -32512,7 +32552,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8999844454770249107, guid: 834556059aba45f45a6b9d55611ed96e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 834556059aba45f45a6b9d55611ed96e, type: 3}
 --- !u!4 &2018855157 stripped
 Transform:
@@ -33836,6 +33877,7 @@ GameObject:
   - component: {fileID: 7296107062475636412}
   - component: {fileID: 1686002238364884483}
   - component: {fileID: 7063646421624697577}
+  - component: {fileID: 1439972079591619805}
   m_Layer: 5
   m_Name: ChargedShoot
   m_TagString: Untagged
@@ -33843,6 +33885,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1439972079591619805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439972079591619804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12f764fc70348748b6eaad082d1a173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillGot: {fileID: 368603644}
 --- !u!4 &1541921287915310285
 Transform:
   m_ObjectHideFlags: 0
@@ -33926,6 +33981,7 @@ GameObject:
   - component: {fileID: 4966602820614185030}
   - component: {fileID: 8068055279050815300}
   - component: {fileID: 7158165372534382199}
+  - component: {fileID: 2012090517522297046}
   m_Layer: 5
   m_Name: Jump
   m_TagString: Untagged
@@ -33933,6 +33989,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2012090517522297046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012090517522297045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12f764fc70348748b6eaad082d1a173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillGot: {fileID: 1805171425}
 --- !u!23 &2053327659825173206
 MeshRenderer:
   m_ObjectHideFlags: 0

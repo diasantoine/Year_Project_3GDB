@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class skill : MonoBehaviour
 {
-    public detectDead ressource;
+
+    [Header("Propriety For All")]
     public bool chargedSkill;
     public int IdSkill;
-
+    public int canUseRessource;
     [SerializeField] protected private float freqCharge;
     [SerializeField] private takeCadavre parentTakeCadavre;
     protected private float chrono;
 
-    public bool isCharging;
+    [HideInInspector] public bool isCharging;
 
     [HideInInspector] public GameObject theProjo;
 

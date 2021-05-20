@@ -85,9 +85,9 @@ public class TirCharge : MonoBehaviour
 
         for (int i = 0; i < hit.Length; i++)
         {
-            if (hit[i].GetComponent<ennemyAI>() != null)
+            if (hit[i].GetComponent<BasicAI>() != null)
             {
-                hit[i].GetComponent<ennemyAI>().ExplosionImpact(hitPoint, radiusExploBase + transform.localScale.x, ExploForce);
+                hit[i].GetComponent<BasicAI>().ExplosionImpact(hitPoint, radiusExploBase + transform.localScale.x, ExploForce);
             }
             else if (hit[i].GetComponent<ScreamerState>() != null)
             {

@@ -30,11 +30,15 @@ public class JumpCharged : skill
     
     public override void UsingSkill()
     {
-        if (detectDead.ressourceFloat >= this.ListPalier[0] && !this.isCharging && !this.Parent.GetComponent<The_Player_Script>().OnJump)
+        if(detectDead.ressourceFloat >= canUseRessource)
         {
-            theProjo = gameObject;
-            this.isCharging = true;
+            if (detectDead.ressourceFloat >= this.ListPalier[0] && !this.isCharging && !this.Parent.GetComponent<The_Player_Script>().OnJump)
+            {
+                theProjo = gameObject;
+                this.isCharging = true;
+            }
         }
+       
     }
 
     public override void ChargingSkill(int WhichWeapon)

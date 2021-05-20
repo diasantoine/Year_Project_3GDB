@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3971526282532939897}
   - component: {fileID: 603385501785221005}
+  - component: {fileID: 9221882852684392129}
   m_Layer: 0
   m_Name: DashCharge
   m_TagString: Untagged
@@ -43,16 +44,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918ef8efcfc3dab4db9b7d7b0cd4d321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ressource: {fileID: 0}
   chargedSkill: 1
   IdSkill: 1
+  canUseRessource: 0
   freqCharge: 0.5
-  conteneur: {fileID: 0}
+  parentTakeCadavre: {fileID: 0}
+  isCharging: 0
+  theProjo: {fileID: 0}
   ConteneurRigibody: {fileID: 0}
   DashSpeed: 20
   ChargeMax: 7
   Parent: {fileID: 0}
   Avatar: {fileID: 0}
   PorteMaximale: 15
+  Canon: {fileID: 0}
   Charge: 0
-  isCharging: 0
+  AfterShock: 0
+  BRO: {fileID: 0}
+--- !u!114 &9221882852684392129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971526282532939895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12f764fc70348748b6eaad082d1a173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillGot: {fileID: 0}

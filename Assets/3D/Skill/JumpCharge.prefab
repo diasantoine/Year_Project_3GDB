@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5770150579049802259}
   - component: {fileID: 5770150579049802268}
+  - component: {fileID: 4480559196220589404}
   m_Layer: 0
   m_Name: JumpCharge
   m_TagString: Untagged
@@ -43,19 +44,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc972be1c9ed0e4c970df48ee18dd95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ressource: {fileID: 0}
   chargedSkill: 1
   IdSkill: 4
+  canUseRessource: 0
   freqCharge: 0.1
   parentTakeCadavre: {fileID: 0}
   isCharging: 0
   theProjo: {fileID: 0}
-  ConteneurRigibody: {fileID: 0}
   JumpSpeed: 20
+  JumpHigh: 20
   ChargeMax: 7
+  PorteMaximale: 15
+  RadiusSouffleAtterissage: 0
+  ForceSouffleAtterissage: 0
+  ListPalier: 
   Parent: {fileID: 0}
   Avatar: {fileID: 0}
-  PorteMaximale: 15
-  Canon: {fileID: 0}
+  ConteneurRigibody: {fileID: 0}
+  CercleFeedback: {fileID: 0}
   BRO: {fileID: 2100000, guid: bc27352d1ea246c41a30f725e70a5194, type: 2}
   Charge: 0
+--- !u!114 &4480559196220589404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5770150579049802269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12f764fc70348748b6eaad082d1a173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillGot: {fileID: 0}

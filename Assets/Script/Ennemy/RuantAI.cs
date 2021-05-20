@@ -164,8 +164,8 @@ public class RuantAI : Ennemy
                 if (Grounded)
                 {
                     //FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, transform.position); // son de collision lorsqu'il attérit apres le spawn
-                    GameObject newExplo = Instantiate(preExplo, transform.position, Quaternion.identity);
-                    Destroy(newExplo, 0.2f);
+                    GameObject newExplo = Instantiate(preExplo, transform.position + new Vector3(0, 0.25f, 0), preExplo.transform.rotation);
+                    Destroy(newExplo, 1f);
                     CameraShake.Instance.Shake(5, 0.5f);
                     SwitchState(State.IDLE);
                     
@@ -295,9 +295,9 @@ public class RuantAI : Ennemy
                 {
                     GetComponent<RuantState>().Die();
                     FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, "", 0, transform.position); // son de collision lorsque le ruant tombe
-                    GameObject exploFee = Instantiate(preExplo, transform.position, Quaternion.identity);
+                    GameObject exploFee = Instantiate(preExplo, transform.position + new Vector3(0, 0.25f, 0) + transform.forward * -2f, preExplo.transform.rotation);
                     CameraShake.Instance.Shake(5, 0.5f);
-                    Destroy(exploFee, 0.25f);
+                    Destroy(exploFee, 1f);
                 }
                 else
                 {

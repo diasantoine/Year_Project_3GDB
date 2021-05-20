@@ -5,6 +5,7 @@ using UnityEngine;
 public class ImpulseCharge : skill
 {
 
+    [Header("Propriety Of Skill")]
     [SerializeField] private GameObject preProjo;
     [SerializeField] private Transform canonCharge;
 
@@ -23,10 +24,13 @@ public class ImpulseCharge : skill
 
     public override void UsingSkill()
     {
-        isCharging = true;
-        _TirCharge_Charge.start();
-        theProjo = Instantiate(preProjo, canonCharge.position, Quaternion.identity, transform.parent);
-        theProjo.GetComponent<Rigidbody>().isKinematic = true;
+        if(detectDead.ressourceFloat >= canUseRessource)
+        {
+            isCharging = true;
+            _TirCharge_Charge.start();
+            theProjo = Instantiate(preProjo, canonCharge.position, Quaternion.identity, transform.parent);
+            theProjo.GetComponent<Rigidbody>().isKinematic = true;
+        }       
     }
 
     public override void ChargingSkill(int WhichWeapon)

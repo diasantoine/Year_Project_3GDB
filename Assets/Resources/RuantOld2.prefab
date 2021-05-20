@@ -2795,7 +2795,7 @@ GameObject:
   - component: {fileID: 5550692308483069505}
   - component: {fileID: 5550692308483069504}
   m_Layer: 13
-  m_Name: Ruant
+  m_Name: RuantOld2
   m_TagString: Ennemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2884,7 +2884,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldOfView: 30
   distanceOfView: 50
-  disToGround: 2
+  disToGround: 1
   RB: {fileID: 5550692308483069518}
   AnimatorConteneur: {fileID: 3334584385586049593}
   agent: {fileID: 5550692308483069516}
@@ -2893,12 +2893,17 @@ MonoBehaviour:
   health: {fileID: 5550692308483069504}
   preExplo: {fileID: 7329697235198686324, guid: 0b795bf1b3989604eb781f8378f60898,
     type: 3}
+  stunParticle: {fileID: 0}
+  RuantCollider: {fileID: 3324747036720549206}
   distForRush: 25
   waitRush: 1
   stunTime: 4
   speedRush: 25
+  stunEcart: 0
   deceleration: 0.5
-  RuantCollider: {fileID: 3324747036720549206}
+  PorteMinimale: 0
+  ForceExplosion: 0
+  radiusExploBase: 0
   Ruant_Collision: event:/Enemy/Ruant/Ruant_Collision
   Ruant_Cris_Mort: event:/Enemy/Ruant/Ruant_Cris_Mort
   Ruant_Cris_Dash: event:/Enemy/Ruant/Ruant_Cris_Dash
