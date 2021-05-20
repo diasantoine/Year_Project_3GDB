@@ -19,6 +19,8 @@ public class RuantAI : Ennemy
     [SerializeField] private float PorteMinimale;
     [SerializeField] private int ForceExplosion;
     [SerializeField] private int radiusExploBase;
+    [SerializeField] private int DistanceWhereRuantStomp;
+    public int ForcePercussion;
     
     private float chrono;
     private float speedRushIni;
@@ -174,6 +176,11 @@ public class RuantAI : Ennemy
                 break;
 
             case State.WAIT:
+                if (Vector3.Distance(transform.position, this.player.transform.position) <= this.DistanceWhereRuantStomp)
+                {
+                    SwitchState(State.HitGround);
+                    this.chrono = 0;
+                }
                 if (chrono >= waitRush)
                 {
                     SwitchState(State.RUSH);
@@ -198,6 +205,10 @@ public class RuantAI : Ennemy
                 break;
 
             case State.CHASE:
+                if (Vector3.Distance(transform.position, this.player.transform.position) <= this.DistanceWhereRuantStomp)
+                {
+                    SwitchState(State.HitGround);
+                }
                 Vector3 dist = transform.position - player.position;
                 agent.SetDestination(player.position);
 
@@ -278,6 +289,7 @@ public class RuantAI : Ennemy
                     {
                         this.TimeBeforeHitGround = 0;
                         this.ImpulsionTahLesfous();
+                        SwitchState(State.IDLE);
                     }
                     else
                     {
@@ -337,6 +349,10 @@ public class RuantAI : Ennemy
             case State.STUN:
                 stunParticle.SetActive(false);
                 AnimatorConteneur.SetBool("isRushing", false);
+                break;
+            case State.HitGround:
+                this.agent.isStopped = true;
+                this.agent.enabled = false;
                 break;
             case State.DEATH:
                 break;

@@ -2764,7 +2764,6 @@ MonoBehaviour:
   ParticuleAtterissageGameobject: {fileID: 126184, guid: cab33341e16d3e94cb595dd8726cfdf5,
     type: 3}
   OnCounter: 0
-  RegulationForce: 0
   cam: {fileID: 1170655788}
   disToGround: 0.5
   TimerBeforeGrounded: 0
@@ -26377,10 +26376,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListWave:
-  - NumberBasic: 0
+  - NumberBasic: 1
     NumberRuant: 0
     NumberScreamer: 0
-    NumberLastra: 1
+    NumberLastra: 0
     ListSpawnBasic:
     - {fileID: 1935181333}
     - {fileID: 277494445}

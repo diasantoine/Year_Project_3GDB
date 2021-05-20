@@ -103,8 +103,7 @@ public class The_Player_Script : MonoBehaviour
     [Header("Counter")] 
     public bool OnCounter;
 
-    [Header("HitByRuant")] 
-    [SerializeField] private float RegulationForce;
+    private float RegulationForce;
     
     [Header("Other")] 
     [SerializeField] private Camera cam;
@@ -751,6 +750,7 @@ public class The_Player_Script : MonoBehaviour
             //dir = (dir + collision.GetComponent<Rigidbody>().velocity) / 2;
             dir.y = 0;
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity = Vector3.zero;
+            this.RegulationForce = other.GetComponent<RuantAI>().ForcePercussion;
             Debug.Log(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity);
             ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.AddForceAtPosition(dir * (other.GetComponent<Rigidbody>().velocity.magnitude 
                     * RegulationForce + (other.GetComponent<Rigidbody>().velocity.magnitude * RegulationForce * PercentageArmorHeat/100)), 
