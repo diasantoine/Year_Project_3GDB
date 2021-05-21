@@ -9,6 +9,7 @@ public class LaserShoot : MonoBehaviour
     [HideInInspector] public bool goGoGo;
     [HideInInspector] public int charged;
     [HideInInspector] public bool IsCharging;
+    [SerializeField] private ParticleSystem ps;
 
     [SerializeField] private int hitDmg;
     [SerializeField] private List<Collider> ListCollider = new List<Collider>();
@@ -45,8 +46,10 @@ public class LaserShoot : MonoBehaviour
         {
             this.ListCollider[0].enabled = false;
             this.ListCollider[1].enabled = true;
-            this.GetComponent<Renderer>().enabled = true;
-            Destroy(transform.parent.gameObject, 0.1f);
+            //this.GetComponent<Renderer>().enabled = true;
+            ps.gameObject.SetActive(true);
+            ps.Play();
+            Destroy(transform.parent.gameObject, 1f);
             goGoGo = false;
         //     this.IfNoWallHit = 0.2f;
         //     this.FinishCompteurStart = false;

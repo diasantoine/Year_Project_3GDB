@@ -11,9 +11,9 @@ public class skillSystem : MonoBehaviour
 
     [SerializeField] private changeSkill changing;
 
-    public skill skillA;
-    public skill skillR;
-    public skill skillE;
+    public skill skill1;
+    public skill skill3;
+    public skill skill2;
 
     // Start is called before the first frame update
     void Start()

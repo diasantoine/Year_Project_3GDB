@@ -5,6 +5,7 @@ using UnityEngine;
 public class PoisonShield : skill
 {
 
+    [Header("Propriety Of Skill")]
     [SerializeField] private float freqRessource;
     private float timer;
 
@@ -66,7 +67,7 @@ public class PoisonShield : skill
 
      public override void UsingSkill()
      {
-        if(detectDead.ressourceFloat > 0)
+        if(detectDead.ressourceFloat >= canUseRessource)
         {
             if (isActive)
             {

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1925898319563361554}
   - component: {fileID: 1925898319563361555}
+  - component: {fileID: -8999844454770249107}
   m_Layer: 0
   m_Name: ImpulseCharge
   m_TagString: Untagged
@@ -43,10 +44,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef17e1bc0ca098458d49bf63589ad13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ressource: {fileID: 0}
   chargedSkill: 1
   IdSkill: 0
+  canUseRessource: 0
   freqCharge: 0.5
-  conteneur: {fileID: 0}
+  parentTakeCadavre: {fileID: 0}
+  isCharging: 0
+  theProjo: {fileID: 0}
   preProjo: {fileID: 933570394997345196, guid: 0490a40a3c8c0504bbb696f4fa40ee91, type: 3}
   canonCharge: {fileID: 0}
+  TirCharge_Charge: 
+  TirCharge_Tir: 
+--- !u!114 &-8999844454770249107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925898319563361564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12f764fc70348748b6eaad082d1a173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillGot: {fileID: 0}

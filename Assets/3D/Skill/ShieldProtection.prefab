@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5105120252955428959}
   - component: {fileID: 5105120252955428958}
+  - component: {fileID: 5557496882572777021}
   m_Layer: 0
   m_Name: ShieldProtection
   m_TagString: Untagged
@@ -43,12 +44,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c00b83e5e42e394a95b97128444a299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ressource: {fileID: 0}
   chargedSkill: 0
   IdSkill: 3
+  canUseRessource: 0
   freqCharge: 0
+  parentTakeCadavre: {fileID: 0}
   isCharging: 0
-  conteneur: {fileID: 0}
+  theProjo: {fileID: 0}
   BulleProtectrice: {fileID: 0}
   Parent: {fileID: 0}
-  DetecList: {fileID: 0}
+  TickVar: 1
+  TirDisabel: {fileID: 0}
+--- !u!114 &5557496882572777021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5105120252955428944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12f764fc70348748b6eaad082d1a173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillGot: {fileID: 0}

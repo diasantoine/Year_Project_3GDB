@@ -57,21 +57,21 @@ public class shootSkill : MonoBehaviour
     {
         if (skillSystem.skills.Count > 0)
         {
-            if (skillSystem.skillA != null)
+            if (skillSystem.skill1 != null)
             {
-                SkillUse(KeyCode.A, skillSystem.skillA);
+                SkillUse(KeyCode.Mouse1, skillSystem.skill1);
 
             }
 
-            if (skillSystem.skillE != null)
+            if (skillSystem.skill2 != null)
             {
-                SkillUse(KeyCode.E, skillSystem.skillE);
+                SkillUse(KeyCode.LeftShift, skillSystem.skill2);
 
             }
 
-            if (skillSystem.skillR != null)
+            if (skillSystem.skill3 != null)
             {
-                SkillUse(KeyCode.R, skillSystem.skillR);
+                SkillUse(KeyCode.Space, skillSystem.skill3);
 
             }
         }

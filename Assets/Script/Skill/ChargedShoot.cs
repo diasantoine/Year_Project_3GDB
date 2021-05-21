@@ -5,6 +5,7 @@ using UnityEngine;
 public class ChargedShoot : skill
 {
 
+    [Header("Propriety Of Skill")]
     [SerializeField] private GameObject preShoot;
     [SerializeField] private Transform canon;
 
@@ -13,9 +14,13 @@ public class ChargedShoot : skill
 
     public override void UsingSkill()
     {
-        chrono = 0;
-        isCharging = true;
-        theProjo = Instantiate(preShoot, canon.position, transform.rotation, canon).transform.GetChild(0).gameObject;
+        if(detectDead.ressourceFloat >= canUseRessource)
+        {
+            chrono = 0;
+            isCharging = true;
+            theProjo = Instantiate(preShoot, canon.position, transform.rotation, canon).transform.GetChild(0).gameObject;
+        }
+        
     }
 
 
@@ -51,7 +56,7 @@ public class ChargedShoot : skill
         {
             if(theProjo.GetComponent<LaserShoot>() != null)
             {
-                theProjo.GetComponent<LaserShoot>().IsCharging = false;
+                theProjo.GetComponent<LaserShoot>().IsCharging = false;              
                 //theProjo.GetComponent<LaserShoot>().charged = charge;
                 theProjo.GetComponent<LaserShoot>().goGoGo = true;
                 //theProjo.GetComponent<MeshRenderer>().enabled = true;

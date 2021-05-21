@@ -77,7 +77,8 @@ public class Counter : skill
 
     public override void UsingSkill()
     {
-        if ( detectDead.ressourceFloat >= 10 && !this.PlayerScriptContainer.OnCounter && !this.isCharging)
+       
+        if (detectDead.ressourceFloat >= canUseRessource && !this.PlayerScriptContainer.OnCounter && !this.isCharging)
         {
             this.isCharging = true;
             detectDead.ressourceFloat -= 10;
