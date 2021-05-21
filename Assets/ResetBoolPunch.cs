@@ -36,9 +36,11 @@ public class ResetBoolPunch : StateMachineBehaviour
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (animator.transform.parent.GetComponent<BasicAI>().InPunch)
+        if (animator.transform.GetComponent<BasicAI>().InPunch)
         {
-            animator.transform.parent.GetComponent<BasicAI>().InPunch = false;
+            animator.transform.GetComponent<BasicAI>().InPunch = false;
         }
+        animator.GetComponent<BasicAI>().agent.isStopped = false;
+        animator.SetBool("Taper", false);
     }
 }

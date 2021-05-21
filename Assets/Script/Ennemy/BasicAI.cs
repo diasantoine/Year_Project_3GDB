@@ -100,7 +100,6 @@ public class BasicAI : Ennemy
                 if (!hitPlayer)
                 {
                     this.PunchInRange();
-
                 }
                 else
                 {
@@ -110,7 +109,6 @@ public class BasicAI : Ennemy
                         if (AnimatorConteneur.GetBool("Taper"))
                         {
                             AnimatorConteneur.SetBool("Taper", false);
-
                         }
 
                     }
@@ -219,6 +217,7 @@ public class BasicAI : Ennemy
                 {
                     AnimatorConteneur.SetBool("Taper", true);
                     this.InPunch = true;
+                    this.agent.isStopped = true;
                 }
             }
         }

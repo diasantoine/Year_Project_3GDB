@@ -370,11 +370,11 @@ public class ScreamerAI : Ennemy
                 // RB.velocity *= ImpactTirNormal;
 
             }
-            if(AnimatorConteneur != null)
-            {
-                AnimatorConteneur.SetBool("Hit", true);
-                AnimatorConteneur.SetBool("Marche", false);
-            }
+            // if(AnimatorConteneur != null)
+            // {
+            //     AnimatorConteneur.SetBool("Hit", true);
+            //     AnimatorConteneur.SetBool("Marche", false);
+            // }
         }
         if (collision.transform.CompareTag("Ennemy"))// && collision.gameObject.GetComponent<ScreamerScript>().JustHit)
         {

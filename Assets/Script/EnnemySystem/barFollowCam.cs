@@ -5,7 +5,7 @@ using UnityEngine;
 public class barFollowCam : MonoBehaviour
 {
 
-    [SerializeField] private Transform cam;
+    private Transform cam;
 
     // Start is called before the first frame update
     void Start()

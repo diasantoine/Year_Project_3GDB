@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using FMOD.Studio;
 using UnityEngine;
 
 public class Data_SD : MonoBehaviour
@@ -27,14 +29,20 @@ public class Data_SD : MonoBehaviour
     void Start()
     {
         FMODUnity.RuntimeManager.PlayOneShot(Ambiance, "", 0, transform.position);
-        footStepPlayer = FMODUnity.RuntimeManager.CreateInstance(footStep);
+        if (this.footStep != String.Empty)
+        {
+            footStepPlayer = FMODUnity.RuntimeManager.CreateInstance(footStep);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         //Debug.Log(TPS.floatTypeOfFootStep);
-        footStepPlayer.setParameterByName("TypeOfFootstep", TPS.floatTypeOfFootStep);
+        if (this.footStepPlayer.isValid())
+        {
+            footStepPlayer.setParameterByName("TypeOfFootstep", TPS.floatTypeOfFootStep);
+        }
     }
 
 
