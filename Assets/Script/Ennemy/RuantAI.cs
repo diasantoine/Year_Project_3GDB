@@ -176,11 +176,6 @@ public class RuantAI : Ennemy
                 break;
 
             case State.WAIT:
-                if (Vector3.Distance(transform.position, this.player.transform.position) <= this.DistanceWhereRuantStomp)
-                {
-                    SwitchState(State.HitGround);
-                    this.chrono = 0;
-                }
                 if (chrono >= waitRush)
                 {
                     SwitchState(State.RUSH);

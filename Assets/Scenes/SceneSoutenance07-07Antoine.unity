@@ -1976,6 +1976,11 @@ PrefabInstance:
       propertyPath: canon
       value: 
       objectReference: {fileID: 1407204936}
+    - target: {fileID: 8887563716050356840, guid: e66a79645f9902c4ab9268d508187561,
+        type: 3}
+      propertyPath: canUseRessource
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e66a79645f9902c4ab9268d508187561, type: 3}
 --- !u!4 &368603643 stripped
@@ -2681,9 +2686,9 @@ MonoBehaviour:
   - {fileID: 1805171425}
   - {fileID: 1171165375}
   changing: {fileID: 1695043473}
-  skillA: {fileID: 368603644}
-  skillR: {fileID: 0}
-  skillE: {fileID: 1805171425}
+  skill1: {fileID: 368603644}
+  skill3: {fileID: 0}
+  skill2: {fileID: 1805171425}
 --- !u!114 &497796872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23314,7 +23319,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 862862429}
   m_LocalRotation: {x: -0.11728052, y: -0.8768248, z: 0.3794365, w: -0.2710194}
-  m_LocalPosition: {x: -15.450882, y: 29.15877, z: 22.606115}
+  m_LocalPosition: {x: -23.176323, y: 43.738155, z: 33.909172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1647612268}
@@ -25196,7 +25201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170655786}
   m_LocalRotation: {x: -0.11728052, y: -0.8768248, z: 0.3794365, w: -0.2710194}
-  m_LocalPosition: {x: -15.450882, y: 29.15877, z: 22.606115}
+  m_LocalPosition: {x: -23.176323, y: 43.738155, z: 33.909172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -25434,6 +25439,11 @@ PrefabInstance:
         type: 3}
       propertyPath: DurationOfTheCounterWall
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298735906710218773, guid: 427f29f78bc2a3d48aca16c411c0ae17,
+        type: 3}
+      propertyPath: canUseRessource
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6298735906710218775, guid: 427f29f78bc2a3d48aca16c411c0ae17,
         type: 3}
@@ -26093,7 +26103,7 @@ RectTransform:
   m_GameObject: {fileID: 1279303095}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 2094968204}
   - {fileID: 1640640847}
@@ -26106,7 +26116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7, y: -407.5}
+  m_AnchoredPosition: {x: -7, y: -440}
   m_SizeDelta: {x: 1225, y: 264.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1279303097
@@ -26380,8 +26390,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListWave:
-  - NumberBasic: 1
-    NumberRuant: 0
+  - NumberBasic: 0
+    NumberRuant: 1
     NumberScreamer: 0
     NumberLastra: 0
     ListSpawnBasic:
@@ -28180,7 +28190,7 @@ MonoBehaviour:
   m_ZDamping: 2
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_CameraDistance: 40
+  m_CameraDistance: 60
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
@@ -28308,6 +28318,7 @@ GameObject:
   - component: {fileID: 1660224726}
   - component: {fileID: 1660224728}
   - component: {fileID: 1660224727}
+  - component: {fileID: 1660224729}
   m_Layer: 5
   m_Name: Jump
   m_TagString: Untagged
@@ -28371,6 +28382,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1660224725}
   m_CullTransparentMesh: 0
+--- !u!114 &1660224729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660224725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12f764fc70348748b6eaad082d1a173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillGot: {fileID: 1805171425}
 --- !u!1001 &1664647837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28925,9 +28949,9 @@ MonoBehaviour:
   RoundUI: {fileID: 1413022841}
   system: {fileID: 497796871}
   eve: {fileID: 1732215619}
-  placementA: {fileID: 0}
-  placementR: {fileID: 0}
-  placementE: {fileID: 0}
+  placement1: {fileID: 1712301711}
+  placement2: {fileID: 2024861807}
+  placement3: {fileID: 1902710401}
   scaleUI: 0.1469245
 --- !u!114 &1695043474
 MonoBehaviour:
@@ -29366,6 +29390,7 @@ GameObject:
   - component: {fileID: 1732746073}
   - component: {fileID: 1732746075}
   - component: {fileID: 1732746074}
+  - component: {fileID: 1732746076}
   m_Layer: 5
   m_Name: ChargedShoot
   m_TagString: Untagged
@@ -29429,6 +29454,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732746072}
   m_CullTransparentMesh: 0
+--- !u!114 &1732746076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732746072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12f764fc70348748b6eaad082d1a173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillGot: {fileID: 368603644}
 --- !u!1 &1773672052
 GameObject:
   m_ObjectHideFlags: 0
@@ -29711,6 +29749,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ListPalier.Array.data[4]
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770150579049802268, guid: 4bee1ceeb0eccdd4196843683ab4d4ff,
+        type: 3}
+      propertyPath: canUseRessource
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5770150579049802269, guid: 4bee1ceeb0eccdd4196843683ab4d4ff,
         type: 3}
@@ -30472,6 +30515,11 @@ PrefabInstance:
       propertyPath: freqRessource
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 992651095280887801, guid: 9ac032004c958154688dcc6295208091,
+        type: 3}
+      propertyPath: canUseRessource
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ac032004c958154688dcc6295208091, type: 3}
 --- !u!4 &1982419641 stripped
@@ -30533,6 +30581,11 @@ PrefabInstance:
         type: 3}
       propertyPath: TirCharge_Tir
       value: event:/Player/TirCharge_Tir
+      objectReference: {fileID: 0}
+    - target: {fileID: 1925898319563361555, guid: 834556059aba45f45a6b9d55611ed96e,
+        type: 3}
+      propertyPath: canUseRessource
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6923046105467757287, guid: 834556059aba45f45a6b9d55611ed96e,
         type: 3}
