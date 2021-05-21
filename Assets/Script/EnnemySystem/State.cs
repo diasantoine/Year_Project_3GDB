@@ -42,17 +42,9 @@ public class State : MonoBehaviour
     public virtual void Damage(float dmg)
     {
         HpNow -= dmg;
+        healthBar.gameObject.SetActive(true);
         healthBar.value = HpNow;
         touched = true;
         chronoBar = 0;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("DeathFall"))
-        {
-            HpNow = 0;
-            Fall = true;
-        }
     }
 }

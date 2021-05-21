@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 992651095280887798}
   - component: {fileID: 992651095280887801}
-  - component: {fileID: 4908858472558675581}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -56,16 +55,3 @@ MonoBehaviour:
   SonPoisonShield: 
   poisonCloud: {fileID: 0}
   cuve: {fileID: 0}
---- !u!114 &4908858472558675581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992651095280887800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e12f764fc70348748b6eaad082d1a173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillGot: {fileID: 0}

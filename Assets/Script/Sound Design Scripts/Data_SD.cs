@@ -17,9 +17,6 @@ public class Data_SD : MonoBehaviour
     FMOD.Studio.EventInstance footStepPlayer;
 
     [FMODUnity.EventRef]
-    public string Ruant_FootStep = "";
-
-    [FMODUnity.EventRef]
     public string Screamer_Explosion = "";
 
     [FMODUnity.EventRef]
@@ -51,13 +48,6 @@ public class Data_SD : MonoBehaviour
         // footStepPlayer.start();
         FMODUnity.RuntimeManager.PlayOneShot(footStep, "TypeOfFootstep", TPS.floatTypeOfFootStep, transform.position);
         // FMODUnity.RuntimeManager.PlayOneShot(footStep, transform.position);
-        /// Debug.Log("test son footstep");
-    }
-
-
-    public void PlayFootStepRuant()
-    {
-        FMODUnity.RuntimeManager.PlayOneShot(Ruant_FootStep, "", 0, transform.position);
         /// Debug.Log("test son footstep");
     }
 

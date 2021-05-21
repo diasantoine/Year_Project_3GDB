@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1925898319563361554}
   - component: {fileID: 1925898319563361555}
-  - component: {fileID: -8999844454770249107}
   m_Layer: 0
   m_Name: ImpulseCharge
   m_TagString: Untagged
@@ -55,16 +54,3 @@ MonoBehaviour:
   canonCharge: {fileID: 0}
   TirCharge_Charge: 
   TirCharge_Tir: 
---- !u!114 &-8999844454770249107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1925898319563361564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e12f764fc70348748b6eaad082d1a173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillGot: {fileID: 0}

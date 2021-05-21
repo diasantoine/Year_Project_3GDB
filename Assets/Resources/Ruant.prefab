@@ -316,7 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3203548358815179917}
   - component: {fileID: 2827867966270783030}
-  - component: {fileID: 7522246533104434235}
+  - component: {fileID: 6853304939469647057}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -361,7 +361,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7522246533104434235
+--- !u!114 &6853304939469647057
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -370,15 +370,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2827867966270783031}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab67181d5edc39e478423977af0ff5b2, type: 3}
+  m_Script: {fileID: 11500000, guid: b68ed6d6eae000c408209cb326f27c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TPS: {fileID: 0}
-  Ambiance: 
-  footStep: 
+  AI: {fileID: 3170520116324826614}
   Ruant_FootStep: event:/Enemy/Ruant/Ruant_FootStep
-  Screamer_Explosion: 
-  Screamer_FootStep: 
 --- !u!1 &2886431609465440259
 GameObject:
   m_ObjectHideFlags: 0
@@ -10108,7 +10104,7 @@ MonoBehaviour:
   healthBarSec: {fileID: 3961822640328201136}
   timeBar: 0.5
   cadavre: {fileID: 4441296243471229557, guid: 769c49c587ad566438ec968768fbe2e7, type: 3}
-  nbCadavre: 6
+  nbCadavre: 3
   player: {fileID: 0}
   spawn: {fileID: 0}
   isWeak: 0
@@ -10227,7 +10223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3961822639056643122
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10333,7 +10329,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10567,8 +10563,8 @@ RectTransform:
   m_Father: {fileID: 3961822639056643122}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.53, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10623,7 +10619,7 @@ GameObject:
   - component: {fileID: 3961822640596479643}
   - component: {fileID: 3961822640596479640}
   m_Layer: 13
-  m_Name: Canvas (1)
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10721,7 +10717,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 510d124cb7aeeb04daf0fca3edf177be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
 --- !u!1 &4326315056450892773
 GameObject:
   m_ObjectHideFlags: 0

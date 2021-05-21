@@ -17,6 +17,7 @@ public class BasicAI : Ennemy
     private float chronoHit;
     [SerializeField] private float TimeGetUp;
     private float chronoGetUp;
+    private float chronoDie;
 
 
 
@@ -50,7 +51,7 @@ public class BasicAI : Ennemy
     void Start()
     {
         player = GameObject.Find("Player").transform;
-
+        chronoDie = 0;
         skill = GameObject.Find("Skill");
         //startNav = false;
         debugChronoStart = 0;
@@ -59,6 +60,12 @@ public class BasicAI : Ennemy
     // Update is called once per frame
     void Update()
     {
+        if(player == null)
+        {
+            player = GameObject.Find("Player").transform;
+
+        }
+
         Ground(hit);
         VisionCone(player);
         OnUpdateState();
@@ -76,6 +83,11 @@ public class BasicAI : Ennemy
             case State.DUMB:
                 break;
             case State.DEATH:
+                GetComponent<Collider>().enabled = false;
+                AnimatorConteneur.SetTrigger("Death");
+                agent.enabled = false;
+                RB.constraints = RigidbodyConstraints.None;
+                RB.isKinematic = true;
                 break;
         }
     }
@@ -158,6 +170,14 @@ public class BasicAI : Ennemy
                 }
                 break;
             case State.DEATH:
+                if(chronoDie >= 2f)
+                {
+                    GetComponent<BasicState>().Die();
+                }
+                else
+                {
+                    chronoDie += Time.deltaTime;
+                }
                 break;
         }
     }
@@ -234,17 +254,16 @@ public class BasicAI : Ennemy
     }
     private void MoveAtPlayer()
     {
-        if (agent.isOnNavMesh && Grounded)
+        if (Grounded)
         {
             float dis = Vector3.Distance(player.position, transform.position);
-            if (dis > 5f)
+            if (dis > 2.5f)
             {
                 if (!agent.pathPending)
                 {
                     agent.destination = player.position;
                     RB.velocity = agent.velocity;
-                    //Debug.Log("Marche");
-
+                    
                     if (AnimatorConteneur != null)
                     {
                         if (!AnimatorConteneur.GetBool("Taper"))

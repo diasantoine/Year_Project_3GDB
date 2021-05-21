@@ -33,38 +33,24 @@ public class BasicState : State
         PoisonDamage();
         HealthbarDecrease();
 
-        if (transform.position.y <= -10)
-        {
-            HpNow = 0;
-        }
         if (HpNow <= 0)
         {
-            float écart = -nbCadavre / 2;
-
-            Destroy(gameObject);
-            for (int i = 1; i <= nbCadavre; i++)
+            if (!Fall)
             {
-                if (spawn.ListEnnemy.Contains(this.gameObject))
+                if (gameObject.GetComponent<BasicAI>().state != BasicAI.State.DEATH)
                 {
-                    spawn.ListEnnemy.Remove(this.gameObject);
-                    if (this.spawn.ListMaxBasic.Contains(this.gameObject))
-                    {
-                        this.spawn.ListMaxBasic.Remove(this.gameObject);
-                    }
+                    gameObject.GetComponent<BasicAI>().SwitchState(BasicAI.State.DEATH);
+                    Destroy(healthBar.gameObject);
+
                 }
 
-                if (Fall)
-                {
-                    Instantiate(cadavre, player.position, Quaternion.identity, GameObject.Find("CadavreParent").transform);
-                    Debug.Log(detectDead.ressourceFloat);
-                }
-                else
-                {
-                    Instantiate(cadavre, transform.position + new Vector3(0, 0, écart * 1.25f),
-                        Quaternion.identity, GameObject.Find("CadavreParent").transform);
-                }
-                écart++;
             }
+            else
+            {
+                Die();
+            }
+
+
         }
 
     }
@@ -76,6 +62,37 @@ public class BasicState : State
         {
             FMODUnity.RuntimeManager.PlayOneShot(Basic_Touche, "", 0, transform.position);
         }
+    }
+
+    public void Die()
+    {
+        if (spawn.ListEnnemy.Contains(this.gameObject))
+        {
+            spawn.ListEnnemy.Remove(this.gameObject);
+            if (this.spawn.ListMaxRuant.Contains(this.gameObject))
+            {
+                this.spawn.ListMaxRuant.Remove(this.gameObject);
+            }
+        }
+
+        float écart = -nbCadavre / 2;
+
+
+        for (int i = 1; i <= nbCadavre; i++)
+        {
+            if (Fall)
+            {
+                Instantiate(cadavre, player.position, Quaternion.identity, GameObject.Find("CadavreParent").transform);
+            }
+            else
+            {
+                Instantiate(cadavre, transform.position + new Vector3(0, 0, écart * 1.25f),
+                    Quaternion.identity, GameObject.Find("CadavreParent").transform);
+            }
+            écart++;
+        }
+
+        Destroy(gameObject);
     }
 
     private void PoisonDamage()
@@ -123,5 +140,14 @@ public class BasicState : State
             }
         }
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("DeathFall"))
+        {
+            Fall = true;
+            HpNow = 0;
+        }
     }
 }

@@ -28,8 +28,6 @@ public class RuantAI : Ennemy
     private bool DistanceRemainOk;
     private Vector3 LastPosition;
 
-    private float TimeBeforeHitGround;
-
     private bool isRushing;
     private RaycastHit hit;
 
@@ -52,7 +50,7 @@ public class RuantAI : Ennemy
         CHASE,
         RUSH,
         STUN,
-        HitGround,
+        STOMP,
         DEATH,
 
     };
@@ -124,13 +122,14 @@ public class RuantAI : Ennemy
                 SeeThePlayer = false;
                 chrono = 0;
                 break;
-            case State.HitGround:
+            case State.STOMP:
                 this.RB.isKinematic = true;
                 AnimatorConteneur.SetBool("isWalking", false);
                 AnimatorConteneur.SetBool("isRushing", false);
                 AnimatorConteneur.SetBool("IsHittingGround", true);
                 break;
             case State.DEATH:
+                GetComponent<Collider>().enabled = false;
                 AnimatorConteneur.SetTrigger("Death");
                 FMODUnity.RuntimeManager.PlayOneShot(Ruant_Cris_Mort, "", 0, transform.position); // son cris de mort du ruant
                 chrono = 0;
@@ -165,10 +164,7 @@ public class RuantAI : Ennemy
 
                 if (Grounded)
                 {
-                    //FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, transform.position); // son de collision lorsqu'il attérit apres le spawn
-                    GameObject newExplo = Instantiate(preExplo, transform.position + new Vector3(0, 0.25f, 0), preExplo.transform.rotation);
-                    Destroy(newExplo, 1f);
-                    CameraShake.Instance.Shake(5, 0.5f);
+                    StompGround();
                     SwitchState(State.IDLE);
                     
                 }
@@ -200,17 +196,23 @@ public class RuantAI : Ennemy
                 break;
 
             case State.CHASE:
-                if (Vector3.Distance(transform.position, this.player.transform.position) <= this.DistanceWhereRuantStomp)
-                {
-                    SwitchState(State.HitGround);
-                }
-                Vector3 dist = transform.position - player.position;
-                agent.SetDestination(player.position);
 
+                Vector3 dist = transform.position - player.position;
+
+                if (!agent.pathPending)
+                {
+                    agent.SetDestination(player.position);
+
+                }
                 if (SeeThePlayer && dist.magnitude <= distForRush)
                 {
                     SwitchState(State.WAIT);
 
+                }
+
+                if (Vector3.Distance(transform.position, this.player.transform.position) <= this.DistanceWhereRuantStomp)
+                {
+                    SwitchState(State.STOMP);
                 }
                 break;
 
@@ -277,45 +279,34 @@ public class RuantAI : Ennemy
                 }
                 break;
 
-            case State.HitGround:
-                if (this.AnimatorConteneur.GetBool("IsHittingGround"))
-                {
-                    if (this.TimeBeforeHitGround >= this.AnimatorConteneur.GetCurrentAnimatorStateInfo(0).length)
-                    {
-                        this.TimeBeforeHitGround = 0;
-                        this.ImpulsionTahLesfous();
-                        SwitchState(State.IDLE);
-                    }
-                    else
-                    {
-                        this.TimeBeforeHitGround += Time.deltaTime;
-                    }
-                }
-                else
-                {
-                    this.AnimatorConteneur.SetBool("IsHittingGround",true);
-                }
+            case State.STOMP:               
                 break;
             case State.DEATH:
                 //transform.Rotate(-35f * Time.deltaTime, 0, 0);
                 if(chrono >= 1.7f)
                 {
                     GetComponent<RuantState>().Die();
-                    FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, "", 0, transform.position); // son de collision lorsque le ruant tombe
-                    GameObject exploFee = Instantiate(preExplo, transform.position + new Vector3(0, 0.25f, 0) + transform.forward * -2f, preExplo.transform.rotation);
-                    CameraShake.Instance.Shake(5, 0.5f);
-                    Destroy(exploFee, 1f);
+                    StompGround();
                 }
                 else
                 {
                     chrono += Time.deltaTime;
-                    Debug.Log(chrono);
+                    //Debug.Log(chrono);
                 }
                 break;
 
             default:
                 break;
         }
+    }
+
+    public void StompGround()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(Ruant_Collision, "", 0, transform.position);
+        GameObject newExplo = Instantiate(preExplo, transform.position + new Vector3(0, 0.25f, 0), preExplo.transform.rotation);
+        Destroy(newExplo, 1f);
+        CameraShake.Instance.Shake(5, 0.5f);
+        ImpulsionTahLesfous();
     }
 
     void OnExitState()
@@ -345,9 +336,8 @@ public class RuantAI : Ennemy
                 stunParticle.SetActive(false);
                 AnimatorConteneur.SetBool("isRushing", false);
                 break;
-            case State.HitGround:
-                this.agent.isStopped = true;
-                this.agent.enabled = false;
+            case State.STOMP:
+                AnimatorConteneur.SetBool("IsHittingGround", false);
                 break;
             case State.DEATH:
                 break;
@@ -417,9 +407,11 @@ public class RuantAI : Ennemy
             }
             else if (hit[i].gameObject.CompareTag("Ennemy"))
             {
-                if (hit[i].GetComponent<ennemyAI>() != null)
+                if (hit[i].GetComponent<BasicAI>() != null)
                 {
-                    hit[i].GetComponent<ennemyAI>().ExplosionImpact(hitPoint, radiusExploBase +  transform.localScale.x, ForceExplosion*10);
+                    hit[i].GetComponent<BasicAI>().ExplosionImpact(hitPoint, radiusExploBase +  transform.localScale.x, ForceExplosion*10);
+                    hit[i].GetComponent<BasicState>().Damage(3);
+
                 }
                 else if(hit[i].GetComponent<ScreamerState>() != null)
                 {
@@ -428,7 +420,7 @@ public class RuantAI : Ennemy
                
             }
         }
-        this.state = State.IDLE;
+        //this.state = State.IDLE;
     }
 
     private void OnCollisionEnter(Collision collision)
