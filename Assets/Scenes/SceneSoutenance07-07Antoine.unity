@@ -1987,6 +1987,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1706405093425029665, guid: ac22cfd6695fc2344ba747d2f2c78aab,
         type: 3}
+    - target: {fileID: 8887563716050356840, guid: e66a79645f9902c4ab9268d508187561,
+        type: 3}
+      propertyPath: Charged_Charge
+      value: event:/Player/TirCharge_Charge
+      objectReference: {fileID: 0}
+    - target: {fileID: 8887563716050356840, guid: e66a79645f9902c4ab9268d508187561,
+        type: 3}
+      propertyPath: chargingParticle
+      value: 
+      objectReference: {fileID: 189512, guid: dd7e7a6a6093675468acc5e8521f221c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e66a79645f9902c4ab9268d508187561, type: 3}
 --- !u!4 &368603643 stripped
@@ -26557,7 +26567,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371606786}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b641887eea19df441823b99390371332, type: 3}
   m_Name: 

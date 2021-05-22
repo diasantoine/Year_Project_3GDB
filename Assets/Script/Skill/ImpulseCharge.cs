@@ -68,5 +68,6 @@ public class ImpulseCharge : skill
             isCharging = false;
         }
         _TirCharge_Charge.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        theProjo = null;
     }
 }

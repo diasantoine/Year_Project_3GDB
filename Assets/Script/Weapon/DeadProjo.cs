@@ -9,17 +9,11 @@ public class DeadProjo : MonoBehaviour
     public string TireTouche = "";
     [FMODUnity.EventRef]
     public string Ruant_Touche_N = "";
-    [FMODUnity.EventRef] 
-    public string PlayerHit = "";
 
     [Header("VarProjectile")]
     [SerializeField] public float vitesse;
     [SerializeField] private float écart;
     [SerializeField] private float portée;
-
-    [Header("LastraTir")]
-    [SerializeField] private bool LastraTir;
-    [SerializeField] private int DMGHeat;
     
     [Header("DMG")]
     [SerializeField] private float dégat;
@@ -97,50 +91,35 @@ public class DeadProjo : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (this.LastraTir)
+        if (collision.gameObject.CompareTag("Ennemy"))
         {
-            if (collision.gameObject.CompareTag("Player"))
+            /*if (Empoisonnement)
             {
-                collision.transform.GetComponent<The_Player_Script>().ListOfYourPlayer[collision.transform.GetComponent<The_Player_Script>().YourPlayerChoosed].ConteneurRigibody
-                    .AddForceAtPosition(transform.forward * (this.dégat + (this.dégat * collision.transform.GetComponent<The_Player_Script>().PercentageArmorHeat / 100)),
-                    collision.transform.position, ForceMode.Impulse);
-                collision.transform.GetComponent<The_Player_Script>().JustHit = true;
-                collision.transform.GetComponent<The_Player_Script>().PercentageArmorHeat += this.DMGHeat;
+                collision.gameObject.GetComponent<BasicState>().isPoisoned = true;
             }
-        }
-        else
-        {
-             
-            if (collision.gameObject.CompareTag("Ennemy"))
+            if (Rocket)
             {
-                /*if (Empoisonnement)
+                dégat *= 1.5f;
+                // faire une mini explosion qui peut toucher d'autre ennemie
+            }*/
+
+            FMODUnity.RuntimeManager.PlayOneShot(TireTouche, "", 0, transform.position);
+            if (collision.gameObject.GetComponent<damageTuto>() != null)
+            {
+                collision.gameObject.GetComponent<damageTuto>().damage(dégat);
+            }
+
+            if (collision.gameObject.GetComponent<State>())
+            {
+                if (collision.gameObject.GetComponent<State>().isWeak)
                 {
-                    collision.gameObject.GetComponent<BasicState>().isPoisoned = true;
+                    collision.gameObject.GetComponent<State>().Damage(dégat);
                 }
-                if (Rocket)
+                else
                 {
-                    dégat *= 1.5f;
-                    // faire une mini explosion qui peut toucher d'autre ennemie
-                }*/
-          
-                FMODUnity.RuntimeManager.PlayOneShot(TireTouche, "", 0, transform.position);               
-                if(collision.gameObject.GetComponent<damageTuto>() != null)
-                {
-                    collision.gameObject.GetComponent<damageTuto>().damage(dégat);
-                }
-                
-                if (collision.gameObject.GetComponent<State>())
-                {
-                    if (collision.gameObject.GetComponent<State>().isWeak)
+                    if (collision.gameObject.GetComponent<RuantState>())
                     {
-                        collision.gameObject.GetComponent<State>().Damage(dégat);
-                    }
-                    else
-                    {
-                        if (collision.gameObject.GetComponent<RuantState>())
-                        {
-                            FMODUnity.RuntimeManager.PlayOneShot(Ruant_Touche_N, "", 0, transform.position);
-                        }
+                        FMODUnity.RuntimeManager.PlayOneShot(Ruant_Touche_N, "", 0, transform.position);
                     }
                 }
             }

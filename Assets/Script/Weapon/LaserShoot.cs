@@ -13,6 +13,7 @@ public class LaserShoot : MonoBehaviour
 
     [SerializeField] private int hitDmg;
     [SerializeField] private List<Collider> ListCollider = new List<Collider>();
+    [SerializeField] private GameObject ImpactParticle;
 
     private int ChargedOneByOne = 0;
     private bool Finish;
@@ -24,8 +25,12 @@ public class LaserShoot : MonoBehaviour
     private bool Wall;
     private bool WallLaserSmooth;
     private float DistancePlayerWall;
+
+    private List<GameObject> touchMob;
+
     void Start()
     {
+        touchMob = new List<GameObject>();
         goGoGo = false;
         charged = 0;
         this.StartScale = transform.parent.localScale;
@@ -49,6 +54,7 @@ public class LaserShoot : MonoBehaviour
             //this.GetComponent<Renderer>().enabled = true;
             ps.gameObject.SetActive(true);
             ps.Play();
+            transform.parent.transform.parent = null;
             Destroy(transform.parent.gameObject, 1f);
             goGoGo = false;
         //     this.IfNoWallHit = 0.2f;
@@ -127,23 +133,38 @@ public class LaserShoot : MonoBehaviour
             Vector3 localZ = transform.parent.localScale;
             localZ.z = 0.9f * localZ.z;
             transform.parent.localScale = new Vector3(transform.parent.localScale.x, transform.parent.localScale.y, localZ.z);
+            
+
         }
-        if (other.gameObject.CompareTag("Ennemy") && !this.IsCharging)
+        if (other.CompareTag("Ennemy") && !this.IsCharging)
         {
+            
             if (other.gameObject.GetComponent<damageTuto>() != null)
             {
                 other.gameObject.GetComponent<damageTuto>().damage(hitDmg);
             }
 
-            if (other.gameObject.GetComponent<ScreamerState>() != null)
+            /*if (other.gameObject.GetComponent<ScreamerState>() != null)
             {
                 other.gameObject.GetComponent<ScreamerState>().Damage(hitDmg);
+            }*/
+
+            if (other.GetComponent<State>() && !touchMob.Contains(other.gameObject))
+            {
+                Debug.Log(other.name);
+                other.GetComponent<State>().Damage(hitDmg);
+                touchMob.Add(other.gameObject);
+                Impact(other);
             }
 
-            if (other.gameObject.GetComponent<State>())
+            if(other.name == "MeshRuant" && !touchMob.Contains(other.gameObject))
             {
-                other.gameObject.GetComponent<State>().Damage(hitDmg);
+                other.transform.parent.gameObject.GetComponent<State>().Damage(hitDmg);
+                touchMob.Add(other.gameObject);
+                Impact(other);
+
             }
+
         }
     }
 
@@ -174,6 +195,7 @@ public class LaserShoot : MonoBehaviour
                 this.DistancePlayerWall = Vector3.Distance(transform.parent.position, other.transform.position);
             }
         }
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -205,5 +227,11 @@ public class LaserShoot : MonoBehaviour
             }
         }
      
+    }
+
+    private void Impact(Collider col)
+    {
+        GameObject impactP = Instantiate(ImpactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, col.bounds.center)) as GameObject; // Spawns impact effect
+        Destroy(impactP, 3.5f);
     }
 }

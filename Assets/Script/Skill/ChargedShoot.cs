@@ -12,12 +12,28 @@ public class ChargedShoot : skill
     [SerializeField] private int chargeMax;
     private int charge;
 
+    [Header("ChargementEffect")]
+    [FMODUnity.EventRef]
+    public string Charged_Charge = "";
+    FMOD.Studio.EventInstance _Charged_Charge;
+
+    [SerializeField] private GameObject chargingParticle;
+    private GameObject particle;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        _Charged_Charge = FMODUnity.RuntimeManager.CreateInstance(Charged_Charge);
+    }
+
     public override void UsingSkill()
     {
         if(detectDead.ressourceFloat >= canUseRessource)
         {
             chrono = 0;
             isCharging = true;
+            _Charged_Charge.start();
+            particle = Instantiate(chargingParticle, canon.position, Quaternion.identity, canon);
             theProjo = Instantiate(preShoot, canon.position, transform.rotation, canon).transform.GetChild(0).gameObject;
         }
         
@@ -56,6 +72,7 @@ public class ChargedShoot : skill
         {
             if(theProjo.GetComponent<LaserShoot>() != null)
             {
+                CameraShake.Instance.Shake(2, 0.5f);
                 theProjo.GetComponent<LaserShoot>().IsCharging = false;              
                 //theProjo.GetComponent<LaserShoot>().charged = charge;
                 theProjo.GetComponent<LaserShoot>().goGoGo = true;
@@ -70,7 +87,11 @@ public class ChargedShoot : skill
             isCharging = false;
         }
 
+        _Charged_Charge.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        Destroy(particle);
         charge = 0;
         chrono = 0;
+        theProjo = null;
+
     }
 }

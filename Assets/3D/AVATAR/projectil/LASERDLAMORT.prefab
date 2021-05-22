@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1364999196445198672}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LASERDLAMORT
   m_TagString: Projectile
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
@@ -28601,6 +28601,7 @@ MonoBehaviour:
   ListCollider:
   - {fileID: 7740808234337110517}
   - {fileID: 3070251881546836891}
+  ImpactParticle: {fileID: 108204, guid: a895033e3fd07214d80b3e159c61873f, type: 3}
 --- !u!65 &3070251881546836891
 BoxCollider:
   m_ObjectHideFlags: 0

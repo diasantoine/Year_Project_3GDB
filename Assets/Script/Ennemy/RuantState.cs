@@ -79,7 +79,6 @@ public class RuantState : State
         Destroy(gameObject);
     }
 
-
     public override void Damage(float dmg)
     {
         base.Damage(dmg);
