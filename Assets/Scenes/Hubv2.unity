@@ -2579,6 +2579,7 @@ MonoBehaviour:
     CompteurBeforeDecreaseHeatWeapon: 2
     FrequenceDecreaseWeaponHeat: 2
     NumberOfDecreaseByFrequence_Weapon: 10
+    MaxWeaponHeat: 0
   YourPlayerChoosed: 0
   PercentageArmorHeat: 0
   ResiCold: 3
@@ -2610,6 +2611,7 @@ MonoBehaviour:
   disToGround: 0.5
   TimerBeforeGrounded: 0
   particleJump: {fileID: 816948024}
+  aiguilleHeat: {fileID: 0}
   floatTypeOfFootStep: 0
 --- !u!136 &497796874
 CapsuleCollider:
@@ -2713,7 +2715,6 @@ MonoBehaviour:
   TPS: {fileID: 497796873}
   Ambiance: event:/Ambiance/Ambiance
   footStep: event:/Player/Joueur_FootStep
-  Ruant_FootStep: event:/Enemy/Ruant/Ruant_FootStep
   Screamer_Explosion: 
   Screamer_FootStep: 
 --- !u!136 &507935200
@@ -28890,9 +28891,9 @@ MonoBehaviour:
   RoundUI: {fileID: 1413022841}
   system: {fileID: 0}
   eve: {fileID: 1732215619}
-  placementA: {fileID: 1824378154}
-  placementR: {fileID: 1021770229}
-  placementE: {fileID: 288379266}
+  placement1: {fileID: 0}
+  placement2: {fileID: 0}
+  placement3: {fileID: 0}
   scaleUI: 0.1469245
 --- !u!114 &1695043474
 MonoBehaviour:
@@ -29010,15 +29011,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717619867}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed283a90c5c9ae44f8a4661ac690777c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   deadList: []
-  tailleTake: {x: 0.1, y: 0.1, z: 0.1}
-  parent: {fileID: 871033419}
   SonRecolte: event:/Player/RecolteRessource
+  maxRessource: 100
+  uiRessource: {fileID: 0}
 --- !u!135 &1717619869
 SphereCollider:
   m_ObjectHideFlags: 0

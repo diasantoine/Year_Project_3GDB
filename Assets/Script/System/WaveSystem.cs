@@ -6,31 +6,27 @@ using UnityEngine.UI;
 
 public class WaveSystem : MonoBehaviour
 {
-
-    [SerializeField] private GameObject text;
+    [Header("Text")]
+    [SerializeField] private Text text;
     [SerializeField] private Text timeText;
 
     private SpawnSysteme spawn;
 
     private bool finish;
     [HideInInspector] public bool ArenaEnd;
+    [HideInInspector] public int minutes;
+    [HideInInspector] public float secondes;
 
     [Header("Timer")]
-    [SerializeField] private float timeWave;
-    private float chronoWave;
     public float timeAfterWave;
     private float chrono;
-    //[SerializeField] private float timeWaveSecondes;
-    //[SerializeField] private float timeWaveMinutes;
    
-
     // Start is called before the first frame update
     void Start()
     {
-        chronoWave = timeWave;
-
+        chrono = timeAfterWave + 1;
         spawn = GetComponent<SpawnSysteme>();
-        finish = false;
+        finish = true;
         
     }
 
@@ -41,11 +37,35 @@ public class WaveSystem : MonoBehaviour
         End();
     }
 
+    private void MinutesSecond()
+    {
+        if(secondes <= 0)
+        {
+            minutes--;
+            secondes = 60;
+        }
+        else
+        {
+            secondes -= Time.deltaTime;
+        }
+
+        if(Mathf.RoundToInt(secondes) >= 10)
+        {
+            timeText.text = string.Format("{0} : {1}", minutes, Mathf.RoundToInt(secondes));
+
+        }
+        else
+        {
+            timeText.text = string.Format("{0} : 0{1}", minutes, Mathf.RoundToInt(secondes));
+
+        }
+    }
+
     private void WaitTimeWaveSystem()
     {
         if (!finish)
         {
-            if (chronoWave <= 0)
+            if (minutes <= 0 && secondes <= 0)
             {
                 finish = true;
                 
@@ -53,18 +73,10 @@ public class WaveSystem : MonoBehaviour
             else
             {
                 WaitDeathMobWaveSystem();
+                MinutesSecond();
 
-                chronoWave -= Time.deltaTime;
-                if(chronoWave >= 10)
-                {
-                    timeText.text = string.Format("{0} Remaining", (int)chronoWave);
+                text.text = "VAGUE " + spawn.IndexWave;
 
-                }
-                else
-                {
-                    timeText.text = string.Format("0{0} Remaining", (int)chronoWave);
-
-                }
             }
         }
     }
@@ -85,38 +97,19 @@ public class WaveSystem : MonoBehaviour
     {
         if (finish && !ArenaEnd)
         {
-            if (chrono >= timeAfterWave)
+            if (chrono < 0)
             {
-                chrono = 0;
-                chronoWave = timeWave;
+                chrono = timeAfterWave;               
                 spawn.NextWave();
                 finish = false;
-
-                if (chronoWave >= 10)
-                {
-                    timeText.text = string.Format("{0} Remaining", (int)timeWave);
-
-                }
-                else
-                {
-                    timeText.text = string.Format("0{0} Remaining", (int)timeWave);
-
-                }
+               
             }
             else
             {
-                chrono += Time.deltaTime;
+                chrono -= Time.deltaTime;
+                timeText.text = string.Format("{0}", (int)chrono);
+                text.text = "PROCHAINE VAGUE";
 
-                if (chrono >= 10)
-                {
-                    timeText.text = string.Format("{0}", (int)chrono);
-
-                }
-                else
-                {
-                    timeText.text = string.Format("0{0}", (int)chrono);
-
-                }
             }
         }
 
@@ -125,7 +118,8 @@ public class WaveSystem : MonoBehaviour
             if(spawn.mobRestant <= 0 && spawn.ListEnnemy.Count <= 0)
             {
                 timeText.gameObject.SetActive(false);
-                text.SetActive(true);
+                text.gameObject.SetActive(true);
+                text.text = "ARENE FINIE";
 
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
@@ -133,7 +127,7 @@ public class WaveSystem : MonoBehaviour
                 }
             }
 
-            timeText.text = string.Format("{0} Ennemy", spawn.ListEnnemy.Count);
+            timeText.text = string.Format("{0}", spawn.ListEnnemy.Count);
         }
     }
 }

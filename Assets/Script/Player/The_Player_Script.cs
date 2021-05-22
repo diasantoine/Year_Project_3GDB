@@ -134,8 +134,11 @@ public class The_Player_Script : MonoBehaviour
             PercentageArmorHeat = 0;
 
         lerpTime = 3f * Time.deltaTime;
+        if(aiguilleHeat != null)
+        {
+            updateAiguilleHeat();
 
-        updateAiguilleHeat();
+        }
         CharacterMouvement();
         HeatPlayer();
         CheckPlaque(hit);

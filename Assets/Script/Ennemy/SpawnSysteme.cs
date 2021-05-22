@@ -15,8 +15,8 @@ public class SpawnSysteme : MonoBehaviour
         Screamer,
         Lastra
     }
-    
-    [System.Serializable] 
+
+    [System.Serializable]
     public struct WaveStruct
     {
         [Header("EnnemyType")]
@@ -25,25 +25,28 @@ public class SpawnSysteme : MonoBehaviour
         public int NumberScreamer;
         public int NumberLastra;
 
-    
+
         [Header("EnnemyPosition")]
         public List<Transform> ListSpawnBasic;
         public List<Transform> ListSpawnRuant;
         public List<Transform> ListSpawnScreamer;
         public List<Transform> ListSpawnLastra;
-        
-        [Header("EnnemyStat")]
 
+        [Header("EnnemyStat")]
         public float CD_Spawn_Basic;
         public float CD_Spawn_Ruant;
         public float CD_Spawn_Screamer;
         public float CD_Spawn_Lastra;
 
-        [Header("EnnemyMaxNumber")] 
+        [Header("EnnemyMaxNumber")]
         public int MaxBasic;
         public int MaxRuant;
         public int MaxScreamer;
         public int MaxLastra;
+
+        [Header("TimerWave")]
+        public int minutesMax;
+        [Range(0, 60)] public int secondesMax;
     }
     
     [SerializeField] private List<WaveStruct> ListWave = new List<WaveStruct>();
@@ -102,7 +105,7 @@ public class SpawnSysteme : MonoBehaviour
 
     void Start()
     {
-        NextWave();
+        //NextWave();
     }
 
     private void Update()
@@ -111,8 +114,7 @@ public class SpawnSysteme : MonoBehaviour
         {
             this.NextWave();
         }
-
-        
+     
     }
 
     public void NextWave()
@@ -144,7 +146,12 @@ public class SpawnSysteme : MonoBehaviour
             {
                 StartCoroutine(SpawnEnnemy(Ennemy_Type));
             }
-            ++IndexWave;
+
+            gameObject.GetComponent<WaveSystem>().minutes = ListWave[IndexWave].minutesMax;
+            gameObject.GetComponent<WaveSystem>().secondes = ListWave[IndexWave].secondesMax;
+
+           ++IndexWave;
+            
         }
         else
         {
