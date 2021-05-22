@@ -32,14 +32,14 @@ public class TirCharge : MonoBehaviour
         tipar = false;
         RB = GetComponent<Rigidbody>();
 
-        if(SceneManager.GetActiveScene().name == "SceneTuto")
+        /*if(SceneManager.GetActiveScene().name == "SceneTuto")
         {
             ExploForce = 50;
         }
         else
         {
-            ExploForce = 120;
-        }
+            //ExploForce = 120;
+        }*/
     }
 
     // Update is called once per frame
@@ -116,7 +116,7 @@ public class TirCharge : MonoBehaviour
             }
         }
 
-        Destroy(newExplo, 0.1f);
+        Destroy(newExplo, 1f);
         Destroy(gameObject);
     }
 }

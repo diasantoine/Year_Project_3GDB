@@ -30,6 +30,7 @@ public class BasicState : State
     // Update is called once per frame
     void Update()
     {
+        DebugDeath();
         PoisonDamage();
         HealthbarDecrease();
 
@@ -148,6 +149,15 @@ public class BasicState : State
         {
             Fall = true;
             HpNow = 0;
+        }
+    }
+
+    private void DebugDeath()
+    {
+        if (gameObject.transform.position.y <= -10)
+        {
+            Fall = true;
+            Die();
         }
     }
 }

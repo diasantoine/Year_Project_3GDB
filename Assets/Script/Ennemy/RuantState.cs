@@ -22,6 +22,7 @@ public class RuantState : State
     // Update is called once per frame
     void Update()
     {
+        DebugDeath();
         Weakling();
         HealthbarDecrease();
 
@@ -135,5 +136,14 @@ public class RuantState : State
             }
         }
 
+    }
+
+    private void DebugDeath()
+    {
+        if (gameObject.transform.position.y <= -10)
+        {
+            Fall = true;
+            Die();
+        }
     }
 }

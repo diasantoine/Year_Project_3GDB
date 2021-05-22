@@ -33,6 +33,7 @@ public class BasicAI : Ennemy
         IDLE,
         CHASE,
         DUMB,
+        TAPER,
         DEATH
     }
 
@@ -55,12 +56,13 @@ public class BasicAI : Ennemy
         skill = GameObject.Find("Skill");
         //startNav = false;
         debugChronoStart = 0;
+        InPunch = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(player == null)
+        if(player == null && state == State.CHASE)
         {
             player = GameObject.Find("Player").transform;
 
@@ -79,8 +81,13 @@ public class BasicAI : Ennemy
             case State.IDLE:
                 break;
             case State.CHASE:
+                agent.enabled = true;
                 break;
             case State.DUMB:
+                AnimatorConteneur.SetBool("Taper", false);
+                break;
+            case State.TAPER:
+                AnimatorConteneur.SetBool("Taper", true);
                 break;
             case State.DEATH:
                 GetComponent<Collider>().enabled = false;
@@ -106,8 +113,11 @@ public class BasicAI : Ennemy
                 }
                 break;
             case State.CHASE:
+                if (Grounded)
+                {
+                    MoveAtPlayer();
 
-                MoveAtPlayer();
+                }
 
                 if (!hitPlayer)
                 {
@@ -158,7 +168,7 @@ public class BasicAI : Ennemy
                                 JustHit = false;
                                 agent.enabled = true;
                                 RB.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
-                                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                                transform.position = new Vector3(transform.position.x, transform.position.y + 0.25f, transform.position.z);
 
                             }
                         }
@@ -168,6 +178,8 @@ public class BasicAI : Ennemy
                         chronoGetUp += Time.deltaTime;
                     }
                 }
+                break;
+            case State.TAPER:
                 break;
             case State.DEATH:
                 if(chronoDie >= 2f)
@@ -192,6 +204,9 @@ public class BasicAI : Ennemy
                 break;
             case State.DUMB:
                 break;
+            case State.TAPER:
+                AnimatorConteneur.SetBool("Taper", false);
+                break;
             case State.DEATH:
                 break;
         }
@@ -199,12 +214,12 @@ public class BasicAI : Ennemy
 
     public void ExplosionImpact(Vector3 position, float radius, float explosionForce)
     {
-
         JustHit = true;
         agent.enabled = false;
-
+        Vector3 dis = transform.position - position;
+        dis = dis.normalized;
         RB.freezeRotation = false;
-        RB.AddForce(explosionForce * (transform.position - position).normalized);
+        RB.AddForce(explosionForce * dis, ForceMode.Impulse);
         SwitchState(State.DUMB);
         //ConteneurRigibody.AddExplosionForce(explosionForce, position, radius, 5f, ForceMode.Impulse);
     }
@@ -235,7 +250,7 @@ public class BasicAI : Ennemy
             {
                 if (AnimatorConteneur != null)
                 {
-                    AnimatorConteneur.SetBool("Taper", true);
+                    SwitchState(State.TAPER);
                     this.InPunch = true;
                     this.agent.isStopped = true;
                 }
@@ -251,7 +266,10 @@ public class BasicAI : Ennemy
         player.GetComponent<The_Player_Script>().JustHit = true;
         player.GetComponent<The_Player_Script>().PercentageArmorHeat += DmgArmorHeat;
         this.InPunch = false;
+        AnimatorConteneur.SetBool("Taper", false);
+
     }
+
     private void MoveAtPlayer()
     {
         if (Grounded)
@@ -281,42 +299,10 @@ public class BasicAI : Ennemy
     }
 
     private void OnTriggerEnter(Collider other)
-    {
-        // if (other.gameObject.layer == 9)
-        // {
-        //     Debug.Log(other.name);
-        //     if (other.transform.GetComponent<The_Player_Script>().OnDash && !JustHit)
-        //     {
-        //         //Debug.Log(transform.position - collision.transform.position);
-        //
-        //         JustHit = true;
-        //         agent.enabled = false;
-        //         RB.freezeRotation = false;
-        //         Vector3 dir = transform.position;
-        //         dir = (dir - other.transform.position).normalized;
-        //         //dir = (dir + collision.GetComponent<Rigidbody>().velocity) / 2;
-        //         dir.y = 0;
-        //         float RegulationForce = 3;
-        //         Transform ConteneurDashScript = null;
-        //         foreach (Transform Child in skill.transform)
-        //         {
-        //             if (Child.name == "DashCharge")
-        //             {
-        //                 ConteneurDashScript = Child;
-        //             }
-        //         }
-        //         //ConteneurRigibody.constraints = RigidbodyConstraints.None;
-        //         RB.AddForceAtPosition(dir * ConteneurDashScript.GetComponent<ChargedDash>().DashSpeed * other.GetComponent<Rigidbody>().velocity.magnitude
-        //                                                      * RegulationForce,
-        //             RB.ClosestPointOnBounds(other.transform.position));
-        //         Pansement = true;
-        //
-        //         SwitchState(State.DUMB);
-        //     }
-        // }
-        // else 
+    { 
         if (other.gameObject.layer == 13 && other.GetComponent<RuantAI>() != null && other.GetComponent<RuantAI>().state == RuantAI.State.RUSH)
         {
+            SwitchState(State.DUMB);
             JustHit = true;
             agent.enabled = false;
             RB.freezeRotation = false;
@@ -359,12 +345,13 @@ public class BasicAI : Ennemy
 
         }
 
-        if (collision.transform.CompareTag("Ennemy") && collision.gameObject.GetComponent<ennemyAI>())
+        if (collision.transform.CompareTag("Ennemy") && collision.gameObject.GetComponent<BasicAI>())
         {
-            if (collision.gameObject.GetComponent<ennemyAI>().JustHit)
+            if (collision.gameObject.GetComponent<BasicAI>().JustHit)
             {
                 JustHit = true;
                 agent.enabled = false;
+                SwitchState(State.DUMB);
                 if (Pansement)
                 {
                     GetComponent<Rigidbody>().velocity += collision.transform.GetComponent<Rigidbody>().velocity;

@@ -47,4 +47,6 @@ public class State : MonoBehaviour
         touched = true;
         chronoBar = 0;
     }
+
+
 }
