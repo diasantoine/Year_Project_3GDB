@@ -10,14 +10,60 @@ public class OnUISkill : MonoBehaviour
     private float disableColor;
 
     private float lerp;
+    private float chrono = 0;
+    
+    
     private float colorPropor;
+
+    [Header("ChargingEffect")]
+    [SerializeField] private GameObject usingScreen;
+    [SerializeField] private float ecranTime;
 
     // Update is called once per frame
     void Update()
     {
         lerp = 5 * Time.deltaTime;
 
-        UISkillActivation();
+        TheSkillIsUse();
+
+        if (!skillGot.isCharging)
+        {
+            UISkillActivation();
+
+        }
+    }
+
+    private void TheSkillIsUse()
+    {
+        if (skillGot.isCharging)
+        {
+            if(chrono >= ecranTime)
+            {
+                if (usingScreen.activeSelf)
+                {
+                    usingScreen.SetActive(false);
+                    chrono = 0f;
+                }
+                else
+                {
+                    usingScreen.SetActive(true);
+                    chrono = 0f;
+
+                }
+            }
+            else
+            {
+                chrono += Time.deltaTime;
+            }
+            
+
+            
+        }
+        else
+        {
+            usingScreen.SetActive(false);
+            chrono = 0f;
+        }
     }
 
     private void UISkillActivation()

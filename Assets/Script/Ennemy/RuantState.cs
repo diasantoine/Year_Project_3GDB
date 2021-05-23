@@ -9,6 +9,11 @@ public class RuantState : State
     [Header("Speciality")]
     [SerializeField] private float weakPoint;
     [SerializeField] private Renderer rd;
+    [SerializeField] private float intensity;
+
+    private float chrono;
+    private Color colorIni;
+    private float intensityIni;
 
     [FMODUnity.EventRef]
     public string Ruant_Touche_O = "";
@@ -17,6 +22,8 @@ public class RuantState : State
     void Start()
     {
         OnStartAll();
+        colorIni = rd.material.GetColor("_EmissionColor");
+        intensityIni = intensity;
     }
 
     // Update is called once per frame
@@ -79,10 +86,26 @@ public class RuantState : State
         Destroy(gameObject);
     }
 
+    private void TouchedFeedback()
+    {
+        if(intensity > 1)
+        {
+            intensity -= 10f * Time.deltaTime;
+            intensity = Mathf.Clamp(intensity, 1, intensityIni);
+            rd.material.SetColor("_EmissionColor", colorIni * (intensity));
+            Debug.Log(intensity);
+        }
+    }
+
+
     public override void Damage(float dmg)
     {
         base.Damage(dmg);
-        FMODUnity.RuntimeManager.PlayOneShot(Ruant_Touche_O, "", 0, transform.position);
+        intensity = intensityIni;
+        FMODUnity.RuntimeManager.PlayOneShot(Ruant_Touche_O, "", 0, transform.position);  
+        var color = colorIni;
+        rd.material.SetColor("_EmissionColor", color * (intensity + 0.5f));  //(intensity + Mathf.Sin(Time.time) * pulse));
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -119,20 +142,24 @@ public class RuantState : State
     {
         if (touched)
         {
+            TouchedFeedback();
             if (chronoBar >= timeBar)
             {
                 healthBarSec.value -= 3f * Time.deltaTime;
 
                 if (healthBarSec.value <= healthBar.value)
                 {
+                    rd.material.SetColor("_EmissionColor", colorIni);
                     chronoBar = 0;
-                    touched = false;
+                    touched = false;                   
                 }
             }
             else
             {
                 chronoBar += Time.deltaTime;
             }
+
+                   
         }
 
     }

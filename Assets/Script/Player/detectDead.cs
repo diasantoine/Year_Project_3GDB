@@ -30,6 +30,8 @@ public class detectDead : MonoBehaviour
 
         if (ressourceFloat < 0)
             ressourceFloat = 0;
+        if (ressourceFloat > maxRessource)
+            ressourceFloat = maxRessource;
 
         lerpSpeed = 5f * Time.deltaTime;
 

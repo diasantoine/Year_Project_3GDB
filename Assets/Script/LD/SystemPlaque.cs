@@ -46,9 +46,7 @@ public class SystemPlaque : MonoBehaviour
 
                 plaqueScript nowPlaque = enablePlaques[randomChoose];
                 nowPlaque.activ = true;
-
-                
-
+               
                 var color = nowPlaque.EmiRD.material.GetColor("_EmissionColor");
                 nowPlaque.EmiRD.material.SetColor("_EmissionColor", color * intensity);  //(intensity + Mathf.Sin(Time.time) * pulse));
 

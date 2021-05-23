@@ -76,6 +76,7 @@ public class ChargedShoot : skill
                 theProjo.GetComponent<LaserShoot>().IsCharging = false;              
                 //theProjo.GetComponent<LaserShoot>().charged = charge;
                 theProjo.GetComponent<LaserShoot>().goGoGo = true;
+                isCharging = false;
                 //theProjo.GetComponent<MeshRenderer>().enabled = true;
                 //theProjo.GetComponent<Collider>().enabled = true;
             }

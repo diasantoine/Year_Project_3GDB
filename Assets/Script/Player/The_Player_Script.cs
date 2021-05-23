@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using System.Runtime.InteropServices;
 using Random = UnityEngine.Random;
+using UnityEngine.UI;
 
 
 public class The_Player_Script : MonoBehaviour
@@ -69,7 +70,7 @@ public class The_Player_Script : MonoBehaviour
     [SerializeField] private GameObject FeedbackHitGround;
     
     [Header("PlayerStatWeaponHeat")]
-    public int PercentageWeaponHeat;
+    public float PercentageWeaponHeat;
 
     [Header("PlayerBool")]
     public bool Grounded;
@@ -112,6 +113,7 @@ public class The_Player_Script : MonoBehaviour
     [SerializeField] private float TimerBeforeGrounded;
     [SerializeField] private GameObject particleJump;
     [SerializeField] private GameObject aiguilleHeat;
+    [SerializeField] private Image barHeat;
 
     public float floatTypeOfFootStep;
 
@@ -129,21 +131,30 @@ public class The_Player_Script : MonoBehaviour
     void Update()
     {
 
-
         if (PercentageArmorHeat < 0)
             PercentageArmorHeat = 0;
+        if (PercentageWeaponHeat < 0)
+            PercentageWeaponHeat = 0;
 
         lerpTime = 3f * Time.deltaTime;
-        if(aiguilleHeat != null)
+
+        if (aiguilleHeat != null)
         {
             updateAiguilleHeat();
 
         }
+
+        if (barHeat != null)
+        {
+            updateBarHeat();
+
+        }
+
         CharacterMouvement();
         HeatPlayer();
         CheckPlaque(hit);
-       
-        if(CompteurForSlow >= 0.5f)
+
+        if (CompteurForSlow >= 0.5f)
         {
             SlowMov(false);
 
@@ -152,7 +163,25 @@ public class The_Player_Script : MonoBehaviour
         {
             CompteurForSlow += Time.deltaTime;
         }
-        
+
+    }
+
+    private void updateBarHeat()
+    {
+
+        if (PercentageWeaponHeat > 50)
+        {
+            barHeat.transform.parent.gameObject.SetActive(true);
+
+        }
+        else
+        {
+            barHeat.transform.parent.gameObject.SetActive(false);
+
+        }
+
+        barHeat.fillAmount = Mathf.Lerp(barHeat.fillAmount, PercentageWeaponHeat / 100, lerpTime);
+
     }
 
     private void HeatPlayer()
