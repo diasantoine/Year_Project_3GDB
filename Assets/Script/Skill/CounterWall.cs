@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class CounterWall : MonoBehaviour
 {
+    [Header("Son")]
+    [FMODUnity.EventRef]
+    public string Counter_Impact = "";
+
     [HideInInspector] public bool UpgradeRuant;
 
     [HideInInspector] public bool UpgradeScreamer;
@@ -30,6 +34,7 @@ public class CounterWall : MonoBehaviour
         //Stock.GetComponent<DeadProjo>().RB.velocity = -Projectile.GetComponent<ShootLastra>().RB.velocity;
         Stock.GetComponent<DeadProjo>().vitesse *= 2;
         Stock.GetComponent<DeadProjo>().Shoot( Lastra.transform.position - Stock.transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot(Counter_Impact, "", 0, transform.position);
         Destroy(Projectile.gameObject);
     }
 }

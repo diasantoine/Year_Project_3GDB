@@ -13,6 +13,10 @@ public class PoisonShield : skill
     private float timerCloud;
 
     private bool isActive;
+    
+    [Header("Son")]
+    [FMODUnity.EventRef]
+    public string CantUse = "";
 
     [FMODUnity.EventRef]
     public string SonPoisonShield = "";
@@ -81,6 +85,10 @@ public class PoisonShield : skill
                 isActive = true;
                 sonPoisonShield.start();
             }
+        }
+        else
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(CantUse, "", 0, transform.position);
         }
          
     }

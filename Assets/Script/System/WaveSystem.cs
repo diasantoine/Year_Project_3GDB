@@ -9,6 +9,12 @@ public class WaveSystem : MonoBehaviour
 
     [SerializeField] private GameSystem GS;
 
+    [Header("Son")]
+    [FMODUnity.EventRef]
+    public string VagueTimer = "";
+
+    private bool isPlaying;
+
     [Header("Text")]
     [SerializeField] private Text text;
     [SerializeField] private Text timeText;
@@ -27,6 +33,7 @@ public class WaveSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isPlaying = false;
         chrono = timeAfterWave + 1;
         spawn = GetComponent<SpawnSysteme>();
         finish = true;
@@ -61,6 +68,19 @@ public class WaveSystem : MonoBehaviour
         {
             timeText.text = string.Format("{0} : 0{1}", minutes, Mathf.RoundToInt(secondes));
 
+        }
+        DixSecVague();
+    }
+
+    private void DixSecVague()
+    {
+        if(minutes == 0 && secondes <= 10)
+        {
+            if(!isPlaying)
+            {
+                FMODUnity.RuntimeManager.PlayOneShot(VagueTimer, "", 0, transform.position);
+                isPlaying = true;
+            }
         }
     }
 

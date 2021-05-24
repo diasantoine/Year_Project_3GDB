@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Counter : skill
 {
+    [Header("Son")]
+    [FMODUnity.EventRef]
+    public string Counter_Use = "";
+
+    [FMODUnity.EventRef]
+    public string CantUse = "";
+
     [Header("VarCounter")]
     [SerializeField] private float DurationOfTheCounterStance;
     [SerializeField] private float DurationOfTheCounterWall;
@@ -80,8 +87,13 @@ public class Counter : skill
        
         if (detectDead.ressourceFloat >= canUseRessource && !this.PlayerScriptContainer.OnCounter && !this.isCharging)
         {
+            FMODUnity.RuntimeManager.PlayOneShot(Counter_Use, "", 0, transform.position);
             this.isCharging = true;
             detectDead.ressourceFloat -= 10;
+        }
+        else if(detectDead.ressourceFloat < canUseRessource)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(CantUse, "", 0, transform.position);
         }
     }
 

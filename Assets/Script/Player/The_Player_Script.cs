@@ -40,8 +40,10 @@ public class The_Player_Script : MonoBehaviour
     public List<YourPlayer> ListOfYourPlayer = new List<YourPlayer>();
     public int YourPlayerChoosed;
 
-    
-    
+    [Header("Son")]
+    [FMODUnity.EventRef]
+    public string Jump_Atterissage = "";
+
     [DllImport("user32.dll")]
     static extern bool SetCursorPos(int X, int Y);
 
@@ -559,6 +561,7 @@ public class The_Player_Script : MonoBehaviour
                 this.ImpulsionTahLesfous();
                 CameraShake.Instance.Shake(3, 0.5f);
                 ListOfYourPlayer[YourPlayerChoosed].animAvatar.SetBool("Jump", false);
+                FMODUnity.RuntimeManager.PlayOneShot(Jump_Atterissage, "", 0, transform.position);
                 GameObject ContainerParticule = Instantiate(this.ParticuleAtterissageGameobject, transform.position, Quaternion.Euler(-90,0,0));
                 ContainerParticule.transform.parent = transform;
                 Destroy(ContainerParticule,ContainerParticule.GetComponent<ParticleSystem>().main.duration);

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class JumpCharged : skill
 {
+    [Header("Son")]
+    [FMODUnity.EventRef]
+    public string CantUse = "";
+
     [Header("VarJump")]
     [SerializeField] public float JumpSpeed = 20;
     [SerializeField] public float JumpHigh = 20;
@@ -37,6 +41,10 @@ public class JumpCharged : skill
                 theProjo = gameObject;
                 this.isCharging = true;
             }
+        }
+        else
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(CantUse, "", 0, transform.position);
         }
        
     }

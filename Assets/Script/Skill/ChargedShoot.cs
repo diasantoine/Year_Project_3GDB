@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ChargedShoot : skill
 {
+    [Header("Son")]
+    [FMODUnity.EventRef]
+    public string CantUse = "";
 
     [Header("Propriety Of Skill")]
     [SerializeField] private GameObject preShoot;
@@ -35,6 +38,10 @@ public class ChargedShoot : skill
             _Charged_Charge.start();
             particle = Instantiate(chargingParticle, canon.position, Quaternion.identity, canon);
             theProjo = Instantiate(preShoot, canon.position, transform.rotation, canon).transform.GetChild(0).gameObject;
+        }
+        else
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(CantUse, "", 0, transform.position);
         }
         
     }

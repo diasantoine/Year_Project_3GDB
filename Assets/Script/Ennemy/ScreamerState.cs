@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ScreamerState : State
 {
+    [Header("Son")]
+    [FMODUnity.EventRef]
+    public string Screamer_Touche = "";
+
     [Header("Poison")]
     [SerializeField] private float freqTick;
     [HideInInspector] public bool isPoisoned;
@@ -51,6 +55,12 @@ public class ScreamerState : State
             HpNow = 0;
         }     
 
+    }
+
+    public override void Damage(float dmg)
+    {
+        base.Damage(dmg);
+        FMODUnity.RuntimeManager.PlayOneShot(Screamer_Touche, "", 0, transform.position);
     }
 
     public void Die()

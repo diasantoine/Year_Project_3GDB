@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ImpulseCharge : skill
 {
+    [Header("Son")]
+    [FMODUnity.EventRef]
+    public string CantUse = "";
 
     [Header("Propriety Of Skill")]
     [SerializeField] private GameObject preProjo;
@@ -30,7 +33,11 @@ public class ImpulseCharge : skill
             _TirCharge_Charge.start();
             theProjo = Instantiate(preProjo, canonCharge.position, Quaternion.identity, transform.parent);
             theProjo.GetComponent<Rigidbody>().isKinematic = true;
-        }       
+        }
+        else
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(CantUse, "", 0, transform.position);
+        }
     }
 
     public override void ChargingSkill(int WhichWeapon)
