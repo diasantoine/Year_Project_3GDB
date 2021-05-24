@@ -34,6 +34,7 @@ public class The_Player_Script : MonoBehaviour
         public float FrequenceDecreaseWeaponHeat;
         public int NumberOfDecreaseByFrequence_Weapon;
         public int MaxWeaponHeat;
+        public float Frequence
 
     }
     [Header("ChooseYourPlayer")]
@@ -233,6 +234,15 @@ public class The_Player_Script : MonoBehaviour
         {
             this.WeaponOverHeated = true;
         }
+
+        if (this.WeaponOverHeated)
+        {
+            StartCoroutine(this.DecreaseWeaponHeatWhenOverheat());
+        }
+        else
+        {
+            
+        }
         if ((IsNotUsingNormalWeapon || WeaponOverHeated) && PercentageWeaponHeat > 0)
         {
             if (CompteurForWeaponHeat >= ListOfYourPlayer[YourPlayerChoosed].CompteurBeforeDecreaseHeatWeapon)
@@ -279,7 +289,12 @@ public class The_Player_Script : MonoBehaviour
         {
             WeaponOverHeated = false;
         }
+    }
 
+    IEnumerator DecreaseWeaponHeatWhenOverheat()
+    {
+        yield return new WaitForSeconds(this.ListOfYourPlayer[this.YourPlayerChoosed]);
+        
     }
 
     private void CharacterMouvement()
