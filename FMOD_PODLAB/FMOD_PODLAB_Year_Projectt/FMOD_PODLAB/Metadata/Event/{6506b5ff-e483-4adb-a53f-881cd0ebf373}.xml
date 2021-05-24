@@ -88,6 +88,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{47c64477-18a8-4b78-881d-41cf333c1e0a}">
+		<property name="volume">
+			<value>10</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{61c7eab6-93d0-4ad1-9b5c-ca99e771d9ae}</destination>
 		</relationship>
@@ -143,9 +146,6 @@
 		</relationship>
 	</object>
 	<object class="SoundScatterer" id="{14830389-f1ef-4e5c-86d3-114452f768bd}">
-		<property name="triggerProbabilityEnabled">
-			<value>true</value>
-		</property>
 		<property name="triggerProbability">
 			<value>50.5</value>
 		</property>
@@ -154,6 +154,9 @@
 		</property>
 		<property name="maximumTimeBetweenSounds">
 			<value>4000</value>
+		</property>
+		<property name="spawnRate">
+			<value>74</value>
 		</property>
 		<property name="maximumScatterDistance">
 			<value>40</value>
@@ -164,7 +167,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{516a5cb4-9dde-4449-8c00-20bee7a291ca}">
 		<property name="volume">
-			<value>-6.5</value>
+			<value>6.5</value>
 		</property>
 		<property name="name">
 			<value>Audio 2</value>
@@ -184,7 +187,7 @@
 			<value>0</value>
 		</property>
 		<property name="length">
-			<value>3.9687981859410431</value>
+			<value>1.8</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{08a481ed-dd9a-4fab-a971-61f28c73e0af}</destination>

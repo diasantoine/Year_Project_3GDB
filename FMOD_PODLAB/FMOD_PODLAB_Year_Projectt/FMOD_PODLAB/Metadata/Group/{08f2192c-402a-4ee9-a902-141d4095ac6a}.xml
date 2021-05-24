@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="MixerGroup" id="{08f2192c-402a-4ee9-a902-141d4095ac6a}">
+		<property name="volume">
+			<value>-8.5</value>
+		</property>
+		<property name="name">
+			<value>Player_Tire</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{0bd5d071-3a4d-4fc9-8e23-9dd0aa9a3e97}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{e460dde3-599d-4590-bc20-adb256d113af}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{6af9f9b7-1468-4097-972d-398a52523596}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{0bd5d071-3a4d-4fc9-8e23-9dd0aa9a3e97}">
+		<relationship name="effects">
+			<destination>{f2b7bb10-8e8f-4408-80d2-4fcfd171c8ae}</destination>
+			<destination>{d2253d2f-8124-4d43-aaf1-ebbca240e067}</destination>
+			<destination>{39988455-24e8-4659-95d9-94afeaf9806d}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{e460dde3-599d-4590-bc20-adb256d113af}" />
+	<object class="CompressorEffect" id="{f2b7bb10-8e8f-4408-80d2-4fcfd171c8ae}">
+		<property name="threshold">
+			<value>-44</value>
+		</property>
+		<property name="ratio">
+			<value>9.19999981</value>
+		</property>
+		<property name="gain">
+			<value>10</value>
+		</property>
+	</object>
+	<object class="ThreeEQEffect" id="{d2253d2f-8124-4d43-aaf1-ebbca240e067}">
+		<property name="midGain">
+			<value>-15</value>
+		</property>
+		<property name="highGain">
+			<value>6</value>
+		</property>
+	</object>
+	<object class="MixerBusFader" id="{39988455-24e8-4659-95d9-94afeaf9806d}" />
+</objects>
