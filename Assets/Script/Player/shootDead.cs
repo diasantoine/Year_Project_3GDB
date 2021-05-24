@@ -157,7 +157,8 @@ public class shootDead : MonoBehaviour
                         GetComponent<The_Player_Script>().YourPlayerChoosed].ListWeaponPart)
                 {
                     WeaponPart.GetComponent<Renderer>().material.SetColor("_EmissionColor",
-                        new Color(GetComponent<The_Player_Script>().PercentageWeaponHeat/100f,0 , 0));
+                        new Color( GetComponent<The_Player_Script>().RColor + GetComponent<The_Player_Script>().RColorBeforeMax * GetComponent<The_Player_Script>().PercentageWeaponHeat/100f,
+                            GetComponent<The_Player_Script>().GColor - GetComponent<The_Player_Script>().GColorBeforMax  * GetComponent<The_Player_Script>().PercentageWeaponHeat/100f , 0));
                 }
                 RaycastHit floorHit;
                 chrono = 0;

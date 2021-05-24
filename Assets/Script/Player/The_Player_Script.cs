@@ -34,7 +34,7 @@ public class The_Player_Script : MonoBehaviour
         public float FrequenceDecreaseWeaponHeat;
         public int NumberOfDecreaseByFrequence_Weapon;
         public int MaxWeaponHeat;
-        public float TimeBeforeWeaponcooledWhenOverHeated;
+        public int FrequenceDecreasedWhenOverHeated;
 
     }
     [Header("ChooseYourPlayer")]
@@ -66,12 +66,16 @@ public class The_Player_Script : MonoBehaviour
     private float lerpTime;
     
     [Header("PlayerStatArmorHeat")]
-    public int PercentageArmorHeat;
+    public float PercentageArmorHeat;
     [SerializeField] private float ResiCold;
     [SerializeField] private GameObject FeedbackHitGround;
     
     [Header("PlayerStatWeaponHeat")]
     public float PercentageWeaponHeat;
+    public float RColor;
+    public float RColorBeforeMax;
+    public float GColor;
+    public float GColorBeforMax;
 
     [Header("PlayerLife")]
     [SerializeField] private int maxLife;
@@ -130,7 +134,6 @@ public class The_Player_Script : MonoBehaviour
 
     private GameObject ContainerFeedbackGround;
 
-    private float ContainerTimeCooledWeaponWhenOverheated;
     
     void Start()
     {
@@ -138,7 +141,6 @@ public class The_Player_Script : MonoBehaviour
         //Cursor.lockState = CursorLockMode.Locked;
         slow = 1;
         this.ContainerTimeBeforeGrounded = this.TimerBeforeGrounded;
-        this.ContainerTimeCooledWeaponWhenOverheated = this.ListOfYourPlayer[this.YourPlayerChoosed].TimeBeforeWeaponcooledWhenOverHeated;
     }
 
     void Update()
@@ -209,11 +211,16 @@ public class The_Player_Script : MonoBehaviour
         {
             if (CompteurForArmorHeat >= ListOfYourPlayer[YourPlayerChoosed].CompteurBeforeDecreaseHeatArmor)
             {
-                CompteurForArmorHeat = 0;
+                //CompteurForArmorHeat = 0;
                 if (!isOnPlaque)
                 {
-                    StartCoroutine(DecreaseArmorHeat());
-
+                    //StartCoroutine(DecreaseArmorHeat());
+                    PercentageArmorHeat -= Time.deltaTime * ListOfYourPlayer[YourPlayerChoosed].NumberOfDecreaseByFrequence_Armor;
+                    foreach (GameObject ArmorPart in  ListOfYourPlayer[YourPlayerChoosed].ListArmorPart)
+                    {
+                        ArmorPart.GetComponent<Renderer>().material.SetColor("_EmissionColor",
+                            new Color(1,1 - PercentageArmorHeat/100f, 1 -PercentageArmorHeat/100f));
+                    }
                 }
             }
             else
@@ -240,36 +247,53 @@ public class The_Player_Script : MonoBehaviour
 
         if (this.WeaponOverHeated)
         {
-            if (this.ContainerTimeCooledWeaponWhenOverheated <= 0)
+            if (PercentageWeaponHeat <=0)
             {
-                this.ContainerTimeCooledWeaponWhenOverheated = this.ListOfYourPlayer[this.YourPlayerChoosed].TimeBeforeWeaponcooledWhenOverHeated;
-                this.WeaponOverHeated = false;
-            }
-            else
-            {
-                this.ContainerTimeCooledWeaponWhenOverheated -= Time.deltaTime;
-                PercentageWeaponHeat -= Time.deltaTime * this.PercentageWeaponHeat/ListOfYourPlayer[YourPlayerChoosed].TimeBeforeWeaponcooledWhenOverHeated;
-                Debug.Log(this.PercentageWeaponHeat);
+                WeaponOverHeated = false;
                 foreach (GameObject WeaponPart in  ListOfYourPlayer[YourPlayerChoosed].ListWeaponPart)
                 {
                     WeaponPart.GetComponent<Renderer>().material.SetColor("_EmissionColor",
-                        new Color(GetComponent<The_Player_Script>().PercentageWeaponHeat/100f,0 , 0));
+                        new Color( this.RColor + this.RColorBeforeMax * GetComponent<The_Player_Script>().PercentageWeaponHeat/100f,
+                            this.GColor - this.GColorBeforMax  * GetComponent<The_Player_Script>().PercentageWeaponHeat/100f , 0));
                 }
+            }
+            else
+            {
+                PercentageWeaponHeat -= Time.deltaTime * this.ListOfYourPlayer[this.YourPlayerChoosed].FrequenceDecreasedWhenOverHeated;
+                this.PercentageWeaponHeat = Mathf.Clamp(this.PercentageWeaponHeat, 0, Mathf.Infinity);
+                // Debug.Log(this.PercentageWeaponHeat);
+                // foreach (GameObject WeaponPart in  ListOfYourPlayer[YourPlayerChoosed].ListWeaponPart)
+                // {
+                //     WeaponPart.GetComponent<Renderer>().material.SetColor("_EmissionColor",
+                //         new Color( this.RColor + this.RColorBeforeMax * GetComponent<The_Player_Script>().PercentageWeaponHeat/100f,
+                //             this.GColor - this.GColorBeforMax  * GetComponent<The_Player_Script>().PercentageWeaponHeat/100f , 0));
+                // }
             }
         }
         else
         {
-            if ((IsNotUsingNormalWeapon || WeaponOverHeated) && PercentageWeaponHeat > 0)
+            if (IsNotUsingNormalWeapon && PercentageWeaponHeat > 0)
             {
-                if (CompteurForWeaponHeat >= ListOfYourPlayer[YourPlayerChoosed].CompteurBeforeDecreaseHeatWeapon)
+                PercentageWeaponHeat -= Time.deltaTime * this.ListOfYourPlayer[this.YourPlayerChoosed].FrequenceDecreaseWeaponHeat;
+                this.PercentageWeaponHeat = Mathf.Clamp(this.PercentageWeaponHeat, 0, Mathf.Infinity);
+                Debug.Log(this.PercentageWeaponHeat);
+                foreach (GameObject WeaponPart in  ListOfYourPlayer[YourPlayerChoosed].ListWeaponPart)
                 {
-                    CompteurForWeaponHeat = 0;
-                    StartCoroutine(DecreaseWeaponHeat());
+                    // WeaponPart.GetComponent<Renderer>().material.SetColor("_EmissionColor",
+                    //     new Color(GetComponent<The_Player_Script>().PercentageWeaponHeat/100f,0 , 0));
+                    WeaponPart.GetComponent<Renderer>().material.SetColor("_EmissionColor",
+                        new Color( this.RColor + this.RColorBeforeMax * GetComponent<The_Player_Script>().PercentageWeaponHeat/100f,
+                            this.GColor - this.GColorBeforMax  * GetComponent<The_Player_Script>().PercentageWeaponHeat/100f , 0));
                 }
-                else
-                {
-                    CompteurForWeaponHeat += Time.deltaTime;
-                }
+                // if (CompteurForWeaponHeat >= ListOfYourPlayer[YourPlayerChoosed].CompteurBeforeDecreaseHeatWeapon)
+                // {
+                //     CompteurForWeaponHeat = 0;
+                //     StartCoroutine(DecreaseWeaponHeat());
+                // }
+                // else
+                // {
+                //     CompteurForWeaponHeat += Time.deltaTime;
+                // }
             }
             else
             {

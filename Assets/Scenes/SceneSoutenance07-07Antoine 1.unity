@@ -3228,15 +3228,19 @@ MonoBehaviour:
     - {fileID: 132972292651147591}
     - {fileID: 7072482629110045855}
     CompteurBeforeDecreaseHeatWeapon: 2
-    FrequenceDecreaseWeaponHeat: 1
+    FrequenceDecreaseWeaponHeat: 10
     NumberOfDecreaseByFrequence_Weapon: 25
-    MaxWeaponHeat: 70
-    TimeBeforeWeaponcooledWhenOverHeated: 2
+    MaxWeaponHeat: 100
+    FrequenceDecreasedWhenOverHeated: 10
   YourPlayerChoosed: 0
   PercentageArmorHeat: 0
   ResiCold: 3
   FeedbackHitGround: {fileID: 193686, guid: ede42a52a2caa594dbc67cd13f591f5a, type: 3}
   PercentageWeaponHeat: 0
+  RColor: 0.1
+  RColorBeforeMax: 0.9
+  GColor: 3
+  GColorBeforMax: 3
   maxLife: 3
   playerLife: 0
   Grounded: 0
@@ -3446,8 +3450,6 @@ MonoBehaviour:
   TPS: {fileID: 497796873}
   Ambiance: event:/Ambiance/Ambiance
   footStep: event:/Player/Joueur_FootStep
-  Screamer_Explosion: 
-  Screamer_FootStep: 
 --- !u!136 &507935200
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -34339,7 +34341,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132972292651147591}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 543450652414494031}
