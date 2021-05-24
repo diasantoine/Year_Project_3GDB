@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class WaveSystem : MonoBehaviour
 {
+
+    [SerializeField] private GameSystem GS;
+
     [Header("Text")]
     [SerializeField] private Text text;
     [SerializeField] private Text timeText;
@@ -117,14 +120,11 @@ public class WaveSystem : MonoBehaviour
         {
             if(spawn.mobRestant <= 0 && spawn.ListEnnemy.Count <= 0)
             {
-                timeText.gameObject.SetActive(false);
-                text.gameObject.SetActive(true);
-                text.text = "ARENE FINIE";
-
-                if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    SceneManager.LoadScene(0);
-                }
+                timeText.gameObject.transform.parent.gameObject.SetActive(false);
+                text.gameObject.transform.parent.gameObject.SetActive(false);
+                text.text = "";
+                GS.NextArena();
+                
             }
 
             timeText.text = string.Format("{0}", spawn.ListEnnemy.Count);

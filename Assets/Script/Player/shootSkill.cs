@@ -38,13 +38,16 @@ public class shootSkill : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Tab))
             {
                 skillSystem.changeSkill();
-                onChange = true;
-            }
-            else if (Input.GetKeyUp(KeyCode.Tab))
-            {
-                skillSystem.changeSkill();
-                onChange = false;
 
+                if (onChange)
+                {
+                    onChange = false;
+                }
+                else
+                {
+                    onChange = true;
+
+                }
             }
 
 

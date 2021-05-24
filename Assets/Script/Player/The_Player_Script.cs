@@ -72,6 +72,11 @@ public class The_Player_Script : MonoBehaviour
     [Header("PlayerStatWeaponHeat")]
     public float PercentageWeaponHeat;
 
+    [Header("PlayerLife")]
+    [SerializeField] private int maxLife;
+    [HideInInspector] public int playerLife;
+
+
     [Header("PlayerBool")]
     public bool Grounded;
     public bool OnDash;
@@ -107,6 +112,8 @@ public class The_Player_Script : MonoBehaviour
 
     private float RegulationForce;
     
+    
+
     [Header("Other")] 
     [SerializeField] private Camera cam;
     [SerializeField] private float disToGround;
@@ -114,6 +121,7 @@ public class The_Player_Script : MonoBehaviour
     [SerializeField] private GameObject particleJump;
     [SerializeField] private GameObject aiguilleHeat;
     [SerializeField] private Image barHeat;
+    [SerializeField] private GameSystem GS;
 
     public float floatTypeOfFootStep;
 
@@ -123,6 +131,7 @@ public class The_Player_Script : MonoBehaviour
     
     void Start()
     {
+        playerLife = maxLife;
         //Cursor.lockState = CursorLockMode.Locked;
         slow = 1;
         this.ContainerTimeBeforeGrounded = this.TimerBeforeGrounded;
@@ -450,6 +459,18 @@ public class The_Player_Script : MonoBehaviour
             {
                 WeaponOverHeated = false;
             }
+            if(playerLife > 0)
+            {
+                playerLife--;
+                Debug.Log(playerLife);
+
+                if(playerLife == 0)
+                {
+                    GS.GameOver();
+                    gameObject.SetActive(false);
+                }
+
+            }
         }
         else
         {
@@ -771,11 +792,6 @@ public class The_Player_Script : MonoBehaviour
 
  private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.CompareTag("DeathFall"))
-        {
-            transform.position = ListOfYourPlayer[YourPlayerChoosed].SpawnPositionPlayer.position;
-        }
-
         if (other.gameObject.layer == 13 && other.GetComponent<RuantAI>() != null &&
             other.GetComponent<RuantAI>().state == RuantAI.State.RUSH)
         {
