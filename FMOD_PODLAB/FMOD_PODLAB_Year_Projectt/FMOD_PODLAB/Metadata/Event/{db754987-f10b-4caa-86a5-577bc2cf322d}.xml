@@ -206,6 +206,8 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{c3150d1e-052f-4b81-90df-5a826b7324a5}">
 		<relationship name="effects">
+			<destination>{18775d9b-9e2c-4752-afc9-87256e1a39d3}</destination>
+			<destination>{8489d591-b028-43e6-a8e4-57d0975f8ad7}</destination>
 			<destination>{a9151c77-2dd6-4cab-bc8e-d3de66059023}</destination>
 			<destination>{2494cac2-7d32-48c6-90e8-9223c46d9990}</destination>
 		</relationship>
@@ -275,6 +277,25 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{566e423e-230b-4707-a49a-376048c2cdad}" />
+	<object class="CompressorEffect" id="{18775d9b-9e2c-4752-afc9-87256e1a39d3}">
+		<property name="threshold">
+			<value>-40</value>
+		</property>
+		<property name="ratio">
+			<value>7.4000001</value>
+		</property>
+		<property name="attackTime">
+			<value>32</value>
+		</property>
+		<property name="gain">
+			<value>4.5</value>
+		</property>
+	</object>
+	<object class="ThreeEQEffect" id="{8489d591-b028-43e6-a8e4-57d0975f8ad7}">
+		<property name="midGain">
+			<value>-13</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{a9151c77-2dd6-4cab-bc8e-d3de66059023}" />
 	<object class="SpatialiserEffect" id="{2494cac2-7d32-48c6-90e8-9223c46d9990}">
 		<property name="maximumDistance">

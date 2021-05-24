@@ -21,6 +21,11 @@ public class ShootLastra : MonoBehaviour
     [SerializeField] private float dégat;
     [SerializeField] private int DMGHeat;
 
+    [Header("Particle")]
+    public GameObject impactParticle;
+    public GameObject projectileParticle;
+    public GameObject muzzleParticle;
+
 
     private Vector3 moveDirection;
 
@@ -29,6 +34,14 @@ public class ShootLastra : MonoBehaviour
 
     void Start()
     {
+        projectileParticle = Instantiate(projectileParticle, transform.position, transform.rotation) as GameObject;
+        projectileParticle.transform.parent = transform;
+        if (muzzleParticle)
+        {
+            muzzleParticle = Instantiate(muzzleParticle, transform.position, transform.rotation) as GameObject;
+            Destroy(muzzleParticle, 1.5f); // 2nd parameter is lifetime of effect in seconds
+        }
+
         Invoke("DestroyMe", this.portée);
     }
 
@@ -67,6 +80,29 @@ public class ShootLastra : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            ImpactParticle(collision);
         }
+
+    }
+
+    private void ImpactParticle(Collision col)
+    {
+        GameObject impactP = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, col.collider.bounds.center)) as GameObject; // Spawns impact effect
+
+        ParticleSystem[] trails = GetComponentsInChildren<ParticleSystem>(); // Gets a list of particle systems, as we need to detach the trails
+                                                                             //Component at [0] is that of the parent i.e. this object (if there is any)
+        for (int i = 1; i < trails.Length; i++) // Loop to cycle through found particle systems
+        {
+            ParticleSystem trail = trails[i];
+
+            if (trail.gameObject.name.Contains("Trail"))
+            {
+                trail.transform.SetParent(null); // Detaches the trail from the projectile
+                Destroy(trail.gameObject, 2f); // Removes the trail after seconds
+            }
+        }
+
+        Destroy(projectileParticle, 3f); // Removes particle effect after delay
+        Destroy(impactP, 3.5f); // Removes impact effect after delay
     }
 }

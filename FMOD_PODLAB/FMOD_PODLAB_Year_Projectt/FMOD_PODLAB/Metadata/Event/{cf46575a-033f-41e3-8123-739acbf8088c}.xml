@@ -120,6 +120,7 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{e697346c-9550-4606-a382-14008b51140c}">
 		<relationship name="effects">
+			<destination>{cc1be0e1-ee8c-4faa-b449-cd39ca1ca292}</destination>
 			<destination>{76034c0c-9c56-4764-8502-a96622812b26}</destination>
 			<destination>{4300f464-5ac2-4163-b353-f86cec5e78a8}</destination>
 			<destination>{5d0d2c65-ccf3-4fab-921a-95a820d2a546}</destination>
@@ -149,6 +150,20 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{cd3a6252-e023-440f-ac73-7f7f7a8c3ec9}" />
+	<object class="CompressorEffect" id="{cc1be0e1-ee8c-4faa-b449-cd39ca1ca292}">
+		<property name="threshold">
+			<value>-15.5</value>
+		</property>
+		<property name="ratio">
+			<value>7.4000001</value>
+		</property>
+		<property name="attackTime">
+			<value>42</value>
+		</property>
+		<property name="gain">
+			<value>1.5</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{76034c0c-9c56-4764-8502-a96622812b26}" />
 	<object class="ChorusEffect" id="{4300f464-5ac2-4163-b353-f86cec5e78a8}">
 		<property name="rate">

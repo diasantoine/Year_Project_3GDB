@@ -25,40 +25,70 @@ public class ScreamerState : State
     {
         PoisonDamage();
         HealthbarDecrease();
-        
+
+        if (HpNow <= 0)
+        {
+            if (!Fall)
+            {
+                if (gameObject.GetComponent<ScreamerAI>().state != ScreamerAI.State.dead)
+                {
+                    gameObject.GetComponent<ScreamerAI>().SwitchState(ScreamerAI.State.dead);
+                    Destroy(healthBar.gameObject);
+
+                }
+
+            }
+            else
+            {
+                Die();
+            }
+
+
+        }
 
         if (transform.position.y <= -10)
         {
             HpNow = 0;
-        }
-        if (HpNow <= 0)
-        {
-            float écart = -nbCadavre / 2;
-            this.GetComponent<ScreamerAI>().ImpulsionTahLesfous();
-            for (int i = 1; i <= nbCadavre; i++)
-            {
-                if (spawn.ListEnnemy.Contains(this.gameObject))
-                {
-                    spawn.ListEnnemy.Remove(this.gameObject);
-                    if (this.spawn.ListMaxScreamer.Contains(this.gameObject))
-                    {
-                        this.spawn.ListMaxScreamer.Remove(this.gameObject);
-                    }
-                }
+        }     
 
-                if (Fall)
-                {
-                    Instantiate(cadavre, player.position, Quaternion.identity, GameObject.Find("CadavreParent").transform);
-                    Debug.Log(detectDead.ressourceFloat);
-                }
-                else
-                {
-                    Instantiate(cadavre, transform.position + new Vector3(0, 0, écart * 1.25f),
-                        Quaternion.identity, GameObject.Find("CadavreParent").transform);
-                }
-                écart++;
+    }
+
+    public void Die()
+    {
+        if (!isPoisoned)
+        {
+            this.GetComponent<ScreamerAI>().ImpulsionTahLesfous();
+
+        }
+
+        if (spawn.ListEnnemy.Contains(this.gameObject))
+        {
+            spawn.ListEnnemy.Remove(this.gameObject);
+            if (this.spawn.ListMaxScreamer.Contains(this.gameObject))
+            {
+                this.spawn.ListMaxScreamer.Remove(this.gameObject);
             }
         }
+
+        float écart = -nbCadavre / 2;
+
+        for (int i = 1; i <= nbCadavre; i++)
+        {
+
+            if (Fall)
+            {
+                Instantiate(cadavre, player.position, Quaternion.identity, GameObject.Find("CadavreParent").transform);
+                Debug.Log(detectDead.ressourceFloat);
+            }
+            else
+            {
+                Instantiate(cadavre, transform.position + new Vector3(0, 0, écart * 1.25f),
+                    Quaternion.identity, GameObject.Find("CadavreParent").transform);
+            }
+            écart++;
+        }
+
+        Destroy(gameObject, 1f);
 
     }
 

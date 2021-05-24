@@ -16,12 +16,6 @@ public class Data_SD : MonoBehaviour
     public string footStep = "";
     FMOD.Studio.EventInstance footStepPlayer;
 
-    [FMODUnity.EventRef]
-    public string Screamer_Explosion = "";
-
-    [FMODUnity.EventRef]
-    public string Screamer_FootStep = "";
-
     // Start is called before the first frame update
     void Start()
     {
@@ -48,18 +42,6 @@ public class Data_SD : MonoBehaviour
         // footStepPlayer.start();
         FMODUnity.RuntimeManager.PlayOneShot(footStep, "TypeOfFootstep", TPS.floatTypeOfFootStep, transform.position);
         // FMODUnity.RuntimeManager.PlayOneShot(footStep, transform.position);
-        /// Debug.Log("test son footstep");
-    }
-
-    public void PlayScreamerExplosion()
-    {
-        FMODUnity.RuntimeManager.PlayOneShot(Screamer_Explosion, "", 0, transform.position);
-        /// Debug.Log("test son footstep");
-    }
-
-    public void PlayFootStepScreamer()
-    {
-        FMODUnity.RuntimeManager.PlayOneShot(Screamer_FootStep, "", 0, transform.position);
         /// Debug.Log("test son footstep");
     }
 }

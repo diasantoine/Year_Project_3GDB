@@ -26,7 +26,7 @@ public class ScreamerAI : Ennemy
         dead
     }
 
-    public State ScreamerState;
+    public State state;
     private float SpeedConteneur;
     public SpawnSysteme spawn;
     
@@ -56,28 +56,70 @@ public class ScreamerAI : Ennemy
     private bool startNav = false;
 
     private RaycastHit hit;
-    
+
+    public void SwitchState(State newState)
+    {
+        OnExitState();
+        state = newState;
+        OnEnterState();
+
+    }
+
+
     void Start()
     {
-        
-        ScreamerState = State.SleepState;
+        state = State.SleepState;
         SpeedConteneur = agent.speed;
         chrono = 0;
         player = GameObject.Find("Player").transform;
         this.TimeBeforeHeMoveContainer = this.TimeBeforeHeMove;
     }
 
+    void OnExitState()
+    {
+        switch (state)
+        {
+            case State.SleepState:
+                break;
+            case State.TriggerState:               
+                break;
+            case State.dead:
+                break;
+        }
+    }
+
+    void OnEnterState()
+    {
+        switch (state)
+        {
+            case State.SleepState:
+                break;
+            case State.TriggerState:
+                break;
+            case State.dead:
+                agent.speed = 0;
+                agent.isStopped = true;
+                agent.enabled = false;
+                RB.isKinematic = true;
+                AnimatorConteneur.SetTrigger("Death");
+                break;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+
+        UpdateState();
+
         if (!agent.enabled && Grounded && !JustHit)
         {
             agent.enabled = true;
         }
         Ground(hit);
-        if(JustHit)
+        if (JustHit)
         {
-            if (RB.velocity.magnitude < 8f  && ScreamerState != State.dead)
+            if (RB.velocity.magnitude < 8f && state != State.dead)
             {
                 if (Pansement)
                 {
@@ -91,7 +133,7 @@ public class ScreamerAI : Ennemy
                     RB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     RB.freezeRotation = true;
                     transform.position = new Vector3(transform.position.x, 0.12f, transform.position.z);
-                    ScreamerState = State.TriggerState;
+                    SwitchState(State.TriggerState);
                 }
             }
         }
@@ -100,12 +142,12 @@ public class ScreamerAI : Ennemy
         {
             VisionCone(player);
         }
-        
-        if (ScreamerState == State.SleepState)
+
+        if (state == State.SleepState)
         {
             if (SeeThePlayer)
             {
-                ScreamerState = State.TriggerState;
+                SwitchState(State.TriggerState);
                 if (AnimatorConteneur.GetBool("Wander"))
                 {
                     AnimatorConteneur.SetBool("Wander", false);
@@ -117,7 +159,15 @@ public class ScreamerAI : Ennemy
             }
         }
 
-        switch (ScreamerState)
+        if (transform.position.y <= -10)
+        {
+            this.GetComponent<ScreamerState>().Damage(Mathf.Infinity);
+        }
+    }
+
+    private void UpdateState()
+    {
+        switch (state)
         {
             case State.SleepState:
                 if (this.TimeBeforeHeMove <= 0)
@@ -129,6 +179,7 @@ public class ScreamerAI : Ennemy
                             this.TimeBeforeHeMove = this.TimeBeforeHeMoveContainer;
                             this.NewPosFind = false;
                             this.agent.speed = 0;
+
                             if (AnimatorConteneur.GetBool("Wander"))
                             {
                                 AnimatorConteneur.SetBool("Wander", false);
@@ -148,6 +199,7 @@ public class ScreamerAI : Ennemy
                             Debug.Log(this.ContainerNewPos);
                             this.agent.SetDestination(this.ContainerNewPos);
                             this.agent.speed = this.SpeedConteneur;
+
                             if (!AnimatorConteneur.GetBool("Wander"))
                             {
                                 AnimatorConteneur.SetBool("Wander", true);
@@ -157,7 +209,7 @@ public class ScreamerAI : Ennemy
                 }
                 else
                 {
-                    if (agent.speed !=0)
+                    if (agent.speed != 0)
                     {
                         agent.speed = 0;
                     }
@@ -179,8 +231,8 @@ public class ScreamerAI : Ennemy
                         RB.isKinematic = true;
                         agent.isStopped = true;
                         agent.enabled = false;
-                        ScreamerState = State.dead;
-                        
+                        SwitchState(State.dead);
+
                     }
                     else
                     {
@@ -188,7 +240,8 @@ public class ScreamerAI : Ennemy
                         agent.isStopped = true;
                         agent.enabled = false;
                         RB.isKinematic = true;
-                        ScreamerState = State.dead;
+                        SwitchState(State.dead);
+
                     }
                 }
                 else
@@ -202,53 +255,18 @@ public class ScreamerAI : Ennemy
                     agent.SetDestination(player.transform.position);
                 }
                 break;
-            case State.dead:
-                if (this.GetComponent<ScreamerState>().isPoisoned)
-                {
-                    if (!AnimatorConteneur.GetBool("PoisonedDeathState"))
-                    {
-                        AnimatorConteneur.SetBool("PoisonedDeathState", true);
-                    }
-                    if (AnimatorConteneur.GetBool("Dead"))
-                    {
-                        this.GetComponent<ScreamerState>().Damage(Mathf.Infinity);
-                    }
-                    else
-                    {
-                        Debug.Log("WaitDeath");
-                    }
-                }
-                else
-                {
-                    if (!AnimatorConteneur.GetBool("DeathState"))
-                    {
-                        AnimatorConteneur.SetBool("DeathState", true);
-                        // FMODUnity.RuntimeManager.PlayOneShot(Screamer_Explosion, transform.position);
-                    }
-                    if (AnimatorConteneur.GetBool("Dead"))
-                    {
-                        this.GetComponent<ScreamerState>().Damage(Mathf.Infinity);
-                    }
-                    else
-                    {
-                    }
-                }
+            case State.dead:                
                 break;
             default:
                 break;
-        }
-        
-        if (transform.position.y <= -10)
-        {
-            this.GetComponent<ScreamerState>().Damage(Mathf.Infinity);
         }
     }
 
     public void ImpulsionTahLesfous()
     {
-        Destroy(gameObject);
         Vector3 hitPoint = transform.position;
         Collider[] hit = Physics.OverlapSphere(hitPoint, radiusExploBase + transform.localScale.x);
+        CameraShake.Instance.Shake(5, 1.5f);
         for (int i = 0; i < hit.Length; i++)
         {
             if (hit[i].gameObject.CompareTag("Player"))
@@ -276,10 +294,7 @@ public class ScreamerAI : Ennemy
                 else if(hit[i].GetComponent<ScreamerState>() != null)
                 {
                     hit[i].GetComponent<ScreamerState>().Damage(Mathf.Infinity);
-                }
-                else
-                {
-                }
+                }               
             }
         }
     }
