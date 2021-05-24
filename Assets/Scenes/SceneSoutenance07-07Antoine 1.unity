@@ -3234,15 +3234,20 @@ MonoBehaviour:
     - {fileID: 132972292651147591}
     - {fileID: 7072482629110045855}
     CompteurBeforeDecreaseHeatWeapon: 2
-    FrequenceDecreaseWeaponHeat: 1
+    FrequenceDecreaseWeaponHeat: 10
     NumberOfDecreaseByFrequence_Weapon: 25
-    MaxWeaponHeat: 70
+    MaxWeaponHeat: 100
+    FrequenceDecreasedWhenOverHeated: 10
   YourPlayerChoosed: 0
   Jump_Atterissage: event:/Player/Jump_Atterissage
   PercentageArmorHeat: 0
   ResiCold: 3
   FeedbackHitGround: {fileID: 193686, guid: ede42a52a2caa594dbc67cd13f591f5a, type: 3}
   PercentageWeaponHeat: 0
+  RColor: 0.1
+  RColorBeforeMax: 0.9
+  GColor: 3
+  GColorBeforMax: 3
   maxLife: 3
   playerLife: 0
   Grounded: 0
@@ -27436,7 +27441,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371606786}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b641887eea19df441823b99390371332, type: 3}
   m_Name: 
@@ -27589,7 +27594,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371606786}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c68822421f888f4abf6711581883e4e, type: 3}
   m_Name: 
@@ -34369,7 +34374,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 132972292651147591}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 543450652414494031}
