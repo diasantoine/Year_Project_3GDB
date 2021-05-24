@@ -144,6 +144,8 @@ public class ScreamerAI : Ennemy
                         if (this.FindGoal())
                         {
                             Debug.Log("allo");
+                            Debug.DrawLine(transform.position, this.ContainerNewPos, Color.red, 200f);
+                            Debug.Log(this.ContainerNewPos);
                             this.agent.SetDestination(this.ContainerNewPos);
                             this.agent.speed = this.SpeedConteneur;
                             if (!AnimatorConteneur.GetBool("Wander"))
@@ -289,6 +291,7 @@ public class ScreamerAI : Ennemy
             this.BreakWhile++;
             if (this.FindValidPosition())
             {
+                Debug.Log(this.FindValidPosition());
                 this.agent.destination = this.ContainerNewPos;
                 this.NewPosFind = true;
                 this.BreakWhile = 0;
@@ -303,7 +306,7 @@ public class ScreamerAI : Ennemy
         Vector2 offset = Random.insideUnitCircle * this.RadiusMaxForHisMove;
         Vector3 position = this.transform.position + new Vector3 (offset.x, 0, offset.y);
         NavMeshHit hit;
-        bool isValid = NavMesh.SamplePosition (position + Vector3.up, out hit, 5,  NavMesh.AllAreas);
+        bool isValid = NavMesh.SamplePosition (position + Vector3.up, out hit, 5,  1 << NavMesh.GetAreaFromName("Walkable"));
         if (!isValid)
             return false;
         

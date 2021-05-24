@@ -3230,7 +3230,7 @@ MonoBehaviour:
     CompteurBeforeDecreaseHeatWeapon: 2
     FrequenceDecreaseWeaponHeat: 1
     NumberOfDecreaseByFrequence_Weapon: 25
-    MaxWeaponHeat: 100
+    MaxWeaponHeat: 70
   YourPlayerChoosed: 0
   PercentageArmorHeat: 0
   ResiCold: 3
@@ -27427,9 +27427,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListWave:
-  - NumberBasic: 5
-    NumberRuant: 1
-    NumberScreamer: 0
+  - NumberBasic: 0
+    NumberRuant: 0
+    NumberScreamer: 1
     NumberLastra: 0
     ListSpawnBasic:
     - {fileID: 1935181333}
@@ -27451,7 +27451,7 @@ MonoBehaviour:
     MaxScreamer: 1
     MaxLastra: 1
     minutesMax: 0
-    secondesMax: 20
+    secondesMax: 60
   - NumberBasic: 10
     NumberRuant: 1
     NumberScreamer: 0
