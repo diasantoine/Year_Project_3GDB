@@ -19,8 +19,6 @@ public class BasicAI : Ennemy
     private float chronoGetUp;
     private float chronoDie;
 
-
-
     private RaycastHit hit;
     private float debugChronoStart;
     private bool startNav;
@@ -182,9 +180,10 @@ public class BasicAI : Ennemy
             case State.TAPER:
                 break;
             case State.DEATH:
-                if(chronoDie >= 2f)
-                {
+                if(chronoDie >= 2.35f)
+                {                   
                     GetComponent<BasicState>().Die();
+
                 }
                 else
                 {
