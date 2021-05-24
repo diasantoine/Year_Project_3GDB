@@ -42,20 +42,17 @@ public class PoisonCollider : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Ennemy"))
             {
-                other.gameObject.GetComponent<BasicState>().isPoisoned = true;
-                other.gameObject.GetComponent<BasicState>().dpsTick = dps;
+                if (other.gameObject.GetComponent<BasicState>())
+                {
+                    other.gameObject.GetComponent<BasicState>().isPoisoned = true;
+                    other.gameObject.GetComponent<BasicState>().dpsTick = dps;
+                }
+                else if (other.gameObject.GetComponent<ScreamerState>())
+                {
+                    other.gameObject.GetComponent<ScreamerState>().isPoisoned = true;
+                    other.gameObject.GetComponent<ScreamerState>().dpsTick = dps;
+                }
             }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Ennemy"))
-        {
-            other.gameObject.GetComponent<BasicState>().isPoisoned = false;
-            other.gameObject.GetComponent<BasicState>().dpsTick = 0;
-
-
         }
     }
 

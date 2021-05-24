@@ -10,7 +10,7 @@ public class ScreamerState : State
 
     [Header("Poison")]
     [SerializeField] private float freqTick;
-    [HideInInspector] public bool isPoisoned;
+    public bool isPoisoned;
     private float chronoPoison;
     [HideInInspector] public float dpsTick;
     private int nbTick;
@@ -59,8 +59,21 @@ public class ScreamerState : State
 
     public override void Damage(float dmg)
     {
-        base.Damage(dmg);
-        FMODUnity.RuntimeManager.PlayOneShot(Screamer_Touche, "", 0, transform.position);
+        if(HpNow > 0)
+        {
+            base.Damage(dmg);
+
+            if (isPoisoned)
+            {
+                nbTick = 0;
+            }
+            else
+            {
+                FMODUnity.RuntimeManager.PlayOneShot(Screamer_Touche, "", 0, transform.position);
+
+            }
+        }
+
     }
 
     public void Die()
@@ -104,27 +117,31 @@ public class ScreamerState : State
 
     private void PoisonDamage()
     {
-        if (isPoisoned)
+        if(HpNow > 0)
         {
-            if (chronoPoison >= freqTick)
+            if (isPoisoned)
             {
-
-                Damage(dpsTick);
-                nbTick++;
-                chronoPoison = 0;
-
-                if (nbTick >= tickMax)
+                if (chronoPoison >= freqTick)
                 {
-                    nbTick = 0;
-                    isPoisoned = false;
-                }
 
-            }
-            else
-            {
-                chronoPoison += Time.deltaTime;
+                    Damage(dpsTick);
+                    nbTick++;
+                    chronoPoison = 0;
+
+                    if (nbTick >= tickMax)
+                    {
+                        nbTick = 0;
+                        isPoisoned = false;
+                    }
+
+                }
+                else
+                {
+                    chronoPoison += Time.deltaTime;
+                }
             }
         }
+       
     }
 
     void HealthbarDecrease()

@@ -79,9 +79,9 @@ public class ScreamerAI : Ennemy
     {
         switch (state)
         {
-            case State.SleepState:
+            case State.SleepState:                
                 break;
-            case State.TriggerState:               
+            case State.TriggerState:
                 break;
             case State.dead:
                 break;
@@ -95,13 +95,24 @@ public class ScreamerAI : Ennemy
             case State.SleepState:
                 break;
             case State.TriggerState:
+                agent.speed = 9;
                 break;
             case State.dead:
                 agent.speed = 0;
+                GetComponent<Collider>().enabled = false;
                 agent.isStopped = true;
                 agent.enabled = false;
                 RB.isKinematic = true;
-                AnimatorConteneur.SetTrigger("Death");
+                if (!gameObject.GetComponent<ScreamerState>().isPoisoned)
+                {
+                    AnimatorConteneur.SetTrigger("Death");
+
+                }
+                else
+                {
+                    AnimatorConteneur.SetTrigger("DeathPoisoned");
+
+                }
                 break;
         }
     }
@@ -225,21 +236,8 @@ public class ScreamerAI : Ennemy
             case State.TriggerState:
                 if (Vector3.Distance(transform.position, player.transform.position) <= 6)
                 {
-                    if (this.GetComponent<ScreamerState>().isPoisoned)
+                    if (!GetComponent<ScreamerState>().isPoisoned)
                     {
-                        agent.speed = 0;
-                        RB.isKinematic = true;
-                        agent.isStopped = true;
-                        agent.enabled = false;
-                        SwitchState(State.dead);
-
-                    }
-                    else
-                    {
-                        agent.speed = 0;
-                        agent.isStopped = true;
-                        agent.enabled = false;
-                        RB.isKinematic = true;
                         SwitchState(State.dead);
 
                     }
@@ -250,7 +248,7 @@ public class ScreamerAI : Ennemy
                     {
                         AnimatorConteneur.SetBool("TriggerState", true);
                     }
-                    agent.speed = SpeedConteneur;
+                    agent.speed = 9;
                     transform.LookAt(player.transform.position);
                     agent.SetDestination(player.transform.position);
                 }
@@ -286,9 +284,9 @@ public class ScreamerAI : Ennemy
             }
             else if (hit[i].gameObject.CompareTag("Ennemy"))
             {
-                if (hit[i].GetComponent<ennemyAI>() != null)
+                if (hit[i].GetComponent<BasicAI>() != null)
                 {
-                    hit[i].GetComponent<ennemyAI>().ExplosionImpact(hitPoint, radiusExploBase +  transform.localScale.x, ForceExplosion*10);
+                    hit[i].GetComponent<BasicAI>().ExplosionImpact(hitPoint, radiusExploBase +  transform.localScale.x, ForceExplosion*10);
                     hit[i].GetComponent<BasicState>().Damage(DMG);
                 }
                 else if(hit[i].GetComponent<ScreamerState>() != null)

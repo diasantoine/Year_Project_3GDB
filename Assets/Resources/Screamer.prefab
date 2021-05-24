@@ -20527,7 +20527,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.78
-  m_Speed: 9
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 75
@@ -20705,6 +20705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleBoom: {fileID: 1232931709226137554}
+  particleDeath: {fileID: 165672, guid: 3fe0a3c01e5f4c144ad91c96ccbdb100, type: 3}
   Screamer_Explosion: event:/Enemy/Screamer/Screamer_Explosion
   Screamer_FootStep: event:/Enemy/Screamer/Screamer_Footstep
 --- !u!1 &4226039092322083442

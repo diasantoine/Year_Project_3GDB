@@ -49,6 +49,11 @@ public class SystemPlaque : MonoBehaviour
                
                 var color = nowPlaque.EmiRD.material.GetColor("_EmissionColor");
                 nowPlaque.EmiRD.material.SetColor("_EmissionColor", color * intensity);  //(intensity + Mathf.Sin(Time.time) * pulse));
+                if(nowPlaque.Particle != null)
+                {
+                    nowPlaque.Particle.SetActive(true);
+
+                }
 
                 enablePlaques.Remove(nowPlaque);
 

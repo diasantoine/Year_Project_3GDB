@@ -11,7 +11,9 @@ public class PlaqueScriptEditor : Editor
         maxRessourceGot_Prop,
         regenRessource_Prop,
         SP_Prop,
-        EmiRD_Prop;
+        EmiRD_Prop,
+        Particle_Prop;
+       
 
 
     void OnEnable()
@@ -24,6 +26,7 @@ public class PlaqueScriptEditor : Editor
         maxRessourceGot_Prop = serializedObject.FindProperty("maxRessourceGot");
         SP_Prop = serializedObject.FindProperty("SP");
         EmiRD_Prop = serializedObject.FindProperty("EmiRD");
+        Particle_Prop = serializedObject.FindProperty("Particle");
 
 
 
@@ -46,7 +49,7 @@ public class PlaqueScriptEditor : Editor
                 EditorGUILayout.PropertyField(activ_Prop, new GUIContent("Activ"));
                 EditorGUILayout.PropertyField(activTime_Prop, new GUIContent("Activ Time"));
                 EditorGUILayout.PropertyField(EmiRD_Prop, new GUIContent("Emission Renderer"));
-
+                EditorGUILayout.PropertyField(Particle_Prop, new GUIContent("Particle"));
 
 
                 break;

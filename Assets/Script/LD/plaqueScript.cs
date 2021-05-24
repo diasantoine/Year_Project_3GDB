@@ -11,6 +11,7 @@ public class plaqueScript : MonoBehaviour
     [SerializeField] private float activTime;
     private float chrono;
     public Renderer EmiRD;
+    public GameObject Particle;
 
 
     //Variable for TOXIC
@@ -151,6 +152,11 @@ public class plaqueScript : MonoBehaviour
                 activ = false;
                 SP.systemActiv = false;
                 EmiRD.material.SetColor("_EmissionColor", baseColor);
+                if(Particle != null)
+                {
+                    Particle.SetActive(false);
+
+                }
                 chrono = 0;
             }
             else

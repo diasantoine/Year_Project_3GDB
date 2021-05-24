@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LastraState : State
 {
+    [SerializeField] private GameObject particleDeath;
+    [SerializeField] private GameObject Mesh;
+    private bool isDead;
 
     [FMODUnity.EventRef]
     public string Lastra_Touche = "";
@@ -34,7 +37,6 @@ public class LastraState : State
         {
             float écart = -nbCadavre / 2;
 
-            Destroy(gameObject);
             for (int i = 1; i <= nbCadavre; i++)
             {
                 if (spawn.ListEnnemy.Contains(this.gameObject))
@@ -58,6 +60,11 @@ public class LastraState : State
                 }
                 écart++;
             }
+
+            Mesh.SetActive(false);
+            GameObject ps = Instantiate(particleDeath, transform.position, particleDeath.transform.rotation);
+            Destroy(ps, 1f);
+            Destroy(gameObject);
         }
     }
 
