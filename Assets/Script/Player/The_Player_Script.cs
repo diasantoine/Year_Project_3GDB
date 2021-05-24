@@ -34,7 +34,7 @@ public class The_Player_Script : MonoBehaviour
         public float FrequenceDecreaseWeaponHeat;
         public int NumberOfDecreaseByFrequence_Weapon;
         public int MaxWeaponHeat;
-        public float Frequence
+        public float TimeBeforeWeaponcooledWhenOverHeated;
 
     }
     [Header("ChooseYourPlayer")]
@@ -129,6 +129,8 @@ public class The_Player_Script : MonoBehaviour
     private float ContainerTimeBeforeGrounded;
 
     private GameObject ContainerFeedbackGround;
+
+    private float ContainerTimeCooledWeaponWhenOverheated;
     
     void Start()
     {
@@ -136,6 +138,7 @@ public class The_Player_Script : MonoBehaviour
         //Cursor.lockState = CursorLockMode.Locked;
         slow = 1;
         this.ContainerTimeBeforeGrounded = this.TimerBeforeGrounded;
+        this.ContainerTimeCooledWeaponWhenOverheated = this.ListOfYourPlayer[this.YourPlayerChoosed].TimeBeforeWeaponcooledWhenOverHeated;
     }
 
     void Update()
@@ -237,29 +240,43 @@ public class The_Player_Script : MonoBehaviour
 
         if (this.WeaponOverHeated)
         {
-            StartCoroutine(this.DecreaseWeaponHeatWhenOverheat());
-        }
-        else
-        {
-            
-        }
-        if ((IsNotUsingNormalWeapon || WeaponOverHeated) && PercentageWeaponHeat > 0)
-        {
-            if (CompteurForWeaponHeat >= ListOfYourPlayer[YourPlayerChoosed].CompteurBeforeDecreaseHeatWeapon)
+            if (this.ContainerTimeCooledWeaponWhenOverheated <= 0)
             {
-                CompteurForWeaponHeat = 0;
-                StartCoroutine(DecreaseWeaponHeat());
+                this.ContainerTimeCooledWeaponWhenOverheated = this.ListOfYourPlayer[this.YourPlayerChoosed].TimeBeforeWeaponcooledWhenOverHeated;
+                this.WeaponOverHeated = false;
             }
             else
             {
-                CompteurForWeaponHeat += Time.deltaTime;
+                this.ContainerTimeCooledWeaponWhenOverheated -= Time.deltaTime;
+                PercentageWeaponHeat -= Time.deltaTime * this.PercentageWeaponHeat/ListOfYourPlayer[YourPlayerChoosed].TimeBeforeWeaponcooledWhenOverHeated;
+                Debug.Log(this.PercentageWeaponHeat);
+                foreach (GameObject WeaponPart in  ListOfYourPlayer[YourPlayerChoosed].ListWeaponPart)
+                {
+                    WeaponPart.GetComponent<Renderer>().material.SetColor("_EmissionColor",
+                        new Color(GetComponent<The_Player_Script>().PercentageWeaponHeat/100f,0 , 0));
+                }
             }
         }
         else
         {
-            if (CompteurForWeaponHeat != 0)
+            if ((IsNotUsingNormalWeapon || WeaponOverHeated) && PercentageWeaponHeat > 0)
             {
-                CompteurForWeaponHeat = 0;
+                if (CompteurForWeaponHeat >= ListOfYourPlayer[YourPlayerChoosed].CompteurBeforeDecreaseHeatWeapon)
+                {
+                    CompteurForWeaponHeat = 0;
+                    StartCoroutine(DecreaseWeaponHeat());
+                }
+                else
+                {
+                    CompteurForWeaponHeat += Time.deltaTime;
+                }
+            }
+            else
+            {
+                if (CompteurForWeaponHeat != 0)
+                {
+                    CompteurForWeaponHeat = 0;
+                }
             }
         }
     }
@@ -289,12 +306,6 @@ public class The_Player_Script : MonoBehaviour
         {
             WeaponOverHeated = false;
         }
-    }
-
-    IEnumerator DecreaseWeaponHeatWhenOverheat()
-    {
-        yield return new WaitForSeconds(this.ListOfYourPlayer[this.YourPlayerChoosed]);
-        
     }
 
     private void CharacterMouvement()

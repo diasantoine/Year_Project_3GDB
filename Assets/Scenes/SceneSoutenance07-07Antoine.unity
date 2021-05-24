@@ -3231,6 +3231,7 @@ MonoBehaviour:
     FrequenceDecreaseWeaponHeat: 1
     NumberOfDecreaseByFrequence_Weapon: 25
     MaxWeaponHeat: 70
+    TimeBeforeWeaponcooledWhenOverHeated: 2
   YourPlayerChoosed: 0
   PercentageArmorHeat: 0
   ResiCold: 3
@@ -27421,7 +27422,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371606786}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b641887eea19df441823b99390371332, type: 3}
   m_Name: 
@@ -27574,7 +27575,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371606786}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c68822421f888f4abf6711581883e4e, type: 3}
   m_Name: 
