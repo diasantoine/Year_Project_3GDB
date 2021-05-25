@@ -1801,7 +1801,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1.2
-  m_Speed: 4
+  m_Speed: 10
   m_Acceleration: 12
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1890,7 +1890,7 @@ MonoBehaviour:
   DmgArmorHeat: 10
   health: {fileID: 4711216742861804130}
   ImpactTirNormal: 0.3
-  ImpactHit: 25
+  ImpactHit: 50
   DistanceForBasicForPunch: 5
   hitCD: 2
   TimeGetUp: 0.25

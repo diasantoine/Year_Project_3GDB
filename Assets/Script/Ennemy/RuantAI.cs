@@ -183,7 +183,6 @@ public class RuantAI : Ennemy
                     {
                         var distance = player.position - transform.position;
                         distance.y = 0;
-
                         Quaternion newRotation = Quaternion.LookRotation(distance);
                         RB.MoveRotation(newRotation);
 

@@ -9944,7 +9944,7 @@ GameObject:
   - component: {fileID: 3170520116324826614}
   - component: {fileID: 3170520116324826615}
   m_Layer: 13
-  m_Name: Ruant
+  m_Name: RuantOld
   m_TagString: Ennemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10044,14 +10044,14 @@ MonoBehaviour:
   distForRush: 25
   waitRush: 3.25
   stunTime: 4
-  speedRush: 35
+  speedRush: 70
   stunEcart: 5
   deceleration: 2
   PorteMinimale: 10
   ForceExplosion: 125
   radiusExploBase: 10
   DistanceWhereRuantStomp: 10
-  ForcePercussion: 125
+  ForcePercussion: 175
   Ruant_Collision: event:/Enemy/Ruant/Ruant_Collision
   Ruant_Cris_Mort: event:/Enemy/Ruant/Ruant_Cris_Mort
   Ruant_Cris_Dash: event:/Enemy/Ruant/Ruant_Cris_Dash
@@ -10079,6 +10079,7 @@ MonoBehaviour:
   isWeak: 0
   weakPoint: 0.75
   rd: {fileID: 0}
+  intensity: 0
   Ruant_Touche_O: event:/Enemy/Ruant/Ruant_Touche_O
 --- !u!1 &3316899055681555839
 GameObject:
