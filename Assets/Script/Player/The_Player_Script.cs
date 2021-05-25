@@ -45,6 +45,9 @@ public class The_Player_Script : MonoBehaviour
     [FMODUnity.EventRef]
     public string Jump_Atterissage = "";
 
+    [FMODUnity.EventRef]
+    public string Player_GetHit = "";
+
     [DllImport("user32.dll")]
     static extern bool SetCursorPos(int X, int Y);
 
@@ -405,6 +408,7 @@ public class The_Player_Script : MonoBehaviour
                     {
                         ContainerFeedbackGround = Instantiate(this.FeedbackHitGround, transform.position, Quaternion.Euler(-90,0,0));
                         ContainerFeedbackGround.transform.parent = transform;
+                        FMODUnity.RuntimeManager.PlayOneShot(Player_GetHit, "", 0, transform.position);
                         foreach (GameObject ArmorPart in  ListOfYourPlayer[YourPlayerChoosed].ListArmorPart)
                         {
                             ArmorPart.GetComponent<Renderer>().material.SetColor("_EmissionColor",
