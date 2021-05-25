@@ -2650,7 +2650,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277494444}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.30070576, z: 0, w: 0.953717}
   m_LocalPosition: {x: -38.2, y: 3.321, z: -34.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2658,7 +2658,7 @@ Transform:
   - {fileID: 128321258}
   m_Father: {fileID: 977884914}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 35, z: 0}
 --- !u!1 &298528796
 GameObject:
   m_ObjectHideFlags: 0
@@ -4152,7 +4152,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TPS: {fileID: 497796873}
-  Ambiance: event:/Ambiance/Ambiance
   footStep: event:/Player/Joueur_FootStep
 --- !u!136 &507935200
 CapsuleCollider:
@@ -4553,7 +4552,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565291359}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 29.19, y: 3.54, z: 35.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4561,7 +4560,7 @@ Transform:
   - {fileID: 1002586044}
   m_Father: {fileID: 977884914}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1001 &565467338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33265,7 +33264,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143314925}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.7, y: 16.95, z: -10.3}
+  m_LocalPosition: {x: 8.5, y: 16.95, z: -16.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1280325148}
@@ -34913,10 +34912,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListWave:
-  - NumberBasic: 2
+  - NumberBasic: 5
     NumberRuant: 0
-    NumberScreamer: 1
-    NumberLastra: 1
+    NumberScreamer: 0
+    NumberLastra: 0
     ListSpawnBasic:
     - {fileID: 1935181333}
     - {fileID: 277494445}
@@ -34937,11 +34936,11 @@ MonoBehaviour:
     MaxScreamer: 1
     MaxLastra: 1
     minutesMax: 0
-    secondesMax: 12
+    secondesMax: 25
   - NumberBasic: 10
     NumberRuant: 1
     NumberScreamer: 0
-    NumberLastra: 2
+    NumberLastra: 1
     ListSpawnBasic:
     - {fileID: 1935181333}
     - {fileID: 277494445}
@@ -34961,10 +34960,10 @@ MonoBehaviour:
     MaxScreamer: 2
     MaxLastra: 2
     minutesMax: 0
-    secondesMax: 15
-  - NumberBasic: 15
-    NumberRuant: 2
-    NumberScreamer: 0
+    secondesMax: 45
+  - NumberBasic: 10
+    NumberRuant: 1
+    NumberScreamer: 1
     NumberLastra: 0
     ListSpawnBasic:
     - {fileID: 1935181333}
@@ -34977,14 +34976,14 @@ MonoBehaviour:
     ListSpawnLastra: []
     CD_Spawn_Basic: 1.5
     CD_Spawn_Ruant: 10
-    CD_Spawn_Screamer: 10
+    CD_Spawn_Screamer: 2
     CD_Spawn_Lastra: 0
     MaxBasic: 20
     MaxRuant: 2
     MaxScreamer: 2
     MaxLastra: 0
     minutesMax: 0
-    secondesMax: 0
+    secondesMax: 40
   ListMaxBasic: []
   ListMaxRuant: []
   ListMaxScreamer: []
@@ -44391,7 +44390,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935181332}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: 0.38268343}
   m_LocalPosition: {x: -38.23, y: 2.99, z: 35.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -44399,7 +44398,7 @@ Transform:
   - {fileID: 1859475146}
   m_Father: {fileID: 977884914}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 135, z: 0}
 --- !u!1 &1940874787
 GameObject:
   m_ObjectHideFlags: 0
@@ -45652,13 +45651,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a6bd03892c41bb4f88fa8df713e3bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Ambiance: event:/Ambiance/Ambiance
   pause: {fileID: 1695043472}
   gameOverMenu: {fileID: 915889419}
   nextArenaMenu: {fileID: 95869705}
   timeQuit: 1.25
   anim: {fileID: 588201984}
   slider: {fileID: 26898360}
-  sceneHere: 1
+  sceneHere: 0
 --- !u!4 &2073021359
 Transform:
   m_ObjectHideFlags: 0
