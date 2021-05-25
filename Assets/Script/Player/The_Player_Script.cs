@@ -151,10 +151,7 @@ public class The_Player_Script : MonoBehaviour
     {
         LifeUI();
 
-        if (PercentageArmorHeat < 0)
-            PercentageArmorHeat = 0;
-        if (PercentageWeaponHeat < 0)
-            PercentageWeaponHeat = 0;
+        PercentageArmorHeat = Mathf.Clamp(PercentageArmorHeat, 0, 100);
 
         lerpTime = 3f * Time.deltaTime;
 

@@ -10,16 +10,12 @@ public class Data_SD : MonoBehaviour
     public The_Player_Script TPS;
 
     [FMODUnity.EventRef]
-    public string Ambiance = "";
-
-    [FMODUnity.EventRef]
     public string footStep = "";
     FMOD.Studio.EventInstance footStepPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(Ambiance, "", 0, transform.position);
         if (this.footStep != String.Empty)
         {
             footStepPlayer = FMODUnity.RuntimeManager.CreateInstance(footStep);

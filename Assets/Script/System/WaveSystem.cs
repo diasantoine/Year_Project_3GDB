@@ -14,6 +14,9 @@ public class WaveSystem : MonoBehaviour
     [FMODUnity.EventRef]
     public string VagueTimer = "";
 
+    FMOD.Studio.EventInstance vagueTimer;
+
+
     private bool isPlaying;
 
     [Header("Text")]
@@ -34,6 +37,7 @@ public class WaveSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        vagueTimer = FMODUnity.RuntimeManager.CreateInstance(VagueTimer);
         isPlaying = false;
         chrono = timeAfterWave + 1;
         spawn = GetComponent<SpawnSysteme>();
@@ -80,7 +84,7 @@ public class WaveSystem : MonoBehaviour
         {
             if(!isPlaying)
             {
-                FMODUnity.RuntimeManager.PlayOneShot(VagueTimer, "", 0, transform.position);
+                vagueTimer.start();
                 isPlaying = true;
             }
         }
@@ -93,7 +97,7 @@ public class WaveSystem : MonoBehaviour
             if (minutes <= 0 && secondes <= 0)
             {
                 finish = true;
-                
+
             }
             else
             {
@@ -114,8 +118,10 @@ public class WaveSystem : MonoBehaviour
             if (spawn.ListEnnemy.Count <= 0)
             {
                 finish = true;
+                vagueTimer.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
-                if(player.playerLife < 3)
+
+                if (player.playerLife < 3)
                 {
                     player.playerLife++;
                 }

@@ -6,6 +6,12 @@ using UnityEngine.UI;
 
 public class GameSystem : MonoBehaviour
 {
+
+    [FMODUnity.EventRef]
+    public string Ambiance = "";
+
+    FMOD.Studio.EventInstance ambiance;
+
     [SerializeField] private Pause pause;
 
     [Header("Menu")]
@@ -19,11 +25,29 @@ public class GameSystem : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private int sceneHere;
+    private bool doOnce = false;
 
     private int sceneIndex;
     private bool over;
     private bool DebugRestart;
     private bool Restart;
+
+    private void Awake()
+    {
+        if (!doOnce)
+        {
+            ambiance = FMODUnity.RuntimeManager.CreateInstance(Ambiance);
+            ambiance.start();
+            doOnce = true;
+        }
+
+    }
+
+    private void Start()
+    {
+        ambiance.release();
+
+    }
 
     private void Update()
     {
@@ -32,6 +56,7 @@ public class GameSystem : MonoBehaviour
             if (Input.anyKey)
             {
                 Restart = true;
+                
             }
         }
 
@@ -54,8 +79,10 @@ public class GameSystem : MonoBehaviour
     public void LoadLevel(int scene)
     {
         anim.SetBool("Fade", true);
+
         if(timeQuit <= 0)
         {
+            ambianceStop();
             slider.gameObject.SetActive(true);
             StartCoroutine(LoadLevelGood(scene));
             Debug.Log("oh");
@@ -82,6 +109,14 @@ public class GameSystem : MonoBehaviour
         sceneIndex = 0;
         gameOverMenu.SetActive(true);
         over = true;
+    }
+
+    public void ambianceStop()
+    {
+        FMOD.Studio.Bus bus = FMODUnity.RuntimeManager.GetBus("bus:/");
+        bus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        //ambiance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        ambiance.release();
     }
 
     IEnumerator LoadLevelGood(int scene)
