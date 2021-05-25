@@ -16,6 +16,7 @@ public class JumpCharged : skill
     [SerializeField] private float RadiusSouffleAtterissage;
     [SerializeField] private float ForceSouffleAtterissage;
     [SerializeField] private List<int> ListPalier = new List<int>();
+    [SerializeField] private float RadiusCollider;
     
     [Header("ParameterJump")]
     [SerializeField] private GameObject Parent;
@@ -130,7 +131,7 @@ public class JumpCharged : skill
                             Debug.Log("wall");
                             this.LastPosition = Hitt.point - this.Parent.transform.position;
                             this.LastPosition.y = 0;
-                            this.LastPosition *= 0.8f;
+                            //this.LastPosition *= 0.8f;
                             //this.LastPosition *= 1 -  this.Avatar.GetComponent<CapsuleCollider>().radius * this.Avatar.transform.lossyScale.magnitude / this.LastPosition.magnitude;
                         }
                     }
@@ -166,7 +167,7 @@ public class JumpCharged : skill
            // playerToMouse = playerToMouse.normalized;
             Parent.GetComponent<The_Player_Script>().OnJump = true;
             //Parent.GetComponent<The_Player_Script>().DistanceJump = Distance;
-            Parent.GetComponent<The_Player_Script>().DistanceJump = this.LastPosition.magnitude;
+            Parent.GetComponent<The_Player_Script>().DistanceJump = this.LastPosition.magnitude - RadiusCollider;
             //Parent.GetComponent<The_Player_Script>().target = this.LastPosition;
             Parent.GetComponent<The_Player_Script>().PointOrigineJump = this.Parent.transform.position;
             Parent.GetComponent<The_Player_Script>()
