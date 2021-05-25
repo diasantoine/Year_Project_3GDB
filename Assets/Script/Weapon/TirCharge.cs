@@ -81,7 +81,7 @@ public class TirCharge : MonoBehaviour
         Collider[] hit = Physics.OverlapSphere(hitPoint, radiusExploBase + transform.localScale.x);
 
         GameObject newExplo = Instantiate(exploFeedback, hitPoint + new Vector3(0, 0.5f, 0), Quaternion.identity);
-        newExplo.transform.localScale = new Vector3(radiusExploBase + transform.localScale.x, radiusExploBase + transform.localScale.x, radiusExploBase + transform.localScale.x);
+        newExplo.transform.localScale = new Vector3(radiusExploBase + transform.localScale.x, radiusExploBase + transform.localScale.x, radiusExploBase + transform.localScale.x) * 0.5f;
 
         for (int i = 0; i < hit.Length; i++)
         {
@@ -89,9 +89,9 @@ public class TirCharge : MonoBehaviour
             {
                 hit[i].GetComponent<BasicAI>().ExplosionImpact(hitPoint, radiusExploBase + transform.localScale.x, ExploForce);
             }
-            else if (hit[i].GetComponent<ScreamerState>() != null)
+            else if (hit[i].GetComponent<ScreamerAI>() != null)
             {
-                hit[i].GetComponent<ScreamerState>().Damage(20);
+                hit[i].GetComponent<ScreamerAI>().BoomDeath();
             }
         }
 
@@ -106,7 +106,7 @@ public class TirCharge : MonoBehaviour
         Collider[] hit = Physics.OverlapSphere(hitPoint, radiusExploBase + transform.localScale.x);
 
         GameObject newExplo = Instantiate(exploFeedback, hitPoint, Quaternion.identity);
-        newExplo.transform.localScale = new Vector3(radiusExploBase + transform.localScale.x, radiusExploBase + transform.localScale.x, radiusExploBase + transform.localScale.x) * 2;
+        newExplo.transform.localScale = new Vector3(radiusExploBase + transform.localScale.x, radiusExploBase + transform.localScale.x, radiusExploBase + transform.localScale.x) * 0.5f;
 
         for (int i = 0; i < hit.Length; i++)
         {
@@ -119,4 +119,13 @@ public class TirCharge : MonoBehaviour
         Destroy(newExplo, 1f);
         Destroy(gameObject);
     }
+
+    /*private void OnDrawGizmos()
+    {
+        if(hitPoint != null)
+        {
+            Gizmos.DrawSphere(hitPoint, radiusExploBase + transform.localScale.x);
+
+        }
+    }*/
 }

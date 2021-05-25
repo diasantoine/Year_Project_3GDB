@@ -40,13 +40,8 @@ public class skill : MonoBehaviour
         {
             if (chrono >= freqCharge)
             {
-                    if (WhichWeapon == 0)
-                    {
-                        parentTakeCadavre.charge = true;
-                        parentTakeCadavre.bombe = theProjo.transform;
-                        parentTakeCadavre.SkillCharging();
-                    }
-                    else if (WhichWeapon == 1)
+                    
+                    if (WhichWeapon == 1)
                     {
                         parentTakeCadavre.dash = true;
                         parentTakeCadavre.Dash = theProjo.transform;

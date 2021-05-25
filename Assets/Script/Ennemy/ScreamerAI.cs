@@ -260,6 +260,15 @@ public class ScreamerAI : Ennemy
         }
     }
 
+    public void BoomDeath()
+    {
+        if (AnimatorConteneur.gameObject.GetComponent<Data_SD_Screamer>())
+        {
+            AnimatorConteneur.gameObject.GetComponent<Data_SD_Screamer>().BoomBoomDeath();
+
+        }
+    }
+
     public void ImpulsionTahLesfous()
     {
         Vector3 hitPoint = transform.position;
@@ -359,7 +368,7 @@ public class ScreamerAI : Ennemy
         if (collision.gameObject.layer == 13 && collision.GetComponent<RuantAI>() != null &&
             collision.GetComponent<RuantAI>().state == RuantAI.State.RUSH)
         {
-            GetComponent<ScreamerState>().Damage(Mathf.Infinity);
+            BoomDeath();
         }
     }
      

@@ -68,13 +68,13 @@ public class shootSkill : MonoBehaviour
 
             if (skillSystem.skill2 != null)
             {
-                SkillUse(KeyCode.LeftShift, skillSystem.skill2);
+                SkillUse(KeyCode.Space, skillSystem.skill2);
 
             }
 
             if (skillSystem.skill3 != null)
             {
-                SkillUse(KeyCode.Space, skillSystem.skill3);
+                SkillUse(KeyCode.LeftShift, skillSystem.skill3);
 
             }
         }

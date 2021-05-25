@@ -46,8 +46,24 @@ public class ImpulseCharge : skill
         {
             if (isCharging && theProjo.GetComponent<TirCharge>().nCharge < theProjo.GetComponent<TirCharge>().nChargeMax)
             {
-                base.ChargingSkill(WhichWeapon);
-
+                if (theProjo != null)
+                {
+                    if (!theProjo.GetComponent<TirCharge>().tipar)
+                    {
+                        if(chrono >= freqCharge)
+                        {
+                            theProjo.GetComponent<TirCharge>().nCharge++;
+                            theProjo.transform.localScale =
+                            theProjo.transform.localScale + new Vector3(0.25f, 0.25f, 0.25f);
+                            detectDead.ressourceFloat--;
+                            chrono = 0;
+                        }
+                        else
+                        {
+                            chrono += Time.deltaTime;
+                        }
+                    }
+                }
             }
         }
     }

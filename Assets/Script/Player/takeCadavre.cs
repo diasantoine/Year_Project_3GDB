@@ -189,27 +189,7 @@ public class takeCadavre : MonoBehaviour
 
     public void SkillCharging()
     {
-        if (charge)
-        {
-            if (bombe != null)
-            {
-                if (!bombe.GetComponent<TirCharge>().tipar)
-                {
-                    bombe.GetComponent<TirCharge>().nCharge++;
-                    bombe.transform.localScale =
-                    bombe.transform.localScale + new Vector3(radiusGave, radiusGave, radiusGave);
-                }
-                else
-                {
-                    bombe = null;
-                }
-            }
-            else
-            {
-                charge = false;
-            }
-        }
-        else if (dash)
+        if (dash)
         {
             if (Dash != null)
             {

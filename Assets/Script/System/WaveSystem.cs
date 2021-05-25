@@ -8,6 +8,7 @@ public class WaveSystem : MonoBehaviour
 {
 
     [SerializeField] private GameSystem GS;
+    [SerializeField] private The_Player_Script player;
 
     [Header("Son")]
     [FMODUnity.EventRef]
@@ -69,6 +70,7 @@ public class WaveSystem : MonoBehaviour
             timeText.text = string.Format("{0} : 0{1}", minutes, Mathf.RoundToInt(secondes));
 
         }
+
         DixSecVague();
     }
 
@@ -112,6 +114,11 @@ public class WaveSystem : MonoBehaviour
             if (spawn.ListEnnemy.Count <= 0)
             {
                 finish = true;
+
+                if(player.playerLife < 3)
+                {
+                    player.playerLife++;
+                }
             }
         }       
     }
@@ -125,6 +132,7 @@ public class WaveSystem : MonoBehaviour
                 chrono = timeAfterWave;               
                 spawn.NextWave();
                 finish = false;
+                isPlaying = false;
                
             }
             else

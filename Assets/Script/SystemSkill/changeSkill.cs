@@ -117,12 +117,12 @@ public class changeSkill : MonoBehaviour
                     FB.GetComponent<OnUISkill>().skillGot = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
                     FB.transform.localScale = new Vector3(scaleUI, scaleUI, scaleUI);
                     break;
-                case KeyCode.LeftShift:
-                    system.skill3 = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
+                case KeyCode.Space:
+                    system.skill2 = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
 
-                    if (system.skill2 == UI.gameObject.GetComponent<UIgotSkill>().skillGot)
+                    if (system.skill3 == UI.gameObject.GetComponent<UIgotSkill>().skillGot)
                     {
-                        system.skill2 = null;
+                        system.skill3 = null;
                         Destroy(placement3.GetChild(0).gameObject);
 
                     }
@@ -143,12 +143,12 @@ public class changeSkill : MonoBehaviour
                     FB.GetComponent<OnUISkill>().skillGot = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
                     FB.transform.localScale = new Vector3(scaleUI, scaleUI, scaleUI);
                     break;
-                case KeyCode.Space:
-                    system.skill2 = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
+                case KeyCode.LeftShift:
+                    system.skill3 = UI.gameObject.GetComponent<UIgotSkill>().skillGot;
 
-                    if (system.skill3 == UI.gameObject.GetComponent<UIgotSkill>().skillGot)
+                    if (system.skill2 == UI.gameObject.GetComponent<UIgotSkill>().skillGot)
                     {
-                        system.skill3 = null;
+                        system.skill2 = null;
                         Destroy(placement2.GetChild(0).gameObject);
 
                     }
