@@ -68,14 +68,9 @@ public class The_Player_Script : MonoBehaviour
     private float lerpTime;
     
     [Header("PlayerStatArmorHeat")]
+    public float PercentageArmorHeat;
     [SerializeField] private float ResiCold;
     [SerializeField] private GameObject FeedbackHitGround;
-    public float PercentageArmorHeat
-    {
-        get { return PercentageArmorHeat; }
-        set { PercentageArmorHeat = Mathf.Clamp(value, 0, 100); }
-        
-    }
     
     [Header("PlayerStatWeaponHeat")]
     public float PercentageWeaponHeat;
