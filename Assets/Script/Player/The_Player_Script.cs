@@ -82,6 +82,7 @@ public class The_Player_Script : MonoBehaviour
     [Header("PlayerLife")]
     [SerializeField] private int maxLife;
     [HideInInspector] public int playerLife;
+    [SerializeField] private List<GameObject> lampLife;
 
 
     [Header("PlayerBool")]
@@ -128,6 +129,7 @@ public class The_Player_Script : MonoBehaviour
     [SerializeField] private GameObject particleJump;
     [SerializeField] private GameObject aiguilleHeat;
     [SerializeField] private Image barHeat;
+    [SerializeField] private Animator UIHeat;
     [SerializeField] private GameSystem GS;
 
     public float floatTypeOfFootStep;
@@ -147,6 +149,7 @@ public class The_Player_Script : MonoBehaviour
 
     void Update()
     {
+        LifeUI();
 
         if (PercentageArmorHeat < 0)
             PercentageArmorHeat = 0;
@@ -154,6 +157,17 @@ public class The_Player_Script : MonoBehaviour
             PercentageWeaponHeat = 0;
 
         lerpTime = 3f * Time.deltaTime;
+
+        if(PercentageArmorHeat > 55)
+        {
+            UIHeat.SetBool("Chaud", true);
+
+        }
+        else
+        {
+            UIHeat.SetBool("Chaud", false);
+
+        }
 
         if (aiguilleHeat != null)
         {
@@ -205,6 +219,28 @@ public class The_Player_Script : MonoBehaviour
     {
        HeatArmor();
        HeatWeapon();
+    }
+
+    private void LifeUI()
+    {
+        switch (playerLife)
+        {
+            case 3:
+                lampLife[0].SetActive(true);
+                break;                   
+            case 2:
+                lampLife[0].SetActive(false);
+                lampLife[1].SetActive(true);
+                break;
+            case 1:
+                lampLife[1].SetActive(false);
+                lampLife[2].SetActive(true);
+                break;
+            case 0:
+                lampLife[2].SetActive(false);
+                break;
+
+        }
     }
 
     private void HeatArmor()
@@ -518,6 +554,7 @@ public class The_Player_Script : MonoBehaviour
 
                 if(playerLife == 0)
                 {
+                    LifeUI();
                     GS.GameOver();
                     gameObject.SetActive(false);
                 }

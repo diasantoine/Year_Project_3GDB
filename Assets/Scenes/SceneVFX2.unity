@@ -152,7 +152,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1695043471}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -412,7 +412,7 @@ RectTransform:
   - {fileID: 1525629193}
   - {fileID: 1109391109}
   m_Father: {fileID: 1695043471}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1197,7 +1197,7 @@ RectTransform:
   - {fileID: 131527944}
   - {fileID: 599257331}
   m_Father: {fileID: 1695043471}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3693,6 +3693,10 @@ MonoBehaviour:
   GColorBeforMax: 0
   maxLife: 3
   playerLife: 0
+  lampLife:
+  - {fileID: 580862696}
+  - {fileID: 1051366841}
+  - {fileID: 668234982}
   Grounded: 0
   OnDash: 0
   OnJump: 0
@@ -3721,6 +3725,7 @@ MonoBehaviour:
   particleJump: {fileID: 816948024}
   aiguilleHeat: {fileID: 1657035634}
   barHeat: {fileID: 502357405}
+  UIHeat: {fileID: 1500185278}
   GS: {fileID: 2073021358}
   floatTypeOfFootStep: 0
 --- !u!136 &497796874
@@ -4515,7 +4520,7 @@ RectTransform:
   m_LocalScale: {x: 1.2818999, y: 1.2818999, z: 1.2818999}
   m_Children: []
   m_Father: {fileID: 1695043471}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4924,7 +4929,7 @@ RectTransform:
   - {fileID: 1051366842}
   - {fileID: 668234983}
   m_Father: {fileID: 1695043471}
-  m_RootOrder: 8
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -30573,7 +30578,7 @@ RectTransform:
   - {fileID: 1053671419}
   - {fileID: 2070763998}
   m_Father: {fileID: 1695043471}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -33824,7 +33829,7 @@ RectTransform:
   - {fileID: 1354137321}
   - {fileID: 90507669}
   m_Father: {fileID: 1695043471}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -42065,13 +42070,13 @@ RectTransform:
   m_Children:
   - {fileID: 1413022842}
   - {fileID: 1054607531}
+  - {fileID: 1341011544}
+  - {fileID: 615012051}
   - {fileID: 588201983}
   - {fileID: 915889420}
   - {fileID: 95869706}
   - {fileID: 26898359}
-  - {fileID: 1341011544}
   - {fileID: 17803232}
-  - {fileID: 615012051}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -42316,6 +42321,7 @@ MonoBehaviour:
   SonRecolte: event:/Player/RecolteRessource
   maxRessource: 100
   uiRessource: {fileID: 1191540782}
+  Diode: {fileID: 664373578}
 --- !u!135 &1717619869
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -47495,8 +47501,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6941221243572080381}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.008, y: 0, z: 0}
-  m_LocalScale: {x: 1.0214, y: 1, z: 1}
+  m_LocalPosition: {x: -0.00535, y: 0.00187, z: 0}
+  m_LocalScale: {x: 1.0665634, y: 1.0086303, z: 1}
   m_Children: []
   m_Father: {fileID: 374179778}
   m_RootOrder: 0
