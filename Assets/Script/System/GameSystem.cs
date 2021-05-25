@@ -34,12 +34,8 @@ public class GameSystem : MonoBehaviour
 
     private void Awake()
     {
-        if (!doOnce)
-        {
-            ambiance = FMODUnity.RuntimeManager.CreateInstance(Ambiance);
-            ambiance.start();
-            doOnce = true;
-        }
+        ambiance = FMODUnity.RuntimeManager.CreateInstance(Ambiance);
+        ambiance.start();
 
     }
 
@@ -84,9 +80,12 @@ public class GameSystem : MonoBehaviour
         {
             ambianceStop();
             slider.gameObject.SetActive(true);
-            StartCoroutine(LoadLevelGood(scene));
-            Debug.Log("oh");
+            if (!doOnce)
+            {
+                StartCoroutine(LoadLevelGood(scene));
+                doOnce = true;
 
+            }          
         }
         else
         {
@@ -114,7 +113,7 @@ public class GameSystem : MonoBehaviour
     public void ambianceStop()
     {
         FMOD.Studio.Bus bus = FMODUnity.RuntimeManager.GetBus("bus:/");
-        bus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        bus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         //ambiance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         ambiance.release();
     }
