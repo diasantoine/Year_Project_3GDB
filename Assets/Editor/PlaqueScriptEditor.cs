@@ -12,7 +12,8 @@ public class PlaqueScriptEditor : Editor
         regenRessource_Prop,
         SP_Prop,
         EmiRD_Prop,
-        Particle_Prop;
+        Particle_Prop,
+        waterLight_Prop;
        
 
 
@@ -27,6 +28,7 @@ public class PlaqueScriptEditor : Editor
         SP_Prop = serializedObject.FindProperty("SP");
         EmiRD_Prop = serializedObject.FindProperty("EmiRD");
         Particle_Prop = serializedObject.FindProperty("Particle");
+        waterLight_Prop = serializedObject.FindProperty("waterLight");
 
 
 
@@ -58,11 +60,16 @@ public class PlaqueScriptEditor : Editor
                 EditorGUILayout.PropertyField(activ_Prop, new GUIContent("Activ"));
                 EditorGUILayout.PropertyField(activTime_Prop, new GUIContent("Activ Time"));
                 EditorGUILayout.PropertyField(EmiRD_Prop, new GUIContent("Emission Renderer"));
+                EditorGUILayout.PropertyField(Particle_Prop, new GUIContent("Particle"));
+
 
                 break;
             case plaqueScript.Type.TOXIC:
                 EditorGUILayout.PropertyField(regenRessource_Prop, new GUIContent("Regen Ressource"));
                 EditorGUILayout.PropertyField(maxRessourceGot_Prop, new GUIContent("Max Ressource Got"));
+                EditorGUILayout.PropertyField(Particle_Prop, new GUIContent("Particle"));
+                EditorGUILayout.PropertyField(waterLight_Prop, new GUIContent("Water Light"));
+
                 break;
             case plaqueScript.Type.PISTON:
                 break;
