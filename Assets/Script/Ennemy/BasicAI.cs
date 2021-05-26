@@ -262,9 +262,11 @@ public class BasicAI : Ennemy
         player.GetComponent<Rigidbody>().AddForceAtPosition(transform.forward * (ImpactHit + (ImpactHit * player.GetComponent<The_Player_Script>().PercentageArmorHeat / 100)),
             player.position, ForceMode.Impulse);
         hitPlayer = true;
+        CameraShake.Instance.Shake(3, 0.75f);
         player.GetComponent<The_Player_Script>().JustHit = true;
         player.GetComponent<The_Player_Script>().PercentageArmorHeat += DmgArmorHeat;
         this.InPunch = false;
+        
         AnimatorConteneur.SetBool("Taper", false);
 
     }

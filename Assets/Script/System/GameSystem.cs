@@ -51,7 +51,7 @@ public class GameSystem : MonoBehaviour
         {
             if (Input.anyKey)
             {
-                Restart = true;
+                RestartScene();
                 
             }
         }
@@ -70,6 +70,11 @@ public class GameSystem : MonoBehaviour
         {
             LoadLevel(sceneIndex);
         }
+    }
+
+    public void RestartScene()
+    {
+        Restart = true;
     }
 
     public void LoadLevel(int scene)

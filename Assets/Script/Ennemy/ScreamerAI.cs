@@ -98,11 +98,14 @@ public class ScreamerAI : Ennemy
                 agent.speed = 9;
                 break;
             case State.dead:
-                agent.speed = 0;
-                GetComponent<Collider>().enabled = false;
-                agent.isStopped = true;
-                agent.enabled = false;
-                RB.isKinematic = true;
+                if(agent != null)
+                {
+                    agent.speed = 0;
+                    GetComponent<Collider>().enabled = false;
+                    agent.isStopped = true;
+                    agent.enabled = false;
+                    RB.isKinematic = true;
+                }
                 if (!gameObject.GetComponent<ScreamerState>().isPoisoned)
                 {
                     AnimatorConteneur.SetTrigger("Death");
@@ -258,6 +261,11 @@ public class ScreamerAI : Ennemy
             default:
                 break;
         }
+    }
+
+    public void DeathDebug()
+    {
+        SwitchState(State.dead);
     }
 
     public void BoomDeath()

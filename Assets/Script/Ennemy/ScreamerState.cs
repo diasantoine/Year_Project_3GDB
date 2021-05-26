@@ -84,13 +84,17 @@ public class ScreamerState : State
 
         }
 
-        if (spawn.ListEnnemy.Contains(this.gameObject))
+        if(spawn != null)
         {
-            spawn.ListEnnemy.Remove(this.gameObject);
-            if (this.spawn.ListMaxScreamer.Contains(this.gameObject))
+            if (spawn.ListEnnemy.Contains(this.gameObject))
             {
-                this.spawn.ListMaxScreamer.Remove(this.gameObject);
+                spawn.ListEnnemy.Remove(this.gameObject);
+                if (this.spawn.ListMaxScreamer.Contains(this.gameObject))
+                {
+                    this.spawn.ListMaxScreamer.Remove(this.gameObject);
+                }
             }
+
         }
 
         float écart = -nbCadavre / 2;
@@ -100,8 +104,11 @@ public class ScreamerState : State
 
             if (Fall)
             {
-                Instantiate(cadavre, player.position, Quaternion.identity, GameObject.Find("CadavreParent").transform);
-                Debug.Log(detectDead.ressourceFloat);
+                if(player != null)
+                {
+                    Instantiate(cadavre, player.position, Quaternion.identity, GameObject.Find("CadavreParent").transform);
+                    Debug.Log(detectDead.ressourceFloat);
+                }
             }
             else
             {

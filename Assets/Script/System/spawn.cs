@@ -33,20 +33,16 @@ public class spawn : MonoBehaviour
 
         if(chrono >= chronoMax)
         {
-            /*if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.E))
             {
                 if (Physics.Raycast(rayon, out hit, Mathf.Infinity))
                 {
                     if (hit.collider.gameObject.CompareTag("sol"))
                     {
                         GameObject ConteneurGameobject = Instantiate(preEnnemy, new Vector3(hit.point.x, preEnnemy.transform.position.y, hit.point.z), Quaternion.identity, GameObject.Find("EnnemiParent").transform);
-                        ConteneurGameobject.GetComponent<ennemyState>().SEB = GameObject.Find("SpawnEnnemyParent").GetComponent<spawnEnnemyBasique>();
-                        chrono = 0;
-                        ConteneurGameobject.GetComponent<ennemyAI>().player = player.transform; 
-                        ConteneurGameobject.GetComponent<ennemyState>().player = player.transform;
                     }
                 }
-            }*/
+            }
 
             if (Input.GetKey(KeyCode.F))
             {
