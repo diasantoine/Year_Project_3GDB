@@ -747,14 +747,19 @@ public class The_Player_Script : MonoBehaviour
                                 break;
                             case plaqueScript.Type.TOXIC:
                                 //floatTypeOfFootStep = 3;
-                                if (pS.ressourceGot >= 25 && !pS.regenUP)
+                                
+                                if (pS.ressourceGot >= 10 && !pS.regenUP)
                                 {
-                                    if (TimePlaque >= 1)
+                                    floatTypeOfFootStep = 3;
+
+                                    if (TimePlaque >= 1f)
                                     {
-                                        floatTypeOfFootStep = 3;
-                                        detectDead.ressourceFloat += 25;
-                                        pS.ressourceGot -= 25;
-                                        TimePlaque = 0;
+                                        if(detectDead.ressourceFloat < 100)
+                                        {
+                                            detectDead.ressourceFloat += 10;
+                                            pS.ressourceGot -= 10;
+                                            TimePlaque = 0;
+                                        }
                                     }
                                     else
                                     {

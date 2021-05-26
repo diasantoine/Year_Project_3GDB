@@ -8,8 +8,9 @@ public class plaqueScript : MonoBehaviour
     //Variable for COLD & HOT
     [SerializeField] private SystemPlaque SP;
     public bool activ;
+    [HideInInspector] public bool choosedPlaque;
     [SerializeField] private float activTime;
-    private float chrono;
+    private float chronoActiv;
     public Renderer EmiRD;
     public GameObject Particle;
 
@@ -17,11 +18,14 @@ public class plaqueScript : MonoBehaviour
     //Variable for TOXIC
     [SerializeField] private int maxRessourceGot;
     [SerializeField] private int regenRessource;
+    [SerializeField] private Light waterLight;
     [HideInInspector] public int ressourceGot;
     [HideInInspector] public bool regenUP;
     private float chronoRess;
 
-    private Color baseColor;
+    public Color baseColor { get; private set; }
+    private float chronoActivation;
+    private float intensity;
 
     public enum Type
     {
@@ -37,6 +41,10 @@ public class plaqueScript : MonoBehaviour
 
     private void Start()
     {
+        chronoActivation = 0.25f;
+        chronoRess = 4;
+        intensity = 3.5f;
+
         if(type == Type.TOXIC)
         {
             ressourceGot = maxRessourceGot;
@@ -100,14 +108,20 @@ public class plaqueScript : MonoBehaviour
                 break;
             case Type.HOT:
                 isActive();
+                Activation();
+
                 break;
             case Type.COLD:
                 isActive();
+                Activation();
                 break;
             case Type.TOXIC:
-                if(ressourceGot <= 25)
+                if(ressourceGot < 10 && !regenUP)
                 {
                     regenUP = true;
+                    ressourceGot = 5;
+                    waterLight.intensity = 1;
+                    Particle.GetComponent<ParticleSystem>().Stop();
                 }
 
                 if (regenUP)
@@ -116,20 +130,26 @@ public class plaqueScript : MonoBehaviour
                     {
                         regenUP = false;
                         ressourceGot = maxRessourceGot;
+                        Particle.GetComponent<ParticleSystem>().Play();
+
                     }
                     else
                     {
-                        if(chrono >= 1)
+                        if(chronoRess >= 2)
                         {
                             ressourceGot += regenRessource;
-                            chrono = 0;
+                            chronoRess = 0;
 
                         }
                         else
                         {
-                            chrono += Time.deltaTime;
+                            chronoRess += Time.deltaTime;
                         }
                     }
+                }
+                else
+                {
+                    Rechargement();
                 }
                 break;
             case Type.PISTON:
@@ -143,25 +163,60 @@ public class plaqueScript : MonoBehaviour
         OnUpdateType();
     }
 
+    private void Rechargement()
+    {
+        waterLight.intensity = ressourceGot / 5;
+        waterLight.intensity = Mathf.Clamp(waterLight.intensity, 1, 10);
+    }
+
+    private void Activation()
+    {
+        if (choosedPlaque)
+        {
+            if (chronoActivation <= 0)
+            {
+                if (intensity == 3.5f)
+                {
+                    EmiRD.material.SetColor("_EmissionColor", baseColor * intensity);
+                    intensity = 1f;
+
+                }
+                else if(intensity == 1f)
+                {
+                    EmiRD.material.SetColor("_EmissionColor", baseColor * intensity);
+                    intensity = 3.5f;
+                }
+
+                chronoActivation = 0.25f;
+            }
+            else
+            {
+                chronoActivation -= Time.deltaTime;
+            }
+        }
+    }
+
     private void isActive()
     {
         if (activ)
         {
-            if (chrono >= activTime)
+            if (chronoActiv >= activTime)
             {
                 activ = false;
                 SP.systemActiv = false;
                 EmiRD.material.SetColor("_EmissionColor", baseColor);
+                intensity = 3.5f;
+                chronoActivation = 0.25f;
                 if(Particle != null)
                 {
                     Particle.SetActive(false);
 
                 }
-                chrono = 0;
+                chronoActiv = 0;
             }
             else
             {
-                chrono += Time.deltaTime;
+                chronoActiv += Time.deltaTime;
             }
         }
     }
