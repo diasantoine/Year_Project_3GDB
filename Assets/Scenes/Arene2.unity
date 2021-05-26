@@ -2361,11 +2361,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SP: {fileID: 1694317493}
   activ: 0
+  choosedPlaque: 0
   activTime: 10
   EmiRD: {fileID: 0}
   Particle: {fileID: 1761681009}
   maxRessourceGot: 0
   regenRessource: 0
+  waterLight: {fileID: 0}
   ressourceGot: 0
   regenUP: 0
   type: 2
@@ -2494,7 +2496,6 @@ Transform:
   - {fileID: 8938260281551394068}
   - {fileID: 7821201633987323190}
   - {fileID: 5099706908060973026}
-  - {fileID: 3559948512713490599}
   - {fileID: 7768925248226362845}
   - {fileID: 7695908308064643438}
   - {fileID: 3556981239268558376}
@@ -2504,7 +2505,6 @@ Transform:
   - {fileID: 5091984897920304055}
   - {fileID: 8537096433284731830}
   - {fileID: 293891405138567188}
-  - {fileID: 1306699326}
   m_Father: {fileID: 4746682940768962639}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3622,11 +3622,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SP: {fileID: 1694317493}
   activ: 0
+  choosedPlaque: 0
   activTime: 10
   EmiRD: {fileID: 0}
   Particle: {fileID: 1761681009}
   maxRessourceGot: 0
   regenRessource: 0
+  waterLight: {fileID: 0}
   ressourceGot: 0
   regenUP: 0
   type: 1
@@ -4363,11 +4365,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SP: {fileID: 1694317493}
   activ: 0
+  choosedPlaque: 0
   activTime: 10
   EmiRD: {fileID: 0}
   Particle: {fileID: 1761681009}
   maxRessourceGot: 0
   regenRessource: 0
+  waterLight: {fileID: 0}
   ressourceGot: 0
   regenUP: 0
   type: 2
@@ -5089,7 +5093,7 @@ Transform:
   - {fileID: 763096485}
   - {fileID: 789714649}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &502357404
 GameObject:
@@ -7603,6 +7607,39 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &801096751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 801096752}
+  m_Layer: 0
+  m_Name: POOL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &801096752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801096751}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3559948512713490599}
+  - {fileID: 1306699326}
+  - {fileID: 847338932}
+  m_Father: {fileID: 4746682940768962639}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &816861710
 GameObject:
   m_ObjectHideFlags: 0
@@ -26600,8 +26637,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.01234436, g: 1, b: 0, a: 1}
-  m_Intensity: 5.69
-  m_Range: 21.55024
+  m_Intensity: 10
+  m_Range: 22
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -26656,12 +26693,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847338930}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 54.1, y: 8.91, z: 20.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.801667, y: 0.28033334, z: 0.38533333}
+  m_LocalScale: {x: 0.033333335, y: 0.033333335, z: 0.033333335}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_Father: {fileID: 801096752}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &851824508
 GameObject:
@@ -26711,11 +26748,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SP: {fileID: 1694317493}
   activ: 0
+  choosedPlaque: 0
   activTime: 10
   EmiRD: {fileID: 0}
   Particle: {fileID: 1761681009}
   maxRessourceGot: 0
   regenRessource: 0
+  waterLight: {fileID: 0}
   ressourceGot: 0
   regenUP: 0
   type: 1
@@ -31165,7 +31204,7 @@ GameObject:
   - component: {fileID: 1306699327}
   - component: {fileID: 1306699329}
   m_Layer: 11
-  m_Name: Cube.047 (1)
+  m_Name: LQ1
   m_TagString: sol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31178,12 +31217,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306699325}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.003234024, y: -0.00699, z: -0.00064}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 7.790326, y: -0.0528099, z: 0.40562862}
+  m_LocalScale: {x: 100, y: 100.000015, z: 100.000015}
   m_Children: []
-  m_Father: {fileID: 210093584}
-  m_RootOrder: 18
+  m_Father: {fileID: 801096752}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1306699327
 MeshRenderer:
@@ -34086,7 +34125,7 @@ Transform:
   m_LocalScale: {x: 13.52237, y: 13.52237, z: 13.52237}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1620356578
 GameObject:
@@ -35596,11 +35635,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SP: {fileID: 1694317493}
   activ: 0
+  choosedPlaque: 0
   activTime: 10
   EmiRD: {fileID: 0}
   Particle: {fileID: 1761681009}
   maxRessourceGot: 0
   regenRessource: 0
+  waterLight: {fileID: 0}
   ressourceGot: 0
   regenUP: 0
   type: 2
@@ -36331,7 +36372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1761681010
 Transform:
   m_ObjectHideFlags: 0
@@ -42515,11 +42556,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SP: {fileID: 1694317493}
   activ: 0
+  choosedPlaque: 0
   activTime: 10
   EmiRD: {fileID: 0}
   Particle: {fileID: 1761681009}
   maxRessourceGot: 0
   regenRessource: 0
+  waterLight: {fileID: 0}
   ressourceGot: 0
   regenUP: 0
   type: 1
@@ -43207,11 +43250,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SP: {fileID: 1694317493}
   activ: 0
+  choosedPlaque: 0
   activTime: 10
   EmiRD: {fileID: 0}
   Particle: {fileID: 1761681009}
   maxRessourceGot: 0
   regenRessource: 0
+  waterLight: {fileID: 0}
   ressourceGot: 0
   regenUP: 0
   type: 2
@@ -43782,11 +43827,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SP: {fileID: 1694317493}
   activ: 0
+  choosedPlaque: 0
   activTime: 10
   EmiRD: {fileID: 0}
   Particle: {fileID: 1761681009}
   maxRessourceGot: 0
   regenRessource: 0
+  waterLight: {fileID: 0}
   ressourceGot: 0
   regenUP: 0
   type: 1
@@ -44716,7 +44763,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 210093584}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &414499335633710960
 MeshFilter:
@@ -45010,11 +45057,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SP: {fileID: 1694317493}
   activ: 0
+  choosedPlaque: 0
   activTime: 10
   EmiRD: {fileID: 984180205}
   Particle: {fileID: 1761681009}
   maxRessourceGot: 0
   regenRessource: 0
+  waterLight: {fileID: 0}
   ressourceGot: 0
   regenUP: 0
   type: 2
@@ -45478,11 +45527,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SP: {fileID: 1694317493}
   activ: 0
+  choosedPlaque: 0
   activTime: 10
   EmiRD: {fileID: 666929019}
   Particle: {fileID: 1761681009}
   maxRessourceGot: 0
   regenRessource: 0
+  waterLight: {fileID: 0}
   ressourceGot: 0
   regenUP: 0
   type: 1
@@ -45626,11 +45677,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SP: {fileID: 1694317493}
   activ: 0
+  choosedPlaque: 0
   activTime: 10
   EmiRD: {fileID: 1503144502}
   Particle: {fileID: 1761681009}
   maxRessourceGot: 0
   regenRessource: 0
+  waterLight: {fileID: 0}
   ressourceGot: 0
   regenUP: 0
   type: 2
@@ -45713,11 +45766,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SP: {fileID: 1694317493}
   activ: 0
+  choosedPlaque: 0
   activTime: 10
   EmiRD: {fileID: 486915873}
   Particle: {fileID: 1761681009}
   maxRessourceGot: 0
   regenRessource: 0
+  waterLight: {fileID: 0}
   ressourceGot: 0
   regenUP: 0
   type: 1
@@ -45884,7 +45939,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 210093584}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3559948512713490599
 Transform:
@@ -45893,12 +45948,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7088416191421763486}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.003234024, y: -0.0069889966, z: -0.00004196345}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 7.790326, y: 0.006993771, z: 0.40552828}
+  m_LocalScale: {x: 100, y: 100.000015, z: 100.000015}
   m_Children: []
-  m_Father: {fileID: 210093584}
-  m_RootOrder: 8
+  m_Father: {fileID: 801096752}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &3694817065106306683
 MeshRenderer:
@@ -46246,6 +46301,7 @@ Transform:
   - {fileID: 407697266}
   - {fileID: 1724224016}
   - {fileID: 210093584}
+  - {fileID: 801096752}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46276,7 +46332,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 210093584}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4846096278183528459
 GameObject:
@@ -46394,7 +46450,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 210093584}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &5099706908060973026
 Transform:
@@ -46664,11 +46720,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SP: {fileID: 1694317493}
   activ: 0
+  choosedPlaque: 0
   activTime: 10
   EmiRD: {fileID: 1773177430}
   Particle: {fileID: 1761681009}
   maxRessourceGot: 0
   regenRessource: 0
+  waterLight: {fileID: 0}
   ressourceGot: 0
   regenUP: 0
   type: 1
@@ -46811,7 +46869,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 210093584}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &5931731795290750665
 MeshRenderer:
@@ -46938,11 +46996,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SP: {fileID: 1694317493}
   activ: 0
+  choosedPlaque: 0
   activTime: 10
   EmiRD: {fileID: 1201384353}
   Particle: {fileID: 1761681009}
   maxRessourceGot: 0
   regenRessource: 0
+  waterLight: {fileID: 0}
   ressourceGot: 0
   regenUP: 0
   type: 2
@@ -47176,11 +47236,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SP: {fileID: 1694317493}
   activ: 0
+  choosedPlaque: 0
   activTime: 10
   EmiRD: {fileID: 1503355640}
   Particle: {fileID: 1761681009}
   maxRessourceGot: 0
   regenRessource: 0
+  waterLight: {fileID: 0}
   ressourceGot: 0
   regenUP: 0
   type: 2
@@ -47253,8 +47315,9 @@ GameObject:
   - component: {fileID: 1817633579337984693}
   - component: {fileID: 931238709949367678}
   - component: {fileID: 7088416191421763487}
+  - component: {fileID: 7088416191421763488}
   m_Layer: 11
-  m_Name: Cube.047
+  m_Name: MeshGrille
   m_TagString: sol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47273,6 +47336,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0039562727, y: 0.007670774, z: 0.00013987538}
   m_Center: {x: -0.000000007450581, y: 0.0000000013969839, z: 0}
+--- !u!114 &7088416191421763488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7088416191421763486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d51e75baae086c42bdc75af278e04f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SP: {fileID: 0}
+  activ: 0
+  choosedPlaque: 0
+  activTime: 0
+  EmiRD: {fileID: 0}
+  Particle: {fileID: 0}
+  maxRessourceGot: 50
+  regenRessource: 5
+  waterLight: {fileID: 847338931}
+  ressourceGot: 0
+  regenUP: 0
+  type: 3
 --- !u!4 &7375622565060256187
 Transform:
   m_ObjectHideFlags: 0
@@ -47356,7 +47443,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0.123956464}
   m_Children: []
   m_Father: {fileID: 210093584}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &7768925248226362845
 Transform:
@@ -47370,7 +47457,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 210093584}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &7821201633987323190
 Transform:
@@ -47504,11 +47591,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SP: {fileID: 1694317493}
   activ: 0
+  choosedPlaque: 0
   activTime: 10
   EmiRD: {fileID: 993036127}
   Particle: {fileID: 1761681009}
   maxRessourceGot: 0
   regenRessource: 0
+  waterLight: {fileID: 0}
   ressourceGot: 0
   regenUP: 0
   type: 1
@@ -47540,7 +47629,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 210093584}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8540907905945824381
 MeshFilter:
@@ -47626,7 +47715,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0.20794658}
   m_Children: []
   m_Father: {fileID: 210093584}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &8938260281551394068
 Transform:
