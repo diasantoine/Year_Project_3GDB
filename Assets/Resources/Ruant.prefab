@@ -10697,7 +10697,7 @@ NavMeshAgent:
   m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 75
+  m_AngularSpeed: 150
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -10770,7 +10770,6 @@ MonoBehaviour:
   ForceExplosion: 125
   radiusExploBase: 7
   DistanceWhereRuantStomp: 10
-  SpeedRotation: 200
   ForcePercussion: 125
   Ruant_Collision: event:/Enemy/Ruant/Ruant_Collision
   Ruant_Cris_Mort: event:/Enemy/Ruant/Ruant_Cris_Mort

@@ -7,7 +7,8 @@ public class PunchBasic : MonoBehaviour
 {
     [SerializeField] private BasicAI ContainerBasicAI;
 
-    [SerializeField] private float TimeWhereTheColliderActivate;
+
+    [SerializeField] private EventActivationPunch ContainerEventPunch;
 
     private float ContainerTimeWhereTheColliderActivate;
 
@@ -15,30 +16,37 @@ public class PunchBasic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.ContainerTimeWhereTheColliderActivate = this.TimeWhereTheColliderActivate;
         this.TimeBeforeColliderDesactivate = 0.5f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (this.ContainerBasicAI.InPunch &&  !this.GetComponent<Collider>().enabled)
+        if (this.ContainerBasicAI.InPunch && !this.GetComponent<Collider>().enabled)
         {
-            if (this.TimeWhereTheColliderActivate <= 0)
-            {
-                this.TimeWhereTheColliderActivate = this.ContainerTimeWhereTheColliderActivate;
-                this.GetComponent<Collider>().enabled = true;
-                StartCoroutine(this.DesactivationCollider());
-            }
-            else
-            {
-                this.TimeWhereTheColliderActivate -= Time.deltaTime;
-            }
+            this.GetComponent<Collider>().enabled = true;
         }
-        else
+        else if(this.GetComponent<Collider>().enabled)
         {
-            this.TimeWhereTheColliderActivate = this.ContainerTimeWhereTheColliderActivate;
+            this.GetComponent<Collider>().enabled = false;
         }
+        // if (this.ContainerBasicAI.InPunch &&  !this.GetComponent<Collider>().enabled && this.ContainerEventPunch.PunchActivate)
+        // {
+        //     if (this.TimeWhereTheColliderActivate <= 0)
+        //     {
+        //         this.TimeWhereTheColliderActivate = this.ContainerTimeWhereTheColliderActivate;
+        //         this.GetComponent<Collider>().enabled = true;
+        //         StartCoroutine(this.DesactivationCollider());
+        //     }
+        //     else
+        //     {
+        //         this.TimeWhereTheColliderActivate -= Time.deltaTime;
+        //     }
+        // }
+        // else
+        // {
+        //     this.TimeWhereTheColliderActivate = this.ContainerTimeWhereTheColliderActivate;
+        // }
     }
 
     IEnumerator DesactivationCollider()
