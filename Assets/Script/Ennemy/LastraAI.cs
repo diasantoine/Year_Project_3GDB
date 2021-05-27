@@ -66,6 +66,7 @@ public class LastraAI : Ennemy
     private bool NewPosFind;
     private bool CatchHisBreath;
     private float CompteurISOnNavMesh = 3;
+    private Vector3 LastPosition;
     [SerializeField] private bool IsRunning;
 
     private StateLastra ContainerLastState;
@@ -166,6 +167,7 @@ public class LastraAI : Ennemy
                             agent.stoppingDistance = 0.5f;
                             this.NewPosFind = false;
                             this.agent.isStopped = false;
+                            this.LastPosition = transform.position;
                         }
                         else
                         {
@@ -174,7 +176,8 @@ public class LastraAI : Ennemy
                     }
                     else if (this.ContainerNewPos != Vector3.zero && this.IsRunning)
                     {
-                        if (Vector3.Distance(this.ContainerNewPos, transform.position) < 1)
+                        //if (Vector3.Distance(this.ContainerNewPos, transform.position) < 1)
+                        if(Vector3.Distance(this.LastPosition, this.ContainerNewPos) <= Vector3.Distance(this.LastPosition, transform.position))
                         {
                             this.ContainerNewPos = Vector3.zero;
                             Debug.Log("arrivé");
