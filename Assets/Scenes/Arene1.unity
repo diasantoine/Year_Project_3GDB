@@ -3063,7 +3063,7 @@ Transform:
   - {fileID: 30065786}
   - {fileID: 9163694710346491063}
   m_Father: {fileID: 507935198}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -83.975716, y: -21.33637, z: 75.26525}
 --- !u!1 &364192662
 GameObject:
@@ -3303,6 +3303,51 @@ Transform:
   m_Father: {fileID: 6645618197513464607}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &391259112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 391259113}
+  - component: {fileID: 391259114}
+  m_Layer: 9
+  m_Name: PiedDetectGround (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &391259113
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391259112}
+  m_LocalRotation: {x: 0.084645316, y: 0.69947416, z: 0.70353013, w: -0.0928247}
+  m_LocalPosition: {x: -0.447, y: -0.035, z: 0.115}
+  m_LocalScale: {x: 1, y: 1, z: 0.9999801}
+  m_Children: []
+  m_Father: {fileID: 507935198}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 104.045, y: 177.46, z: 11.955994}
+--- !u!114 &391259114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391259112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd28abff85bc2a3499843f908ca11bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 497796868}
+  disToGround: 0.5
 --- !u!1 &409578313
 GameObject:
   m_ObjectHideFlags: 0
@@ -3422,6 +3467,51 @@ Transform:
   m_Father: {fileID: 825768563}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &416309320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 416309321}
+  - component: {fileID: 416309322}
+  m_Layer: 9
+  m_Name: PiedDetectGround
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &416309321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416309320}
+  m_LocalRotation: {x: 0.08464532, y: 0.6994742, z: 0.7035301, w: -0.092824705}
+  m_LocalPosition: {x: 0.579, y: 0.006, z: 0.057}
+  m_LocalScale: {x: 1, y: 1, z: 0.9999801}
+  m_Children: []
+  m_Father: {fileID: 507935198}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 104.045, y: 177.46, z: 11.955994}
+--- !u!114 &416309322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416309320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd28abff85bc2a3499843f908ca11bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Parent: {fileID: 497796868}
+  disToGround: 0.5
 --- !u!4 &418900911 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 433370, guid: 2d4a1bad0050945488098fcea22ee9e0,
@@ -3554,7 +3644,7 @@ Transform:
   - {fileID: 65357124}
   - {fileID: 1177825101}
   m_Father: {fileID: 507935198}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &458768292
 GameObject:
@@ -4368,6 +4458,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 391259113}
+  - {fileID: 416309321}
   - {fileID: 543450652414494031}
   - {fileID: 439193751}
   - {fileID: 344264593}
@@ -53671,7 +53763,7 @@ Transform:
   - {fileID: 174460132399448278}
   - {fileID: 1407204936}
   m_Father: {fileID: 507935198}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &543450652768186834
 Transform:

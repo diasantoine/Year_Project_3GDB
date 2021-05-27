@@ -158,16 +158,19 @@ public class The_Player_Script : MonoBehaviour
 
         lerpTime = 3f * Time.deltaTime;
 
-        if(PercentageArmorHeat > 55)
+        if(UIHeat != null)
         {
-            UIHeat.SetBool("Chaud", true);
+            if (PercentageArmorHeat > 55)
+            {
+                UIHeat.SetBool("Chaud", true);
 
-        }
-        else
-        {
-            UIHeat.SetBool("Chaud", false);
+            }
+            else
+            {
+                UIHeat.SetBool("Chaud", false);
 
-        }
+            }
+        }      
 
         if (aiguilleHeat != null)
         {
@@ -199,19 +202,22 @@ public class The_Player_Script : MonoBehaviour
 
     private void updateBarHeat()
     {
-
-        if (PercentageWeaponHeat > 50)
+        if(barHeat != null)
         {
-            barHeat.transform.parent.gameObject.SetActive(true);
+            if (PercentageWeaponHeat > 50)
+            {
+                barHeat.transform.parent.gameObject.SetActive(true);
+
+            }
+            else
+            {
+                barHeat.transform.parent.gameObject.SetActive(false);
+
+            }
+
+            barHeat.fillAmount = Mathf.Lerp(barHeat.fillAmount, PercentageWeaponHeat / 100, lerpTime);
 
         }
-        else
-        {
-            barHeat.transform.parent.gameObject.SetActive(false);
-
-        }
-
-        barHeat.fillAmount = Mathf.Lerp(barHeat.fillAmount, PercentageWeaponHeat / 100, lerpTime);
 
     }
 
@@ -223,23 +229,26 @@ public class The_Player_Script : MonoBehaviour
 
     private void LifeUI()
     {
-        switch (playerLife)
+        if(lampLife.Count > 0)
         {
-            case 3:
-                lampLife[0].SetActive(true);
-                break;                   
-            case 2:
-                lampLife[0].SetActive(false);
-                lampLife[1].SetActive(true);
-                break;
-            case 1:
-                lampLife[1].SetActive(false);
-                lampLife[2].SetActive(true);
-                break;
-            case 0:
-                lampLife[2].SetActive(false);
-                break;
+            switch (playerLife)
+            {
+                case 3:
+                    lampLife[0].SetActive(true);
+                    break;
+                case 2:
+                    lampLife[0].SetActive(false);
+                    lampLife[1].SetActive(true);
+                    break;
+                case 1:
+                    lampLife[1].SetActive(false);
+                    lampLife[2].SetActive(true);
+                    break;
+                case 0:
+                    lampLife[2].SetActive(false);
+                    break;
 
+            }
         }
     }
 

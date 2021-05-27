@@ -14,6 +14,8 @@ public class SceneThing : MonoBehaviour
     private string choice = "";
     private int index;
 
+    private bool doOnce;
+
 
     public void LoadLevel(int scene)
     {
@@ -35,7 +37,11 @@ public class SceneThing : MonoBehaviour
             case "Level":
                 if (timeQuit <= 0)
                 {
-                    StartCoroutine(LoadLevelGood(index));
+                    if (!doOnce)
+                    {
+                        StartCoroutine(LoadLevelGood(index));
+                        doOnce = true;
+                    }
                     slider.gameObject.SetActive(true);
 
                 }
