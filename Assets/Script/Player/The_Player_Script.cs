@@ -314,7 +314,6 @@ public class The_Player_Script : MonoBehaviour
             {
                 PercentageWeaponHeat -= Time.deltaTime * this.ListOfYourPlayer[this.YourPlayerChoosed].FrequenceDecreaseWeaponHeat;
                 this.PercentageWeaponHeat = Mathf.Clamp(this.PercentageWeaponHeat, 0, Mathf.Infinity);
-                Debug.Log(this.PercentageWeaponHeat);
                 foreach (GameObject WeaponPart in  ListOfYourPlayer[YourPlayerChoosed].ListWeaponPart)
                 {
                     // WeaponPart.GetComponent<Renderer>().material.SetColor("_EmissionColor",

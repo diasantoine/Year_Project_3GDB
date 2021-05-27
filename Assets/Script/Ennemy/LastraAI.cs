@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 
 public class LastraAI : Ennemy
@@ -64,6 +65,7 @@ public class LastraAI : Ennemy
     private int BreakWhile;
     private bool NewPosFind;
     private bool CatchHisBreath;
+    private float CompteurISOnNavMesh = 3;
     [SerializeField] private bool IsRunning;
 
     private StateLastra ContainerLastState;
@@ -94,6 +96,25 @@ public class LastraAI : Ennemy
         if (!this.agent.enabled)
         {
             this.agent.enabled = true;
+        }
+
+        if (!this.agent.isOnNavMesh)
+        {
+            if (this.CompteurISOnNavMesh <= 0)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                this.CompteurISOnNavMesh -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            if (this.CompteurISOnNavMesh != 3)
+            {
+                this.CompteurISOnNavMesh = 3;
+            }
         }
         VisionCone(this.player);
         switch (this.LastraState)
@@ -142,7 +163,7 @@ public class LastraAI : Ennemy
                         if (this.FindGoal())
                         {
                             this.agent.SetDestination(this.ContainerNewPos);
-                            agent.stoppingDistance = 0;
+                            agent.stoppingDistance = 0.5f;
                             this.NewPosFind = false;
                             this.agent.isStopped = false;
                         }
@@ -157,6 +178,8 @@ public class LastraAI : Ennemy
                         {
                             this.ContainerNewPos = Vector3.zero;
                             Debug.Log("arrivé");
+                            this.agent.enabled = false;
+                            this.agent.enabled = true;
                             this.agent.speed = this.SpeedContainer;
                             this.agent.isStopped = true;
                             this.CatchHisBreath = true;
@@ -167,7 +190,7 @@ public class LastraAI : Ennemy
                         else
                         {
                             this.agent.SetDestination(this.ContainerNewPos);
-                            agent.stoppingDistance = 0;
+                            //agent.stoppingDistance = 0;
                         }
                     }
 
@@ -433,7 +456,6 @@ public class LastraAI : Ennemy
         Vector3 position = this.transform.position + new Vector3 (offset.x, 0, offset.y);
         NavMeshHit hit;
         bool isValid = NavMesh.SamplePosition (position + Vector3.up, out hit, 10,  NavMesh.AllAreas);
-        Debug.Log(isValid + " " + FrontTest(new Vector3(hit.position.x, transform.position.y, hit.position.z)));
         if (!isValid || Vector3.Distance(new Vector3(hit.position.x, transform.position.y, hit.position.z), this.player.transform.position) < this.DistanceMaxNearPlayer * 1.1f || 
             !FrontTest(new Vector3(hit.position.x, transform.position.y, hit.position.z)))
             return false;
@@ -452,7 +474,6 @@ public class LastraAI : Ennemy
         // float ang = Mathf.Acos(Vector3.Dot(fwd, vec)) * Mathf.Rad2Deg;
         // if (ang <= 180f && ang >= 0) 
         float angel = Vector3.Angle(transform.position - this.player.transform.position, PositionHit - this.player.transform.position);
-        Debug.Log(Mathf.Abs(angel));
         if (Mathf.Abs(angel) >= 0  && Mathf.Abs(angel) <= 90)
             return true;
 

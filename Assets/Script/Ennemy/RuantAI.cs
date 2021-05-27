@@ -374,7 +374,7 @@ public class RuantAI : Ennemy
         RB.velocity = Direction.normalized * speedRush;
         if (this.DistanceRemainOk)
         {
-            Debug.Log("arrivé");
+//            Debug.Log("arrivé");
             isRushing = false;
             Debug.Log(this.RB.velocity.magnitude);
             DashFini();
