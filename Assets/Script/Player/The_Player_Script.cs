@@ -504,7 +504,7 @@ public class The_Player_Script : MonoBehaviour
 
     private void PlayerFall()
     {
-        if (transform.position.y <= -6)
+        if (transform.position.y <= -6 || Input.GetKeyDown(KeyCode.F3))
         {
             transform.position = ListOfYourPlayer[YourPlayerChoosed].SpawnPositionPlayer.position;
             //SetCursorPos(xPos,yPos);//Call this when you want to set the mouse position
