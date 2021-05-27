@@ -64,8 +64,6 @@ public class GroundDetect : MonoBehaviour
         //Debug.DrawRay(transform.position, -Vector3.up,Color.yellow, 5000f);
         if (Physics.Raycast(transform.position, -Vector3.up, out RaycastHit hit, disToGround, LayerMask.GetMask("Sol", "Wall")))
         {
-            Debug.Log(hit.collider.name);
-            Debug.DrawRay(transform.position, -Vector3.up, Color.magenta);
             if (hit.collider.transform.CompareTag("sol") || hit.collider.transform.CompareTag("Ennemy")  || hit.collider.transform.CompareTag("Mur") && !this.Parent.GetComponent<The_Player_Script>().Grounded)
             {
                     this.Parent.GetComponent<The_Player_Script>().Grounded = true;
