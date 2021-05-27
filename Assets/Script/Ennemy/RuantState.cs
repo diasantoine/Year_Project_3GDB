@@ -31,9 +31,14 @@ public class RuantState : State
     {
         DebugDeath();
         Weakling();
-        HealthbarDecrease();
 
-        if(HpNow <= 0)
+        if (healthBar != null)
+        {
+            HealthbarDecrease();
+
+        }
+
+        if (HpNow <= 0)
         {
             if (!Fall)
             {

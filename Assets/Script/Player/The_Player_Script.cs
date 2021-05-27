@@ -632,6 +632,7 @@ public class The_Player_Script : MonoBehaviour
     {
         if (this.OnJump)
         {
+
             particleJump.SetActive(true);
             float Distance = Vector3.Distance(new Vector3(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.transform.position.x, 0, 
                     ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.transform.position.z)  , new Vector3(this.PointOrigineJump.x, 0, this.PointOrigineJump.z));
@@ -639,6 +640,12 @@ public class The_Player_Script : MonoBehaviour
             //Debug.Log(ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.velocity);
             if (Distance >= this.DistanceJump)
             {
+
+                if (particleJump.activeSelf)
+                {
+                    particleJump.SetActive(false);
+                }
+
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.drag = 1;
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.angularDrag = 0.5f;
                 ListOfYourPlayer[YourPlayerChoosed].ConteneurRigibody.mass = 1;

@@ -28,7 +28,11 @@ public class ScreamerState : State
     void Update()
     {
         PoisonDamage();
-        HealthbarDecrease();
+        if(healthBar != null)
+        {
+            HealthbarDecrease();
+
+        }
 
         if (HpNow <= 0)
         {

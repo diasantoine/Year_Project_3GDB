@@ -27,7 +27,11 @@ public class LastraState : State
     void Update()
     {
         PoisonDamage();
-        HealthbarDecrease();
+        if (healthBar != null)
+        {
+            HealthbarDecrease();
+
+        }
 
         if (transform.position.y <= -10)
         {

@@ -11145,6 +11145,7 @@ MonoBehaviour:
     - {fileID: 946436650}
     - {fileID: 1075467013}
     - {fileID: 1075131366}
+    - {fileID: 894585883}
     CompteurBeforeDecreaseHeatArmor: 2
     FrequenceDecreaseArmorHeat: 2
     NumberOfDecreaseByFrequence_Armor: 10
@@ -11152,7 +11153,7 @@ MonoBehaviour:
     - {fileID: 132972292651147591}
     - {fileID: 7072482629110045855}
     CompteurBeforeDecreaseHeatWeapon: 2
-    FrequenceDecreaseWeaponHeat: 1
+    FrequenceDecreaseWeaponHeat: 10
     NumberOfDecreaseByFrequence_Weapon: 25
     MaxWeaponHeat: 100
     FrequenceDecreasedWhenOverHeated: 10
@@ -14306,7 +14307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &817034458
 GameObject:
   m_ObjectHideFlags: 0
@@ -41355,10 +41356,10 @@ MonoBehaviour:
     CD_Spawn_Ruant: 1
     CD_Spawn_Screamer: 1
     CD_Spawn_Lastra: 1
-    MaxBasic: 5
+    MaxBasic: 15
     MaxRuant: 1
     MaxScreamer: 1
-    MaxLastra: 1
+    MaxLastra: 5
     minutesMax: 1
     secondesMax: 5
   - NumberBasic: 5
@@ -41384,11 +41385,11 @@ MonoBehaviour:
     MaxRuant: 2
     MaxScreamer: 2
     MaxLastra: 2
-    minutesMax: 45
-    secondesMax: 0
+    minutesMax: 0
+    secondesMax: 45
   - NumberBasic: 15
     NumberRuant: 0
-    NumberScreamer: 1
+    NumberScreamer: 2
     NumberLastra: 2
     ListSpawnBasic:
     - {fileID: 1935181333}

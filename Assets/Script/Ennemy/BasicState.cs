@@ -32,7 +32,12 @@ public class BasicState : State
     {
         DebugDeath();
         PoisonDamage();
-        HealthbarDecrease();
+
+        if (healthBar != null)
+        {
+            HealthbarDecrease();
+
+        }
 
         if (HpNow <= 0)
         {

@@ -67,7 +67,6 @@ public class GroundDetect : MonoBehaviour
             if (hit.collider.transform.CompareTag("sol") || hit.collider.transform.CompareTag("Ennemy")  || hit.collider.transform.CompareTag("Mur") && !this.Parent.GetComponent<The_Player_Script>().Grounded)
             {
                     this.Parent.GetComponent<The_Player_Script>().Grounded = true;
-                    this.Parent.GetComponent<The_Player_Script>().particleJump.SetActive(false);
             }
         }
         else

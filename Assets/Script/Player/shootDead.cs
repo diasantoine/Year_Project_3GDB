@@ -151,7 +151,7 @@ public class shootDead : MonoBehaviour
             if (Input.GetMouseButton(0) && !GetComponent<The_Player_Script>().WeaponOverHeated)
             {
                 GetComponent<The_Player_Script>().IsNotUsingNormalWeapon = false;
-                GetComponent<The_Player_Script>().PercentageWeaponHeat += 1;
+                GetComponent<The_Player_Script>().PercentageWeaponHeat += 2;
                 foreach (GameObject WeaponPart in  
                     GetComponent<The_Player_Script>().ListOfYourPlayer[
                         GetComponent<The_Player_Script>().YourPlayerChoosed].ListWeaponPart)

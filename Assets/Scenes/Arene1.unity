@@ -4243,6 +4243,7 @@ MonoBehaviour:
     - {fileID: 946436650}
     - {fileID: 1075467013}
     - {fileID: 1075131366}
+    - {fileID: 894585883}
     CompteurBeforeDecreaseHeatArmor: 2
     FrequenceDecreaseArmorHeat: 2
     NumberOfDecreaseByFrequence_Armor: 10
@@ -11964,7 +11965,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &817034458
 GameObject:
   m_ObjectHideFlags: 0
@@ -36403,7 +36404,7 @@ MonoBehaviour:
     CD_Spawn_Ruant: 5
     CD_Spawn_Screamer: 1
     CD_Spawn_Lastra: 1
-    MaxBasic: 5
+    MaxBasic: 40
     MaxRuant: 1
     MaxScreamer: 1
     MaxLastra: 1
@@ -36427,14 +36428,14 @@ MonoBehaviour:
     CD_Spawn_Ruant: 3
     CD_Spawn_Screamer: 0
     CD_Spawn_Lastra: 5
-    MaxBasic: 20
+    MaxBasic: 40
     MaxRuant: 2
     MaxScreamer: 2
     MaxLastra: 2
     minutesMax: 0
     secondesMax: 45
   - NumberBasic: 10
-    NumberRuant: 1
+    NumberRuant: 2
     NumberScreamer: 1
     NumberLastra: 0
     ListSpawnBasic:
@@ -36447,10 +36448,10 @@ MonoBehaviour:
     - {fileID: 596509453}
     ListSpawnLastra: []
     CD_Spawn_Basic: 1.5
-    CD_Spawn_Ruant: 10
+    CD_Spawn_Ruant: 6
     CD_Spawn_Screamer: 2
     CD_Spawn_Lastra: 0
-    MaxBasic: 20
+    MaxBasic: 40
     MaxRuant: 2
     MaxScreamer: 2
     MaxLastra: 0
@@ -36460,7 +36461,7 @@ MonoBehaviour:
   ListMaxRuant: []
   ListMaxScreamer: []
   ListMaxLastra: []
-  IndexWave: 0
+  IndexWave: 2
   ListEnnemy: []
   mobRestant: 0
 --- !u!4 &1371606788
@@ -36490,7 +36491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GS: {fileID: 2073021358}
-  player: {fileID: 0}
+  player: {fileID: 497796873}
   VagueTimer: event:/Vague/Fin et Debut Vague
   text: {fileID: 1171479632}
   timeText: {fileID: 887115919}

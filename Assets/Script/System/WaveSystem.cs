@@ -160,7 +160,7 @@ public class WaveSystem : MonoBehaviour
                 GS.NextArena();
                 
             }
-
+            text.text = "ENNEMY";
             timeText.text = string.Format("{0}", spawn.ListEnnemy.Count);
         }
     }

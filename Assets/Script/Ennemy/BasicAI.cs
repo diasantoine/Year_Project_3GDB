@@ -180,7 +180,7 @@ public class BasicAI : Ennemy
             case State.TAPER:
                 break;
             case State.DEATH:
-                if(chronoDie >= 2.35f)
+                if(chronoDie >= 1f)
                 {                   
                     GetComponent<BasicState>().Die();
 
