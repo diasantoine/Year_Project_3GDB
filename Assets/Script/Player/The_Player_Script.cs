@@ -129,7 +129,7 @@ public class The_Player_Script : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private float disToGround;
     [SerializeField] private float TimerBeforeGrounded;
-    [SerializeField] private GameObject particleJump;
+    [SerializeField] public GameObject particleJump;
     [SerializeField] private GameObject aiguilleHeat;
     [SerializeField] private Image barHeat;
     [SerializeField] private Animator UIHeat;
@@ -372,7 +372,7 @@ public class The_Player_Script : MonoBehaviour
 
     private void CharacterMouvement()
     {
-        Ground();// Teste s'il est ground
+        //Ground();// Teste s'il est ground
 
         Player_On_Jump();// Take care of the y of the player and set the player to normal state when jump is over
         
