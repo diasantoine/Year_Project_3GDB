@@ -697,9 +697,9 @@ GameObject:
   - component: {fileID: 37480740}
   - component: {fileID: 37480739}
   - component: {fileID: 37480738}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube (5)
-  m_TagString: Untagged
+  m_TagString: Mur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2537,9 +2537,9 @@ GameObject:
   - component: {fileID: 166305938}
   - component: {fileID: 166305937}
   - component: {fileID: 166305936}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Mur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -4167,9 +4167,9 @@ GameObject:
   - component: {fileID: 295028542}
   - component: {fileID: 295028541}
   - component: {fileID: 295028540}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Mur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11593,9 +11593,9 @@ GameObject:
   - component: {fileID: 528725307}
   - component: {fileID: 528725306}
   - component: {fileID: 528725305}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Mur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13447,9 +13447,9 @@ GameObject:
   - component: {fileID: 735555280}
   - component: {fileID: 735555279}
   - component: {fileID: 735555278}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Mur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35046,9 +35046,9 @@ GameObject:
   - component: {fileID: 953894036}
   - component: {fileID: 953894035}
   - component: {fileID: 953894034}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: r
-  m_TagString: Untagged
+  m_TagString: Mur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -35139,9 +35139,9 @@ GameObject:
   - component: {fileID: 957887158}
   - component: {fileID: 957887157}
   - component: {fileID: 957887156}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Mur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -36024,9 +36024,9 @@ GameObject:
   - component: {fileID: 1018409685}
   - component: {fileID: 1018409684}
   - component: {fileID: 1018409683}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Mur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36733,9 +36733,9 @@ GameObject:
   - component: {fileID: 1065090993}
   - component: {fileID: 1065090992}
   - component: {fileID: 1065090991}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Mur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -36826,9 +36826,9 @@ GameObject:
   - component: {fileID: 1067161143}
   - component: {fileID: 1067161142}
   - component: {fileID: 1067161141}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube (5)
-  m_TagString: Untagged
+  m_TagString: Mur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -41544,9 +41544,9 @@ GameObject:
   - component: {fileID: 1379332270}
   - component: {fileID: 1379332269}
   - component: {fileID: 1379332268}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Mur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50551,9 +50551,9 @@ GameObject:
   - component: {fileID: 1711080212}
   - component: {fileID: 1711080211}
   - component: {fileID: 1711080210}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Mur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -60967,9 +60967,9 @@ GameObject:
   - component: {fileID: 1764233309}
   - component: {fileID: 1764233308}
   - component: {fileID: 1764233307}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Mur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -61568,6 +61568,11 @@ PrefabInstance:
       propertyPath: CantUse
       value: event:/Player/ErrorOneBeep_Competence
       objectReference: {fileID: 0}
+    - target: {fileID: 5770150579049802268, guid: 4bee1ceeb0eccdd4196843683ab4d4ff,
+        type: 3}
+      propertyPath: RadiusCollider
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5770150579049802269, guid: 4bee1ceeb0eccdd4196843683ab4d4ff,
         type: 3}
       propertyPath: m_Name
@@ -61605,9 +61610,9 @@ GameObject:
   - component: {fileID: 1811333185}
   - component: {fileID: 1811333184}
   - component: {fileID: 1811333183}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Mur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -61700,9 +61705,9 @@ GameObject:
   - component: {fileID: 1812847761}
   - component: {fileID: 1812847760}
   - component: {fileID: 1812847759}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube (6)
-  m_TagString: Untagged
+  m_TagString: Mur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63006,9 +63011,9 @@ GameObject:
   - component: {fileID: 1930478847}
   - component: {fileID: 1930478846}
   - component: {fileID: 1930478845}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Mur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
